@@ -1,3 +1,5 @@
 export function PriorityCmp() {
-    return;
+    return (
+        <div>Priority</div>
+    )
 }

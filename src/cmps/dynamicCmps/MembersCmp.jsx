@@ -1,3 +1,5 @@
 export function MembersCmp() {
-    return;
+    return (
+        <div>Members</div>
+    )
 }

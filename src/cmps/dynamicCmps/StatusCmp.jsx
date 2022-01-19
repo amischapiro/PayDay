@@ -1,3 +1,5 @@
 export function StatusCmp() {
-    return;
+    return (
+        <div>Status</div>
+    )
 }

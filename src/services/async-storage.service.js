@@ -8,6 +8,7 @@ export const storageService = {
     postMany
 }
 
+console.log('hello');
 
 const board = {
     _id: "b101",

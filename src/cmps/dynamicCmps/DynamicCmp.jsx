@@ -7,13 +7,13 @@ import { PriorityCmp } from './PriorityCmp.jsx';
 export function DynamicCmp({ cmp, info, onUpdate }) {
 	switch (cmp) {
 		case 'status-picker':
-			return <StatusCmp info={info} onUpdate={onUpdate} />;
+			// return <StatusCmp info={info} onUpdate={onUpdate} />;
 		case 'member-picker':
 			return <MemebersCmp info={info} onUpdate={onUpdate} />;
 		case 'priority-picker':
 			return <PriorityCmp info={info} onUpdate={onUpdate} />;
 		case 'timeline-picker':
-			return <TimelineCmp info={info} onUpdate={onUpdate} />;
+			// return <TimelineCmp info={info} onUpdate={onUpdate} />;
 		default:
 			return <React.Fragment></React.Fragment>;
 	}

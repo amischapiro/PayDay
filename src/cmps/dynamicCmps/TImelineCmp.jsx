@@ -1,3 +1,5 @@
 export function TimelineCmp() {
-    return;
+    return (
+        <div>Timeline</div>
+    )
 }
