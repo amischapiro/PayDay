@@ -3,7 +3,7 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-export function PriorityCmp({ info, onUpdate, boardPriorities }) {
+export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
 	const handleClick = (event) => {
@@ -17,7 +17,7 @@ export function PriorityCmp({ info, onUpdate, boardPriorities }) {
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
 
-	const { priority } = info;
+	const { priority } = story.storyData;
 
 	return (
 		<div>

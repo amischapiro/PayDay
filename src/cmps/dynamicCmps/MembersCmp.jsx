@@ -17,7 +17,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
 
-	const { members } = story;
+	const { members } = story.storyData;
 
 	return (
 		<div>

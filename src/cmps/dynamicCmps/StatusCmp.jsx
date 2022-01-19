@@ -3,7 +3,7 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-export function StatusCmp({ info, onUpdate, boardStatuses }) {
+export function StatusCmp({ story, onUpdate, boardStatuses }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
 	const handleClick = (event) => {
@@ -17,7 +17,7 @@ export function StatusCmp({ info, onUpdate, boardStatuses }) {
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
 
-	const { status } = info;
+	const { status } = story.storyData;
 
 	return (
 		<div>

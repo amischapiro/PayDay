@@ -3,7 +3,7 @@ import { DynamicCmp } from './dynamicCmps/DynamicCmp';
 
 export function Story(props) {
 	const { board, story } = props
-	const { cmpsOrder, members } = board
+	const { cmpsOrder } = board
 
 	console.log(story);
 
@@ -18,14 +18,13 @@ export function Story(props) {
 					<DynamicCmp
 						key={idx}
 						cmp={cmp}
-						info={story}
+						story={story}
 						onUpdate={(data) => {
 							console.log('Updating:', cmp, 'with data:', data);
 							// make a copy, update the task
 							// Call action: updateTask(task)
 						}}
-						members={members}
-						story={story}
+						board={board}
 					/>
 				);
 			})}
