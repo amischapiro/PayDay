@@ -7,7 +7,7 @@ function _BoardList(){
         <section className='boardlist-container open' >
             <button className='toggle-btn' >^</button>
         <h3>Main workspace</h3>
-        <div className='add-board' ><button><span className='fa-solid plus'></span> Add</button></div>
+        <div className='add-board' ><button className='fa-solid plus'></button><span >Add</span> </div>
         <div className='filter-boards'><button className='fa-solid filter'> Filter</button></div>
         <div className='break-line' ></div>
         {/* render boards */}
