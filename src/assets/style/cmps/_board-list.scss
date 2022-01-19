@@ -1,0 +1,24 @@
+.review-section {
+    margin: 2rem auto 0;
+   
+    background-color: $clr1;
+    border-radius: 2rem;
+    width: 70%;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    h5 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .review-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn-toggle {
+        display: block;
+        margin: 1.5rem auto ;
+    }
+}

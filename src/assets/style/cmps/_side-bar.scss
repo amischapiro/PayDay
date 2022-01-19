@@ -1,0 +1,21 @@
+.toy-preview {
+    background-color: $clr1;
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h4 {
+        margin-bottom: 0.6rem;
+    }
+
+    img {
+        margin-bottom: 0.6rem;
+    }
+
+    .lower-section > * {
+        margin: 0 0.5rem;
+    }
+}

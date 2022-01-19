@@ -1,0 +1,20 @@
+.toy-dashboard {
+    margin: auto;
+
+    h2 {
+        font-size: 2.2rem;
+        text-align: center;
+    }
+    .charts-container{
+        display: flex;
+        justify-content: center;
+
+        >*{
+            flex-basis: 50%;
+
+            h3 {
+                text-align: center;
+            }
+        }
+    }
+}

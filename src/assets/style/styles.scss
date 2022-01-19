@@ -1,0 +1,31 @@
+// Setup
+@import "setup/variables.scss";
+@import "setup/functions.scss";
+@import "setup/mixings.scss";
+@import "setup/fonts.scss";
+
+// Basics
+@import "basics/helpers.scss";
+@import "basics/layouts.scss";
+@import "basics/base.scss";
+@import "basics/buttons.scss";
+
+
+// Pages
+
+@import "./pages/about.scss";
+@import "./pages/toy-app.scss";
+@import "./pages/toy-details.scss";
+@import "./pages/toy-dashboard.scss";
+@import "./pages/toy-edit.scss";
+
+
+// Cmps
+
+@import "./cmps/app-header.scss";
+@import "./cmps/toy-preview.scss";
+@import "./cmps/toy-list.scss";
+@import "./cmps/toy-filter.scss";
+@import "./cmps/review-list.scss";
+@import "./cmps/review-preview.scss";
+@import "./cmps/review-add.scss";
