@@ -1,6 +1,5 @@
 import {connect} from 'react-redux'
 
-
 function _BoardActions(){
     return(
         <h1>Board Actions</h1>

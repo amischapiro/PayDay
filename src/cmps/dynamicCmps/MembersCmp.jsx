@@ -30,7 +30,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 					const fName = nameArr[0].split('');
 					const lName = nameArr[1].split('');
 					return (
-						<img src={member.imgUrl} alt={fName[0] + lName[0]} />
+						<img key={member._id} src={member.imgUrl} alt={fName[0] + lName[0]} />
 					);
 				}) : 'NM'}
 			</Button>

@@ -102,10 +102,17 @@ function _createBoard() {
             imgUrl: "http://some-img"
         },
         style: {},
-        labels: [
+        statuses: [
             {
-                id: "l101",
+                id: "s101",
                 title: "Done",
+                color: "#61bd4f"
+            }
+        ],
+        priorities: [
+            {
+                id: "p101",
+                title: "High",
                 color: "#61bd4f"
             }
         ],
@@ -123,11 +130,35 @@ function _createBoard() {
                 stories: [
                     {
                         id: "c101",
-                        title: "Replace logo"
+                        title: "Replace logo",
+                        storyData: {
+                            members: [
+                                {
+                                    _id: "u101",
+                                    fullname: "Tal Tarablus",
+                                    imgUrl: "https://www.google.com"
+                                }
+                            ],
+                            priority: 'h',
+                            status: 'h',
+                            timeline: 'h'
+                        }
                     },
                     {
                         id: "c102",
-                        title: "Add Samples"
+                        title: "Add Samples",
+                        storyData: {
+                            members: [
+                                {
+                                    _id: "u101",
+                                    fullname: "Tal Tarablus",
+                                    imgUrl: "https://www.google.com"
+                                }
+                            ],
+                            priority: 'm',
+                            status: 'm',
+                            timeline: 'p'
+                        }
                     }
                 ],
                 style: {}
@@ -137,61 +168,35 @@ function _createBoard() {
                 title: "Group 2",
                 stories: [
                     {
-                        id: "c103",
-                        title: "Do that"
-                    },
-                    {
-                        id: "c104",
-                        title: "Help me",
-                        status: "in-progress",
-                        description: "description",
-                        comments: [
-                            {
-                                id: "ZdPnm",
-                                txt: "also @yaronb please CR this",
-                                createdAt: 1590999817436,
-                                byMember: {
+                        id: "c101",
+                        title: "Replace logo",
+                        storyData: {
+                            members: [
+                                {
                                     _id: "u101",
                                     fullname: "Tal Tarablus",
-                                    imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                    imgUrl: "https://www.google.com"
                                 }
-                            }
-                        ],
-                        checklists: [
-                            {
-                                id: "YEhmF",
-                                title: "Checklist",
-                                todos: [
-                                    {
-                                        id: "212jX",
-                                        title: "To Do 1",
-                                        isDone: false
-                                    }
-                                ]
-                            }
-                        ],
-                        members: [
-                            {
-                                _id: "u101",
-                                username: "Tal",
-                                fullname: "Tal Tarablus",
-                                imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                            }
-                        ],
-                        labelIds: [
-                            "l101",
-                            "l102"
-                        ],
-                        createdAt: 1590999730348,
-                        dueDate: 16156215211,
-                        byMember: {
-                            _id: "u101",
-                            username: "Tal",
-                            fullname: "Tal Tarablus",
-                            imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                        },
-                        style: {
-                            bgColor: "#26de81"
+                            ],
+                            priority: 'h',
+                            status: 'h',
+                            timeline: 'h'
+                        }
+                    },
+                    {
+                        id: "c102",
+                        title: "Add Samples",
+                        storyData: {
+                            members: [
+                                {
+                                    _id: "u101",
+                                    fullname: "Tal Tarablus",
+                                    imgUrl: "https://www.google.com"
+                                }
+                            ],
+                            priority: 'm',
+                            status: 'm',
+                            timeline: 'p'
                         }
                     }
                 ],
@@ -223,8 +228,6 @@ function _createBoard() {
 
 }
 
-
-
 const user = {
     _id: "u101",
     fullname: "Abi Abambi",
@@ -239,3 +242,66 @@ const user = {
         }
     ]
 }
+
+
+
+// stories: [
+//     {
+//         id: "c103",
+//         title: "Do that"
+//     },
+//     {
+//         id: "c104",
+//         title: "Help me",
+//         status: "in-progress",
+//         description: "description",
+//         comments: [
+//             {
+//                 id: "ZdPnm",
+//                 txt: "also @yaronb please CR this",
+//                 createdAt: 1590999817436,
+//                 byMember: {
+//                     _id: "u101",
+//                     fullname: "Tal Tarablus",
+//                     imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+//                 }
+//             }
+//         ],
+//         checklists: [
+//             {
+//                 id: "YEhmF",
+//                 title: "Checklist",
+//                 todos: [
+//                     {
+//                         id: "212jX",
+//                         title: "To Do 1",
+//                         isDone: false
+//                     }
+//                 ]
+//             }
+//         ],
+//         members: [
+//             {
+//                 _id: "u101",
+//                 username: "Tal",
+//                 fullname: "Tal Tarablus",
+//                 imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+//             }
+//         ],
+//         labelIds: [
+//             "l101",
+//             "l102"
+//         ],
+//         createdAt: 1590999730348,
+//         dueDate: 16156215211,
+//         byMember: {
+//             _id: "u101",
+//             username: "Tal",
+//             fullname: "Tal Tarablus",
+//             imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+//         },
+//         style: {
+//             bgColor: "#26de81"
+//         }
+//     }
+// ]

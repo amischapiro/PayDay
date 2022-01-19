@@ -25,8 +25,8 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 				aria-describedby={id}
 				variant="contained"
 				onClick={handleClick}
-				className={status.id}>
-				{status.txt}
+				className={status}>
+				{status}
 			</Button>
 			<Popover
 				id={id}
@@ -41,7 +41,7 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 					return (
 						<Typography
 							sx={{ p: 2 }}
-							key={idx}
+							key={status.id}
 							className={status.id}
                             onClick={() =>
                                 onUpdate('CHANGE_STATUS', status.id)

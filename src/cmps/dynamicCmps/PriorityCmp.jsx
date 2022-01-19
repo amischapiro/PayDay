@@ -25,8 +25,8 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 				aria-describedby={id}
 				variant="contained"
 				onClick={handleClick}
-				className={priority.id}>
-				{priority.txt}
+				className={priority}>
+				{priority}
 			</Button>
 			<Popover
 				id={id}
@@ -41,7 +41,7 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 					return (
 						<Typography
 							sx={{ p: 2 }}
-							key={idx}
+							key={priority.id}
 							className={priority.id}
                             onClick={() =>
                                 onUpdate('CHANGE_PRIORITY', priority.id)
