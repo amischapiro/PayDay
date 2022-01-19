@@ -82,6 +82,10 @@
 /* Solid Style */
 
 
+.fa-solid.filter::before {
+	content: '\f0b0';
+}
+
 .fa-solid.search::before {
 	content: '\f002';
 }
