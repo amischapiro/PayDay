@@ -12,6 +12,14 @@ import { loadBoards,  } from '../store/board.action'
 function _BoardList(props) {
     const [anchorEl, setAnchorEl] = useState(null);
 
+    const [isBoardListOpen,toggleBoardList] = useState(true)
+
+    const onToggleBoardListShown = ()=>{
+        console.log('isBoardListOpen:', isBoardListOpen);
+        
+        isBoardListOpen ? toggleBoardList(false) : toggleBoardList(true)
+    }
+
     const handleClick = (event) => {
       setAnchorEl(anchorEl ? null : event.currentTarget);
     };
@@ -21,6 +29,7 @@ function _BoardList(props) {
 
     const { boards } = props
 
+
     useEffect(() => {
         props.loadBoards()
         
@@ -28,8 +37,8 @@ function _BoardList(props) {
     }, [])
 
     return (
-        <section className='boardlist-container open' >
-            <button className='toggle-btn' >^</button>
+        <section className={`boardlist-container ${isBoardListOpen ? 'open':''}`} >
+            <button className='toggle-btn' onClick={()=>onToggleBoardListShown()} >^</button>
             <button className='workspace-toggle' aria-describedby={id} type="button" onClick={handleClick}>
                 <h2>Main workspace <span className={`fa-solid ${open ?'angleup':'angledown'} `} ></span> </h2>
             </button>
