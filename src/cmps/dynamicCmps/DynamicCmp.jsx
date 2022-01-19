@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusCmp } from './StatusCmp.jsx';
+import { StatusCmp } from './StatusCmp.jsx.js';
 import { MemebersCmp } from './MembersCmp.jsx';
 import { PriorityCmp } from './PriorityCmp.jsx';
 import { TimelineCmp } from './TimelineCmp.jsx';
