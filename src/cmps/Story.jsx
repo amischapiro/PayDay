@@ -35,3 +35,7 @@ function mapStateToProps(state) {
         story: state.boardModule.board
     }
 }
+
+const mapDispatchToProps = {};
+
+export const Story = connect(mapStateToProps, mapDispatchToProps)(_Story);
