@@ -1,154 +1,168 @@
-import { storageService } from './storage.service'
+// import { storageService } from './storage.service'
 
 
-_createBoards()
-
-function _createBoards() {
-    let boards = _loadFromStorage()
-    if (!boards || !boards.length) {
-        console.log('from func');
-        _createBoard()
-    }
-    _saveToStorage(boards)
+export const boardService = {
+    // forCheck
 }
 
-function _createBoard() {
+// _createBoards()
 
-}
+// function _createBoards() {
+//     let boards = _loadFromStorage()
+//     if (!boards || !boards.length) {
+//         console.log('from func');
+//         _createBoard()
+//     }
+//     _saveToStorage(boards)
+// }
 
-const json = {
-    "_id": "b101",
-    "title": "Robot dev proj",
-    "createdAt": 1589983468418,
-    "createdBy": {
-        "_id": "u101",
-        "fullname": "Abi Abambi",
-        "imgUrl": "http://some-img"
+
+
+
+
+
+
+const data = {
+    _id: "b101",
+    title: "Robot dev proj",
+    createdAt: 1589983468418,
+    createdBy: {
+        _id: "u101",
+        fullname: "Abi Abambi",
+        imgUrl: "http://some-img"
     },
-    "style": {},
-    "labels": [
+    style: {},
+    labels: [
         {
-            "id": "l101",
-            "title": "Done",
-            "color": "#61bd4f"
+            id: "l101",
+            title: "Done",
+            color: "#61bd4f"
         }
     ],
-    "members": [
+    members: [
         {
-            "_id": "u101",
-            "fullname": "Tal Tarablus",
-            "imgUrl": "https://www.google.com"
+            _id: "u101",
+            fullname: "Tal Tarablus",
+            imgUrl: "https://www.google.com"
         }
     ],
-    "groups": [
+    groups: [
         {
-            "id": "g101",
-            "title": "Group 1",
-            "tasks": [
+            id: "g101",
+            title: "Group 1",
+            tasks: [
                 {
-                    "id": "c101",
-                    "title": "Replace logo"
+                    id: "c101",
+                    title: "Replace logo"
                 },
                 {
-                    "id": "c102",
-                    "title": "Add Samples"
+                    id: "c102",
+                    title: "Add Samples"
                 }
             ],
-            "style": {}
+            style: {}
         },
         {
-            "id": "g102",
-            "title": "Group 2",
-            "tasks": [
+            id: "g102",
+            title: "Group 2",
+            tasks: [
                 {
-                    "id": "c103",
-                    "title": "Do that"
+                    id: "c103",
+                    title: "Do that"
                 },
                 {
-                    "id": "c104",
-                    "title": "Help me",
-                    "status": "in-progress",
-                    "description": "description",
-                    "comments": [
+                    id: "c104",
+                    title: "Help me",
+                    status: "in-progress",
+                    description: "description",
+                    comments: [
                         {
-                            "id": "ZdPnm",
-                            "txt": "also @yaronb please CR this",
-                            "createdAt": 1590999817436.0,
-                            "byMember": {
-                                "_id": "u101",
-                                "fullname": "Tal Tarablus",
-                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            id: "ZdPnm",
+                            txt: "also @yaronb please CR this",
+                            createdAt: 1590999817436,
+                            byMember: {
+                                _id: "u101",
+                                fullname: "Tal Tarablus",
+                                imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                             }
                         }
                     ],
-                    "checklists": [
+                    checklists: [
                         {
-                            "id": "YEhmF",
-                            "title": "Checklist",
-                            "todos": [
+                            id: "YEhmF",
+                            title: "Checklist",
+                            todos: [
                                 {
-                                    "id": "212jX",
-                                    "title": "To Do 1",
-                                    "isDone": false
+                                    id: "212jX",
+                                    title: "To Do 1",
+                                    isDone: false
                                 }
                             ]
                         }
                     ],
-                    "members": [
+                    members: [
                         {
-                            "_id": "u101",
-                            "username": "Tal",
-                            "fullname": "Tal Tarablus",
-                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            _id: "u101",
+                            username: "Tal",
+                            fullname: "Tal Tarablus",
+                            imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         }
                     ],
-                    "labelIds": ["l101", "l102"],
-                    "createdAt": 1590999730348,
-                    "dueDate": 16156215211,
-                    "byMember": {
-                        "_id": "u101",
-                        "username": "Tal",
-                        "fullname": "Tal Tarablus",
-                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                    labelIds: [
+                        "l101",
+                        "l102"
+                    ],
+                    createdAt: 1590999730348,
+                    dueDate: 16156215211,
+                    byMember: {
+                        _id: "u101",
+                        username: "Tal",
+                        fullname: "Tal Tarablus",
+                        imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                     },
-                    "style": {
-                        "bgColor": "#26de81"
+                    style: {
+                        bgColor: "#26de81"
                     }
                 }
             ],
-            "style": {}
+            style: {}
         }
     ],
-    "activities": [
+    activities: [
         {
-            "id": "a101",
-            "txt": "Changed Color",
-            "createdAt": 154514,
-            "byMember": {
-                "_id": "u101",
-                "fullname": "Abi Abambi",
-                "imgUrl": "http://some-img"
+            id: "a101",
+            txt: "Changed Color",
+            createdAt: 154514,
+            byMember: {
+                _id: "u101",
+                fullname: "Abi Abambi",
+                imgUrl: "http://some-img"
             },
-            "task": {
-                "id": "c101",
-                "title": "Replace Logo"
+            task: {
+                id: "c101",
+                title: "Replace Logo"
             }
         }
     ],
-    // for monday
-    "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
+    cmpsOrder: [
+        "status-picker",
+        "member-picker",
+        "date-picker"
+    ]
 }
 
 
 const user = {
-    "_id": "u101",
-    "fullname": "Abi Abambi",
-    "username": "abi@ababmi.com",
-    "password": "aBambi123",
-    "imgUrl": "http://some-img.jpg",
-    "mentions": [{
-        "id": "m101",
-        "boardId": "m101",
-        "taskId": "t101"
-    }]
+    _id: "u101",
+    fullname: "Abi Abambi",
+    username: "abi@ababmi.com",
+    password: "aBambi123",
+    imgUrl: "http://some-img.jpg",
+    mentions: [
+        {
+            id: "m101",
+            boardId: "m101",
+            taskId: "t101"
+        }
+    ]
 }
