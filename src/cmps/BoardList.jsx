@@ -2,13 +2,15 @@ import { connect } from 'react-redux'
 import React from 'react'
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
+import { useState, useEffect } from 'react'
+
+import { loadBoards,  } from '../store/board.action'
 
 
 
 
-
-function _BoardList() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+function _BoardList(props) {
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
       setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -16,6 +18,14 @@ function _BoardList() {
   
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
+
+    const { boards } = props
+
+    useEffect(() => {
+        props.loadBoards()
+        
+        // console.log(boards);
+    }, [])
 
     return (
         <section className='boardlist-container open' >
@@ -44,14 +54,14 @@ function _BoardList() {
 
 
 
-function mapStateToProps(state) {
+function mapStateToProps({ boardModule }) {
     return {
-        // boards: state.workSpaceModule.boards,
+        boards: boardModule.boards
     }
 }
 
 const mapDispatchToProps = {
-
+    loadBoards
 }
 
 export const BoardList = connect(mapStateToProps, mapDispatchToProps)(_BoardList)

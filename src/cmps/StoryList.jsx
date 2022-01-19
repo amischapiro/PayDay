@@ -1,13 +1,17 @@
-import {connect} from 'react-redux'
-// import {Story} from '../cmps/Story'
+import { connect } from 'react-redux'
+import { Story } from '../cmps/Story'
 
-function _StoryList(){
-    // map of lists
+function _StoryList(props) {
+    const { board, group } = props
+    const { stories } = group
 
     return (
         <section>
             <h1>Story List</h1>
-            {/* <Story /> */}
+            {stories.map(story => {
+                return <Story key={story.id} story={story} board={board} />
+            })}
+
         </section>
     )
 
@@ -16,7 +20,7 @@ function _StoryList(){
 
 
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
         // board: state.boardModule.board,
         // users: state.userModule.users,
@@ -24,7 +28,7 @@ function mapStateToProps(state){
     }
 }
 
-const mapDispatchToProps ={
+const mapDispatchToProps = {
 
 }
 
