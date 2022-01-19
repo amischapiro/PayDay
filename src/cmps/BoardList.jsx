@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 
 function _BoardList(){
 
+    
+    
     return (
         <h1>BoardList</h1>
     )
