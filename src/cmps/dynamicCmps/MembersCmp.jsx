@@ -4,8 +4,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 export function MembersCmp({ story, onUpdate, boardMembers }) {
-<<<<<<< HEAD
-=======
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
 	const handleClick = (event) => {
@@ -20,7 +18,6 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 	const id = open ? 'simple-popover' : undefined;
 
 	const { members } = story;
->>>>>>> a5541a34b184c0f03941b76006dfc87bf724d122
 
 	return (
 		<div>
