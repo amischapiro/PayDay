@@ -9,12 +9,18 @@
     background-color: #f5f6f8;
     // transform: translateX(0);
     width: 1rem;
-    h3{
+    .workspace-toggle{
+        background-color: #f5f6f8;
+        height: 40px;
         text-align: center;
         border: 1px black solid;
         border-radius: 3px;
         width: 80%;
         margin-left: 10%;
+        cursor: pointer;
+            h2{
+                line-height: 35px;
+            }
     }
     &.open{
         width: 16rem;
@@ -23,33 +29,38 @@
         >*{
             display: block;
             opacity: 1;
-            transition:opacity 0.7s;
+            transition: opacity 0.7s;
         }
     }
 
 }
 
 
-.filter-boards{
-    background-color: #f5f6f8;
-    border: none;
-    width: 90%;
-    height: 30px;
-    text-align: left;
-    margin-left: 5%;
-    cursor: pointer;
-    border-radius: 6px;
-}
+
 .add-board{
-    // display: flex;
-    background-color: #f5f6f8;
-    border: none;
+    margin-top: 2rem;
     width: 90%;
     height: 30px;
     text-align: left;
     margin-left: 5%;
     cursor: pointer;
     border-radius: 6px;
+    &:hover{
+        background-color: #e6e9ef;
+    }
+}
+.filter-boards{
+    
+    
+    width: 90%;
+    height: 30px;
+    text-align: left;
+    margin-left: 5%;
+    cursor: pointer;
+    border-radius: 6px;
+    &:hover{
+        background-color: #e6e9ef;
+    }
 }
 
 .boardlist-container .plus:hover,.boardlist-container .filter:hover{
