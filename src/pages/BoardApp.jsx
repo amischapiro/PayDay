@@ -1,4 +1,7 @@
-import {SideBar} from '../cmps/SideBar'
+import {SideBar} from '../cmps/SideBar.jsx'
+import {BoardList} from '../cmps/BoardList.jsx'
+import {BoardArea} from '../cmps/BoardArea.jsx'
+import {connect} from 'react-redux'
 
 
 
@@ -11,8 +14,11 @@ import {SideBar} from '../cmps/SideBar'
 
 
     return(
-        <main>
+        <main className='main-container'>
             <SideBar />
+            <BoardList />
+            <BoardArea />
+
         </main>
     )
 }
@@ -21,16 +27,16 @@ import {SideBar} from '../cmps/SideBar'
 function mapStateToProps(state){
     return {
         // boards: state.workSpaceModule.boards,
-        board: state.boardModule.board,
-        filterBy: state.boardModule.filterBy,
-        users: state.userModule.users,
-        loggedInUser: state.userModule.loggedInUser
+        // board: state.boardModule.board,
+        // filterBy: state.boardModule.filterBy,
+        // users: state.userModule.users,
+        // loggedInUser: state.userModule.loggedInUser
     }
 }
 
-// const mapDispatchToProps ={
+const mapDispatchToProps ={
 
-// }
+}
 
 
 
