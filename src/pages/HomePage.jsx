@@ -16,9 +16,9 @@ export function HomePage(){
                 <img src={Logo} alt="" />
                 <h1>ayDay</h1>
             </div>
-            <div>
-                {/* <Link to={'/board/:give specific board Id'}>Demo Mode(Limited access)</Link> */}
-                <Link to={'/signup'} >Sign Up / Sign In </Link>
+            <div className='links-container' >
+                <Link className='login-link' to={'/signup'} >Sign Up / Sign In </Link>
+                <Link className='demo-link' to={'/board'}>Demo Mode</Link>
             </div>
 
 
