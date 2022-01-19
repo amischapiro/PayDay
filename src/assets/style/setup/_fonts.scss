@@ -1,109 +1,128 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-
 @font-face {
-    font-family: fa;
-    src: url("../../fonts/fa/fa-regular-400.ttf");
+	font-family: fa;
+	src: url('../../fonts/fa/fa-regular-400.ttf');
 }
 
 @font-face {
-    font-family: fa-brands;
-    src: url("../../fonts/fa/fa-brands-400.ttf");
+	font-family: fa-brands;
+	src: url('../../fonts/fa/fa-brands-400.ttf');
 }
 
 @font-face {
-    font-family: fa-solid;
-    src: url("../../fonts/fa/fa-solid-900.ttf");
+	font-family: fa-solid;
+	src: url('../../fonts/fa/fa-solid-900.ttf');
 }
 
 .fa {
-    font-family: fa;
+	font-family: fa;
 }
 
 .fa-solid {
-    font-family: fa-solid;
+	font-family: fa-solid;
 }
 
 .fa-brands {
-    font-family: fa-brands;
+	font-family: fa-brands;
 }
 
 .fa.trash::before {
-    content: "\f2ed";
+	content: '\f2ed';
 }
 
-
-.fa.edit-hollow::before {
-    content: "\f044";
+.fa.bell::before {
+	content: '\f0f3';
 }
 
-.fa.edit-filled::before {
-    content: "\f044";
+.fa.inbox::before {
+	content: '\f01c';
+}
+
+.fa.calendar-check::before {
+	content: '\f274';
+}
+
+.fa.puzzle-piece::before {
+	content: '\f12e';
 }
 
 .fa.search::before {
-    content: "\f002";
+	content: '\f002';
 }
 
+.fa.question::before {
+	content: '\f128';
+}
 
+.fa.user-plus::before {
+    content: '\f234';
+}
+
+.fa.edit-hollow::before {
+	content: '\f044';
+}
+
+.fa.edit-filled::before {
+	content: '\f044';
+}
+
+.fa.search::before {
+	content: '\f002';
+}
 
 .fa.img::before {
-    content: "\f03e";
+	content: '\f03e';
 }
 
 .fa.clone::before {
-    content: "\f24d";
+	content: '\f24d';
 }
-
 
 .fa.times::before {
-    content: "\f057";
+	content: '\f057';
 }
-
 
 /*  Brands */
 
 .fa-brands.youtube::before {
-    content: "\f167";
+	content: '\f167';
 }
-
 
 /* Solid Style */
 
-
 .fa-solid.arrow-left::before {
-    content: "\f060";
+	content: '\f060';
 }
 
 .fa-solid.close-filled::before {
-    content: "\f410";
+	content: '\f410';
 }
 
 .fa-solid.plus::before {
-    content: "\f067";
+	content: '\f067';
 }
 
 .fa-solid.check::before {
-    content: "\f00c";
+	content: '\f00c';
 }
 
 .fa-solid.font::before {
-    content: "\f031";
+	content: '\f031';
 }
 
 .fa-solid.chevron-left::before {
-    content: "\f053";
+	content: '\f053';
 }
 
 .fa-solid.list::before {
-    content: "\f03a";
+	content: '\f03a';
 }
 
 .fa-solid.color::before {
-    content: "\f53f";
+	content: '\f53f';
 }
 
 .fa-solid.pin::before {
-    content: "\f08d";
+	content: '\f08d';
 }
