@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Logo from '../assets/img/PayDayLogo3.png';
 
 import { logout } from '../store/user.action';
 
@@ -8,7 +9,9 @@ function _SideBar({ user, logout }) {
 	return (
 		<section className="side-bar">
 			<div className="actions-top">
-				<button></button>
+				<button>
+					<img src={Logo} alt="PD" />
+				</button>
 				<button></button>
 				<button className="fa bell"></button>
 				<button className="fa inbox"></button>
@@ -36,4 +39,4 @@ const mapDispatchToProps = {
 	logout,
 };
 
-export const SideBar = connect(mapStateToProps, mapDispatchToProps)(_SideBar)
+export const SideBar = connect(mapStateToProps, mapDispatchToProps)(_SideBar);
