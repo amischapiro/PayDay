@@ -1,20 +1,48 @@
-.toy-dashboard {
-    margin: auto;
+// .toy-dashboard {
+//     margin: auto;
 
-    h2 {
-        font-size: 2.2rem;
-        text-align: center;
-    }
-    .charts-container{
-        display: flex;
-        justify-content: center;
+//     h2 {
+//         font-size: 2.2rem;
+//         text-align: center;
+//     }
+//     .charts-container{
+//         display: flex;
+//         justify-content: center;
 
-        >*{
-            flex-basis: 50%;
+//         >*{
+//             flex-basis: 50%;
 
-            h3 {
-                text-align: center;
-            }
-        }
-    }
+//             h3 {
+//                 text-align: center;
+//             }
+//         }
+//     }
+// }
+
+.home-name img{
+    height: 150px;
+    width: 100px;
+    margin-right: 5px;
+}
+.home-name{
+    color: black;
+    display: flex;
+    justify-content: center;
+
+}
+.home-name>*{
+    margin: 0;
+    padding: 0;
+
+}
+.home-name h1{
+    font-size: 70px;
+    line-height: 150px;
+    letter-spacing: 10px;
+}
+
+.home-container{
+    background-color: #fff;
+    height: 100vh;
+    
 }

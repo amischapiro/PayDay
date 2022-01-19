@@ -1,4 +1,5 @@
 import { LoginSignup } from './pages/LoginSignup.jsx'
+import { HomePage } from './pages/HomePage.jsx';
 
 const routes = [
     {
@@ -8,6 +9,10 @@ const routes = [
     {
         path: '/signup',
         component: LoginSignup
+    },
+    {
+        path: '/home',
+        component: HomePage
     },
 ];
 
