@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusCmp } from './StatusCmp.jsx.js';
 import { MemebersCmp } from './MembersCmp.jsx';
 import { PriorityCmp } from './PriorityCmp.jsx';
-import { TimelineCmp } from './TimelineCmp.jsx';
+// import { TimelineCmp } from './TimelineCmp.jsx';
 
 export function DynamicCmp({ cmp, info, onUpdate }) {
 	switch (cmp) {
