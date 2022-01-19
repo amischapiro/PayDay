@@ -1,20 +1,11 @@
 import {connect} from 'react-redux'
-import {Story} from '../cmps/Story'
 
-function _StoryList(){
-    // map of lists
-
+function _BoardHeader(){
     return (
-        <section>
-            <h1>Story List</h1>
-            <Story />
-        </section>
+        <h1>Header</h1>
     )
 
 }
-
-
-
 
 function mapStateToProps(state){
     return {
@@ -29,5 +20,4 @@ const mapDispatchToProps ={
 }
 
 
-
-export const StoryList = connect(mapStateToProps, mapDispatchToProps)(_StoryList)
+export const BoardHeader = connect(mapStateToProps, mapDispatchToProps)(_BoardHeader)
