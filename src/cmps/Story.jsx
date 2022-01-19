@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { DynamicCmp } from './dynamicCmps/DynamicCmp';
 
-export function Story({ story, cmpsOrder, boardMembers }) {
+export function Story({ story, board }) {
+	const { cmpsOrder } = board;
 	return (
 		<div>
 			<h5>{story.title}</h5>
@@ -16,7 +17,7 @@ export function Story({ story, cmpsOrder, boardMembers }) {
 							// make a copy, update the task
 							// Call action: updateTask(task)
 						}}
-                        boardMembers={boardMembers}
+						board={board}
 					/>
 				);
 			})}
