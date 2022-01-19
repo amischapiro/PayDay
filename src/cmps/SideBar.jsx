@@ -12,18 +12,19 @@ function _SideBar({ user, logout }) {
 				<button>
 					<img src={Logo} alt="PD" />
 				</button>
-				<button></button>
-				<button className="fa bell"></button>
-				<button className="fa inbox"></button>
-				<button className="fa calendar-check"></button>
+				<button className='fa-solid th-large btn-fa'></button>
+				<button className="fa bell  btn-fa"></button>
+				<button className="fa-solid inbox  btn-fa"></button>
+				<button className="fa calendar-check  btn-fa"></button>
 			</div>
-			<button className="see-plans">See plans</button>
+			<button className="see-plans btn-primary">See plans</button>
 			<div className="actions-bottom">
-				<button className="fa puzzle-piece"></button>
-				<button className="fa user-plus"></button>
-				<button className="fa search"></button>
-				<button className="fa question"></button>
-				<button></button>
+				<button className="fa-solid puzzle-piece btn-fa"></button>
+				<button className="fa-solid user-plus btn-fa"></button>
+				<button className="fa-solid search btn-fa"></button>
+				<button className="fa-solid question btn-fa"></button>
+				
+				{/* <button></button> setUser name letters or pic */}
 			</div>
 		</section>
 	);

@@ -43,21 +43,11 @@
 	content: '\f274';
 }
 
-.fa.puzzle-piece::before {
-	content: '\f12e';
-}
 
-.fa.search::before {
-	content: '\f002';
-}
-
-.fa.question::before {
+.fa-solid.question::before {
 	content: '\f128';
 }
 
-.fa.user-plus::before {
-    content: '\f234';
-}
 
 .fa.edit-hollow::before {
 	content: '\f044';
@@ -90,6 +80,28 @@
 }
 
 /* Solid Style */
+
+
+.fa-solid.search::before {
+	content: '\f002';
+}
+
+.fa-solid.th-large::before {
+	content: '\f009';
+}
+
+
+.fa-solid.puzzle-piece::before {
+	content: '\f12e';
+}
+
+.fa-solid.user-plus::before {
+    content: '\f234';
+}
+
+.fa-solid.inbox::before {
+	content: '\f01c';
+}
 
 .fa-solid.arrow-left::before {
 	content: '\f060';
