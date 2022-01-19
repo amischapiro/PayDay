@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router';
 
 import routes from './routes.js';
+import { boardService } from './services/board.service.js';
 
 export class RootCmp extends React.Component {
 	render() {
