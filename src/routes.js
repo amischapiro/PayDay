@@ -11,7 +11,7 @@ const routes = [
         component: LoginSignup
     },
     {
-        path: '/home',
+        path: '/',
         component: HomePage
     },
 ];
