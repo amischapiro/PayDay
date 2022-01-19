@@ -6,8 +6,8 @@ function _StoryList(props) {
     const { stories } = group
 
     return (
-        <section>
-            <h1>Story List</h1>
+        <section className="group">
+            <h1>Group</h1>
             {stories.map(story => {
                 return <Story key={story.id} story={story} board={board} />
             })}

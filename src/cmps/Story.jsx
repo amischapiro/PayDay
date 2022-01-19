@@ -11,7 +11,7 @@ export function Story(props) {
 	if (!story) return <React.Fragment />
 
 	return (
-		<div>
+		<div className="story">
 			<h5>{story.title}</h5>
 			{cmpsOrder.map((cmp, idx) => {
 				return (
