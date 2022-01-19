@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {Story} from '../cmps/Story'
+// import {Story} from '../cmps/Story'
 
 function _StoryList(){
     // map of lists
@@ -7,7 +7,7 @@ function _StoryList(){
     return (
         <section>
             <h1>Story List</h1>
-            <Story />
+            {/* <Story /> */}
         </section>
     )
 

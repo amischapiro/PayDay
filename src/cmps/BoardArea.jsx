@@ -6,7 +6,7 @@ import {GroupList} from '../cmps/GroupList'
 
 export function BoardArea(){
     return (
-        <section>
+        <section className='board-area'>
             <BoardHeader />
             <BoardActions />
             <GroupList />

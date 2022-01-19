@@ -9,7 +9,7 @@ function _SideBar({ user, logout }) {
 	return (
 		<section className="side-bar">
 			<div className="actions-top">
-				<button>
+				<button className='logo-btn'>
 					<img src={Logo} alt="PD" />
 				</button>
 				<button className='fa-solid th-large btn-fa'></button>
@@ -17,7 +17,7 @@ function _SideBar({ user, logout }) {
 				<button className="fa-solid inbox  btn-fa"></button>
 				<button className="fa calendar-check  btn-fa"></button>
 			</div>
-			<button className="see-plans btn-primary">See plans</button>
+			<button className="see-plans btn-primary">See plans</button>			
 			<div className="actions-bottom">
 				<button className="fa-solid puzzle-piece btn-fa"></button>
 				<button className="fa-solid user-plus btn-fa"></button>

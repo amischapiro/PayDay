@@ -1,237 +1,237 @@
 
-export const storageService = {
-    query,
-    get,
-    post,
-    put,
-    remove,
-    postMany
-}
+// export const storageService = {
+//     query,
+//     get,
+//     post,
+//     put,
+//     remove,
+//     postMany
+// }
 
 
-const board = {
-    _id: "b101",
-    title: "Robot dev proj",
-    createdAt: 1589983468418,
-    createdBy: {
-        _id: "u101",
-        fullname: "Abi Abambi",
-        imgUrl: "http://some-img"
-    },
-    style: {},
-    labels: [
-        {
-            id: "l101",
-            title: "Done",
-            color: "#61bd4f"
-        }
-    ],
-    members: [
-        {
-            _id: "u101",
-            fullname: "Tal Tarablus",
-            imgUrl: "https://www.google.com"
-        }
-    ],
-    groups: [
-        {
-            id: "g101",
-            title: "Group 1",
-            tasks: [
-                {
-                    id: "c101",
-                    title: "Replace logo"
-                },
-                {
-                    id: "c102",
-                    title: "Add Samples"
-                }
-            ],
-            style: {}
-        },
-        {
-            id: "g102",
-            title: "Group 2",
-            tasks: [
-                {
-                    id: "c103",
-                    title: "Do that"
-                },
-                {
-                    id: "c104",
-                    title: "Help me",
-                    status: "in-progress",
-                    description: "description",
-                    comments: [
-                        {
-                            id: "ZdPnm",
-                            txt: "also @yaronb please CR this",
-                            createdAt: 1590999817436,
-                            byMember: {
-                                _id: "u101",
-                                fullname: "Tal Tarablus",
-                                imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                            }
-                        }
-                    ],
-                    checklists: [
-                        {
-                            id: "YEhmF",
-                            title: "Checklist",
-                            todos: [
-                                {
-                                    id: "212jX",
-                                    title: "To Do 1",
-                                    isDone: false
-                                }
-                            ]
-                        }
-                    ],
-                    members: [
-                        {
-                            _id: "u101",
-                            username: "Tal",
-                            fullname: "Tal Tarablus",
-                            imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                        }
-                    ],
-                    labelIds: [
-                        "l101",
-                        "l102"
-                    ],
-                    createdAt: 1590999730348,
-                    dueDate: 16156215211,
-                    byMember: {
-                        _id: "u101",
-                        username: "Tal",
-                        fullname: "Tal Tarablus",
-                        imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    },
-                    style: {
-                        bgColor: "#26de81"
-                    }
-                }
-            ],
-            style: {}
-        }
-    ],
-    activities: [
-        {
-            id: "a101",
-            txt: "Changed Color",
-            createdAt: 154514,
-            byMember: {
-                _id: "u101",
-                fullname: "Abi Abambi",
-                imgUrl: "http://some-img"
-            },
-            task: {
-                id: "c101",
-                title: "Replace Logo"
-            }
-        }
-    ],
-    cmpsOrder: [
-        "status-picker",
-        "member-picker",
-        "date-picker"
-    ]
-}
-
-
-
-function query(entityType, delay = 600) {
-    var entities = JSON.parse(localStorage.getItem(entityType))
-    if (!entities.length) {
-        entities = _createBoards()
-        localStorage.setItem(entityType, JSON.stringify(entities))
-    }
-
-    return new Promise((resolve, reject)=>{
-        setTimeout(()=>{
-            // reject('OOOOPs')
-            resolve(entities)
-        }, delay)   
-    })
-    // return Promise.resolve(entities)
-}
-
-function get(entityType, entityId) {
-    return query(entityType)
-        .then(entities => entities.find(entity => entity._id === entityId))
-}
-function post(entityType, newEntity) {
-    newEntity._id = _makeId()
-    return query(entityType)
-        .then(entities => {
-            entities.push(newEntity)
-            _save(entityType, entities)
-            return newEntity
-        })
-}
-
-function put(entityType, updatedEntity) {
-    return query(entityType)
-        .then(entities => {
-            const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
-            entities.splice(idx, 1, updatedEntity)
-            _save(entityType, entities)
-            return updatedEntity
-        })
-}
-
-function remove(entityType, entityId) {
-    return query(entityType)
-        .then(entities => {
-            const idx = entities.findIndex(entity => entity._id === entityId)
-            entities.splice(idx, 1)
-            _save(entityType, entities)
-        })
-}
-
-function _save(entityType, entities) {
-    localStorage.setItem(entityType, JSON.stringify(entities))
-}
-
-function _makeId(length = 5) {
-    var text = ''
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-    for (var i = 0; i < length; i++) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length))
-    }
-    return text
-}
-
-function postMany(entityType, newEntities) {
-    return query(entityType)
-        .then(entities => {
-            newEntities = newEntities.map(entity => ({...entity, _id: _makeId()}))
-            entities.push(...newEntities)
-            _save(entityType, entities)
-            return entities
-        })
-}
-function _createBoards() {
-    const boards = []
-    boards.push(board)
-    boards.push(board)
-    return boards
-}
+// const board = {
+//     _id: "b101",
+//     title: "Robot dev proj",
+//     createdAt: 1589983468418,
+//     createdBy: {
+//         _id: "u101",
+//         fullname: "Abi Abambi",
+//         imgUrl: "http://some-img"
+//     },
+//     style: {},
+//     labels: [
+//         {
+//             id: "l101",
+//             title: "Done",
+//             color: "#61bd4f"
+//         }
+//     ],
+//     members: [
+//         {
+//             _id: "u101",
+//             fullname: "Tal Tarablus",
+//             imgUrl: "https://www.google.com"
+//         }
+//     ],
+//     groups: [
+//         {
+//             id: "g101",
+//             title: "Group 1",
+//             tasks: [
+//                 {
+//                     id: "c101",
+//                     title: "Replace logo"
+//                 },
+//                 {
+//                     id: "c102",
+//                     title: "Add Samples"
+//                 }
+//             ],
+//             style: {}
+//         },
+//         {
+//             id: "g102",
+//             title: "Group 2",
+//             tasks: [
+//                 {
+//                     id: "c103",
+//                     title: "Do that"
+//                 },
+//                 {
+//                     id: "c104",
+//                     title: "Help me",
+//                     status: "in-progress",
+//                     description: "description",
+//                     comments: [
+//                         {
+//                             id: "ZdPnm",
+//                             txt: "also @yaronb please CR this",
+//                             createdAt: 1590999817436,
+//                             byMember: {
+//                                 _id: "u101",
+//                                 fullname: "Tal Tarablus",
+//                                 imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+//                             }
+//                         }
+//                     ],
+//                     checklists: [
+//                         {
+//                             id: "YEhmF",
+//                             title: "Checklist",
+//                             todos: [
+//                                 {
+//                                     id: "212jX",
+//                                     title: "To Do 1",
+//                                     isDone: false
+//                                 }
+//                             ]
+//                         }
+//                     ],
+//                     members: [
+//                         {
+//                             _id: "u101",
+//                             username: "Tal",
+//                             fullname: "Tal Tarablus",
+//                             imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+//                         }
+//                     ],
+//                     labelIds: [
+//                         "l101",
+//                         "l102"
+//                     ],
+//                     createdAt: 1590999730348,
+//                     dueDate: 16156215211,
+//                     byMember: {
+//                         _id: "u101",
+//                         username: "Tal",
+//                         fullname: "Tal Tarablus",
+//                         imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+//                     },
+//                     style: {
+//                         bgColor: "#26de81"
+//                     }
+//                 }
+//             ],
+//             style: {}
+//         }
+//     ],
+//     activities: [
+//         {
+//             id: "a101",
+//             txt: "Changed Color",
+//             createdAt: 154514,
+//             byMember: {
+//                 _id: "u101",
+//                 fullname: "Abi Abambi",
+//                 imgUrl: "http://some-img"
+//             },
+//             task: {
+//                 id: "c101",
+//                 title: "Replace Logo"
+//             }
+//         }
+//     ],
+//     cmpsOrder: [
+//         "status-picker",
+//         "member-picker",
+//         "date-picker"
+//     ]
+// }
 
 
 
+// function query(entityType, delay = 600) {
+//     var entities = JSON.parse(localStorage.getItem(entityType))
+//     if (!entities.length) {
+//         entities = _createBoards()
+//         localStorage.setItem(entityType, JSON.stringify(entities))
+//     }
 
-const user = {
-    _id: "u101",
-    fullname: "Abi Abambi",
-    username: "abi@ababmi.com",
-    password: "aBambi123",
-    imgUrl: "http://some-img.jpg",
-    mentions: [
-        {
-            id: "m101",
-            boardId: "m101",
-            taskId: "t101"
-        }
-    ]
-}
+//     return new Promise((resolve, reject)=>{
+//         setTimeout(()=>{
+//             // reject('OOOOPs')
+//             resolve(entities)
+//         }, delay)   
+//     })
+//     // return Promise.resolve(entities)
+// }
+
+// function get(entityType, entityId) {
+//     return query(entityType)
+//         .then(entities => entities.find(entity => entity._id === entityId))
+// }
+// function post(entityType, newEntity) {
+//     newEntity._id = _makeId()
+//     return query(entityType)
+//         .then(entities => {
+//             entities.push(newEntity)
+//             _save(entityType, entities)
+//             return newEntity
+//         })
+// }
+
+// function put(entityType, updatedEntity) {
+//     return query(entityType)
+//         .then(entities => {
+//             const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
+//             entities.splice(idx, 1, updatedEntity)
+//             _save(entityType, entities)
+//             return updatedEntity
+//         })
+// }
+
+// function remove(entityType, entityId) {
+//     return query(entityType)
+//         .then(entities => {
+//             const idx = entities.findIndex(entity => entity._id === entityId)
+//             entities.splice(idx, 1)
+//             _save(entityType, entities)
+//         })
+// }
+
+// function _save(entityType, entities) {
+//     localStorage.setItem(entityType, JSON.stringify(entities))
+// }
+
+// function _makeId(length = 5) {
+//     var text = ''
+//     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+//     for (var i = 0; i < length; i++) {
+//         text += possible.charAt(Math.floor(Math.random() * possible.length))
+//     }
+//     return text
+// }
+
+// function postMany(entityType, newEntities) {
+//     return query(entityType)
+//         .then(entities => {
+//             newEntities = newEntities.map(entity => ({...entity, _id: _makeId()}))
+//             entities.push(...newEntities)
+//             _save(entityType, entities)
+//             return entities
+//         })
+// }
+// function _createBoards() {
+//     const boards = []
+//     boards.push(board)
+//     boards.push(board)
+//     return boards
+// }
+
+
+
+
+// const user = {
+//     _id: "u101",
+//     fullname: "Abi Abambi",
+//     username: "abi@ababmi.com",
+//     password: "aBambi123",
+//     imgUrl: "http://some-img.jpg",
+//     mentions: [
+//         {
+//             id: "m101",
+//             boardId: "m101",
+//             taskId: "t101"
+//         }
+//     ]
+// }

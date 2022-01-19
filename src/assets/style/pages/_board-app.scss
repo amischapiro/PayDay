@@ -1,6 +1,11 @@
 .main-container{
     display: flex;
 }
+.board-area{
+    flex-grow: 1;
+    justify-content: flex-start;
+}
+
 
 
 // export function TaskPreview({ task }) {
