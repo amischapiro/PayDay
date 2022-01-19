@@ -18,7 +18,7 @@ export function HomePage(){
             </div>
             <div className='links-container' >
                 <Link className='login-link' to={'/signup'} >Sign Up / Sign In </Link>
-                <Link className='demo-link' to={'/board'}>Demo Mode</Link>
+                <Link className='demo-link' to={'/board/MVvbT'}>Demo Mode</Link>
             </div>
 
 

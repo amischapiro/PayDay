@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import { DynamicCmp } from './dynamicCmps/DynamicCmp';
 
-export function Story({ story, cmpsOrder, boardMembers }) {
+export function Story(props) {
+	const { board, story } = props
+	const { cmpsOrder, members } = board
+
+	console.log(story);
+
+
+	if (!story) return <React.Fragment />
+
 	return (
 		<div>
 			<h5>{story.title}</h5>
@@ -16,7 +24,8 @@ export function Story({ story, cmpsOrder, boardMembers }) {
 							// make a copy, update the task
 							// Call action: updateTask(task)
 						}}
-                        boardMembers={boardMembers}
+						members={members}
+						story={story}
 					/>
 				);
 			})}

@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { loadBoards,  } from '../store/board.action'
+import { loadBoards, } from '../store/board.action'
 
-function _BoardList(props) {
+function _BoardPreview(props) {
     const { boards } = props
 
     useEffect(() => {
+        const boardId = props.history.match.params
+        console.log(boardId);
         props.loadBoards()
-        
+
         // console.log(boards);
     }, [])
 
@@ -32,4 +34,4 @@ const mapDispatchToProps = {
     loadBoards
 }
 
-export const BoardList = connect(mapStateToProps, mapDispatchToProps)(_BoardList)
+export const BoardPreview = connect(mapStateToProps, mapDispatchToProps)(_BoardPreview)

@@ -1,41 +1,52 @@
-import {SideBar} from '../cmps/SideBar.jsx'
-import {BoardList} from '../cmps/BoardList.jsx'
-import {BoardArea} from '../cmps/BoardArea.jsx'
-import {connect} from 'react-redux'
+import React, { useState, useEffect } from 'react'
+
+import { SideBar } from '../cmps/SideBar.jsx'
+import { BoardList } from '../cmps/BoardList.jsx'
+import { BoardArea } from '../cmps/BoardArea.jsx'
+import { connect } from 'react-redux'
+
+import { loadBoards, getById } from '../store/board.action'
 
 
+function _BoardApp(props) {
+    const [selectedBoard, setBoard] = useState(null)
 
+    useEffect(async () => {
+        const { boardId } = props.match.params
+        const board = await props.getById(boardId)
+        setBoard(board)
+    }, [])
 
- function _BoardApp(){
+    // useEffect(() => {
+    //     console.log(selectedBoard);
+    // }, [selectedBoard])
 
+    if (!selectedBoard) return <React.Fragment />
 
-
-
-
-
-    return(
+    return (
         <main className='main-container'>
             <SideBar />
             <BoardList />
-            <BoardArea />
+            <BoardArea board={selectedBoard} />
 
         </main>
     )
 }
 
 
-function mapStateToProps(state){
+function mapStateToProps({ boardModule }) {
     return {
-        // boards: state.workSpaceModule.boards,
-        // board: state.boardModule.board,
+        boards: boardModule.boards,
+        board: boardModule.selectedBoard,
         // filterBy: state.boardModule.filterBy,
         // users: state.userModule.users,
         // loggedInUser: state.userModule.loggedInUser
     }
 }
 
-const mapDispatchToProps ={
-
+const mapDispatchToProps = {
+    loadBoards,
+    getById,
 }
 
 

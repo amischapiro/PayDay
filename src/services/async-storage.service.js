@@ -120,7 +120,7 @@ function _createBoard() {
             {
                 id: "g101",
                 title: "Group 1",
-                tasks: [
+                stories: [
                     {
                         id: "c101",
                         title: "Replace logo"
@@ -135,7 +135,7 @@ function _createBoard() {
             {
                 id: "g102",
                 title: "Group 2",
-                tasks: [
+                stories: [
                     {
                         id: "c103",
                         title: "Do that"
@@ -208,7 +208,7 @@ function _createBoard() {
                     fullname: "Abi Abambi",
                     imgUrl: "http://some-img"
                 },
-                task: {
+                story: {
                     id: "c101",
                     title: "Replace Logo"
                 }
@@ -235,7 +235,7 @@ const user = {
         {
             id: "m101",
             boardId: "m101",
-            taskId: "t101"
+            storyId: "t101"
         }
     ]
 }

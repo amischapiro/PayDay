@@ -1,5 +1,4 @@
 export function MembersCmp({ story, onUpdate, boardMembers }) {
-	const { members } = story;
 
 	return (
 		<span

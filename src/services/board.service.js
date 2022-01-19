@@ -2,7 +2,7 @@ import { storageService } from './async-storage.service'
 
 
 export const boardService = {
-    loadBoards,
+    query,
     getById,
     removeBoard,
     updateBoard,
@@ -12,9 +12,9 @@ export const boardService = {
 const STORAGE_KEY = 'boardDB'
 
 
-async function loadBoards() {
+async function query() {
     const boards = await storageService.query(STORAGE_KEY)
-    console.log(boards);
+    // console.log(boards);
     return boards
 }
 
@@ -22,7 +22,7 @@ async function loadBoards() {
 
 async function getById(boardId) {
     const board = await storageService.get(STORAGE_KEY, boardId)
-    console.log(board);
+    // console.log(board);
     return board
 }
 
