@@ -12,7 +12,7 @@ function _SideBar({ user, logout }) {
 				<button className='logo-btn'>
 					<img src={Logo} alt="PD" />
 				</button>
-				<button className='fa-solid th-large btn-fa'></button>
+				<button className=' workspace fa-solid th-large btn-fa'></button>
 				<button className="fa bell  btn-fa"></button>
 				<button className="fa-solid inbox  btn-fa"></button>
 				<button className="fa calendar-check  btn-fa"></button>

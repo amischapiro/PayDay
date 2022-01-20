@@ -25,10 +25,18 @@
 .actions-top button,.actions-bottom button{
     background-color: #292f4c;
     color: white;
+    font-size: 18px;
     border-radius: 8px;
+    cursor: not-allowed;
         &:hover{
             background-color:#121529 ;
         }
+}
+.actions-top .workspace{
+    background-color: #6a6e82;
+    &:hover{
+        background-color: #6a6e82;
+    }
 }
 
 .actions-top button,.actions-bottom button{

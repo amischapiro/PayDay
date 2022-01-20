@@ -31,12 +31,17 @@
 			opacity: 1;
 			transition: opacity 0.7s;
 		}
+        .toggle-btn{
+            transition: 0.6s;
+            left: 200px;
+        }
 	}
 
 	.toggle-btn {
 		position: relative;
-		top: 5rem;
-		left: -10px;
+		top: 2rem;
+		left: 20px;
+        
 	}
 }
 
