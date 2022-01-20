@@ -3,27 +3,45 @@
 	flex-direction: row;
 	background-color: #f5f6f8;
 	border: 1px solid #fff;
-	height: 37px;
+	height: 2.313rem;
     font-size: 0.8125rem;
-    line-height: 24px;
+    line-height: 1.5rem;
     font-weight: 400;
 
-    .story-selector {
-        width: .5rem;
-        background: #cab641;
-        transition: .1s;
-        margin-inline-end: 1rem;
+    .story-txt-area {
+        display: flex;
+        width: 25.375rem;
 
-        &:hover {
-            width: 2rem;
+        .story-txt {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin: none;
+            padding: .3rem;
+
+
+            .MuiSvgIcon-root.update-bubble.css-i4bv87-MuiSvgIcon-root {
+                color: #c5c7d0;
+                transition: .1s;
+        
+                &:hover {
+                    color: #0085ff;
+                }
+            }
         }
-    }
 
-	.story-txt {
-		width: 406px;
-		margin: none;
-		padding: none;
-	}
+        .story-selector {
+            width: .5rem;
+            background: #cab641;
+            transition: .1s;
+            margin-inline-end: .5rem;
+    
+            &:hover {
+                width: 2rem;
+            }
+        }
+        
+    }
 
 	.react-datepicker-wrapper {
 		width: unset;
@@ -36,7 +54,7 @@
 	}
 
 	button {
-		height: 2.186rem;
+		height: 2.25rem;
 		border: 1px solid #fff;
 		font-size: 0.8125rem;
 		box-shadow: none;
@@ -51,17 +69,17 @@
 	}
 
 	.MuiButton-root.MuiButton-containedPrimary.priority-button {
-		width: 92px;
+		width: 5.75rem;
 	}
 
 	.MuiButton-root.MuiButton-containedPrimary.status-button {
-		width: 117px;
+		width: 7.313rem;
 		font-size: 0.6625rem;
 	}
 
 	.MuiButton-root.MuiButton-containedPrimary.members-button {
 		background-color: inherit;
-		width: 97px;
+		width: 6.0623rem;
 		&:hover {
 			background-color: inherit;
 		}
