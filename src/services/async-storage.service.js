@@ -259,6 +259,7 @@ function _createBoard() {
             "status-picker",
             "member-picker",
             "priority-picker",
+            'timeline-picker'
         ]
     }
 

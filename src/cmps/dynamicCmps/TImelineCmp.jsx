@@ -1,23 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 export function TimelineCmp({ info, onUpdate }) {
-    return <React.Fragment></React.Fragment>
-	// const { members } = info;
-	// return (
-	// 	<span
-	// 		onClick={() => {
-	// 			return members.map((member) => {
-	// 				const nameArr = member.fullname.split(' ');
-	// 				const fName = nameArr[0].split('');
-	// 				const lName = nameArr[1].split('');
-	// 				return (
-	// 					<img
-	// 						onClick={() => onUpdate('ADD_MEMBER', member._id)}
-	// 						src={member.imgUrl}
-	// 						alt={fName[0] + lName[0]}
-	// 					/>
-	// 				);
-	// 			});
-	// 		}}></span>
-	// );
+	const [dateRange, setDateRange] = useState([null, null]);
+	const [startDate, endDate] = dateRange;
+	return (
+		<DatePicker
+			selectsRange={true}
+			startDate={startDate}
+			endDate={endDate}
+			onChange={(update) => {
+				setDateRange(update);
+			}}
+			// isClearable={true}
+		/>
+	);
 }
