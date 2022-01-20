@@ -1,3 +1,54 @@
+// import { connect } from 'react-redux'
+// import { StoryList } from '../cmps/StoryList.jsx'
+
+
+// function _GroupList(props) {
+//     const { board } = props
+//     const { groups } = board
+
+
+
+
+
+
+
+//     return (
+//         <section className="group-list">
+//             {groups.map(group => {
+//                 return <StoryList key={group.id} board={board}
+//                     group={group} />
+//             })}
+
+//         </section>
+//     )
+// }
+
+
+
+
+// function mapStateToProps(state) {
+//     return {
+//         // board: state.boardModule.board,
+//         // filterBy: state.boardModule.filterBy,
+//         // users: state.userModule.users,
+//         // loggedInUser: state.userModule.loggedInUser
+//     }
+// }
+
+// const mapDispatchToProps = {
+
+// }
+
+
+
+// export const GroupList = connect(mapStateToProps, mapDispatchToProps)(_GroupList)
+
+
+
+
+
+
+
 import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 // import { getItemStyle, getQuestionListStyle } from "./utils";
@@ -6,7 +57,6 @@ import { StoryList } from '../cmps/StoryList.jsx'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // fake data generator
-
 
 //   const getQuestions = groups.map((group,idx)=>{
 //       return {
