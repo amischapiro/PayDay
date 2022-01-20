@@ -60,3 +60,8 @@ function formatDate(createdAt) {
     return new Date(createdAt).toLocaleDateString('he-IL') + ' ' +
         new Date(createdAt).toLocaleTimeString('he-IL')
 }
+
+function groupColorPicker(colorIdx) {
+    const colors = ['#037c4a', '#00c875', '#9cd326', '#cab641', '#784bd1', '#a25ddc', '#0086c0', '#579bfc', '#66ccff', '#bb3354', '#e2445c', '#ff158a', '#ff5ac4', '#ff642e', '#fdab3d', '#7f5347', '#c4c4c4', '#808080'];
+    return colors[colorIdx];
+}

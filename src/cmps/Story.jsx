@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { DynamicCmp } from './dynamicCmps/DynamicCmp';
+import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 
 export function Story(props) {
 	const { board, story } = props
@@ -9,7 +10,9 @@ export function Story(props) {
 
 	return (
 		<div className="story">
+			<div className="story-selector"></div>
 			<div className="story-txt"><h5>{story.title}</h5></div>
+			<MapsUgcOutlinedIcon sx={{color: "#c5c7d0", ":hover": {color: "#0085ff"}}} />
 			{cmpsOrder.map((cmp, idx) => {
 				return (
 					<DynamicCmp

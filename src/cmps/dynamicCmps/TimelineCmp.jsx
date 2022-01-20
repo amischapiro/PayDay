@@ -14,6 +14,7 @@ export function TimelineCmp() {
 			onChange={(update) => {
 				setDateRange(update);
 			}}
+			dateFormat="dd/MM/yyyy"
 			// isClearable={true}
 		/>
 	);

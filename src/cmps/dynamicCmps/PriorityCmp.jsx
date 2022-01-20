@@ -27,9 +27,9 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 				onClick={handleClick}
 				sx={{
 					background: priority.color,
-					":hover": {background: priority.color}
+					':hover': { background: priority.color },
 				}}
-				className='priority-button'>
+				className="priority-button">
 				{priority.title}
 			</Button>
 			<Popover
@@ -43,23 +43,11 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 				}}>
 				{boardPriorities.map((priority, idx) => {
 					return (
-						<div className="status-options" key={priority.id}>
+						<div className="picker-container" key={priority.id}>
 							<Typography
-								sx={{
-									p: 2,
-									background: priority.color,
-									color: '#fff',
-									':hover': { opacity: 0.8 },
-									width: '7rem',
-									height: '2rem',
-									padding: 0,
-									fontSize: '0.8125rem',
-									textAlign: 'center',
-									paddingTop: '0.4063rem',
-									cursor: 'pointer',
-								}}
+								sx={{ p: 2, background: priority.color }}
 								key={priority.id}
-								className={priority.id}
+								className="element-picker"
 								onClick={() =>
 									onUpdate('CHANGE_PRIORITY', priority.id)
 								}>

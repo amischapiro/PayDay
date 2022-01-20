@@ -4,6 +4,20 @@
 	background-color: #f5f6f8;
 	border: 1px solid #fff;
 	height: 37px;
+    font-size: 0.8125rem;
+    line-height: 24px;
+    font-weight: 400;
+
+    .story-selector {
+        width: .5rem;
+        background: #cab641;
+        transition: .1s;
+        margin-inline-end: 1rem;
+
+        &:hover {
+            width: 2rem;
+        }
+    }
 
 	.story-txt {
 		width: 406px;
@@ -16,8 +30,8 @@
 	}
 
 	img {
-		width: 1.82rem;
-		height: 1.82rem;
+		width: 1.875rem;
+		height: 1.875rem;
 		border-radius: 50%;
 	}
 
@@ -28,7 +42,7 @@
 		box-shadow: none;
 		font-weight: 400;
 		border-radius: 0;
-        padding: 0;
+		padding: 0;
 
 		&:hover {
 			box-shadow: none;
@@ -42,7 +56,7 @@
 
 	.MuiButton-root.MuiButton-containedPrimary.status-button {
 		width: 117px;
-        font-size: 0.6625rem;
+		font-size: 0.6625rem;
 	}
 
 	.MuiButton-root.MuiButton-containedPrimary.members-button {
@@ -52,8 +66,49 @@
 			background-color: inherit;
 		}
 	}
+
 }
 
-.status-options {
-	padding: 0.5rem;
+.picker-container {
+    padding: 0.5rem;
+    
+    .MuiTypography-root.MuiTypography-body1.element-picker {
+        color: #fff;
+        width: 7rem;
+        height: 2rem;
+        padding: 0;
+        font-size: 0.8125rem;
+        text-align: center;
+        padding-top: 0.4063rem;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    .MuiTypography-root.MuiTypography-body1.member-picker{
+        display: flex;
+        width: 17.75rem;
+        height: 2.125rem;
+        padding: 0.3rem;
+        font-size: 0.8125rem;
+        font-weight: 300;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 0.25rem;
+
+        &:hover {
+            background-color: #0085ff;
+            color: #fff;
+        }
+
+        img {
+            width: 1.563rem;
+            height: 1.563rem;
+            border-radius: 50%;
+            margin-inline-end: .7rem;
+        }
+    }
+
 }
