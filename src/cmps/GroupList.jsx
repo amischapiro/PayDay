@@ -78,7 +78,7 @@ export class GroupList extends Component {
 
         const getGroups = () => {
             const newGroups =  groups.map((group, idx) => {
-                console.log('group from questions:', group);
+                // console.log('group from questions:', group);
                 
                 return group
                     // id: group.id,

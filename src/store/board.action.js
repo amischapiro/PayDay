@@ -21,7 +21,6 @@ export function getById(boardId) {
 
         try {
             const board = await boardService.getById(boardId)
-            // console.log(board);
             dispatch({ type: 'SET_BOARD', board })
             return Promise.resolve(board)
         } catch (error) {

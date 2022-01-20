@@ -12,7 +12,7 @@ export function _BoardArea(props) {
     const { board } = props
 
     useEffect(() => {
-        console.log(board);
+        // console.log(board);
     }, [])
 
 
@@ -20,9 +20,11 @@ export function _BoardArea(props) {
 
     return (
         <section className='board-area'>
-            <BoardHeader board={board} />
-            <BoardActions board={board} />
-            <GroupList board={board} />
+            <div className='container'>
+                <BoardHeader board={board} />
+                <BoardActions board={board} />
+                <GroupList board={board} />
+            </div>
         </section>
     )
 }

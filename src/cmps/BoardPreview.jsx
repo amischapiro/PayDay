@@ -1,47 +1,62 @@
 import React from 'react'
-import Box from '@mui/material/Box';
-import Popper from '@mui/material/Popper';
+import { connect } from 'react-redux'
+// import Box from '@mui/material/Box';
+// import Popper from '@mui/material/Popper';
 import { useState, useEffect } from 'react'
 
+import { removeBoard } from '../store/board.action'
 
 
 
+export function _BoardPreview({ board, removeBoard }) {
 
-export function BoardPreview({ board }) {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [isBoardListOpen, toggleBoardList] = useState(true)
+    const [isBtnsShown, toggleBtnsShown] = useState(false)
 
 
-    const onToggleBoardListShown = () => {
-        console.log('isBoardListOpen:', isBoardListOpen);
-
-        isBoardListOpen ? toggleBoardList(false) : toggleBoardList(true)
+    const onToggleBtnsTrue = () => {
+        toggleBtnsShown(true)
     }
 
-    const handleClick = (event) => {
-        setAnchorEl(anchorEl ? null : event.currentTarget);
-    };
+    const onToggleBtnsfalse = () => {
+        toggleBtnsShown(false)
+    }
 
-    const open = Boolean(anchorEl);
-    const id = open ? 'simple-popper' : undefined;
+    const onRemove = (boardId) => {
+        removeBoard(boardId)
 
+    }
     // const { boards } = props
+
+    // console.log('onPreview', board);
 
 
     return (
-        <div className='board-preview' key={board._id} aria-describedby={id} type="button" onClick={handleClick}>
+        <div className={isBtnsShown ? 'board-preview on-hover' : 'board-preview'}
+            onMouseLeave={onToggleBtnsfalse} onMouseEnter={onToggleBtnsTrue}>
             <div>
-
                 <span className='fa-solid window'></span>
                 <span>&nbsp;{board.title}</span>
-                <Popper id={id} open={open} anchorEl={anchorEl}>
-                    <Box sx={{ marginTop: '0.5rem', border: 0, borderRadius: 2, p: 5, backgroundColor:'white' }}>
-                 
-                        <div><span className='fa edit-hollow'></span> Edit</div>
-                 
-                    </Box>
-                </Popper>
+                <span className='btns-container'>
+                    <span className='fa edit-hollow'></span>
+                    <span onClick={() => onRemove(board._id)} className='fa trash'></span>
+                </span>
+
             </div>
         </div>
     )
 }
+
+
+
+function mapStateToProps({ boardModule }) {
+    return {
+    }
+}
+
+const mapDispatchToProps = {
+    removeBoard
+}
+
+
+
+export const BoardPreview = connect(mapStateToProps, mapDispatchToProps)(_BoardPreview)

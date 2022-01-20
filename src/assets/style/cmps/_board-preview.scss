@@ -1,6 +1,16 @@
 .board-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
 
-    .simple-popper {
-      background-color: red;
+  .btns-container {
+    // display: inline-block;
+    visibility: hidden;
+  }
+  &.on-hover {
+    .btns-container {
+      visibility: visible;
     }
+  }
 }
