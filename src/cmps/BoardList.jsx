@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import { useState, useEffect } from 'react'
 
+import { BoardPreview } from './BoardPreview';
+
 import { loadBoards, } from '../store/board.action'
 
 
@@ -56,12 +58,7 @@ function _BoardList(props) {
 
             <div className='boards-container'>
                 {boards.map(board => {
-                    return <div key={board._id}>
-                        <div>
-                            <span className='fa-solid window'></span>
-                            <span> {board.title}</span>
-                        </div>
-                    </div>
+                    return < BoardPreview key={board._id} board={board} />
                 })}
             </div>
 
