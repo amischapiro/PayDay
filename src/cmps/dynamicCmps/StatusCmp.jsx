@@ -18,7 +18,6 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 	const id = open ? 'simple-popover' : undefined;
 
 	const { status } = story.storyData;
-	console.log('StatusCmp.jsx 💤 21: ', status);
 
 	return (
 		<div>
@@ -39,15 +38,28 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 				}}>
 				{boardStatuses.map((status, idx) => {
 					return (
-						<Typography
-							sx={{ p: 2, background: status.color, color: "#fff" }}
-							key={status.id}
-							className={status.id}
-							onClick={() =>
-								onUpdate('CHANGE_STATUS', status.id)
-							}>
-							{status.title}
-						</Typography>
+						<div className="status-options" key={status.id}>
+							<Typography
+								sx={{
+									p: 2,
+									background: status.color,
+									color: '#fff',
+									':hover': { opacity: 0.8 },
+									width: "7rem",
+									height: "2rem",
+									padding: 0,
+									fontSize: "0.8125rem",
+									textAlign: "center",
+									paddingTop:"0.4063rem",
+									cursor: "pointer"
+								}}
+								className={status.id}
+								onClick={() =>
+									onUpdate('CHANGE_STATUS', status.id)
+								}>
+								{status.title}
+							</Typography>
+						</div>
 					);
 				})}
 			</Popover>
