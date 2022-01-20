@@ -28,13 +28,9 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 				onClick={handleClick}
 				sx={{
 					background: status.color,
-					borderRadius: 0,
-					fontSize: '0.8125rem',
-					boxShadow: "none",
-					fontWeight: 400,
-					width: "117px",
-					":hover": {boxShadow: 'none', background: status.color, opacity: 0.8}
-				}}>
+					":hover": {background: status.color}
+				}}
+				className="status-button">
 				{status.title}
 			</Button>
 			<Popover

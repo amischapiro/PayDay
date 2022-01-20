@@ -25,17 +25,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 				aria-describedby={id}
 				variant="contained"
 				onClick={handleClick}
-				sx={{
-					borderRadius: 0,
-					background: 'inherit',
-					boxShadow: 'none',
-					width: '97px',
-					':hover': {
-						boxShadow: 'none',
-						background: 'inherit',
-						opacity: 0.8,
-					},
-				}}>
+				className="members-button">
 				{members.length
 					? members.map((member) => {
 							const nameArr = member.fullname.split(' ');
