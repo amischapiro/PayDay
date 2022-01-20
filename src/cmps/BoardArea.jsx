@@ -20,8 +20,8 @@ export function _BoardArea(props) {
 
     return (
         <section className='board-area'>
-            <BoardHeader />
-            <BoardActions />
+            <BoardHeader board={board} />
+            <BoardActions board={board} />
             <GroupList board={board} />
         </section>
     )

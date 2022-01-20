@@ -26,7 +26,7 @@ function _BoardApp(props) {
     return (
         <main className='main-container'>
             <SideBar />
-            <BoardList />
+            <BoardList board={selectedBoard} />
             <BoardArea board={selectedBoard} />
 
         </main>
