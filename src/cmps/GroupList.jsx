@@ -58,7 +58,6 @@ import { StoryList } from '../cmps/StoryList.jsx'
 
 // fake data generator
 
-
 //   const getQuestions = groups.map((group,idx)=>{
 //       return {
 //           id:group.id,
