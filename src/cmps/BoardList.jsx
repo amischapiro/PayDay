@@ -38,34 +38,37 @@ function _BoardList(props) {
 
 
     return (
-        <section className={`boardlist-container ${isBoardListOpen ? 'open' : ''}`} >
+        <main className={`acordion ${isBoardListOpen ? 'open' : ''}`}>
             <button className={`toggle-btn fa-solid ${isBoardListOpen ? 'angleleft' : 'angleright'} `} onClick={() => onToggleBoardListShown()} ></button>
-            <button className='workspace-toggle' aria-describedby={id} type="button" onClick={handleClick}>
-                <h2>Main workspace <span className={`fa-solid ${open ? 'angleup' : 'angledown'} `} ></span> </h2>
-            </button>
-            <Popper id={id} open={open} anchorEl={anchorEl}>
-                <Box sx={{ border: 0, borderRadius: 2, p: 5, bgcolor: 'white' }}>
-                    <h3>My workspaces</h3>
-                    <h5>Main workspace</h5>
-                </Box>
-            </Popper>
-            <div className='add-board' ><span className='fa-solid plus'></span><span> Add</span></div>
-            <div className='filter-boards'><span className='fa-solid filter'></span><span> Filter</span></div>
 
-            <div className='break-line' ></div>
+            <section className='boardlist-container ' >
+                <button className='workspace-toggle' aria-describedby={id} type="button" onClick={handleClick}>
+                    <h2>Main workspace <span className={`fa-solid ${open ? 'angleup' : 'angledown'} `} ></span> </h2>
+                </button>
+                <Popper id={id} open={open} anchorEl={anchorEl}>
+                    <Box sx={{ border: 0, borderRadius: 2, p: 5, bgcolor: 'white' }}>
+                        <h3>My workspaces</h3>
+                        <h5>Main workspace</h5>
+                    </Box>
+                </Popper>
+                <div className='add-board' ><span className='fa-solid plus'></span><span> Add</span></div>
+                <div className='filter-boards'><span className='fa-solid filter'></span><span> Filter</span></div>
 
-            <div className='boards-container'>
-                {boards.map(board => {
-                    return <div key={board._id}>
-                        <div>
-                            <span className='fa-solid window'></span>
-                            <span> {board.title}</span>
+                <div className='break-line' ></div>
+
+                <div className='boards-container'>
+                    {boards.map(board => {
+                        return <div key={board._id}>
+                            <div>
+                                <span className='fa-solid window'></span>
+                                <span> {board.title}</span>
+                            </div>
                         </div>
-                    </div>
-                })}
-            </div>
+                    })}
+                </div>
 
-        </section>
+            </section>
+        </main>
 
     )
 
