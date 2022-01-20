@@ -39,15 +39,29 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 				}}>
 				{boardPriorities.map((priority, idx) => {
 					return (
-						<Typography
-							sx={{ p: 2, background: priority.color, color: "#fff" }}
-							key={priority.id}
-							className={priority.id}
-							onClick={() =>
-								onUpdate('CHANGE_PRIORITY', priority.id)
-							}>
-							{priority.title}
-						</Typography>
+						<div className="status-options" key={priority.id}>
+							<Typography
+								sx={{
+									p: 2,
+									background: priority.color,
+									color: '#fff',
+									':hover': { opacity: 0.8 },
+									width: '7rem',
+									height: '2rem',
+									padding: 0,
+									fontSize: '0.8125rem',
+									textAlign: 'center',
+									paddingTop: '0.4063rem',
+									cursor: 'pointer',
+								}}
+								key={priority.id}
+								className={priority.id}
+								onClick={() =>
+									onUpdate('CHANGE_PRIORITY', priority.id)
+								}>
+								{priority.title}
+							</Typography>
+						</div>
 					);
 				})}
 			</Popover>
