@@ -150,7 +150,6 @@ function _createBoard() {
                 title: "",
                 color: "#c4c4c4"
             },
-
         ],
         members: [
             {
@@ -250,7 +249,7 @@ function _createBoard() {
                     imgUrl: "http://some-img"
                 },
                 story: {
-                    id: "c101",
+                    id: "c105",
                     title: "Replace Logo"
                 }
             }
