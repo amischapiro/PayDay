@@ -51,12 +51,7 @@
 
 import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-// import { getItemStyle, getQuestionListStyle } from "./utils";
-// import Answers from "./answer";
 import { StoryList } from '../cmps/StoryList.jsx'
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-// fake data generator
 
 //   const getQuestions = groups.map((group,idx)=>{
 //       return {
@@ -77,34 +72,42 @@ const Reorder = (list, startIndex, endIndex) => {
 export class GroupList extends Component {
     constructor(props) {
         super(props);
-        // console.log('this.props:', this.props);
 
         const { board } = this.props
         const { groups } = board
 
-        // const getQuestions = () => {
-        //     groups.map((group, idx) => {
-        //         return {
-        //             id: group.id,
-        //             content: group.title,
-        //             answers: group.stories
-        //         }
-        //     })
-        // }
+        const getGroups = () => {
+            const newGroups =  groups.map((group, idx) => {
+                console.log('group from questions:', group);
+                
+                return group
+                    // id: group.id,
+                    // content: group.title,
+                    // answers: group.stories
+                    
+                
+            })
+            return newGroups
+            
 
-        const getQuestions = count =>
-            Array.from({ length: count }, (v, k) => k).map(k => ({
-                id: `question-${k}`,
-                content: `question ${k}`,
-                answers: [`answer-1`, `answer-2`]
-            }));
-
-        // console.log(getQuestions(3));
-
+        }
         this.state = {
-            questions: getQuestions(2)
+            groups: getGroups()
         };
         this.onDragEnd = this.onDragEnd.bind(this);
+
+        // const getQuestions = count =>
+        //     Array.from({ length: count }, (v, k) => k).map(k => ({
+        //         id: `question-${k}`,
+        //         content: `question ${k}`,
+        //         answers: [`answer-1`, `answer-2`]
+        //     }));
+
+
+        // this.state = {
+        //     questions: getQuestions(2)
+        // };
+        // this.onDragEnd = this.onDragEnd.bind(this);
     }
 
     onDragEnd(result) {
@@ -114,35 +117,33 @@ export class GroupList extends Component {
             return;
         }
 
-        if (result.type === "QUESTIONS") {
-            const questions = Reorder(
-                this.state.questions,
+        if (result.type === "GROUPS") {
+            const groups = Reorder(
+                this.state.groups,
                 result.source.index,
                 result.destination.index
             );
 
             this.setState({
-                questions
+                groups
             });
         } else {
-            const answers = Reorder(
-                this.state.questions[parseInt(result.type, 10)].answers,
+            const story = Reorder(
+                this.state.groups[parseInt(result.type, 10)].story,
                 result.source.index,
                 result.destination.index
             );
 
-            const questions = JSON.parse(JSON.stringify(this.state.questions));
+            const groups = JSON.parse(JSON.stringify(this.state.groups));
 
-            questions[result.type].answers = answers;
+            groups[result.type].story = story;
 
             this.setState({
-                questions
+                groups
             });
         }
     }
 
-    // Normally you would want to split things out into separate components.
-    // But in this example everything is just done in one place for simplicity
     render() {
         const { board } = this.props
         const { groups } = board
@@ -153,33 +154,28 @@ export class GroupList extends Component {
                 onDragEnd={this.onDragEnd}
                 onDragUpdate={this.onDragUpdate}
             >
-                <Droppable droppableId="droppable" type="QUESTIONS">
+                <Droppable droppableId="droppable" type="GROUPS">
                     {(provided, snapshot) => (
                         <div
                             ref={provided.innerRef}
-                        // style={getQuestionListStyle(snapshot.isDraggingOver)}
+                        
                         >
-                            {this.state.questions.map((question, index) => (
+                            {this.state.groups.map((group, index) => (
+                                
                                 <Draggable
-                                    key={question.id}
-                                    draggableId={question.id}
+                                    key={group.id}
+                                    draggableId={group.id}
                                     index={index}
                                 >
                                     {(provided, snapshot) => (
                                         <div
                                             ref={provided.innerRef}
                                             {...provided.draggableProps}
-                                        // style={getItemStyle(
-                                        //     snapshot.isDragging,
-                                        //     provided.draggableProps.style
-                                        // )}
+                                        
                                         >
                                             <span className="fa-solid grip" {...provided.dragHandleProps}>
                                             </span>
-                                            {/* <StoryList key={groups[0].id} board={board} group={groups[0]} /> */}
                                             {groups.map(group => {
-                                                console.log('group:', group);
-                                                
                                                 return <StoryList key={group.id} board={board}
                                                     group={group} />
                                             })}

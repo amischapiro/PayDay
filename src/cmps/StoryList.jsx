@@ -53,7 +53,7 @@ function _StoryList(props) {
     const { question, questionNum } = props;
     const { board, group } = props
     const {stories} = group
-    console.log('StoryList.jsx ❕ 55: ', board, group);
+    // console.log('StoryList.jsx ❕ 55: ', board, group);
 
     return (
         <Droppable droppableId={`droppable${group.id}`} type={`${group.stories[0]}`}>
@@ -73,13 +73,14 @@ function _StoryList(props) {
                                     <div
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
+                                        
                                     // style={getItemStyle(
                                     //   snapshot.isDragging,
                                     //   provided.draggableProps.style
                                     // )}
                                     >
-                                        <span {...provided.dragHandleProps}>
-                                            grip
+                                        <span className="fa-solid grip" {...provided.dragHandleProps}>
+                                            
                                         </span>
                                         {stories.map(story => {
                                             return <Story key={story.id} story={story} board={board} />
