@@ -204,7 +204,7 @@ function _createBoard() {
                 title: "Group 2",
                 stories: [
                     {
-                        id: "c101",
+                        id: "c103",
                         title: "Replace logo",
                         storyData: {
                             members: [
@@ -220,7 +220,7 @@ function _createBoard() {
                         }
                     },
                     {
-                        id: "c102",
+                        id: "c104",
                         title: "Add Samples",
                         storyData: {
                             members: [
