@@ -9,7 +9,7 @@ export function Story(props) {
 
 	return (
 		<div className="story">
-			<h5>{story.title}</h5>
+			<div className="story-txt"><h5>{story.title}</h5></div>
 			{cmpsOrder.map((cmp, idx) => {
 				return (
 					<DynamicCmp

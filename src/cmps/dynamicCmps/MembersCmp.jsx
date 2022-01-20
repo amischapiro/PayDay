@@ -24,15 +24,32 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 			<Button
 				aria-describedby={id}
 				variant="contained"
-				onClick={handleClick}>
-				{members.length ? members.map((member) => {
-					const nameArr = member.fullname.split(' ');
-					const fName = nameArr[0].split('');
-					const lName = nameArr[1].split('');
-					return (
-						<img key={member._id} src={member.imgUrl} alt={fName[0] + lName[0]} />
-					);
-				}) : 'NM'}
+				onClick={handleClick}
+				sx={{
+					borderRadius: 0,
+					background: 'inherit',
+					boxShadow: 'none',
+					width: '97px',
+					':hover': {
+						boxShadow: 'none',
+						background: 'inherit',
+						opacity: 0.8,
+					},
+				}}>
+				{members.length
+					? members.map((member) => {
+							const nameArr = member.fullname.split(' ');
+							const fName = nameArr[0].split('');
+							const lName = nameArr[1].split('');
+							return (
+								<img
+									key={member._id}
+									src={member.imgUrl}
+									alt={fName[0] + lName[0]}
+								/>
+							);
+					  })
+					: 'NM'}
 			</Button>
 			<Popover
 				id={id}
@@ -55,6 +72,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 								}
 								src={member.imgUrl}
 								alt={fName[0] + lName[0]}
+								className="prof-pic"
 							/>
 						</Typography>
 					);
