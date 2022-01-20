@@ -1,22 +1,25 @@
 .boardlist-container {
 	position: relative;
+	width: 2rem;
 	transition: 0.6s;
+	background-color: #f5f6f8;
+	padding: 2.5rem 1rem;
+
+	display: flex;
+	flex-direction: column;
 
 	> *:not(:first-child) {
 		display: none;
 		opacity: 0;
 	}
 
-	background-color: #f5f6f8;
-	width: 2rem;
 	.workspace-toggle {
 		background-color: #f5f6f8;
 		height: 40px;
 		text-align: center;
 		border: 1px black solid;
 		border-radius: 3px;
-		width: 80%;
-		margin-left: 10%;
+		margin-bottom: 0.5rem;
 		cursor: pointer;
 		h2 {
 			line-height: 35px;
@@ -31,53 +34,49 @@
 			opacity: 1;
 			transition: opacity 0.7s;
 		}
-        .toggle-btn{
-            transition: 0.6s;
-            left: 200px;
-        }
+	}
+
+	> *:not(:last-child),
+	> * :not(.toggle-btn) {
+		padding-inline-start: 0.5rem;
+		cursor: pointer;
+		border-radius: 6px;
+
+		&:hover {
+			background-color: #e6e9ef;
+		}
 	}
 
 	.toggle-btn {
-		position: relative;
-		top: 2rem;
-		left: 20px;
-        
+		position: absolute;
+		transition: 0.3s;
+		right: 0;
+		transform: translate(50%, -100%);
+		border-radius: 50%;
+		border: none;
+		padding: 4px 8px;
+
+		&:hover {
+			background-color: #0073ea;
+			color: white;
+		}
+	}
+
+	.break-line {
+		height: 1px;
+		background-color: lightgray;
+		margin: 2rem 0 2rem;
+	}
+
+	.boards-container {
+		> * {
+			padding-inline-start: unset;
+			cursor: pointer;
+			border-radius: 6px;
+			&:hover {
+				background-color: #e6e9ef;
+			}
+		}
 	}
 }
 
-.add-board {
-	margin-top: 2rem;
-	width: 90%;
-	height: 30px;
-	text-align: left;
-	margin-left: 5%;
-	cursor: pointer;
-	border-radius: 6px;
-	&:hover {
-		background-color: #e6e9ef;
-	}
-}
-.filter-boards {
-	width: 90%;
-	height: 30px;
-	text-align: left;
-	margin-left: 5%;
-	cursor: pointer;
-	border-radius: 6px;
-	&:hover {
-		background-color: #e6e9ef;
-	}
-}
-
-.boardlist-container .plus:hover,
-.boardlist-container .filter:hover {
-	background-color: #e6e9ef;
-}
-
-.break-line {
-	height: 1px;
-	background-color: lightgray;
-	width: 80%;
-	margin-left: 10%;
-	margin-top: 2rem;
-}

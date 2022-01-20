@@ -1,13 +1,13 @@
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
-function _BoardHeader(){
+function _BoardHeader({ board }) {
+
     return (
-        <h1>Header</h1>
+        <h3>{board.title}</h3>
     )
-
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
         // board: state.boardModule.board,
         // users: state.userModule.users,
@@ -15,7 +15,7 @@ function mapStateToProps(state){
     }
 }
 
-const mapDispatchToProps ={
+const mapDispatchToProps = {
 
 }
 
