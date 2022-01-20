@@ -25,8 +25,12 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 				aria-describedby={id}
 				variant="contained"
 				onClick={handleClick}
-				className={priority}>
-				{priority}
+				sx={{
+					background: priority.color,
+					":hover": {background: priority.color}
+				}}
+				className='priority-button'>
+				{priority.title}
 			</Button>
 			<Popover
 				id={id}

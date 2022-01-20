@@ -25,8 +25,17 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 			<Button
 				aria-describedby={id}
 				variant="contained"
-				onClick={handleClick}>
-				{status}
+				onClick={handleClick}
+				sx={{
+					background: status.color,
+					borderRadius: 0,
+					fontSize: '0.8125rem',
+					boxShadow: "none",
+					fontWeight: 400,
+					width: "117px",
+					":hover": {boxShadow: 'none', background: status.color, opacity: 0.8}
+				}}>
+				{status.title}
 			</Button>
 			<Popover
 				id={id}
@@ -46,13 +55,13 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 									background: status.color,
 									color: '#fff',
 									':hover': { opacity: 0.8 },
-									width: "7rem",
-									height: "2rem",
+									width: '7rem',
+									height: '2rem',
 									padding: 0,
-									fontSize: "0.8125rem",
-									textAlign: "center",
-									paddingTop:"0.4063rem",
-									cursor: "pointer"
+									fontSize: '0.8125rem',
+									textAlign: 'center',
+									paddingTop: '0.4063rem',
+									cursor: 'pointer',
 								}}
 								className={status.id}
 								onClick={() =>

@@ -156,7 +156,7 @@ function _createBoard() {
             {
                 _id: "u101",
                 fullname: "Tal Tarablus",
-                imgUrl: "https://www.google.com"
+                imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
             }
         ],
         groups: [
@@ -172,12 +172,20 @@ function _createBoard() {
                                 {
                                     _id: "u101",
                                     fullname: "Tal Tarablus",
-                                    imgUrl: "https://www.google.com"
+                                    imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
                                 }
                             ],
-                            priority: '',
-                            status: 'Done',
-                            timeline: 'h'
+                            priority: {
+                                id: "p104",
+                                title: "",
+                                color: "#c4c4c4"
+                            },
+                            status: {
+                                id: "s101",
+                                title: "Done",
+                                color: "#00c875"
+                            },
+                            timeline: ''
                         }
                     },
                     {
@@ -188,12 +196,20 @@ function _createBoard() {
                                 {
                                     _id: "u101",
                                     fullname: "Tal Tarablus",
-                                    imgUrl: "https://www.google.com"
+                                    imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
                                 }
                             ],
-                            priority: 'High',
-                            status: 'Working on it',
-                            timeline: 'p'
+                            priority: {
+                                id: "p101",
+                                title: "High",
+                                color: "#bb3354"
+                            },
+                            status: {
+                                id: "s103",
+                                title: "Working on it",
+                                color: "#fdab3d"
+                            },
+                            timeline: ''
                         }
                     }
                 ],
@@ -211,12 +227,20 @@ function _createBoard() {
                                 {
                                     _id: "u101",
                                     fullname: "Tal Tarablus",
-                                    imgUrl: "https://www.google.com"
+                                    imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
                                 }
                             ],
-                            priority: 'Medium',
-                            status: 'Stuck',
-                            timeline: 'h'
+                            priority: {
+                                id: "p102",
+                                title: "Medium",
+                                color: "#cab641"
+                            },
+                            status: {
+                                id: "s102",
+                                title: "Stuck",
+                                color: "#e2445c"
+                            },
+                            timeline: ''
                         }
                     },
                     {
@@ -227,12 +251,20 @@ function _createBoard() {
                                 {
                                     _id: "u101",
                                     fullname: "Tal Tarablus",
-                                    imgUrl: "https://www.google.com"
+                                    imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
                                 }
                             ],
-                            priority: 'Low',
-                            status: 'Ready for review',
-                            timeline: 'p'
+                            priority: {
+                                id: "p103",
+                                title: "Low",
+                                color: "#66ccff"
+                            },
+                            status: {
+                                id: "s105",
+                                title: "Ready for review",
+                                color: "#a25ddc"
+                            },
+                            timeline: ''
                         }
                     }
                 ],
