@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-export function TimelineCmp({ info, onUpdate }) {
+export function TimelineCmp() {
 	const [dateRange, setDateRange] = useState([null, null]);
 	const [startDate, endDate] = dateRange;
 	return (
