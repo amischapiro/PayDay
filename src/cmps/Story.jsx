@@ -5,8 +5,6 @@ export function Story(props) {
 	const { board, story } = props
 	const { cmpsOrder } = board
 
-
-
 	if (!story) return <React.Fragment />
 
 	return (

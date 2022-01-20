@@ -106,15 +106,51 @@ function _createBoard() {
             {
                 id: "s101",
                 title: "Done",
-                color: "#61bd4f"
-            }
+                color: "#00c875"
+            },
+            {
+                id: "s102",
+                title: "Stuck",
+                color: "#e2445c"
+            },
+            {
+                id: "s103",
+                title: "Working on it",
+                color: "#fdab3d"
+            },
+            {
+                id: "s104",
+                title: "To do",
+                color: "#c4c4c4"
+            },
+            {
+                id: "s105",
+                title: "Ready for review",
+                color: "#a25ddc"
+            },
         ],
         priorities: [
             {
                 id: "p101",
                 title: "High",
-                color: "#61bd4f"
-            }
+                color: "#bb3354"
+            },
+            {
+                id: "p102",
+                title: "Medium",
+                color: "#cab641"
+            },
+            {
+                id: "p103",
+                title: "Low",
+                color: "#66ccff"
+            },
+            {
+                id: "p104",
+                title: "",
+                color: "#c4c4c4"
+            },
+
         ],
         members: [
             {
@@ -139,8 +175,8 @@ function _createBoard() {
                                     imgUrl: "https://www.google.com"
                                 }
                             ],
-                            priority: 'h',
-                            status: 'h',
+                            priority: '',
+                            status: 'Done',
                             timeline: 'h'
                         }
                     },
@@ -155,8 +191,8 @@ function _createBoard() {
                                     imgUrl: "https://www.google.com"
                                 }
                             ],
-                            priority: 'm',
-                            status: 'm',
+                            priority: 'High',
+                            status: 'Working on it',
                             timeline: 'p'
                         }
                     }
@@ -178,8 +214,8 @@ function _createBoard() {
                                     imgUrl: "https://www.google.com"
                                 }
                             ],
-                            priority: 'h',
-                            status: 'h',
+                            priority: 'Medium',
+                            status: 'Stuck',
                             timeline: 'h'
                         }
                     },
@@ -194,8 +230,8 @@ function _createBoard() {
                                     imgUrl: "https://www.google.com"
                                 }
                             ],
-                            priority: 'm',
-                            status: 'm',
+                            priority: 'Low',
+                            status: 'Ready for review',
                             timeline: 'p'
                         }
                     }
@@ -222,7 +258,7 @@ function _createBoard() {
         cmpsOrder: [
             "status-picker",
             "member-picker",
-            "date-picker"
+            "priority-picker",
         ]
     }
 

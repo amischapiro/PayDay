@@ -18,14 +18,14 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 	const id = open ? 'simple-popover' : undefined;
 
 	const { status } = story.storyData;
+	console.log('StatusCmp.jsx 💤 21: ', status);
 
 	return (
 		<div>
 			<Button
 				aria-describedby={id}
 				variant="contained"
-				onClick={handleClick}
-				className={status}>
+				onClick={handleClick}>
 				{status}
 			</Button>
 			<Popover
@@ -40,13 +40,13 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 				{boardStatuses.map((status, idx) => {
 					return (
 						<Typography
-							sx={{ p: 2 }}
+							sx={{ p: 2, background: status.color, color: "#fff" }}
 							key={status.id}
 							className={status.id}
-                            onClick={() =>
-                                onUpdate('CHANGE_STATUS', status.id)
-                            }>
-							{status.txt}
+							onClick={() =>
+								onUpdate('CHANGE_STATUS', status.id)
+							}>
+							{status.title}
 						</Typography>
 					);
 				})}

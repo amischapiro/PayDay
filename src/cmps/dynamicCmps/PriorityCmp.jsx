@@ -40,13 +40,13 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 				{boardPriorities.map((priority, idx) => {
 					return (
 						<Typography
-							sx={{ p: 2 }}
+							sx={{ p: 2, background: priority.color, color: "#fff" }}
 							key={priority.id}
 							className={priority.id}
-                            onClick={() =>
-                                onUpdate('CHANGE_PRIORITY', priority.id)
-                            }>
-							{priority.txt}
+							onClick={() =>
+								onUpdate('CHANGE_PRIORITY', priority.id)
+							}>
+							{priority.title}
 						</Typography>
 					);
 				})}
