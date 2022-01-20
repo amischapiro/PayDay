@@ -23,7 +23,7 @@ function _SideBar({ user, logout }) {
 				<button className="fa-solid user-plus btn-fa"></button>
 				<button className="fa-solid search btn-fa"></button>
 				<button className="fa-solid question btn-fa"></button>
-				<button className='user-btn'>AS</button>
+				<div className='user-btn-container'><button className='user-btn'>AS</button></div>
 				
 				{/* <button></button> setUser name letters or pic */}
 			</div>

@@ -70,15 +70,24 @@
     height: 32px;
     width: 20px;
 }
+.user-btn-container{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .actions-bottom .user-btn{
     border-radius: 50%;
     background-color: #ff5ac5;
     border-color:white ;
+    text-align: center;
     cursor: pointer;
     &:hover{
         transition: 0.3s;
         background-color:#ff5ac5 ;
         height:35px;
         width: 35px;
+        font-size: 1rem;
     }
 }
