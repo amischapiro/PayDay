@@ -18,7 +18,7 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 	const id = open ? 'simple-popover' : undefined;
 
 	const { status } = story.storyData;
-	console.log('StatusCmp.jsx 💤 21: ', status);
+	// console.log('StatusCmp.jsx 💤 21: ', status);
 
 	return (
 		<div>
