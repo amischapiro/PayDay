@@ -82,9 +82,7 @@
 /* Solid Style */
 
 
-.fa-solid.filter::before {
-	content: '\f0b0';
-}
+
 
 .fa-solid.search::before {
 	content: '\f002';
@@ -94,6 +92,12 @@
 }
 .fa-solid.angleup::before {
 	content: '\f106';
+}
+.fa-solid.angleright::before {
+	content: '\f105';
+}
+.fa-solid.angleleft::before {
+	content: '\f104';
 }
 .fa-solid.filter::before {
 	content: '\f0b0';
