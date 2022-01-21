@@ -5,7 +5,7 @@ import { BoardHeader } from '../cmps/BoardHeader'
 import { BoardActions } from '../cmps/BoardActions'
 import { GroupList } from '../cmps/GroupList'
 
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+// import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { loadBoards, } from '../store/board.action'
 
