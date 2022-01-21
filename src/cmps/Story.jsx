@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 
 import { updateBoard } from '../store/board.action'
+import { boardService } from '../services/board.service';
 
 export function _Story(props) {
 	const { board, group, story, updateBoard } = props;
@@ -41,19 +42,32 @@ export function _Story(props) {
 		onToggleTitleEdit()
 		const storyToUpdate = { ...story, title: editStory.title }
 		onUpdateBoard(storyToUpdate)
-		// const updatedBoard = await updateBoard(boardToUpdate)
-		// console.log(updatedBoard);
-		// setSelectedStory(updatedBoard)
 	}
 
-	const onUpdateBoard = async (storyToUpdate) => {
+	const onUpdateBoard = (storyToUpdate) => {
 		newBoard.groups[groupIdx].stories.splice(storyIdx, 1, storyToUpdate)
-		const updatedBoard = await updateBoard(newBoard)
-		setNewBoard(updatedBoard)
+		setNewBoard(newBoard)
+		updateBoard(newBoard)
 	}
 
+	const onUpdateStory = async (dataType, dataId) => {
+		const newStory = { ...story }
+		let newData;
 
-	if (!story) return <React.Fragment />;
+		switch (dataType) {
+			case 'CHANGE_STATUS':
+				newData = await boardService.getStatusById(board._id, dataId)
+				newStory.storyData.status = newData
+				break
+			case 'CHANGE_PRIORITY':
+				newData = await boardService.getPriorityById(board._id, dataId)
+				newStory.storyData.priority = newData
+				break
+
+		}
+		onUpdateBoard(newStory)
+	}
+
 
 	return (
 		<div className="story">
@@ -61,7 +75,7 @@ export function _Story(props) {
 				<div className="story-selector"></div>
 				<div className="story-txt">
 					<div className="story-editor">
-						{!isTitleEditOn && <h5>{story.title}</h5>}
+						{!isTitleEditOn && <div>{story.title}</div>}
 						{isTitleEditOn &&
 							<form onSubmit={onSubmitTitle}>
 								<input ref={titleRef} type="text" onBlur={onSubmitTitle}
@@ -78,11 +92,12 @@ export function _Story(props) {
 						key={idx}
 						cmp={cmp}
 						story={story}
-						onUpdate={(data) => {
-							console.log('Updating:', cmp, 'with data:', data);
-							// make a copy, update the task
-							// Call action: updateTask(task)
-						}}
+						onUpdate={(dataType, data) => onUpdateStory(dataType, data)}
+						// onUpdate={(data) => {
+						// 	console.log('Updating:', cmp, 'with data:', data);
+						// 	// make a copy, update the task
+						// 	// Call action: updateTask(task)
+						// }}
 						board={board}
 					/>
 				);
