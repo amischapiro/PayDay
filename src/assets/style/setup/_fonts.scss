@@ -80,13 +80,29 @@
 	content: "\f005";
 }
 
+.fa.chart-bar::before {
+	content: "\f080";
+}
+
+.fa.list-alt::before {
+	content: "\f022";
+}
+
 /*  Brands */
 
 .fa-brands.youtube::before {
-	content: "\f167";
+	content: "\f022";
 }
 
 /* Solid Style */
+
+.fa-solid.robot::before {
+	content: "\f544";
+}
+
+.fa-solid.plug::before {
+	content: "\f1e6";
+}
 
 .fa-solid.info-circle::before {
 	content: "\f05a";
@@ -99,6 +115,7 @@
 .fa-solid.chart-line::before {
 	content: "\f201";
 }
+
 
 .fa-solid.ellipsis-h::before {
 	content: "\f141";
@@ -184,4 +201,8 @@
 
 .fa-solid.pin::before {
 	content: "\f08d";
+}
+
+.fa-solid.home::before {
+	content: "\f015";
 }
