@@ -202,7 +202,6 @@ export class GroupList extends Component {
 	onDragEnd(result) {
 		if (!result.destination) return;
 		if (result.type === 'GROUPS') {
-			console.log('result:', result);
 			const groups = this.Reorder(
 				this.state.groups,
 				result.source.index,
