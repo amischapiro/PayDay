@@ -1,7 +1,5 @@
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { Story } from '../cmps/Story';
-// import { getItemStyle, getAnswerListStyle } from "./utils";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // function _StoryList(props) {
 //     const { question, questionNum } = props;

@@ -178,6 +178,7 @@ import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { utilService } from '../services/util.service.js';
 import StoryList from './StoryList';
+
 export class GroupList extends Component {
 	constructor(props) {
 		super(props);
