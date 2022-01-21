@@ -26,7 +26,6 @@ export function _Story(props) {
 		isTitleEditOn ? toggleTitleEdit(false) : toggleTitleEdit(true)
 	}
 
-
 	useEffect(() => {
 		if (isTitleEditOn) titleRef.current.focus()
 
@@ -68,6 +67,8 @@ export function _Story(props) {
 		onUpdateBoard(newStory)
 	}
 
+	console.log('');
+	
 
 	return (
 		<div className="story">
