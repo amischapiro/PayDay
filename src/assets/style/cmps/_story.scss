@@ -11,12 +11,21 @@
 	.story-txt-area {
 		display: flex;
 		width: 25.375rem;
+		// background-color: red;
 
-        &:hover {
-            .story-txt h5 {
-                color: #1f76c2;
-            }
-        }
+		input {
+			
+		}
+		&:hover {
+			.story-txt h5 {
+				color: #1f76c2;
+
+				&:hover {
+					border: 1px dotted grey;
+					// padding: 0 0.2rem;
+				}
+			}
+		}
 
 		.story-txt {
 			width: 100%;
@@ -25,37 +34,37 @@
 			margin: none;
 			padding: 0.3rem;
 
-            &:hover {
-                background-color: #cce5ff;
+			&:hover {
+				background-color: #cce5ff;
 
-                .story-editor button {
-                    opacity: 1;
-                }
-            }
+				.story-editor button {
+					opacity: 1;
+				}
+			}
 
-            .story-editor {
-                margin-inline-start: 0.5rem;
-                display: flex;
+			.story-editor {
+				margin-inline-start: 0.5rem;
+				display: flex;
 
-                button {
-                    opacity: 0;
-                    margin: 0 0 0 .5rem;
-                    height: fit-content;
-                    padding: .125rem .5rem .25rem;
-                    border-radius: .25rem;
-                    font-size: 0.875rem;
-                    border: none;
-                    color: #676879;
-                    background-color: inherit;
-                    cursor: pointer;
-                    font-weight: 400;
+				button {
+					opacity: 0;
+					margin: 0 0 0 0.5rem;
+					height: fit-content;
+					padding: 0.125rem 0.5rem 0.25rem;
+					border-radius: 0.25rem;
+					font-size: 0.875rem;
+					border: none;
+					color: #676879;
+					background-color: inherit;
+					cursor: pointer;
+					font-weight: 400;
 
-                    &:hover {
-                        background-color: #f5f6f8;
-                        // opacity: 1;
-                    }
-                }
-            }
+					&:hover {
+						background-color: #f5f6f8;
+						// opacity: 1;
+					}
+				}
+			}
 
 			.MuiSvgIcon-root.update-bubble.css-i4bv87-MuiSvgIcon-root {
 				color: #c5c7d0;

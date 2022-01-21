@@ -1,10 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DynamicCmp } from './dynamicCmps/DynamicCmp';
+import { connect } from 'react-redux'
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 
-export function Story(props) {
-	const { board, story } = props;
+import { updateBoard } from '../store/board.action'
+
+export function _Story(props) {
+	const { board, group, story, updateBoard } = props;
 	const { cmpsOrder } = board;
+	const groupId = group.id
+	const groupIdx = board.groups.findIndex((group) => group.id === groupId)
+	const storyId = story.id
+	const storyIdx = group.stories.findIndex(story => story.id === storyId)
+
+
+	const [newBoard, setNewBoard] = useState({ ...board })
+
+	const [isTitleEditOn, toggleTitleEdit] = useState(false)
+	const [editStory, setEditStory] = useState({ title: story.title })
+
+	const titleRef = React.createRef()
+
+	const onToggleTitleEdit = () => {
+		isTitleEditOn ? toggleTitleEdit(false) : toggleTitleEdit(true)
+	}
+
+
+	useEffect(() => {
+		if (isTitleEditOn) titleRef.current.focus()
+
+	}, [isTitleEditOn])
+
+	const handleChange = ({ target }) => {
+		const { name, value } = target
+		setEditStory({ ...editStory, [name]: value })
+	}
+
+	const onSubmitTitle = async (ev) => {
+		ev.preventDefault()
+		onToggleTitleEdit()
+		const storyToUpdate = { ...story, title: editStory.title }
+		onUpdateBoard(storyToUpdate)
+		// const updatedBoard = await updateBoard(boardToUpdate)
+		// console.log(updatedBoard);
+		// setSelectedStory(updatedBoard)
+	}
+
+	const onUpdateBoard = async (storyToUpdate) => {
+		newBoard.groups[groupIdx].stories.splice(storyIdx, 1, storyToUpdate)
+		const updatedBoard = await updateBoard(newBoard)
+		setNewBoard(updatedBoard)
+	}
+
 
 	if (!story) return <React.Fragment />;
 
@@ -14,8 +61,13 @@ export function Story(props) {
 				<div className="story-selector"></div>
 				<div className="story-txt">
 					<div className="story-editor">
-						<h5>{story.title}</h5>
-						<button className="edit-title">Edit</button>
+						{!isTitleEditOn && <h5>{story.title}</h5>}
+						{isTitleEditOn &&
+							<form onSubmit={onSubmitTitle}>
+								<input ref={titleRef} type="text" onBlur={onSubmitTitle}
+									value={editStory.title} name="title" onChange={handleChange} />
+							</form>}
+						{!isTitleEditOn && <button onClick={onToggleTitleEdit} className="edit-title">Edit</button>}
 					</div>
 					<MapsUgcOutlinedIcon className="update-bubble" />
 				</div>
@@ -38,3 +90,20 @@ export function Story(props) {
 		</div>
 	);
 }
+
+
+function mapStateToProps({ boardModule }) {
+	return {
+		// board: boardModule.board,
+		// users: state.userModule.users,
+		// loggedInUser: state.userModule.loggedInUser
+	}
+}
+
+const mapDispatchToProps = {
+	updateBoard,
+
+}
+
+
+export const Story = connect(mapStateToProps, mapDispatchToProps)(_Story)

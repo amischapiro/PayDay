@@ -1,0 +1,9 @@
+.board-header {
+    input {
+        border: 1px black dotted;
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}

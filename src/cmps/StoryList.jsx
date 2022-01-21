@@ -83,6 +83,7 @@ const StoryList = (props) => {
 										<span {...provided.dragHandleProps}>
 											<Story
 												board={board}
+												group={group}
 												story={story}
 											/>
 										</span>
