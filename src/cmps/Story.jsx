@@ -82,14 +82,14 @@ export function _Story(props) {
 	return (
 		<div className="story">
 			<div className="story-txt-area">
-				<div className="story-selector"></div>
+				<div className="story-selector" style={{backgroundColor: group.style.backgroundColor}}></div>
 				<div className="story-txt">
 					<div className="story-editor">
 						{isTitleEditOn ?
 							<form onSubmit={onSubmitTitle}>
 								<input ref={titleRef} type="text" onBlur={onSubmitTitle}
 									value={editStory.title} name="title" onChange={handleChange} />
-							</form> : <div>{story.title}</div>}
+							</form> : <div className="story-title">{story.title}</div>}
 						{!isTitleEditOn && <button onClick={onToggleTitleEdit} className="edit-title">Edit</button>}
 					</div>
 					<MapsUgcOutlinedIcon className="update-bubble" />
