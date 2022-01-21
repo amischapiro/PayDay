@@ -8,17 +8,15 @@
 	line-height: 1.5rem;
 	font-weight: 400;
 
-	.edit-title {
-		// visibility: hidden;
-
-		&:hover {
-			visibility: visible;
-		}
-	}
-
 	.story-txt-area {
 		display: flex;
 		width: 25.375rem;
+
+        &:hover {
+            .story-txt h5 {
+                color: #1f76c2;
+            }
+        }
 
 		.story-txt {
 			width: 100%;
