@@ -22,8 +22,6 @@ function _BoardList(props) {
 
 
     const onToggleBoardListShown = () => {
-        console.log('isBoardListOpen:', isBoardListOpen);
-
         isBoardListOpen ? toggleBoardList(false) : toggleBoardList(true)
     }
 
@@ -35,6 +33,7 @@ function _BoardList(props) {
     const id = open ? 'simple-popper' : undefined;
 
     const { boards } = props
+
 
 
 

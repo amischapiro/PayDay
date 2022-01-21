@@ -11,31 +11,31 @@ import { loadBoards, } from '../store/board.action'
 
 
 export function _BoardArea(props) {
-    const { board } = props
+    // const { board } = props
 
-    useEffect(() => {
-        console.log(board);
-    }, [])
+    // useEffect(() => {
+    //     // console.log(board);
+    // }, [])
 
-    async function onDragEnd(result){
-        const { destination, source, draggableId, type } = result;
-        const { board } = this.props;
-        if (!destination) return;
-        if (
-            destination.droppableId === source.droppableId &&
-            destination.index === source.index
-        ) return;
-        if (type === 'story') {
-            const sourceGroup = board.groups.find(group => group.id === source.droppableId);
-            const destinationGroup = board.groups.find(group => group.id === destination.droppableId);
-            const story = sourceGroup.stories.find(story => story.id === draggableId);
-            sourceGroup.stories.splice(source.index, 1);
-            destinationGroup.stories.splice(destination.index, 0, story);
-        }
-        if (type === 'group') {
-            const sourceGroup = board.groups.find(group => group.id === draggableId);
-            board.groups.splice(source.index, 1);
-            board.groups.splice(destination.index, 0, sourceGroup);
+    // async function onDragEnd(result){
+    //     const { destination, source, draggableId, type } = result;
+    //     const { board } = this.props;
+    //     if (!destination) return;
+    //     if (
+    //         destination.droppableId === source.droppableId &&
+    //         destination.index === source.index
+    //     ) return;
+    //     if (type === 'story') {
+    //         const sourceGroup = board.groups.find(group => group.id === source.droppableId);
+    //         const destinationGroup = board.groups.find(group => group.id === destination.droppableId);
+    //         const story = sourceGroup.stories.find(story => story.id === draggableId);
+    //         sourceGroup.stories.splice(source.index, 1);
+    //         destinationGroup.stories.splice(destination.index, 0, story);
+    //     }
+    //     if (type === 'group') {
+    //         const sourceGroup = board.groups.find(group => group.id === draggableId);
+    //         board.groups.splice(source.index, 1);
+    //         board.groups.splice(destination.index, 0, sourceGroup);
         }
         // if (type === 'column') {
         //     const idx = draggableId.indexOf('-')
@@ -53,7 +53,7 @@ export function _BoardArea(props) {
 
     return (
         <section className='board-area'>
-            <BoardHeader board={board} />
+            {/* <BoardHeader board={board} />
             <BoardActions board={board} />
 
             <DragDropContext onDragEnd={onDragEnd}>
@@ -74,7 +74,12 @@ export function _BoardArea(props) {
                         </DragDropContext>
 
 
-            {/* <GroupList board={board} /> */}
+            <GroupList board={board} /> */}
+            <div className='container'>
+                <BoardHeader board={board} />
+                <BoardActions board={board} />
+                <GroupList board={board} />
+            </div>
         </section>
     )
 }

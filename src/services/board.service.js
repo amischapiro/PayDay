@@ -4,7 +4,7 @@ import { storageService } from './async-storage.service'
 export const boardService = {
     query,
     getById,
-    removeBoard,
+    remove,
     updateBoard,
     addBoard
 }
@@ -18,15 +18,13 @@ async function query() {
     return boards
 }
 
-// getById("jWZBK")
 
 async function getById(boardId) {
     const board = await storageService.get(STORAGE_KEY, boardId)
-    // console.log(board);
     return board
 }
 
-async function removeBoard(boardId) {
+async function remove(boardId) {
     await storageService.remove(STORAGE_KEY, boardId)
     return boardId
 }

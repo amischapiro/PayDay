@@ -3,30 +3,64 @@
 	flex-direction: row;
 	background-color: #f5f6f8;
 	border: 1px solid #fff;
-	height: 37px;
+	height: 2.313rem;
+    font-size: 0.8125rem;
+    line-height: 1.5rem;
+    font-weight: 400;
 
-	.story-txt {
-		width: 406px;
-		margin: none;
-		padding: none;
-	}
+    .story-txt-area {
+        display: flex;
+        width: 25.375rem;
+
+        .story-txt {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin: none;
+            padding: .3rem;
+
+
+            .MuiSvgIcon-root.update-bubble.css-i4bv87-MuiSvgIcon-root {
+                color: #c5c7d0;
+                transition: .1s;
+        
+                &:hover {
+                    color: #0085ff;
+                }
+            }
+        }
+
+        .story-selector {
+            width: .5rem;
+            background: #cab641;
+            transition: .1s;
+            margin-inline-end: .5rem;
+    
+            &:hover {
+                width: 2rem;
+            }
+        }
+        
+    }
 
 	.react-datepicker-wrapper {
 		width: unset;
 	}
 
 	img {
-		width: 1.82rem;
-		height: 1.82rem;
+		width: 1.875rem;
+		height: 1.875rem;
 		border-radius: 50%;
 	}
 
 	button {
-		height: 2.186rem;
+		height: 2.25rem;
 		border: 1px solid #fff;
 		font-size: 0.8125rem;
-        box-shadow: none;
+		box-shadow: none;
 		font-weight: 400;
+		border-radius: 0;
+		padding: 0;
 
 		&:hover {
 			box-shadow: none;
@@ -35,11 +69,64 @@
 	}
 
 	.MuiButton-root.MuiButton-containedPrimary.priority-button {
-		border-radius: 0;
-		width: 92px;
+		width: 5.75rem;
 	}
+
+	.MuiButton-root.MuiButton-containedPrimary.status-button {
+		width: 7.313rem;
+		font-size: 0.6625rem;
+	}
+
+	.MuiButton-root.MuiButton-containedPrimary.members-button {
+		background-color: inherit;
+		width: 6.0623rem;
+		&:hover {
+			background-color: inherit;
+		}
+	}
+
 }
 
-.status-options {
-	padding: 0.5rem;
+.picker-container {
+    padding: 0.5rem;
+    
+    .MuiTypography-root.MuiTypography-body1.element-picker {
+        color: #fff;
+        width: 7rem;
+        height: 2rem;
+        padding: 0;
+        font-size: 0.8125rem;
+        text-align: center;
+        padding-top: 0.4063rem;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    .MuiTypography-root.MuiTypography-body1.member-picker{
+        display: flex;
+        width: 17.75rem;
+        height: 2.125rem;
+        padding: 0.3rem;
+        font-size: 0.8125rem;
+        font-weight: 300;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 0.25rem;
+
+        &:hover {
+            background-color: #0085ff;
+            color: #fff;
+        }
+
+        img {
+            width: 1.563rem;
+            height: 1.563rem;
+            border-radius: 50%;
+            margin-inline-end: .7rem;
+        }
+    }
+
 }

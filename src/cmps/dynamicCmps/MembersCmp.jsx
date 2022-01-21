@@ -25,17 +25,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 				aria-describedby={id}
 				variant="contained"
 				onClick={handleClick}
-				sx={{
-					borderRadius: 0,
-					background: 'inherit',
-					boxShadow: 'none',
-					width: '97px',
-					':hover': {
-						boxShadow: 'none',
-						background: 'inherit',
-						opacity: 0.8,
-					},
-				}}>
+				className="members-button">
 				{members.length
 					? members.map((member) => {
 							const nameArr = member.fullname.split(' ');
@@ -65,16 +55,18 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 					const fName = nameArr[0].split('');
 					const lName = nameArr[1].split('');
 					return (
-						<Typography sx={{ p: 2 }} key={idx}>
-							<img
-								onClick={() =>
-									onUpdate('ADD_MEMBER', member._id)
-								}
-								src={member.imgUrl}
-								alt={fName[0] + lName[0]}
-								className="prof-pic"
-							/>
-						</Typography>
+						<div className="picker-container" key={member._id}>
+							<Typography sx={{ p: 2 }} className="member-picker">
+								<img
+									onClick={() =>
+										onUpdate('ADD_MEMBER', member._id)
+									}
+									src={member.imgUrl}
+									alt={fName[0] + lName[0]}
+								/>{' '}
+								{member.fullname}
+							</Typography>
+						</div>
 					);
 				})}
 			</Popover>

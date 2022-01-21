@@ -28,13 +28,9 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 				onClick={handleClick}
 				sx={{
 					background: status.color,
-					borderRadius: 0,
-					fontSize: '0.8125rem',
-					boxShadow: "none",
-					fontWeight: 400,
-					width: "117px",
-					":hover": {boxShadow: 'none', background: status.color, opacity: 0.8}
-				}}>
+					':hover': { background: status.color },
+				}}
+				className="status-button">
 				{status.title}
 			</Button>
 			<Popover
@@ -48,22 +44,10 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 				}}>
 				{boardStatuses.map((status, idx) => {
 					return (
-						<div className="status-options" key={status.id}>
+						<div className="picker-container" key={status.id}>
 							<Typography
-								sx={{
-									p: 2,
-									background: status.color,
-									color: '#fff',
-									':hover': { opacity: 0.8 },
-									width: '7rem',
-									height: '2rem',
-									padding: 0,
-									fontSize: '0.8125rem',
-									textAlign: 'center',
-									paddingTop: '0.4063rem',
-									cursor: 'pointer',
-								}}
-								className={status.id}
+								sx={{ p: 2, background: status.color }}
+								className="element-picker"
 								onClick={() =>
 									onUpdate('CHANGE_STATUS', status.id)
 								}>
