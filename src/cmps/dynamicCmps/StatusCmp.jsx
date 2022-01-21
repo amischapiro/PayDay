@@ -22,7 +22,6 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 
 	return (
 		<div>
-			<div className='dog-ear-box'>
 			<Button
 				aria-describedby={id}
 				variant="contained"
@@ -31,10 +30,9 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 					background: status.color,
 					':hover': { background: status.color },
 				}}
-				className="status-button">
+				className="status-button dog-ear" >
 				{status.title}
 			</Button>
-			</div>
 			<Popover
 				id={id}
 				open={open}
