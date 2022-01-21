@@ -157,10 +157,25 @@ function _createBoard(_id = _makeId(), title) {
         ],
         members: [
             {
-                _id: "u101",
+                _id: "u102",
                 fullname: "Tal Tarablus",
                 imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
-            }
+            },
+            {
+                _id: "u103",
+                fullname: "Amitai Schapiro",
+                imgUrl: "https://ca.slack-edge.com/T02BJ4W8H45-U02FR69PJG2-b5be0246d951-72"
+            },
+            {
+                _id: "u104",
+                fullname: "Omri Steinberg",
+                imgUrl: "https://ca.slack-edge.com/T02BJ4W8H45-U02G1DTRWS3-d194bd058b90-512"
+            },
+            {
+                _id: "u105",
+                fullname: "Yarden Levy",
+                imgUrl: "https://ca.slack-edge.com/T02BJ4W8H45-U02LCCZFQ8G-b2dbb5f8311a-512"
+            },
         ],
         groups: [
             {

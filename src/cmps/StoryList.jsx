@@ -6,8 +6,7 @@ const StoryList = (props) => {
 	return (
 		<Droppable droppableId={`droppable${group.id}`} type={`${groupNum}`}>
 			{(provided, snapshot) => (
-				<div
-					ref={provided.innerRef}>
+				<div ref={provided.innerRef}>
 					{group.stories.map((story, index) => {
 						return (
 							<Draggable
@@ -30,6 +29,7 @@ const StoryList = (props) => {
 							</Draggable>
 						);
 					})}
+					<div className="add-story">+ Add Story</div>
 					{provided.placeholder}
 				</div>
 			)}

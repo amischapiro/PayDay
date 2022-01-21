@@ -50,20 +50,29 @@ export function _Story(props) {
 		updateBoard(newBoard)
 	}
 
-	const onUpdateStory = async (dataType, dataId) => {
+	const onUpdateStory = async (dataType, data) => {
 		const newStory = { ...story }
 		let newData;
 
 		switch (dataType) {
 			case 'CHANGE_STATUS':
-				newData = await boardService.getStatusById(board._id, dataId)
+				newData = await boardService.getStatusById(board._id, data)
 				newStory.storyData.status = newData
-				break
+				break;
 			case 'CHANGE_PRIORITY':
-				newData = await boardService.getPriorityById(board._id, dataId)
+				newData = await boardService.getPriorityById(board._id, data)
 				newStory.storyData.priority = newData
-				break
-
+				break;
+			case 'ADD_MEMBER':
+				newData = await boardService.addMember(board._id, data);
+				newStory.storyData.members= newData;
+				break;
+			case 'CHANGE_TIMELINE':
+				newData = await boardService.updateTimeline(board._id, data);
+				newStory.storyData.timeline= newData;
+				break;
+			default:
+				break;
 		}
 		onUpdateBoard(newStory)
 	}
@@ -75,12 +84,11 @@ export function _Story(props) {
 				<div className="story-selector"></div>
 				<div className="story-txt">
 					<div className="story-editor">
-						{!isTitleEditOn && <div>{story.title}</div>}
-						{isTitleEditOn &&
+						{isTitleEditOn ?
 							<form onSubmit={onSubmitTitle}>
 								<input ref={titleRef} type="text" onBlur={onSubmitTitle}
 									value={editStory.title} name="title" onChange={handleChange} />
-							</form>}
+							</form> : <div>{story.title}</div>}
 						{!isTitleEditOn && <button onClick={onToggleTitleEdit} className="edit-title">Edit</button>}
 					</div>
 					<MapsUgcOutlinedIcon className="update-bubble" />
