@@ -1,42 +1,5 @@
-// import { connect } from 'react-redux'
-// import { Story } from '../cmps/Story'
-
-// function _StoryList(props) {
-//     const { board, group } = props
-//     const { stories } = group
-
-//     return (
-//         <section className="group">
-//             <h1>Group</h1>
-//             {stories.map(story => {
-//                 return <Story key={story.id} story={story} board={board} />
-//             })}
-
-//         </section>
-//     )
-
-// }
-
-// function mapStateToProps(state) {
-//     return {
-//         // board: state.boardModule.board,
-//         // users: state.userModule.users,
-//         // loggedInUser: state.userModule.loggedInUser
-//     }
-// }
-
-// const mapDispatchToProps = {
-
-// }
-
-// export const StoryList = connect(mapStateToProps, mapDispatchToProps)(_StoryList)
-
-import React, { Component } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import { connect } from 'react-redux';
 import { Story } from '../cmps/Story';
-import { getStoryListStyle, getItemStyle } from './utils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { getItemStyle, getAnswerListStyle } from "./utils";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

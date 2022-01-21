@@ -176,9 +176,8 @@
 // playground
 import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Reorder, getItemStyle, getGroupListStyle } from './utils';
+import { utilService } from '../services/util.service.js';
 import StoryList from './StoryList';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export class GroupList extends Component {
 	constructor(props) {
 		super(props);
@@ -193,14 +192,14 @@ export class GroupList extends Component {
 		if (!result.destination) return;
 		if (result.type === 'GROUPS') {
 			console.log('result:', result);
-			const groups = Reorder(
+			const groups = utilService.Reorder(
 				this.state.groups,
 				result.source.index,
 				result.destination.index
 			);
 			this.setState({ groups });
 		} else {
-			const stories = Reorder(
+			const stories = utilService.Reorder(
 				this.state.groups[parseInt(result.type, 10)].stories,
 				result.source.index,
 				result.destination.index
