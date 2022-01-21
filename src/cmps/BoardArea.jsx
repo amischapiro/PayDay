@@ -11,11 +11,11 @@ import { loadBoards, } from '../store/board.action'
 
 
 export function _BoardArea(props) {
-    // const { board } = props
+    const { board } = props
 
-    // useEffect(() => {
-    //     // console.log(board);
-    // }, [])
+    useEffect(() => {
+        // console.log(board);
+    }, [])
 
     // async function onDragEnd(result){
     //     const { destination, source, draggableId, type } = result;
@@ -36,7 +36,7 @@ export function _BoardArea(props) {
     //         const sourceGroup = board.groups.find(group => group.id === draggableId);
     //         board.groups.splice(source.index, 1);
     //         board.groups.splice(destination.index, 0, sourceGroup);
-        }
+        // }
         // if (type === 'column') {
         //     const idx = draggableId.indexOf('-')
         //     const cellType = draggableId.slice(0, idx)
@@ -46,7 +46,7 @@ export function _BoardArea(props) {
         // const newBoard = { ...board };
         // await this.props.updateBoard(newBoard);
         // socketService.emit('board updated', newBoard._id);
-    }
+    // }
 
 
 
@@ -83,6 +83,7 @@ export function _BoardArea(props) {
         </section>
     )
 }
+
 
 
 function mapStateToProps({ boardModule }) {

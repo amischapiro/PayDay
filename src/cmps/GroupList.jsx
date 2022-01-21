@@ -178,7 +178,7 @@ import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Reorder, getItemStyle, getGroupListStyle } from './utils';
 import StoryList from './StoryList';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export class GroupList extends Component {
 	constructor(props) {
 		super(props);
