@@ -1,7 +1,6 @@
 .boardlist-container {
-	position: fixed;
-	left: 4rem;
-	margin-inline-end: 16rem;
+	position: sticky;
+	top:0;
 	width: 2rem;
 	height: 100vh;
 	transition: 0.3s;
@@ -10,11 +9,6 @@
 
 	display: flex;
 	flex-direction: column;
-
-	// > *:not(.toggle-btn) {
-	// 	// display: none;
-	// 	// opacity: 0;
-	// }
 
 	.workspace-toggle,
 	div,

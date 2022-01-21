@@ -1,6 +1,5 @@
 .board-area {
-    position: relative;
-    left: 20rem;
+    overflow-x: scroll;
     display: flex;
     flex-direction: column;
     margin-inline-start: 1rem;

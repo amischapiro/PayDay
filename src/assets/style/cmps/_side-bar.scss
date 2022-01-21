@@ -1,11 +1,8 @@
 
 .side-bar{
     background-color: #292f4c;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: space-between;
-    position: fixed;
-    // margin-inline-end: 66px;
+    position: sticky;
+    top:0;
     display: grid;
     grid-template-rows: repeat(3,1fr);
     height: 100vh;

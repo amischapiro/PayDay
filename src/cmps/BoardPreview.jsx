@@ -60,3 +60,5 @@ const mapDispatchToProps = {
 
 
 export const BoardPreview = connect(mapStateToProps, mapDispatchToProps)(_BoardPreview)
+
+

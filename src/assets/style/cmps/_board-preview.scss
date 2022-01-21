@@ -1,11 +1,10 @@
 .board-preview {
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
-
+  width: 100%;
   .btns-container {
-    // display: inline-block;
     visibility: hidden;
   }
   &.on-hover {
