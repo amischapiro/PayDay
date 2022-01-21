@@ -21,7 +21,6 @@ async function getStatusById(boardId, statusId) {
 async function getPriorityById(boardId, priorityId) {
     const board = await getById(boardId)
     return board.priorities.find(priority => priority.id === priorityId)
-
 }
 
 async function query() {

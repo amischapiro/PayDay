@@ -6,6 +6,7 @@ export const utilService = {
     getRandomColor,
     formatPrice,
     formatDate,
+    groupColorPicker
 }
 
 function makeId(length = 6) {
@@ -66,19 +67,19 @@ function groupColorPicker(colorIdx) {
     return colors[colorIdx];
 }
 
-const grid = 6;
-const getItemStyle = (isDragging, draggableStyle) => {
-    return {
-        // some basic styles to make the items look a bit nicer
-        userSelect: "none",
-        padding: grid * 2,
-        margin: `0 0 ${grid}px 0`,
-        textAlign: "right",
+// const grid = 6;
+// const getItemStyle = (isDragging, draggableStyle) => {
+//     return {
+//         // some basic styles to make the items look a bit nicer
+//         userSelect: "none",
+//         padding: grid * 2,
+//         margin: `0 0 ${grid}px 0`,
+//         textAlign: "right",
 
-        // change background colour if dragging
-        background: isDragging ? "lightgreen" : "grey",
+//         // change background colour if dragging
+//         background: isDragging ? "lightgreen" : "grey",
 
-        // styles we need to apply on draggables
-        ...draggableStyle
-    };
-};
+//         // styles we need to apply on draggables
+//         ...draggableStyle
+//     };
+// };
