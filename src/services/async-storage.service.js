@@ -10,7 +10,7 @@ export const storageService = {
 
 
 
-function query(entityType, delay = 100) {
+function query(entityType, delay = 0) {
     var entities = JSON.parse(localStorage.getItem(entityType))
     if (!entities?.length) {
         entities = _createBoards()
@@ -61,6 +61,7 @@ function remove(entityType, entityId) {
         })
 }
 
+
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
@@ -83,6 +84,7 @@ function postMany(entityType, newEntities) {
             return entities
         })
 }
+
 function _createBoards() {
     const boards = [
         _createBoard('TFQES', 'Bugs'),

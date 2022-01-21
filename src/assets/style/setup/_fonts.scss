@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 @font-face {
+	font-family: Roboto;
+	src: url("../../fonts/Roboto-Regular.ttf")
+}
+
+@font-face {
 	font-family: fa;
 	src: url("../../fonts/fa/fa-regular-400.ttf");
 }
@@ -71,6 +76,10 @@
 	content: "\f057";
 }
 
+.fa.star::before {
+	content: "\f005";
+}
+
 /*  Brands */
 
 .fa-brands.youtube::before {
@@ -78,6 +87,22 @@
 }
 
 /* Solid Style */
+
+.fa-solid.info-circle::before {
+	content: "\f05a";
+}
+
+.fa-solid.star::before {
+	content: "\f005";
+}
+
+.fa-solid.chart-line::before {
+	content: "\f201";
+}
+
+.fa-solid.ellipsis-h::before {
+	content: "\f141";
+}
 
 .fa-solid.window::before {
 	content: "\f2d0";

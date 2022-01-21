@@ -43,7 +43,7 @@ function _BoardHeader({ board, updateBoard }) {
         const updatedBoard = await updateBoard(boardToUpdate)
         setSelectedBoard(updatedBoard)
     }
-    
+
     const onSubmitDesc = async (ev) => {
         ev.preventDefault()
         onToggleDescEdit()
@@ -52,23 +52,48 @@ function _BoardHeader({ board, updateBoard }) {
         setSelectedBoard(updatedBoard)
     }
 
-
+    
 
     return (
         <div className='board-header'>
-            {!isTitleEditOn && <h3 onClick={onToggleTitleEdit}>{title? title: 'Enter title here'}</h3>}
-            {isTitleEditOn &&
-                <form onSubmit={onSubmitTitle}>
-                    <input ref={titleRef} type="text" onBlur={onSubmitTitle}
-                        value={editBoard.title} name="title" onChange={handleChange} />
-                </form>}
 
-            {!isDescEditOn && <h5 onClick={onToggleDescEdit}>{desc ? desc : 'Enter description here'}</h5>}
+            <div className='title-and-action'>
+
+                <div className='title-section'>
+                    {!isTitleEditOn && <h3 onClick={onToggleTitleEdit}>{title ? title : 'Enter title here'}</h3>}
+                    {isTitleEditOn &&
+                        <form onSubmit={onSubmitTitle}>
+                            <input ref={titleRef} type="text" onBlur={onSubmitTitle}
+                                value={editBoard.title} name="title" onChange={handleChange} />
+                        </form>}
+                    <div className='fa-solid info-circle'></div>
+                    <div className='fa star'></div>
+                </div>
+
+                <div className='header-actions'>
+                    <div className='last-seen'>
+                        Last seen
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg" alt="" />
+                    </div>
+                    <div className='invite'> <span className='fa-solid user-plus'></span> Invite /</div>
+                    <div className='activity'>  <span className='fa-solid chart-line'></span> Activity</div>
+                    <div className='add-to-board'><span className='fa-solid plus'></span> Add to board</div>
+                    <div className="options fa-solid ellipsis-h"></div>
+                </div>
+
+            </div>
+
+            {!isDescEditOn && <div className='description'
+                onClick={onToggleDescEdit}>{desc ? desc : 'Add description here'}</div>}
             {isDescEditOn &&
                 <form onSubmit={onSubmitDesc}>
-                    <input ref={decsRef} type="text" onBlur={onSubmitDesc}
+                    <textarea ref={decsRef} type="text" onBlur={onSubmitDesc}
                         value={editBoard.desc} name="desc" onChange={handleChange} />
                 </form>}
+
+
+
+
         </div>
     )
 }
