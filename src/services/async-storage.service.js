@@ -1,3 +1,4 @@
+import { utilService } from './util.service.js'
 
 export const storageService = {
     query,
@@ -181,6 +182,7 @@ function _createBoard(_id = _makeId(), title) {
             {
                 id: _makeId(),
                 title: "Group 1",
+                style: { backgroundColor: utilService.groupColorPicker() },
                 stories: [
                     {
                         id: _makeId(),
@@ -207,7 +209,7 @@ function _createBoard(_id = _makeId(), title) {
                         }
                     },
                     {
-                        id:  _makeId(),
+                        id: _makeId(),
                         title: "Add Samples",
                         storyData: {
                             members: [
@@ -231,11 +233,11 @@ function _createBoard(_id = _makeId(), title) {
                         }
                     }
                 ],
-                style: {}
             },
             {
                 id: _makeId(),
                 title: "Group 2",
+                style: { backgroundColor: utilService.groupColorPicker() },
                 stories: [
                     {
                         id: _makeId(),
@@ -286,7 +288,6 @@ function _createBoard(_id = _makeId(), title) {
                         }
                     }
                 ],
-                style: {}
             }
         ],
         activities: [

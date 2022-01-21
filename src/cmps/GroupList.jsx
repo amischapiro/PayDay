@@ -50,7 +50,7 @@ export class GroupList extends Component {
 				onDragUpdate={this.onDragUpdate}>
 				<Droppable droppableId="droppable" type="GROUPS">
 					{(provided, snapshot) => (
-						<div ref={provided.innerRef}>
+						<div ref={provided.innerRef} className="groups-container">
 							{this.state.groups.map((group, index) => (
 								<Draggable
 									key={group.id}

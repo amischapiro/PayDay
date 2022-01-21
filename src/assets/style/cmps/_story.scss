@@ -7,6 +7,11 @@
 	font-size: 0.8125rem;
 	line-height: 1.5rem;
 	font-weight: 400;
+	cursor: pointer;
+
+	&:-moz-drag-over{
+		cursor: -moz-grab;
+	}
 
 	&:hover {
 		background-color: #e6e9ef;
@@ -21,13 +26,12 @@
 		}
 
 		&:hover {
-			.story-txt h5 {
+			.story-title {
 				color: #1f76c2;
-				opacity: 0.8;
 
-				&:hover {
-					border: 1px dotted grey;
-				}
+				// &:hover {
+				// 	border: 1px dotted grey;
+				// }
 			}
 		}
 
@@ -54,7 +58,7 @@
 					opacity: 0;
 					margin: 0 0 0 0.5rem;
 					height: fit-content;
-					padding: 0.125rem 0.5rem 0.25rem;
+					padding: 0.25rem 0.5rem;
 					border-radius: 0.25rem;
 					font-size: 0.875rem;
 					border: none;
@@ -65,7 +69,6 @@
 
 					&:hover {
 						background-color: #f5f6f8;
-						// opacity: 1;
 					}
 				}
 			}
@@ -82,7 +85,6 @@
 
 		.story-selector {
 			width: 0.5rem;
-			background: #cab641;
 			transition: 0.1s;
 
 			&:hover {
