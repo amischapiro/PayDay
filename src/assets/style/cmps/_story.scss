@@ -8,6 +8,10 @@
 	line-height: 1.5rem;
 	font-weight: 400;
 
+	&:hover {
+		background-color: #e6e9ef;
+	}
+
 	.story-txt-area {
 		display: flex;
 		width: 25.375rem;
@@ -16,13 +20,14 @@
 		input {
 			
 		}
+
 		&:hover {
 			.story-txt h5 {
 				color: #1f76c2;
+				opacity: 0.8;
 
 				&:hover {
 					border: 1px dotted grey;
-					// padding: 0 0.2rem;
 				}
 			}
 		}
@@ -35,7 +40,7 @@
 			padding: 0.3rem;
 
 			&:hover {
-				background-color: #cce5ff;
+				// background-color: #cce5ff;
 
 				.story-editor button {
 					opacity: 1;
