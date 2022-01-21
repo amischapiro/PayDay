@@ -6,9 +6,6 @@ export const utilService = {
     getRandomColor,
     formatPrice,
     formatDate,
-    Reorder,
-    getItemStyle,
-    grid
 }
 
 function makeId(length = 6) {
@@ -68,15 +65,6 @@ function groupColorPicker(colorIdx) {
     const colors = ['#037c4a', '#00c875', '#9cd326', '#cab641', '#784bd1', '#a25ddc', '#0086c0', '#579bfc', '#66ccff', '#bb3354', '#e2445c', '#ff158a', '#ff5ac4', '#ff642e', '#fdab3d', '#7f5347', '#c4c4c4', '#808080'];
     return colors[colorIdx];
 }
-
-// a little function to help us with reordering the result
-const Reorder = (list, startIndex, endIndex) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    return result;
-};
 
 const grid = 6;
 const getItemStyle = (isDragging, draggableStyle) => {

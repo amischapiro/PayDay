@@ -1,3 +1,8 @@
+import { utilService } from '../services/util.service.js';
+import React, { Component } from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import StoryList from './StoryList';
+
 // import { connect } from 'react-redux'
 // import { StoryList } from '../cmps/StoryList.jsx'
 
@@ -174,12 +179,17 @@
 // export default Questions;
 
 // playground
-import React, { Component } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { utilService } from '../services/util.service.js';
-import StoryList from './StoryList';
 
 export class GroupList extends Component {
+	// a little function to help us with reordering the result
+	Reorder = (list, startIndex, endIndex) => {
+		const result = Array.from(list);
+		const [removed] = result.splice(startIndex, 1);
+		result.splice(endIndex, 0, removed);
+
+		return result;
+	};
+
 	constructor(props) {
 		super(props);
 		const { groups } = this.props.board;
@@ -193,14 +203,14 @@ export class GroupList extends Component {
 		if (!result.destination) return;
 		if (result.type === 'GROUPS') {
 			console.log('result:', result);
-			const groups = utilService.Reorder(
+			const groups = this.Reorder(
 				this.state.groups,
 				result.source.index,
 				result.destination.index
 			);
 			this.setState({ groups });
 		} else {
-			const stories = utilService.Reorder(
+			const stories = this.Reorder(
 				this.state.groups[parseInt(result.type, 10)].stories,
 				result.source.index,
 				result.destination.index
