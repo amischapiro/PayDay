@@ -13,7 +13,10 @@ export function Story(props) {
 			<div className="story-txt-area">
 				<div className="story-selector"></div>
 				<div className="story-txt">
-					<h5>{story.title}</h5>
+					<div className="story-editor">
+						<h5>{story.title}</h5>
+						<button className="edit-title">Edit</button>
+					</div>
 					<MapsUgcOutlinedIcon className="update-bubble" />
 				</div>
 			</div>
