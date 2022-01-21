@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -15,12 +14,10 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 		setAnchorEl(null);
 	};
 
-
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
-
+	
 	const { status } = story.storyData;
-	// console.log('StatusCmp.jsx 💤 21: ', status);
 
 	return (
 		<div>

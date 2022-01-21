@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import Logo from '../assets/img/PayDayLogo3.png';
 
