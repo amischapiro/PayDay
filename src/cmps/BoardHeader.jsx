@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
-import { updateBoard } from '../store/board.action'
+import { updateBoard, getById } from '../store/board.action'
 
 function _BoardHeader({ board, updateBoard }) {
-    const { title, desc } = board
+    // const { title, desc } = board
 
+    
+    const [selectedBoard, setSelectedBoard] = useState(board)
+    const { title, desc } = selectedBoard
+
+    
     const [isTitleEditOn, toggleTitleEdit] = useState(false)
     const [isDescEditOn, toggleDescEdit] = useState(false)
     const [editBoard, setEditBoard] = useState({ title, desc })
 
+    const titleRef = React.createRef()
+    const decsRef = React.createRef()
 
     const onToggleTitleEdit = () => {
         isTitleEditOn ? toggleTitleEdit(false) : toggleTitleEdit(true)
@@ -21,8 +28,10 @@ function _BoardHeader({ board, updateBoard }) {
 
 
     useEffect(() => {
+        if (isTitleEditOn) titleRef.current.focus()
+        if (isDescEditOn) decsRef.current.focus()
 
-    }, [])
+    }, [isTitleEditOn, isDescEditOn])
 
     const handleChange = ({ target }) => {
         const { name, value } = target
@@ -30,11 +39,12 @@ function _BoardHeader({ board, updateBoard }) {
 
     }
 
-    const onSubmitTitle = (ev) => {
+    const onSubmitTitle = async (ev) => {
         ev.preventDefault()
         onToggleTitleEdit()
         const BoardToUpdate = { ...board, title: editBoard.title }
-        updateBoard(BoardToUpdate)
+        const updatedBoard = await updateBoard(BoardToUpdate)
+        setSelectedBoard(updatedBoard)
     }
 
     const onSubmitDesc = (ev) => {
@@ -44,6 +54,10 @@ function _BoardHeader({ board, updateBoard }) {
         console.log(BoardToUpdate);
     }
 
+    useEffect(() => {
+        console.log(selectedBoard);
+    }, [selectedBoard])
+
 
 
     return (
@@ -51,14 +65,15 @@ function _BoardHeader({ board, updateBoard }) {
             {!isTitleEditOn && <h3 onClick={onToggleTitleEdit}>{title}</h3>}
             {isTitleEditOn &&
                 <form onSubmit={onSubmitTitle}>
-                    <input type="text" value={editBoard.title} name="title" onChange={handleChange} />
-                    <button>Save</button>
+                    <input ref={titleRef} type="text" onBlur={onSubmitTitle}
+                        value={editBoard.title} name="title" onChange={handleChange} />
                 </form>}
+
             {!isDescEditOn && <h5 onClick={onToggleDescEdit}>{desc ? desc : 'Enter description here'}</h5>}
             {isDescEditOn &&
                 <form onSubmit={onSubmitDesc}>
-                    <input type="text" value={editBoard.desc} name="desc" onChange={handleChange} />
-                    <button>Save</button>
+                    <input ref={decsRef} type="text" onBlur={onSubmitDesc}
+                        value={editBoard.desc} name="desc" onChange={handleChange} />
                 </form>}
         </div>
     )
@@ -73,7 +88,8 @@ function mapStateToProps({ boardModule }) {
 }
 
 const mapDispatchToProps = {
-    updateBoard
+    updateBoard,
+    getById
 }
 
 
