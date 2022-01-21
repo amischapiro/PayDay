@@ -52,6 +52,7 @@
 import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { StoryList } from '../cmps/StoryList.jsx'
+import { GroupPreview } from "./GroupPreview.jsx";
 
 //   const getQuestions = groups.map((group,idx)=>{
 //       return {
@@ -76,23 +77,22 @@ export class GroupList extends Component {
         const { board } = this.props
         const { groups } = board
 
-        const getGroups = () => {
-            const newGroups =  groups.map((group, idx) => {
-                // console.log('group from questions:', group);
-                
-                return group
-                    // id: group.id,
-                    // content: group.title,
-                    // answers: group.stories
-                    
-                
-            })
-            return newGroups
-            
+        // const getGroups = () => {
+        //     const newGroups = groups.map((group, idx) => {
+        //         // console.log('group from questions:', group);
 
-        }
+        //         return group
+        //         // id: group.id,
+        //         // content: group.title,
+        //         // answers: group.stories
+
+
+        //     })
+        //     return newGroups
+        // }
+
         this.state = {
-            groups: getGroups()
+            groups: groups
         };
         this.onDragEnd = this.onDragEnd.bind(this);
 
@@ -129,14 +129,14 @@ export class GroupList extends Component {
             });
         } else {
             const story = Reorder(
-                this.state.groups[parseInt(result.type, 10)].story,
+                this.state.groups[parseInt(result.type, 10)],
                 result.source.index,
                 result.destination.index
             );
 
             const groups = JSON.parse(JSON.stringify(this.state.groups));
 
-            groups[result.type].story = story;
+            groups[result.type] = story;
 
             this.setState({
                 groups
@@ -147,7 +147,7 @@ export class GroupList extends Component {
     render() {
         const { board } = this.props
         const { groups } = board
-        
+
 
         return (
             <DragDropContext
@@ -158,10 +158,10 @@ export class GroupList extends Component {
                     {(provided, snapshot) => (
                         <div
                             ref={provided.innerRef}
-                        
+
                         >
                             {this.state.groups.map((group, index) => (
-                                
+
                                 <Draggable
                                     key={group.id}
                                     draggableId={group.id}
@@ -171,14 +171,18 @@ export class GroupList extends Component {
                                         <div
                                             ref={provided.innerRef}
                                             {...provided.draggableProps}
-                                        
+
                                         >
                                             <span className="fa-solid grip" {...provided.dragHandleProps}>
                                             </span>
                                             {groups.map(group => {
-                                                return <StoryList key={group.id} board={board}
+                                                return <GroupPreview key={group.id} board={board}
                                                     group={group} />
                                             })}
+                                            {/* {groups.map(group => {
+                                                return <StoryList key={group.id} board={board}
+                                                    group={group} />
+                                            })} */}
                                         </div>
                                     )}
                                 </Draggable>

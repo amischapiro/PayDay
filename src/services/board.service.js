@@ -5,7 +5,7 @@ export const boardService = {
     query,
     getById,
     remove,
-    updateBoard,
+    save,
     addBoard
 }
 
@@ -30,9 +30,8 @@ async function remove(boardId) {
 }
 
 
-async function updateBoard(boardToUpdate) {
+async function save(boardToUpdate) {
     const updatedBoard = await storageService.put(STORAGE_KEY, boardToUpdate)
-    console.log(updatedBoard);
     return boardToUpdate
 }
 
