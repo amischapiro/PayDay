@@ -32,7 +32,8 @@ export function _BoardPreview({ board, removeBoard }) {
 
     return (
         <div className={isBtnsShown ? 'board-preview on-hover' : 'board-preview'}
-            onMouseLeave={onToggleBtnsfalse} onMouseEnter={onToggleBtnsTrue}>
+           onMouseLeave={onToggleBtnsfalse} onMouseEnter={onToggleBtnsTrue}>
+                
             <div>
                 <span className='fa-solid window'></span>
                 <span>&nbsp;{board.title}</span>
