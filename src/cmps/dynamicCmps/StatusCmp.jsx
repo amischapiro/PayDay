@@ -30,7 +30,7 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 					background: status.color,
 					':hover': { background: status.color },
 				}}
-				className="status-button">
+				className="status-button dog-ear" >
 				{status.title}
 			</Button>
 			<Popover

@@ -117,10 +117,30 @@
 	}
 
 	.MuiButton-root.MuiButton-containedPrimary.status-button {
+		position: relative;
 		width: 7.313rem;
 		font-size: 0.6625rem;
 	}
+	.status-box{
+		position: relative;
+		width: 7.313rem;
+	}
+	.dog-ear:before,.dog-ear:after{
+		content: '';
+		display: block;
+		right: 0;
+		top: 0;
+		position: absolute;
+	}
 
+	.dog-ear:after{
+		border-top: 10px solid transparent;
+		border-left: 10px solid rgba($color: #000000, $alpha: 0.08) ;
+	}
+	.dog-ear:before{
+		border-bottom: 10px solid transparent;
+		border-right: 10px solid #f5f6f8;
+	}
 	.MuiButton-root.MuiButton-containedPrimary.members-button {
 		background-color: inherit;
 		width: 6.0623rem;
