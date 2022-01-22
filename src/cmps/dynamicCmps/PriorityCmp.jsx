@@ -29,7 +29,7 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 					background: priority.color,
 					':hover': { background: priority.color },
 				}}
-				className="priority-button">
+				className="priority-button dog-ear">
 				{priority.title}
 			</Button>
 			<Popover

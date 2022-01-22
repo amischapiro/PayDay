@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 
 export function StatusCmp({ story, onUpdate, boardStatuses }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
-
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -20,6 +19,7 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 	const { status } = story.storyData;
 
 	return (
+
 		<div>
 			<Button
 				aria-describedby={id}
@@ -29,8 +29,8 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 					background: status.color,
 					':hover': { background: status.color },
 				}}
-				// onMouseEnter={}
-				className="status-button dog-ear" >
+
+				className={`status-button dog-ear`} >
 				{status.title}
 			</Button>
 			<Popover
