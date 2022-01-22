@@ -18,36 +18,40 @@ export function _Story(props) {
 	const [newBoard, setNewBoard] = useState({ ...board })
 
 	const [isTitleEditOn, toggleTitleEdit] = useState(false)
-	const [editStory, setEditStory] = useState({ title: story.title })
+	const [newStoryTitle, setStoryTitle] = useState({ title: story.title })
 
 	const titleRef = React.createRef()
 
-	const onToggleTitleEdit = () => {
-		isTitleEditOn ? toggleTitleEdit(false) : toggleTitleEdit(true)
-	}
-
 	useEffect(() => {
 		if (isTitleEditOn) titleRef.current.focus()
-
 	}, [isTitleEditOn])
+
+	useEffect(() => {
+		// console.log(newBoard.groups[groupIdx].stories[storyIdx]);
+	}, [newBoard])
 
 
 	const handleChange = ({ target }) => {
 		const { name, value } = target
-		setEditStory({ ...editStory, [name]: value })
+		setStoryTitle({ ...newStoryTitle, [name]: value })
 	}
 
 	const onSubmitTitle = async (ev) => {
 		ev.preventDefault()
-		onToggleTitleEdit()
-		const storyToUpdate = { ...story, title: editStory.title }
+		toggleTitleEdit(!isTitleEditOn)
+		const storyToUpdate = { ...story, title: newStoryTitle.title }
 		onUpdateBoard(storyToUpdate)
 	}
 
-	const onUpdateBoard = (storyToUpdate) => {
+	// useEffect(() => {
+	// 	console.log('Story.jsx 💤 53: ', newStory);
+	// }, [newStory])
+
+	const onUpdateBoard = async (storyToUpdate) => {
 		newBoard.groups[groupIdx].stories.splice(storyIdx, 1, storyToUpdate)
-		setNewBoard({ ...newBoard, newBoard })
-		updateBoard(newBoard)
+		// console.log(newBoard.groups[groupIdx].stories[storyIdx]);
+		const updatedBoard = await updateBoard(newBoard)
+		setNewBoard({ ...newBoard, updatedBoard })
 	}
 
 	const onUpdateStory = async (dataType, data) => {
@@ -86,9 +90,9 @@ export function _Story(props) {
 						{isTitleEditOn ?
 							<form onSubmit={onSubmitTitle}>
 								<input ref={titleRef} type="text" onBlur={onSubmitTitle}
-									value={editStory.title} name="title" onChange={handleChange} />
+									value={newStoryTitle.title} name="title" onChange={handleChange} />
 							</form> : <div className="story-title">{story.title}</div>}
-						{!isTitleEditOn && <button onClick={onToggleTitleEdit} className="edit-title">Edit</button>}
+						{!isTitleEditOn && <button onClick={() => toggleTitleEdit(!isTitleEditOn)} className="edit-title">Edit</button>}
 					</div>
 					<MapsUgcOutlinedIcon className="update-bubble" />
 				</div>
