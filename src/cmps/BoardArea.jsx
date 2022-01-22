@@ -23,7 +23,7 @@ export function __BoardArea(props) {
     // const { selectedBoard } = props
     useEffect(() => {
         // getBoard()
-        console.log(selectedBoard);
+        // console.log(selectedBoard);
         setBoard({ ...board, selectedBoard })
     }, [selectedBoard])
 
