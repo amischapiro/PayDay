@@ -1,11 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { utilService } from '../services/util.service';
 import { connect } from 'react-redux'
-import { updateBoard } from '../store/board.action'
 
 
 export function _AddStory(props) {
-	const { board, group, updateBoard } = props;
+	const { board, group, onUpdateBoard } = props;
 	const [txt, setTxt] = useState('');
 	const inputEl = useRef();
 
@@ -46,7 +45,7 @@ export function _AddStory(props) {
 				newStory,
 			];
 
-		await updateBoard(newBoard);
+		await onUpdateBoard(newBoard);
 		// await socketService.emit('board updated', newBoard._id)
 		setTxt('');
 	};
@@ -100,7 +99,6 @@ function mapStateToProps({ boardModule }) {
 }
 
 const mapDispatchToProps = {
-	updateBoard,
 }
 
 

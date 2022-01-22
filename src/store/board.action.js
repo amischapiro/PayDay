@@ -45,7 +45,6 @@ export function removeBoard(boardId) {
 export function updateBoard(boardToUpdate) {
     return async (dispatch) => {
         try {
-            console.log('board.action.js 💤 48: ', boardToUpdate);
             const savedBoard = await boardService.save(boardToUpdate)
             dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
             return Promise.resolve(savedBoard)
