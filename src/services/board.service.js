@@ -6,11 +6,22 @@ export const boardService = {
     getById,
     remove,
     save,
-    addBoard
+    addBoard,
+    getStatusById,
+    getPriorityById,
 }
 
 const STORAGE_KEY = 'boardDB'
 
+async function getStatusById(boardId, statusId) {
+    const board = await getById(boardId)
+    return board.statuses.find(status => status.id === statusId)
+}
+
+async function getPriorityById(boardId, priorityId) {
+    const board = await getById(boardId)
+    return board.priorities.find(priority => priority.id === priorityId)
+}
 
 async function query() {
     const boards = await storageService.query(STORAGE_KEY)

@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 @font-face {
+	font-family: Roboto;
+	src: url("../../fonts/Roboto-Regular.ttf")
+}
+
+@font-face {
 	font-family: fa;
 	src: url("../../fonts/fa/fa-regular-400.ttf");
 }
@@ -71,13 +76,62 @@
 	content: "\f057";
 }
 
+.fa.star::before {
+	content: "\f005";
+}
+
+.fa.chart-bar::before {
+	content: "\f080";
+}
+
+.fa.list-alt::before {
+	content: "\f022";
+}
+
+.fa.user::before {
+	content: "\f007";
+}
+
 /*  Brands */
 
 .fa-brands.youtube::before {
-	content: "\f167";
+	content: "\f022";
 }
 
 /* Solid Style */
+
+.fa-solid.chevron-down::before {
+	content: "\f078";
+}
+
+.fa-solid.chevron-up::before {
+	content: "\f077";
+}
+
+.fa-solid.robot::before {
+	content: "\f544";
+}
+
+.fa-solid.plug::before {
+	content: "\f1e6";
+}
+
+.fa-solid.info-circle::before {
+	content: "\f05a";
+}
+
+.fa-solid.star::before {
+	content: "\f005";
+}
+
+.fa-solid.chart-line::before {
+	content: "\f201";
+}
+
+
+.fa-solid.ellipsis-h::before {
+	content: "\f141";
+}
 
 .fa-solid.window::before {
 	content: "\f2d0";
@@ -159,4 +213,8 @@
 
 .fa-solid.pin::before {
 	content: "\f08d";
+}
+
+.fa-solid.home::before {
+	content: "\f015";
 }

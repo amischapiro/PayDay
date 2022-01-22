@@ -1,3 +1,4 @@
+import { utilService } from './util.service.js'
 
 export const storageService = {
     query,
@@ -5,12 +6,12 @@ export const storageService = {
     post,
     put,
     remove,
-    postMany
+    postMany,
 }
 
 
 
-function query(entityType, delay = 100) {
+function query(entityType, delay = 0) {
     var entities = JSON.parse(localStorage.getItem(entityType))
     if (!entities?.length) {
         entities = _createBoards()
@@ -61,6 +62,7 @@ function remove(entityType, entityId) {
         })
 }
 
+
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
@@ -83,6 +85,7 @@ function postMany(entityType, newEntities) {
             return entities
         })
 }
+
 function _createBoards() {
     const boards = [
         _createBoard('TFQES', 'Bugs'),
@@ -155,15 +158,31 @@ function _createBoard(_id = _makeId(), title) {
         ],
         members: [
             {
-                _id: "u101",
+                _id: "u102",
                 fullname: "Tal Tarablus",
                 imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
-            }
+            },
+            {
+                _id: "u103",
+                fullname: "Amitai Schapiro",
+                imgUrl: "https://ca.slack-edge.com/T02BJ4W8H45-U02FR69PJG2-b5be0246d951-72"
+            },
+            {
+                _id: "u104",
+                fullname: "Omri Steinberg",
+                imgUrl: "https://ca.slack-edge.com/T02BJ4W8H45-U02G1DTRWS3-d194bd058b90-512"
+            },
+            {
+                _id: "u105",
+                fullname: "Yarden Levy",
+                imgUrl: "https://ca.slack-edge.com/T02BJ4W8H45-U02LCCZFQ8G-b2dbb5f8311a-512"
+            },
         ],
         groups: [
             {
                 id: _makeId(),
                 title: "Group 1",
+                style: { backgroundColor: utilService.groupColorPicker() },
                 stories: [
                     {
                         id: _makeId(),
@@ -186,11 +205,11 @@ function _createBoard(_id = _makeId(), title) {
                                 title: "Done",
                                 color: "#00c875"
                             },
-                            timeline: ''
+                            timeline: []
                         }
                     },
                     {
-                        id:  _makeId(),
+                        id: _makeId(),
                         title: "Add Samples",
                         storyData: {
                             members: [
@@ -210,15 +229,15 @@ function _createBoard(_id = _makeId(), title) {
                                 title: "Working on it",
                                 color: "#fdab3d"
                             },
-                            timeline: ''
+                            timeline: []
                         }
                     }
                 ],
-                style: {}
             },
             {
                 id: _makeId(),
                 title: "Group 2",
+                style: { backgroundColor: utilService.groupColorPicker() },
                 stories: [
                     {
                         id: _makeId(),
@@ -241,7 +260,7 @@ function _createBoard(_id = _makeId(), title) {
                                 title: "Stuck",
                                 color: "#e2445c"
                             },
-                            timeline: ''
+                            timeline: []
                         }
                     },
                     {
@@ -265,11 +284,10 @@ function _createBoard(_id = _makeId(), title) {
                                 title: "Ready for review",
                                 color: "#a25ddc"
                             },
-                            timeline: ''
+                            timeline: []
                         }
                     }
                 ],
-                style: {}
             }
         ],
         activities: [

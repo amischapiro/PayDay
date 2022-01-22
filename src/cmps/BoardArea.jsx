@@ -8,6 +8,7 @@ import { GroupList } from '../cmps/GroupList'
 // import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { loadBoards, } from '../store/board.action'
+import { BoardNav } from './BoardNav'
 
 
 export function _BoardArea(props) {
@@ -36,16 +37,16 @@ export function _BoardArea(props) {
     //         const sourceGroup = board.groups.find(group => group.id === draggableId);
     //         board.groups.splice(source.index, 1);
     //         board.groups.splice(destination.index, 0, sourceGroup);
-        // }
-        // if (type === 'column') {
-        //     const idx = draggableId.indexOf('-')
-        //     const cellType = draggableId.slice(0, idx)
-        //     board.cellTypes.splice(source.index, 1);
-        //     board.cellTypes.splice(destination.index, 0, cellType)
-        // }
-        // const newBoard = { ...board };
-        // await this.props.updateBoard(newBoard);
-        // socketService.emit('board updated', newBoard._id);
+    // }
+    // if (type === 'column') {
+    //     const idx = draggableId.indexOf('-')
+    //     const cellType = draggableId.slice(0, idx)
+    //     board.cellTypes.splice(source.index, 1);
+    //     board.cellTypes.splice(destination.index, 0, cellType)
+    // }
+    // const newBoard = { ...board };
+    // await this.props.updateBoard(newBoard);
+    // socketService.emit('board updated', newBoard._id);
     // }
 
 
@@ -77,6 +78,7 @@ export function _BoardArea(props) {
             <GroupList board={board} /> */}
             <div className='container'>
                 <BoardHeader board={board} />
+                <BoardNav board={board} />
                 <BoardActions board={board} />
                 <GroupList board={board} />
             </div>
