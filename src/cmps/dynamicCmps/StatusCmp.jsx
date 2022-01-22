@@ -30,6 +30,7 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 					background: status.color,
 					':hover': { background: status.color },
 				}}
+				// onMouseEnter={}
 				className="status-button dog-ear" >
 				{status.title}
 			</Button>
