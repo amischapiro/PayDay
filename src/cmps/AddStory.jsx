@@ -1,7 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { utilService } from '../services/util.service';
+import { connect } from 'react-redux'
+import { updateBoard } from '../store/board.action'
 
-export function AddStory(props) {
+
+export function _AddStory(props) {
+	const { board, group, updateBoard } = props;
 	const [txt, setTxt] = useState('');
 	const inputEl = useRef();
 
@@ -11,8 +15,8 @@ export function AddStory(props) {
 		if (!value) return;
 		const newStory = utilService.createStory(value);
 
-		const newBoard = { ...props.board };
-		const groupId = props.group.id;
+		const newBoard = { ...board };
+		const groupId = group.id;
 		const groupIdx = newBoard.groups.findIndex(
 			(group) => group.id === groupId
 		);
@@ -42,7 +46,7 @@ export function AddStory(props) {
 				newStory,
 			];
 
-		await props.updateBoard(newBoard);
+		await updateBoard(newBoard);
 		// await socketService.emit('board updated', newBoard._id)
 		setTxt('');
 	};
@@ -67,7 +71,7 @@ export function AddStory(props) {
 			<div
 				className="story-selector"
 				style={{
-					backgroundColor: props.group.style.backgroundColor,
+					backgroundColor: group.style.backgroundColor,
 				}}></div>
 			<input
 				autoComplete="off"
@@ -86,3 +90,18 @@ export function AddStory(props) {
 		</div>
 	);
 }
+
+function mapStateToProps({ boardModule }) {
+	return {
+		// board: boardModule.board,
+		// users: state.userModule.users,
+		// loggedInUser: state.userModule.loggedInUser
+	}
+}
+
+const mapDispatchToProps = {
+	updateBoard,
+}
+
+
+export const AddStory = connect(mapStateToProps, mapDispatchToProps)(_AddStory)

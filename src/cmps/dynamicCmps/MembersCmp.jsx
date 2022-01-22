@@ -2,6 +2,7 @@ import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 export function MembersCmp({ story, onUpdate, boardMembers }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -39,7 +40,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 								/>
 							);
 					  })
-					: 'NM'}
+					: <AccountCircleOutlinedIcon className="no-members" />}
 			</Button>
 			<Popover
 				id={id}

@@ -40,7 +40,7 @@ function _StoryList(props) {
 					</div>
 				)}
 			</Droppable>
-			<AddStory group={group} board={board} updateBoard={updateBoard}/>
+			<AddStory group={group} board={board} />
 		</div>
 	);
 };
