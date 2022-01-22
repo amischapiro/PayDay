@@ -41,9 +41,9 @@ export function _Story(props) {
 
 	const onUpdateBoard = async (storyToUpdate) => {
 		newBoard.groups[groupIdx].stories.splice(storyIdx, 1, storyToUpdate)
-		// setNewBoard(newBoard)
+		setNewBoard(newBoard)
 		props.onUpdateBoard(newBoard)
-		// const updatedBoard = await updateBoard(newBoard)
+		const updatedBoard = await updateBoard(newBoard)
 	}
 
 	const onUpdateStory = async (dataType, data) => {

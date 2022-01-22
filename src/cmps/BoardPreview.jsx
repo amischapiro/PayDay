@@ -5,14 +5,18 @@ import { connect } from 'react-redux'
 import { useState, useEffect } from 'react'
 
 import { removeBoard } from '../store/board.action'
+import { withRouter } from 'react-router-dom/cjs/react-router-dom.min'
 
 
 
-export function _BoardPreview({ board, removeBoard }) {
+export function __BoardPreview(props) {
+
+    const { board, removeBoard } = props
 
     const [isBtnsShown, toggleBtnsShown] = useState(false)
 
-
+    // console.log(props);
+   
     const onToggleBtnsTrue = () => {
         toggleBtnsShown(true)
     }
@@ -32,8 +36,8 @@ export function _BoardPreview({ board, removeBoard }) {
 
     return (
         <div className={isBtnsShown ? 'board-preview on-hover' : 'board-preview'}
-           onMouseLeave={onToggleBtnsfalse} onMouseEnter={onToggleBtnsTrue}>
-                
+            onMouseLeave={onToggleBtnsfalse} onMouseEnter={onToggleBtnsTrue}>
+
             <div>
                 <span className='fa-solid window'></span>
                 <span>&nbsp;{board.title}</span>
@@ -58,6 +62,8 @@ const mapDispatchToProps = {
     removeBoard
 }
 
+
+const _BoardPreview = withRouter(__BoardPreview)
 
 
 export const BoardPreview = connect(mapStateToProps, mapDispatchToProps)(_BoardPreview)

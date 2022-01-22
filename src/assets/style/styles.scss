@@ -10,13 +10,10 @@
 @import "basics/base.scss";
 @import "basics/buttons.scss";
 
-
 // Pages
-
 
 @import "./pages/_home-page.scss";
 @import "./pages/_board-app.scss";
-
 
 // Cmps
 
@@ -31,3 +28,4 @@
 @import "./cmps/board-header.scss";
 @import "./cmps/board-nav.scss";
 @import "./cmps/board-actions.scss";
+@import "./cmps/drop-down-menu.scss";
