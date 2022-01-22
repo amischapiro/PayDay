@@ -34,7 +34,7 @@ export function _BoardArea(props) {
                         <Dashboard/>
                     </Route>
                     <Route path="/board/:boardId?">
-                        <GroupList board={board} />
+                        <GroupList board={board}  />
                     </Route>
 
                 </Switch>

@@ -38,6 +38,7 @@
 			justify-content: space-between;
 			margin: none;
 			padding: 0.3rem;
+			
 
 			&:hover {
 				// background-color: #cce5ff; this needs to be onclick
@@ -50,6 +51,12 @@
 			.story-editor {
 				margin-inline-start: 0.5rem;
 				display: flex;
+				input:focus-visible{
+					outline: none;
+					border: 1px dashed grey;
+
+						
+				}
 
 				button {
 					opacity: 0;
@@ -67,6 +74,7 @@
 					&:hover {
 						background-color: #f5f6f8;
 					}
+					
 				}
 			}
 

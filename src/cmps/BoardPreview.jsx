@@ -74,7 +74,6 @@ const mapDispatchToProps = {
 const _BoardPreview = withRouter(__BoardPreview)
 
 
-const _BoardPreview = withRouter(__BoardPreview)
 
 
 export const BoardPreview = connect(mapStateToProps, mapDispatchToProps)(_BoardPreview)

@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { StoryList } from './StoryList';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 export class GroupList extends Component {
+	
 	// a little function to help us with reordering the result
 	Reorder = (list, startIndex, endIndex) => {
 		const result = Array.from(list);

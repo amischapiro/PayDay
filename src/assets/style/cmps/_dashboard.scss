@@ -1,0 +1,9 @@
+.dashboard-container{
+    display: flex;
+    .line-chart{
+        width: 50%;
+    }
+    .bar-chart{
+        width: 50%;
+    }
+}
