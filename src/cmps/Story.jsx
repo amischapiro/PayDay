@@ -31,6 +31,7 @@ export function _Story(props) {
 
 	}, [isTitleEditOn])
 
+
 	const handleChange = ({ target }) => {
 		const { name, value } = target
 		setEditStory({ ...editStory, [name]: value })
@@ -45,7 +46,7 @@ export function _Story(props) {
 
 	const onUpdateBoard = (storyToUpdate) => {
 		newBoard.groups[groupIdx].stories.splice(storyIdx, 1, storyToUpdate)
-		setNewBoard(newBoard)
+		setNewBoard({ ...newBoard, newBoard })
 		updateBoard(newBoard)
 	}
 
@@ -64,22 +65,22 @@ export function _Story(props) {
 				break;
 			case 'ADD_MEMBER':
 				newData = await boardService.addMember(board._id, data);
-				newStory.storyData.members= newData;
+				newStory.storyData.members = newData;
 				break;
 			case 'CHANGE_TIMELINE':
 				newData = await boardService.updateTimeline(board._id, data);
-				newStory.storyData.timeline= newData;
+				newStory.storyData.timeline = newData;
 				break;
 			default:
 				break;
 		}
 		onUpdateBoard(newStory)
-	}	
+	}
 
 	return (
 		<div className="story">
 			<div className="story-txt-area">
-				<div className="story-selector" style={{backgroundColor: group.style.backgroundColor}}></div>
+				<div className="story-selector" style={{ backgroundColor: group.style.backgroundColor }}></div>
 				<div className="story-txt">
 					<div className="story-editor">
 						{isTitleEditOn ?
