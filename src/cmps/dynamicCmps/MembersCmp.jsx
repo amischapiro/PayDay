@@ -34,7 +34,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 						key={members[0]._id}
 						src={members[0].imgUrl}
 						alt=""
-					/> <span className="plus-members">+2</span> </div>
+					/> <span className="plus-members">+{members.length}</span> </div>
 				) : (
 					members.map((member) => {
 						const nameArr = member.fullname.split(' ');
