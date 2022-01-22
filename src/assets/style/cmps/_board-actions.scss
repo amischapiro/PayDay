@@ -6,12 +6,13 @@
     color: #323338;
     font-size: 0.875rem;
     line-height: 1.5rem;
-    
+    margin-bottom: 1.5rem;
+
     .fa,
     .fa-solid {
         color: #7a7b7e;
     }
-    
+
     .main-actions {
         display: flex;
         justify-content: flex-start;
@@ -20,7 +21,7 @@
             border-radius: 4px;
         }
 
-        > *:not(.new-story) {
+        > *:not(.new-story):not(input) {
             &:hover {
                 background-color: #e6e9ef;
                 cursor: pointer;
@@ -67,6 +68,28 @@
                 color: white;
             }
         }
+
+        .search-bar {
+            &.open {
+                display: flex;
+                align-items: center;
+                width: 12rem;
+                
+                border: 1px solid #0085ff;
+                &:hover {
+                    background-color: white;
+                }
+
+                input {
+                    width: 95%;
+                    &:focus-visible {
+                        outline: none;
+                        border: none;
+                    }
+                }
+            }
+        }
+
 
         .filter {
             display: flex;
