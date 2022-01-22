@@ -16,6 +16,8 @@ import { BoardNav } from './BoardNav'
 export function _BoardArea(props) {
     const { board } = props
 
+    // console.log(props.match.params);
+    
     useEffect(() => {
         // console.log(board);
     }, [])

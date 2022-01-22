@@ -103,6 +103,7 @@ export function _Story(props) {
 						// 	// Call action: updateTask(task)
 						// }}
 						board={board}
+						group={group}
 					/>
 				);
 			})}
