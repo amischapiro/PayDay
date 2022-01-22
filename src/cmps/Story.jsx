@@ -76,7 +76,7 @@ export function _Story(props) {
 		onUpdateBoard(newStory)
 	}
 
-	console.log('');
+	// console.log('');
 	
 
 	return (

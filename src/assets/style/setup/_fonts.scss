@@ -96,6 +96,10 @@
 
 /* Solid Style */
 
+.fa-solid.chevron-up::before {
+	content: "\f077";
+}
+
 .fa-solid.robot::before {
 	content: "\f544";
 }
