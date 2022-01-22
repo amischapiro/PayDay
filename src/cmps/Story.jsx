@@ -26,10 +26,6 @@ export function _Story(props) {
 		if (isTitleEditOn) titleRef.current.focus()
 	}, [isTitleEditOn])
 
-	useEffect(() => {
-		// console.log(newBoard.groups[groupIdx].stories[storyIdx]);
-	}, [newBoard])
-
 
 	const handleChange = ({ target }) => {
 		const { name, value } = target
@@ -43,15 +39,11 @@ export function _Story(props) {
 		onUpdateBoard(storyToUpdate)
 	}
 
-	// useEffect(() => {
-	// 	console.log('Story.jsx 💤 53: ', newStory);
-	// }, [newStory])
-
 	const onUpdateBoard = async (storyToUpdate) => {
 		newBoard.groups[groupIdx].stories.splice(storyIdx, 1, storyToUpdate)
-		// console.log(newBoard.groups[groupIdx].stories[storyIdx]);
+		setNewBoard(newBoard)
+		props.onUpdateBoard(newBoard)
 		const updatedBoard = await updateBoard(newBoard)
-		setNewBoard({ ...newBoard, updatedBoard })
 	}
 
 	const onUpdateStory = async (dataType, data) => {
@@ -68,12 +60,13 @@ export function _Story(props) {
 				newStory.storyData.priority = newData
 				break;
 			case 'ADD_MEMBER':
-				newData = await boardService.addMember(board._id, data);
-				newStory.storyData.members = newData;
+				newData = await boardService.getMemberById(board._id, data);
+				newStory.storyData.members.push(newData);
 				break;
 			case 'CHANGE_TIMELINE':
-				newData = await boardService.updateTimeline(board._id, data);
+				newData = await boardService.updateTimeline(data);
 				newStory.storyData.timeline = newData;
+				// console.log('Story.jsx 💤 69: ', newStory.storyData.timeline);
 				break;
 			default:
 				break;

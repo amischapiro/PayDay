@@ -27,20 +27,22 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 				variant="contained"
 				onClick={handleClick}
 				className="members-button">
-				{members.length
-					? members.map((member) => {
-							const nameArr = member.fullname.split(' ');
-							const fName = nameArr[0].split('');
-							const lName = nameArr[1].split('');
-							return (
-								<img
-									key={member._id}
-									src={member.imgUrl}
-									alt={fName[0] + lName[0]}
-								/>
-							);
-					  })
-					: <AccountCircleOutlinedIcon className="no-members" />}
+				{members.length ? (
+					members.map((member) => {
+						const nameArr = member.fullname.split(' ');
+						const fName = nameArr[0].split('');
+						const lName = nameArr[1].split('');
+						return (
+							<img
+								key={member._id}
+								src={member.imgUrl}
+								alt={fName[0] + lName[0]}
+							/>
+						);
+					})
+				) : (
+					<AccountCircleOutlinedIcon className="no-members" />
+				)}
 			</Button>
 			<Popover
 				id={id}
@@ -57,11 +59,13 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 					const lName = nameArr[1].split('');
 					return (
 						<div className="picker-container" key={member._id}>
-							<Typography sx={{ p: 2 }} className="member-picker">
+							<Typography
+								sx={{ p: 2 }}
+								className="member-picker"
+								onClick={() =>
+									onUpdate('ADD_MEMBER', member._id)
+								}>
 								<img
-									onClick={() =>
-										onUpdate('ADD_MEMBER', member._id)
-									}
 									src={member.imgUrl}
 									alt={fName[0] + lName[0]}
 								/>{' '}

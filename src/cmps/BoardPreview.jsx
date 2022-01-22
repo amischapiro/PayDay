@@ -17,7 +17,8 @@ export function __BoardPreview(props) {
 
     const [isBtnsShown, toggleBtnsShown] = useState(false)
 
-
+    // console.log(props);
+   
     const onToggleBtnsTrue = () => {
         toggleBtnsShown(true)
     }
@@ -72,6 +73,8 @@ const mapDispatchToProps = {
 
 const _BoardPreview = withRouter(__BoardPreview)
 
+
+const _BoardPreview = withRouter(__BoardPreview)
 
 
 export const BoardPreview = connect(mapStateToProps, mapDispatchToProps)(_BoardPreview)

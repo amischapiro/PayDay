@@ -11,10 +11,10 @@ function _StoryList(props) {
 	const [newBoard, setNewBoard] = useState({ ...board })
 
 	const onUpdateBoard = (boardToUpdate) => {
-        setNewBoard({...newBoard, boardToUpdate});
-        updateBoard(newBoard);
-    }
-	
+		setNewBoard({ ...newBoard, boardToUpdate });
+		updateBoard(newBoard);
+	}
+
 	return (
 		<div className="group-container">
 			<Droppable
@@ -34,6 +34,7 @@ function _StoryList(props) {
 											{...provided.draggableProps}>
 											<span {...provided.dragHandleProps}>
 												<Story
+													onUpdateBoard={onUpdateBoard}
 													board={board}
 													group={group}
 													story={story}

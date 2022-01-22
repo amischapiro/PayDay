@@ -1,0 +1,16 @@
+.drop-down-menu {
+    position: absolute;
+
+    bottom:0;
+    width: 12rem;
+    z-index: 10;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+
+    &:hover {
+        background-color: unset;
+    }
+}
