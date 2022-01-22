@@ -56,7 +56,7 @@ function _StoryList(props) {
 
 function mapStateToProps({ boardModule }) {
 	return {
-		// board: boardModule.board,
+		// selectedBoard: boardModule.board,
 		// users: state.userModule.users,
 		// loggedInUser: state.userModule.loggedInUser
 	}

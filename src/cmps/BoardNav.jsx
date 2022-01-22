@@ -26,22 +26,19 @@ function _BoardNav({board}) {
         }, 1000)
     }
 
-    const onToggleIntegrateHover = () => {
-        isInegrateHoverOn ? setIntegrateHover(false) : setIntegrateHover(true)
-    }
 
     return (
         <div className='board-nav'>
 
             <div className='navs-container'>
-                <NavLink activeClassName="my-active" exact to={`/board/${board._id}`}> <span className='fa-solid home'></span> Main Table</NavLink>
+                <NavLink activeClassName="my-active" exact to={`/board/${board._id}/board`}> <span className='fa-solid home'></span> Main Table</NavLink>
                 <NavLink activeClassName="my-active" to={`/board/${board._id}/kanban`}> <span className='fa list-alt'></span> Kanban</NavLink>
                 <NavLink activeClassName="my-active" to={`/board/${board._id}/dashboard`}> <span className='fa chart-bar'></span> Dashboard</NavLink>
             </div>
 
             <div className='actions-container'>
-                <div onMouseEnter={onToggleIntegrateHover}
-                    onMouseLeave={onToggleIntegrateHover}
+                <div onMouseEnter={()=>{setIntegrateHover(true)}}
+                    onMouseLeave={()=>{setIntegrateHover(false)}}
                     className={isInegrateHoverOn ? 'integrate hover' : 'integrate'}>
                     <span className='fa-solid plug'></span> <span className='txt'>Integrate</span>
                     <img src={GmailLogo} alt="Gmail Logo" />
