@@ -11,6 +11,7 @@ import { loadBoards, } from '../store/board.action'
 
 
 
+
 function _BoardList(props) {
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -64,7 +65,7 @@ function _BoardList(props) {
 
             <div className='boards-container'>
                 {boards.map(board => {
-                    return < BoardPreview key={board._id} board={board} />
+                    return < BoardPreview key={board._id} board={board}/>
                 })}
             </div>
             {isMenuOpen && (

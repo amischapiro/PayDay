@@ -1,0 +1,11 @@
+.group-name-container{
+    display: flex;
+    .drag-group{
+        display: none;
+    }
+    &:hover{
+        .drag-group{
+            display: block;
+        }
+    }
+}
