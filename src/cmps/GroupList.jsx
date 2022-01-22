@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { StoryList } from './StoryList';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 export class GroupList extends Component {
 	// a little function to help us with reordering the result
 	Reorder = (list, startIndex, endIndex) => {
@@ -62,8 +63,11 @@ export class GroupList extends Component {
 										<div
 											ref={provided.innerRef}
 											{...provided.draggableProps}>
-											<span {...provided.dragHandleProps}>
+											<span  {...provided.dragHandleProps}>
+												<div className='group-name-container'>
+												<DragIndicatorIcon className='drag-group' />
 												{group.title}
+												</div>
 												<StoryList
 													groupNum={index}
 													group={group}
