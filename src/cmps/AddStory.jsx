@@ -1,25 +1,88 @@
-import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
-import { updateBoard } from '../store/board.action';
-import { boardService } from '../services/board.service';
+import React, { useState, useRef } from 'react';
+import { utilService } from '../services/util.service';
 
-export function _AddStory(props) {
-    const {board, group, updateBoard} = props;
-    const groupId = group.id;
-    const groupIdx = board.groups.findIndex(group => group.id === groupId);
+export function AddStory(props) {
+	const [txt, setTxt] = useState('');
+	const inputEl = useRef();
 
-    const [newBoard, setNewBoard] = useState({...board});
-    const[isTitleEditOn, toggleTitleEdit] = useState(false);
+	const onAddStory = async ({ target }) => {
+		const value = target.value;
 
-    const titleRef = React.createRef();
+		if (!value) return;
+		const newStory = utilService.createStory(value);
 
-    const onToggleTitleEdit = () => {
-        isTitleEditOn ? toggleTitleEdit(false) : toggleTitleEdit(true);
-    }
+		const newBoard = { ...props.board };
+		const groupId = props.group.id;
+		const groupIdx = newBoard.groups.findIndex(
+			(group) => group.id === groupId
+		);
+		// const newActivity = {
+		//     id: utilService.makeId(),
+		//     type: 'Story added',
+		//     createdAt: Date.now(),
+		//     byMember: userService.getLoggedinUser(),
+		//     story: {
+		//         id: newStory.id,
+		//         title: newStory.title
+		//     },
+		//     group: {
+		//         id: groupId,
+		//         title: props.group.title
+		//     }
+		// }
 
-    useEffect(() => {
-        if(isTitleEditOn) titleRef.current.focus();
-    }, [isTitleEditOn]);
+		if (
+			!newBoard.groups[groupIdx].stories ||
+			!newBoard.groups[groupIdx].stories.length
+		)
+			newBoard.groups[groupIdx].stories = [newStory];
+		else
+			newBoard.groups[groupIdx].stories = [
+				...newBoard.groups[groupIdx].stories,
+				newStory,
+			];
 
-    
+		await props.updateBoard(newBoard);
+		// await socketService.emit('board updated', newBoard._id)
+		setTxt('');
+	};
+
+	const handleUpdate = (ev) => {
+		if (ev.key === 'Enter' || ev.type === 'blur') {
+			onAddStory(ev);
+		}
+	};
+
+	const handleChange = ({ target }) => {
+		const { value } = target;
+		setTxt(value);
+	};
+
+	const onFocusInput = () => {
+		inputEl.current.focus();
+	};
+
+	return (
+		<div className="add-story" onClick={onFocusInput}>
+			<div
+				className="story-selector"
+				style={{
+					backgroundColor: props.group.style.backgroundColor,
+				}}></div>
+			<input
+				autoComplete="off"
+				name="txt"
+				type="text"
+				placeholder="+ Add Story"
+				onBlur={handleUpdate}
+				onKeyUp={handleUpdate}
+				value={txt}
+				onChange={handleChange}
+				ref={inputEl}
+			/>
+			<button className="add" onClick={handleUpdate}>
+				Add
+			</button>
+		</div>
+	);
 }

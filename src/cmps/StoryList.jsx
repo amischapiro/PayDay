@@ -1,7 +1,11 @@
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { connect } from 'react-redux'
 import { Story } from '../cmps/Story';
+import { AddStory } from './AddStory';
 
-const StoryList = (props) => {
+import { updateBoard } from '../store/board.action'
+
+function _StoryList(props) {
 	const { group, groupNum, board } = props;
 	return (
 		<div className="group-container">
@@ -36,16 +40,22 @@ const StoryList = (props) => {
 					</div>
 				)}
 			</Droppable>
-			<div className="add-story">
-				<div
-					className="story-selector"
-					style={{
-						backgroundColor: group.style.backgroundColor,
-					}}></div>
-				<h5>+ Add Story</h5>
-			</div>
+			<AddStory group={group} board={board} updateBoard={updateBoard}/>
 		</div>
 	);
 };
 
-export default StoryList;
+function mapStateToProps({ boardModule }) {
+	return {
+		// board: boardModule.board,
+		// users: state.userModule.users,
+		// loggedInUser: state.userModule.loggedInUser
+	}
+}
+
+const mapDispatchToProps = {
+	updateBoard,
+}
+
+
+export const StoryList = connect(mapStateToProps, mapDispatchToProps)(_StoryList)

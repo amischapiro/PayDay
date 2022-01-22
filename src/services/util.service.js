@@ -6,7 +6,8 @@ export const utilService = {
     getRandomColor,
     formatPrice,
     formatDate,
-    groupColorPicker
+    groupColorPicker,
+    createStory
 }
 
 function makeId(length = 6) {
@@ -65,6 +66,30 @@ function formatDate(createdAt) {
 function groupColorPicker(colorIdx = getRandomIntInclusive(0, 18)) {
     const colors = ['#037c4a', '#00c875', '#9cd326', '#cab641', '#784bd1', '#a25ddc', '#0086c0', '#579bfc', '#66ccff', '#bb3354', '#e2445c', '#ff158a', '#ff5ac4', '#ff642e', '#fdab3d', '#7f5347', '#c4c4c4', '#808080'];
     return colors[colorIdx];
+}
+
+
+function createStory(title = '') {
+    const story = {
+        id: makeId(),
+        title,
+        storyData: {
+            members: [],
+            priority: {
+                id: "p104",
+                title: "",
+                color: "#c4c4c4"
+            },
+            status: {
+                id: "s104",
+                title: "To do",
+                color: "#c4c4c4"
+            },
+            timeline: []
+        }
+    }
+
+    return story;
 }
 
 // const grid = 6;

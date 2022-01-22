@@ -74,10 +74,7 @@ export function _Story(props) {
 				break;
 		}
 		onUpdateBoard(newStory)
-	}
-
-	console.log('');
-	
+	}	
 
 	return (
 		<div className="story">
@@ -126,7 +123,6 @@ function mapStateToProps({ boardModule }) {
 
 const mapDispatchToProps = {
 	updateBoard,
-
 }
 
 
