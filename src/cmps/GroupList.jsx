@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
 import { StoryList } from './StoryList';
+
+
 export class GroupList extends Component {
+
+	
 	// a little function to help us with reordering the result
 	Reorder = (list, startIndex, endIndex) => {
 		const result = Array.from(list);
@@ -43,7 +48,11 @@ export class GroupList extends Component {
 		}
 	}
 
+
+
 	render() {
+
+
 		return (
 			<DragDropContext
 				onDragEnd={this.onDragEnd}
