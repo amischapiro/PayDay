@@ -13,7 +13,7 @@ export class RootCmp extends React.Component {
 						{routes.map((route) => (
 							<Route
 								key={route.path}
-								exact
+								// exact
 								component={route.component}
 								path={route.path}
 							/>

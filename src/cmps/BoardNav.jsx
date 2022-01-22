@@ -13,8 +13,8 @@ import { GroupList } from './GroupList'
 // import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
 
 
-function _BoardNav() {
-
+function _BoardNav({board}) {
+    
     const [isAnimationOn, setAnimation] = useState(false)
     const [isInegrateHoverOn, setIntegrateHover] = useState(false)
 
@@ -34,10 +34,9 @@ function _BoardNav() {
         <div className='board-nav'>
 
             <div className='navs-container'>
-                <NavLink activeClassName="my-active" exact to="#"> <span className='fa-solid home'></span> Main Table</NavLink>
-                <NavLink activeClassName="my-active" to="#"> <span className='fa list-alt'></span> Kanban</NavLink>
-                <NavLink activeClassName="my-active" to="#"> <span className='fa chart-bar'></span> Dashboard</NavLink>
-                {/* <Route component={GroupList} path='/board/' /> */}
+                <NavLink activeClassName="my-active" exact to={`/board/${board._id}`}> <span className='fa-solid home'></span> Main Table</NavLink>
+                <NavLink activeClassName="my-active" to={`/board/${board._id}/kanban`}> <span className='fa list-alt'></span> Kanban</NavLink>
+                <NavLink activeClassName="my-active" to={`/board/${board._id}/dashboard`}> <span className='fa chart-bar'></span> Dashboard</NavLink>
             </div>
 
             <div className='actions-container'>

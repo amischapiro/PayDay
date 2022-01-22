@@ -131,25 +131,38 @@
 		width: 7.313rem;
 		font-size: 0.6625rem;
 	}
-	.status-box{
-		position: relative;
-		width: 7.313rem;
-	}
-	.dog-ear:before,.dog-ear:after{
-		content: '';
-		display: block;
-		right: 0;
-		top: 0;
-		position: absolute;
-	}
 
-	.dog-ear:after{
-		border-top: 10px solid transparent;
-		border-left: 10px solid rgba($color: #000000, $alpha: 0.08) ;
-	}
-	.dog-ear:before{
-		border-bottom: 10px solid transparent;
-		border-right: 10px solid #f5f6f8;
+	.dog-ear {
+		position: relative;
+
+		&:before,
+		&:after {
+			display: block;
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			transition: all .3s;
+		}
+		&:before {
+			border-top: 0px solid transparent;
+			border-left: 0px solid rgba(0, 0, 0, 0.3);
+		}
+		&:after {
+			border-bottom: 0px solid transparent;
+			border-right: 0px solid #fff;
+		}
+
+		&:hover {
+			&:before {
+				border-top: 12px solid transparent;
+				border-left: 12px solid rgba(0, 0, 0, 0.3);
+			}
+			&:after {
+				border-bottom: 12px solid transparent;
+				border-right: 12px solid #fff;
+			}
+		}
 	}
 	.MuiButton-root.MuiButton-containedPrimary.members-button {
 		background-color: inherit;
