@@ -1,0 +1,104 @@
+.board-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #323338;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    
+    .fa,
+    .fa-solid {
+        color: #7a7b7e;
+    }
+    
+    .main-actions {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        > * {
+            border-radius: 4px;
+        }
+
+        > *:not(.new-story) {
+            &:hover {
+                background-color: #e6e9ef;
+                cursor: pointer;
+            }
+        }
+
+        > *:not(.new-story):not(.filter) {
+            padding: 0.35rem 0.6rem;
+        }
+
+        > *:not(:first-child) {
+            margin-inline-start: 0.3rem;
+        }
+
+        .fa-solid.search,
+        .fa.user {
+            margin-inline-end: 0.25rem;
+        }
+
+        .new-story,
+        .filter {
+            > * {
+                padding: 0 0.2rem;
+            }
+        }
+
+        .new-story {
+            background-color: #0073ea;
+            color: white;
+            margin-inline-end: 0.5rem;
+            > * {
+                display: inline-block;
+                padding: 0.35rem 0.5rem;
+                &:first-child {
+                    border-right: 1px solid #0060b9;
+                }
+                &:hover {
+                    cursor: pointer;
+                    background-color: #0060b9;
+                    border-radius: 4px;
+                }
+            }
+            .fa-solid.chevron-down {
+                color: white;
+            }
+        }
+
+        .filter {
+            display: flex;
+            align-items: center;
+            > *:first-child {
+                padding-inline-start: 0.35rem;
+            }
+            > * {
+                &:last-child {
+                    border-left: 1px solid transparent;
+                }
+            }
+            > *:not(:first-child) {
+                padding: 0.35rem 0.35rem;
+            }
+            // >*:nth-child(2) {
+            //     line-height: 1rem;
+            //     vertical-align: middle;
+            // }
+            &:hover {
+                > *:last-child {
+                    border-left: 1px solid white;
+                    &:hover {
+                        background-color: #c4c4c4;
+                        border-radius: 4px;
+                    }
+                }
+            }
+            .fa-solid.chevron-down {
+                font-size: 0.7rem;
+                padding-inline-end: 0.35rem;
+            }
+        }
+    }
+}

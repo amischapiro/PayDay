@@ -52,7 +52,7 @@ function _BoardHeader({ board, updateBoard }) {
         setSelectedBoard(updatedBoard)
     }
 
-    
+
 
     return (
         <div className='board-header'>
@@ -73,7 +73,7 @@ function _BoardHeader({ board, updateBoard }) {
                 <div className='header-actions'>
                     <div className='last-seen'>
                         Last seen
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg" alt="" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg" alt="Foxy Fox" />
                     </div>
                     <div className='invite'> <span className='fa-solid user-plus'></span> Invite /</div>
                     <div className='activity'>  <span className='fa-solid chart-line'></span> Activity</div>
