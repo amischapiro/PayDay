@@ -85,7 +85,7 @@ function createStory(title = '') {
                 title: "To do",
                 color: "#c4c4c4"
             },
-            timeline: []
+            timeline: [null, null]
         }
     }
 
