@@ -2,7 +2,6 @@ import { boardService } from "../services/board.service";
 
 export function loadBoards() {
     return async (dispatch, getState) => {
-
         const { filterBy, sortBy } = getState().boardModule
         try {
             const boards = await boardService.query()
@@ -18,7 +17,6 @@ export function loadBoards() {
 
 export function getById(boardId) {
     return async (dispatch) => {
-
         try {
             const board = await boardService.getById(boardId)
             dispatch({ type: 'SET_BOARD', board })

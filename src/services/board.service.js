@@ -9,6 +9,8 @@ export const boardService = {
     addBoard,
     getStatusById,
     getPriorityById,
+    getMemberById,
+    updateTimeline
 }
 
 const STORAGE_KEY = 'boardDB'
@@ -21,6 +23,19 @@ async function getStatusById(boardId, statusId) {
 async function getPriorityById(boardId, priorityId) {
     const board = await getById(boardId)
     return board.priorities.find(priority => priority.id === priorityId)
+}
+
+async function getMemberById(boardId, memberId) {
+    const board = await getById(boardId);
+    return board.members.find(member => member._id === memberId);
+}
+
+async function updateTimeline(timeline) {
+    const timeStamp = timeline.map(date => {
+        if(date) return date.getTime();
+        return null;
+    });
+    return timeStamp;
 }
 
 async function query() {
