@@ -8,8 +8,7 @@ export function TimelineCmp({ story, onUpdate }) {
 	let initData = [];
 	if (timeline.length) {
 		initData.push(timeline[0]);
-		if(timeline[1]) initData.push(timeline[1]);
-		else initData.push(null);
+		initData.push(timeline[1] ? timeline[1] : null);
 	} else initData = [null, null];
 	const [dateRange, setDateRange] = useState([initData[0], initData[1]]);
 	const [startDate, endDate] = dateRange;
