@@ -26,10 +26,6 @@ export function _Story(props) {
 		if (isTitleEditOn) titleRef.current.focus()
 	}, [isTitleEditOn])
 
-	useEffect(() => {
-		// console.log(newBoard.groups[groupIdx].stories[storyIdx]);
-	}, [newBoard])
-
 
 	const handleChange = ({ target }) => {
 		const { name, value } = target
@@ -43,15 +39,11 @@ export function _Story(props) {
 		onUpdateBoard(storyToUpdate)
 	}
 
-	// useEffect(() => {
-	// 	console.log('Story.jsx 💤 53: ', newStory);
-	// }, [newStory])
-
 	const onUpdateBoard = async (storyToUpdate) => {
 		newBoard.groups[groupIdx].stories.splice(storyIdx, 1, storyToUpdate)
-		// console.log(newBoard.groups[groupIdx].stories[storyIdx]);
-		const updatedBoard = await updateBoard(newBoard)
-		setNewBoard({ ...newBoard, updatedBoard })
+		// setNewBoard(newBoard)
+		props.onUpdateBoard(newBoard)
+		// const updatedBoard = await updateBoard(newBoard)
 	}
 
 	const onUpdateStory = async (dataType, data) => {
