@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { utilService } from '../services/util.service';
 import { connect } from 'react-redux'
-import { updateBoard } from '../store/board.action'
 
 
 export function _AddStory(props) {
@@ -100,7 +99,6 @@ function mapStateToProps({ boardModule }) {
 }
 
 const mapDispatchToProps = {
-	updateBoard,
 }
 
 
