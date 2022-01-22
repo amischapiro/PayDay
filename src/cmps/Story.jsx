@@ -82,7 +82,7 @@ export function _Story(props) {
 					<div className="story-editor">
 						{isTitleEditOn ?
 							<form onSubmit={onSubmitTitle}>
-								<input ref={titleRef} type="text" onBlur={onSubmitTitle}
+								<input ref={titleRef} type="text" onBlur={onSubmitTitle} 
 									value={newStoryTitle.title} name="title" onChange={handleChange} />
 							</form> : <div className="story-title">{story.title}</div>}
 						{!isTitleEditOn && <button onClick={() => toggleTitleEdit(!isTitleEditOn)} className="edit-title">Edit</button>}
@@ -103,6 +103,7 @@ export function _Story(props) {
 						// 	// Call action: updateTask(task)
 						// }}
 						board={board}
+						group={group}
 					/>
 				);
 			})}
