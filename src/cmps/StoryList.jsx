@@ -3,10 +3,18 @@ import { connect } from 'react-redux'
 import { Story } from '../cmps/Story';
 import { AddStory } from './AddStory';
 
+import { useState } from 'react';
 import { updateBoard } from '../store/board.action'
 
 function _StoryList(props) {
 	const { group, groupNum, board } = props;
+	const [newBoard, setNewBoard] = useState({ ...board })
+
+	const onUpdateBoard = (boardToUpdate) => {
+        setNewBoard({...newBoard, boardToUpdate});
+        updateBoard(newBoard);
+    }
+	
 	return (
 		<div className="group-container">
 			<Droppable
@@ -40,7 +48,7 @@ function _StoryList(props) {
 					</div>
 				)}
 			</Droppable>
-			<AddStory group={group} board={board} />
+			<AddStory group={group} board={board} onUpdateBoard={onUpdateBoard} />
 		</div>
 	);
 };

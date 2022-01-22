@@ -5,7 +5,7 @@ import { updateBoard } from '../store/board.action'
 
 
 export function _AddStory(props) {
-	const { board, group, updateBoard } = props;
+	const { board, group, onUpdateBoard } = props;
 	const [txt, setTxt] = useState('');
 	const inputEl = useRef();
 
@@ -46,7 +46,7 @@ export function _AddStory(props) {
 				newStory,
 			];
 
-		await updateBoard(newBoard);
+		await onUpdateBoard(newBoard);
 		// await socketService.emit('board updated', newBoard._id)
 		setTxt('');
 	};
