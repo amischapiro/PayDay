@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import StoryList from './StoryList';
+import { StoryList } from './StoryList';
 export class GroupList extends Component {
 	// a little function to help us with reordering the result
 	Reorder = (list, startIndex, endIndex) => {
@@ -50,7 +50,9 @@ export class GroupList extends Component {
 				onDragUpdate={this.onDragUpdate}>
 				<Droppable droppableId="droppable" type="GROUPS">
 					{(provided, snapshot) => (
-						<div ref={provided.innerRef} className="groups-container">
+						<div
+							ref={provided.innerRef}
+							className="groups-container">
 							{this.state.groups.map((group, index) => (
 								<Draggable
 									key={group.id}
