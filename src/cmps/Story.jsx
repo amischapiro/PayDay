@@ -60,6 +60,9 @@ export function _Story(props) {
 				newStory.storyData.priority = newData
 				break;
 			case 'ADD_MEMBER':
+				if(newStory.storyData.members.some(member => {
+					return member._id === data;
+				})) return;
 				newData = await boardService.getMemberById(board._id, data);
 				newStory.storyData.members.push(newData);
 				break;

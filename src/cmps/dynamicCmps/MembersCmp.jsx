@@ -27,7 +27,15 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 				variant="contained"
 				onClick={handleClick}
 				className="members-button">
-				{members.length ? (
+				{!members.length ? (
+					<AccountCircleOutlinedIcon className="no-members" />
+				) : members.length > 2 ? (
+					<div><img
+						key={members[0]._id}
+						src={members[0].imgUrl}
+						alt=""
+					/> <span className="plus-members">+2</span> </div>
+				) : (
 					members.map((member) => {
 						const nameArr = member.fullname.split(' ');
 						const fName = nameArr[0].split('');
@@ -40,8 +48,6 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 							/>
 						);
 					})
-				) : (
-					<AccountCircleOutlinedIcon className="no-members" />
 				)}
 			</Button>
 			<Popover
