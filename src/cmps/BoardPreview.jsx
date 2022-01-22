@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 // import Box from '@mui/material/Box';
 // import Popper from '@mui/material/Popper';
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
 
-import { removeBoard } from '../store/board.action'
+import { getById, removeBoard } from '../store/board.action'
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min'
 import { PinDropSharp } from '@mui/icons-material'
 
@@ -18,7 +17,7 @@ export function __BoardPreview(props) {
     const [isBtnsShown, toggleBtnsShown] = useState(false)
 
     // console.log(props);
-   
+
     const onToggleBtnsTrue = () => {
         toggleBtnsShown(true)
     }
@@ -32,30 +31,34 @@ export function __BoardPreview(props) {
 
     }
 
-    const onGoTo = () =>{
-        props.history.push(`/board/${board._id}`)
+    const onGoTo = async () => {
+        const newBoard = await props.getById(board._id)
+        // const { selectedBoard } = props
+        console.log('selectedBoard:', newBoard);
+
+        props.history.push(`/board/${board._id}/board`)
     }
-    
+
     // const { boards } = props
 
     // console.log('onPreview', board);
 
 
     return (
-        
-            <div className={isBtnsShown ? 'board-preview on-hover' : 'board-preview'}
-                onMouseLeave={onToggleBtnsfalse} onMouseEnter={onToggleBtnsTrue}
-                onClick={()=>onGoTo()}>
 
-                <div>
-                    <span className='fa-solid window'></span>
-                    <span>&nbsp;{board.title}</span>
+        <div className={isBtnsShown ? 'board-preview on-hover' : 'board-preview'}
+            onMouseLeave={() => { toggleBtnsShown(false) }} onMouseEnter={() => { toggleBtnsShown(true) }}
+            onClick={() => onGoTo()}>
 
+            <div>
+                <span className='fa-solid window'></span>
+                <span>&nbsp;{board.title}</span>
 
-                </div>
 
             </div>
-        
+
+        </div>
+
 
     )
 }
@@ -64,10 +67,12 @@ export function __BoardPreview(props) {
 
 function mapStateToProps({ boardModule }) {
     return {
+        selectedBoard: boardModule.selectedBoard
     }
 }
 
 const mapDispatchToProps = {
+    getById,
     removeBoard
 }
 

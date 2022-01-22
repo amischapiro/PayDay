@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { StoryList } from './StoryList';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-export class GroupList extends Component {
+export class _GroupList extends Component {
+	state = {
+		board: this.props.board
+	}
 
-	
 	// a little function to help us with reordering the result
 	Reorder = (list, startIndex, endIndex) => {
 		const result = Array.from(list);
@@ -14,6 +17,11 @@ export class GroupList extends Component {
 
 		return result;
 	};
+
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps !== this.props) this.setState({ board: { ...this.props.board } })
+	}
+
 
 	constructor(props) {
 		super(props);
@@ -72,8 +80,8 @@ export class GroupList extends Component {
 											{...provided.draggableProps}>
 											<span  {...provided.dragHandleProps}>
 												<div className='group-name-container'>
-												<DragIndicatorIcon className='drag-group' />
-												{group.title}
+													<DragIndicatorIcon className='drag-group' />
+													{group.title}
 												</div>
 												<StoryList
 													groupNum={index}
@@ -93,3 +101,18 @@ export class GroupList extends Component {
 		);
 	}
 }
+
+function mapStateToProps({ boardModule }) {
+	return {
+		boards: boardModule.boards,
+		board: boardModule.selectedBoard
+	}
+}
+
+const mapDispatchToProps = {
+	// loadBoards,
+	// getById
+}
+
+
+export const GroupList = connect(mapStateToProps, mapDispatchToProps)(_GroupList)
