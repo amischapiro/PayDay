@@ -1,4 +1,5 @@
 import { httpService } from './http.service'
+import { boardService } from './board.service'
 
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
 
@@ -10,7 +11,7 @@ export const userService = {
     getUserById,
     getUsers,
     remove,
-    update
+    update,
 }
 
 // AUTH
@@ -72,4 +73,5 @@ function _setLoggedinUser(user) {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
     return user
 }
+
 

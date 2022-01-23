@@ -1,12 +1,21 @@
 import React, { useState, useRef } from 'react';
 import { utilService } from '../services/util.service';
 import { connect } from 'react-redux'
+import { userService } from '../services/user.service';
+import { storageService } from '../services/async-storage.service';
 
 
 export function _AddStory(props) {
 	const { board, group, updateBoard } = props;
 	const [txt, setTxt] = useState('');
 	const inputEl = useRef();
+	let currUser = storageService.user()
+	delete currUser.password
+	delete currUser.username
+	delete currUser.mentions
+	
+	
+
 
 	const onAddStory = async ({ target }) => {
 		const value = target.value;
@@ -19,20 +28,21 @@ export function _AddStory(props) {
 		const groupIdx = newBoard.groups.findIndex(
 			(group) => group.id === groupId
 		);
-		// const newActivity = {
-		//     id: utilService.makeId(),
-		//     type: 'Story added',
-		//     createdAt: Date.now(),
-		//     byMember: userService.getLoggedinUser(),
-		//     story: {
-		//         id: newStory.id,
-		//         title: newStory.title
-		//     },
-		//     group: {
-		//         id: groupId,
-		//         title: props.group.title
-		//     }
-		// }
+		const newActivity = {
+		    id: utilService.makeId(),
+		    type: 'Story added',
+		    createdAt: Date.now(),
+		    byMember: currUser,
+		    story: {
+		        id: newStory.id,
+		        title: newStory.title
+		    },
+		    group: {
+		        id: groupId,
+		        title: props.group.title
+		    }
+		}
+		newBoard.activities.unshift(newActivity)
 
 		if (
 			!newBoard.groups[groupIdx].stories ||

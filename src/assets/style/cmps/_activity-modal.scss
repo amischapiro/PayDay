@@ -5,7 +5,7 @@
     z-index: 10;
     background-color: white;
     height: 100vh;
-    width: 50vh;
+    width: 70vh;
     transition: all 0.5s;
     box-shadow: 14px 0px 20px 20px #000000;
     .btn-close-modal{
@@ -89,4 +89,42 @@
     background-color: blue;
     width: 100%;
     margin-bottom: 0.5rem;
+}
+.activity-preview{
+    border-bottom:1px grey solid ;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3,33%);
+    padding: 0.5rem;
+    
+    
+}
+.activity-member{
+    display: flex;
+}
+.member-img{
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    background-color: hotpink;
+    text-align: center;
+    img{
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+
+    }
+}
+.activity-time{
+    display: flex;
+    span{
+        max-width: 15ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+    }
+}
+.MuiSvgIcon-fontSizeMedium.activity-clock{
+    margin-top: 0.2rem;
 }

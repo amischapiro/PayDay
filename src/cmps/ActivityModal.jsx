@@ -1,6 +1,8 @@
 import { connect } from 'react-redux'
 import { setStory } from '../store/board.action'
 import { useState } from 'react'
+import moment from 'moment'
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 export function _ActivityModal(props) {
 
@@ -28,11 +30,18 @@ export function _ActivityModal(props) {
         return story
 
     }
+    const getInitials = (fullname) => {
+        const nameArr = fullname.split(' ');
+        const fName = nameArr[0].split('');
+        const lName = nameArr[1].split('');
+        const initials = fName[0] + lName[0];
+        return initials
+    }
 
     const story = getStory()
-    
 
-    
+
+
     return (
         <div className={`activity-modal ${props.selectedStoryIds.storyId ? 'open' : ''}`}>
             <button onClick={() => { onRemoveStory() }} className="btn-close-modal fa-solid times" ></button>
@@ -56,8 +65,12 @@ export function _ActivityModal(props) {
                 <input type="text" placeholder="Write an update..." />
             </div>}
             {isActivityShown && <ul>
-                {props.selectedBoard.activities.map((activity)=>{
-                    return <li key={activity.id}>{activity.byMember.fullname} {activity.txt}</li>
+                {props.selectedBoard.activities.map((activity) => {
+
+                    return <div key={activity.id} className='activity-preview' >
+                        <div className='activity-time' ><AccessTimeIcon className='activity-clock' /><span>{moment(activity.createdAt).fromNow()}</span></div>
+                        <div className='activity-member' ><div className='member-img'>{activity.byMember.imgUrl ? <img src={activity.byMember.imgUrl} /> : getInitials(activity.byMember.fullname)}</div>
+                        {activity.byMember.fullname}</div> <div>{activity.type}</div></div>
                 })}
             </ul>}
         </div>
@@ -69,7 +82,7 @@ function mapStateToProps({ boardModule }) {
     return {
         boards: boardModule.boards,
         // board: boardModule.selectedBoard,
-        selectedBoard:boardModule.selectedBoard,
+        selectedBoard: boardModule.selectedBoard,
         selectedStoryIds: boardModule.activityModalStory
         // filterBy: state.boardModule.filterBy,
         // users: state.userModule.users,

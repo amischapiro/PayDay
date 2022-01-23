@@ -7,6 +7,7 @@ export const storageService = {
     put,
     remove,
     postMany,
+    user
 }
 
 
@@ -301,16 +302,20 @@ function _createBoard(_id = _makeId(), title) {
         activities: [
             {
                 id: "a101",
-                txt: "Changed Color",
+                type: "Changed Color",
                 createdAt: 154514,
                 byMember: {
                     _id: "u101",
                     fullname: "Abi Abambi",
-                    imgUrl: "http://some-img"
+                    imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
                 },
                 story: {
                     id: "c101",
                     title: "Replace Logo"
+                },
+                group:{
+                    id:_makeId(),
+                    title: 'group 1'
                 }
             }
         ],
@@ -326,19 +331,22 @@ function _createBoard(_id = _makeId(), title) {
 
 }
 
-const user = {
-    _id: "u101",
-    fullname: "Abi Abambi",
-    username: "abi@ababmi.com",
-    password: "aBambi123",
-    imgUrl: "http://some-img.jpg",
-    mentions: [
-        {
-            id: "m101",
-            boardId: "m101",
-            storyId: "t101"
-        }
-    ]
+export function user() {
+    const user = {
+        _id: "u101",
+        fullname: "Abi Abambi",
+        username: "abi@ababmi.com",
+        password: "aBambi123",
+        imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg",
+        mentions: [
+            {
+                id: "m101",
+                boardId: "m101",
+                storyId: "t101"
+            }
+        ]
+    }
+    return user
 }
 
 
