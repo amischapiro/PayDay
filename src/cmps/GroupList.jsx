@@ -88,7 +88,7 @@ export class _GroupList extends Component {
 																{group.title}
 															</div>
 														</div>
-														{this.props.selectedBoard.cmpsOrder.map(
+														{board.cmpsOrder.map(
 															(cmp, idx) => {
 																return (
 																	<DynamicColHeaders

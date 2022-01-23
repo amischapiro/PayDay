@@ -3,43 +3,23 @@ import { DynamicCmp } from './dynamicCmps/DynamicCmp';
 import { connect } from 'react-redux';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 
-<<<<<<< HEAD
-import { updateBoard } from '../store/board.action';
-=======
-import { setStory } from '../store/board.action'
->>>>>>> 943a9f33150b4439b1837d8d49e6a99248ee3f8c
+import { setStory } from '../store/board.action';
 import { boardService } from '../services/board.service';
 
 export function _Story(props) {
 	const { board, group, story, updateBoard } = props;
 
 	const { cmpsOrder } = board;
-<<<<<<< HEAD
+	const newBoard = { ...board };
 	const groupId = group.id;
 	const groupIdx = board.groups.findIndex((group) => group.id === groupId);
 	const storyId = story.id;
 	const storyIdx = group.stories.findIndex((story) => story.id === storyId);
-=======
-	const newBoard = { ...board }
-	const groupId = group.id
-	const groupIdx = board.groups.findIndex((group) => group.id === groupId)
-	const storyId = story.id
-	const storyIdx = group.stories.findIndex(story => story.id === storyId)
->>>>>>> 943a9f33150b4439b1837d8d49e6a99248ee3f8c
 
-	const [newBoard, setNewBoard] = useState({ ...board });
-
-<<<<<<< HEAD
 	const [isTitleEditOn, toggleTitleEdit] = useState(false);
 	const [newStoryTitle, setStoryTitle] = useState({ title: story.title });
 
 	const titleRef = React.createRef();
-=======
-	const [isTitleEditOn, toggleTitleEdit] = useState(false)
-	const [newStoryTitle, setStoryTitle] = useState({ title: story.title })
-
-	const titleRef = React.createRef()
->>>>>>> 943a9f33150b4439b1837d8d49e6a99248ee3f8c
 
 	useEffect(() => {
 		if (isTitleEditOn) titleRef.current.focus();
@@ -58,19 +38,9 @@ export function _Story(props) {
 	};
 
 	const onUpdateBoard = async (storyToUpdate) => {
-<<<<<<< HEAD
 		newBoard.groups[groupIdx].stories.splice(storyIdx, 1, storyToUpdate);
-		setNewBoard(newBoard);
-		props.onUpdateBoard(newBoard);
-		const updatedBoard = await updateBoard(newBoard);
+		await updateBoard(newBoard);
 	};
-=======
-		newBoard.groups[groupIdx].stories.splice(storyIdx, 1, storyToUpdate)
-		await updateBoard(newBoard)
-	}
->>>>>>> 943a9f33150b4439b1837d8d49e6a99248ee3f8c
-
-
 
 	const onUpdateStory = async (dataType, data) => {
 		const newStory = { ...story };
@@ -108,21 +78,16 @@ export function _Story(props) {
 			default:
 				break;
 		}
-<<<<<<< HEAD
 		onUpdateBoard(newStory);
 	};
-=======
-		onUpdateBoard(newStory)
-	}
 	const onSetStory = async (boardId, groupId, storyId) => {
 		const story = {
 			boardId,
 			groupId,
-			storyId
-		}
-		await props.setStory(story)
-	}
->>>>>>> 943a9f33150b4439b1837d8d49e6a99248ee3f8c
+			storyId,
+		};
+		await props.setStory(story);
+	};
 
 	return (
 		<div className="story">
@@ -159,12 +124,14 @@ export function _Story(props) {
 								</button>
 							)}
 						</div>
-						<MapsUgcOutlinedIcon className="update-bubble" />
+						{/* <MapsUgcOutlinedIcon className="update-bubble" /> */}
+						<MapsUgcOutlinedIcon
+							onClick={() =>
+								onSetStory(board._id, group.id, story.id)
+							}
+							className="update-bubble"
+						/>
 					</div>
-<<<<<<< HEAD
-=======
-					<MapsUgcOutlinedIcon onClick={() => onSetStory(board._id, group.id, story.id)} className="update-bubble" />
->>>>>>> 943a9f33150b4439b1837d8d49e6a99248ee3f8c
 				</div>
 				{cmpsOrder.map((cmp, idx) => {
 					return (
@@ -175,11 +142,6 @@ export function _Story(props) {
 							onUpdate={(dataType, data) =>
 								onUpdateStory(dataType, data)
 							}
-							// onUpdate={(data) => {
-							// 	console.log('Updating:', cmp, 'with data:', data);
-							// 	// make a copy, update the task
-							// 	// Call action: updateTask(task)
-							// }}
 							board={board}
 							group={group}
 						/>
@@ -190,21 +152,6 @@ export function _Story(props) {
 				<div className="add-col"></div>
 				<div className="story-closer"></div>
 			</div>
-<<<<<<< HEAD
-=======
-			{cmpsOrder.map((cmp, idx) => {
-				return (
-					<DynamicCmp
-						key={idx}
-						cmp={cmp}
-						story={story}
-						onUpdate={(dataType, data) => onUpdateStory(dataType, data)}
-						board={board}
-						group={group}
-					/>
-				);
-			})}
->>>>>>> 943a9f33150b4439b1837d8d49e6a99248ee3f8c
 		</div>
 	);
 }
@@ -214,22 +161,12 @@ function mapStateToProps({ boardModule }) {
 		// board: boardModule.board,
 		// users: state.userModule.users,
 		// loggedInUser: state.userModule.loggedInUser
-<<<<<<< HEAD
+		selectedStoryIds: boardModule.activityModalStory,
 	};
 }
 
 const mapDispatchToProps = {
-	updateBoard,
+	setStory,
 };
-=======
-		selectedStoryIds: boardModule.activityModalStory
-
-	}
-}
-
-const mapDispatchToProps = {
-	setStory
-}
->>>>>>> 943a9f33150b4439b1837d8d49e6a99248ee3f8c
 
 export const Story = connect(mapStateToProps, mapDispatchToProps)(_Story);

@@ -12,23 +12,10 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
     useEffect(async () => {
         await loadBoards()
-<<<<<<< HEAD
-        const { boardId } = props.match.params
-        // console.log(boardId);
-        const board = await props.getById(boardId)
-        // console.log(board);
-    }, [])
-
-    useEffect(() => {
-        // console.log(props.selectedBoard);
-    }, [props.selectedBoard])
-
-=======
         const { boardId } = match.params
         await getById(boardId)
     }, [])
 
->>>>>>> 943a9f33150b4439b1837d8d49e6a99248ee3f8c
     useEffect(async () => {
         const { boardId } = match.params
         await getById(boardId)
