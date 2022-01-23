@@ -4,22 +4,22 @@ export function DynamicColHeaders({cmp}) {
     
     switch(cmp) {
         case 'member-picker':
-            data = {name: 'People', width: "97px", bgColor: "#fff"};
+            data = {name: 'People', width: "97px", bgColor: "inherit"};
             break;
         case 'status-picker':
             data = {name: 'Status', width: "117px", bgColor: "#f5f6f8"};
             break;
         case 'priority-picker':
-            data = {name: 'Priority', width: "92px", bgColor: "#fff"};
+            data = {name: 'Priority', width: "92px", bgColor: "inherit"};
             break;
         case 'timeline-picker':
-            data = {name: 'Timeline', width: "180px", bgColor: "#fff"};
+            data = {name: 'Timeline', width: "180px", bgColor: "inherit"};
             break;
         case 'number-picker':
-            data = {name: 'Estimated SP', width: "125px", bgColor: "#fff"};
+            data = {name: 'Estimated SP', width: "125px", bgColor: "inherit"};
             break;
         case 'link-picker':
-            data = {name: 'Link to Design', width: "140px", bgColor: "#fff"};
+            data = {name: 'Link to Design', width: "140px", bgColor: "inherit"};
             break;
         default:
             break;

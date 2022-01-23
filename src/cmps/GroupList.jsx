@@ -6,6 +6,7 @@ import { StoryList } from './StoryList';
 import { DynamicColHeaders } from './DynamicColHeaders';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import UnfoldLessRoundedIcon from '@mui/icons-material/UnfoldLessRounded';
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 export class _GroupList extends Component {
 	// state = {
 	// 	board: this.props.board
@@ -73,28 +74,37 @@ export class _GroupList extends Component {
 											{...provided.draggableProps}>
 											<span {...provided.dragHandleProps}>
 												<div className="group-header">
-													<div className="group-name-container">
-														<UnfoldLessRoundedIcon className="collapse-group" />
-														<DragIndicatorIcon className="drag-group" />
-														<div
-															style={{
-																color: group
-																	.style
-																	.backgroundColor,
-															}}>
-															{group.title}
+													<div className="header-info-container">
+														<div className="group-name-container">
+															<UnfoldLessRoundedIcon className="collapse-group" />
+															<DragIndicatorIcon className="drag-group" />
+															<div
+																style={{
+																	color: group
+																		.style
+																		.backgroundColor,
+																}}>
+																{group.title}
+															</div>
 														</div>
+														{this.props.selectedBoard.cmpsOrder.map(
+															(cmp, idx) => {
+																return (
+																	<DynamicColHeaders
+																		key={
+																			idx
+																		}
+																		cmp={
+																			cmp
+																		}
+																	/>
+																);
+															}
+														)}
 													</div>
-													{this.props.selectedBoard.cmpsOrder.map(
-														(cmp, idx) => {
-															return (
-																<DynamicColHeaders
-																	key={idx}
-																	cmp={cmp}
-																/>
-															);
-														}
-													)}
+													<div className="header-add-col">
+														<AddCircleOutlineRoundedIcon className="add-col-but" />
+													</div>
 												</div>
 												<StoryList
 													groupNum={index}

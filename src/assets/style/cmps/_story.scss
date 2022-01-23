@@ -1,5 +1,6 @@
 .story {
 	display: flex;
+	justify-content: space-between;
 	flex-direction: row;
 	background-color: #f5f6f8;
 	border: 1px solid #fff;
@@ -14,16 +15,33 @@
 		transform: rotate(1deg);
 	}
 	
-	// &:active {
-	// }
+	.story-wrapper {
+		display: flex;
+	}
 
 	&:hover {
 		background-color: #e6e9ef;
 	}
 
+	.story-close-wrapper {
+		display: flex;
+
+		.add-col {
+			width: 30px;
+			border-inline-start: 1px solid #fff;
+		}
+	
+		.story-closer {
+			width: 8px;
+			background-color: #e6e9ef;
+		}
+	}
+
+
 	.story-txt-area {
 		display: flex;
 		width: 25.375rem;
+		cursor: pointer;
 
 		&:hover {
 			.story-title {
@@ -36,6 +54,7 @@
 		}
 
 		.story-txt {
+			cursor: text;
 			width: 100%;
 			display: flex;
 			justify-content: space-between;
