@@ -28,14 +28,6 @@ function _StoryList(props) {
 											ref={provided.innerRef}
 											{...provided.draggableProps}>
 											<span {...provided.dragHandleProps}>
-<<<<<<< HEAD
-												<Story
-													updateBoard={updateBoard}
-													board={board}
-													group={group}
-													story={story}
-												/>
-=======
 												<div className="story-main-wrapper">
 													<StoryMenuBtn updateBoard={updateBoard} board={board}
 														group={group} story={story} />
@@ -48,7 +40,6 @@ function _StoryList(props) {
 
 													/>
 												</div>
->>>>>>> bdeab29ef20f07d643a08b23f7f057bb9dfd66bf
 											</span>
 										</div>
 									)}
