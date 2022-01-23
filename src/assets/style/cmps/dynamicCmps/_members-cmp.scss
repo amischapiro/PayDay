@@ -1,5 +1,9 @@
 .members-cmp {
-    
+
+    .active-member-list {
+        display: flex;
+    }
+
     img {
 		width: 1.875rem;
 		height: 1.875rem;
@@ -25,7 +29,14 @@
 	// fix thiss!!!
 	.plus-members {
 		font-size: 1rem;
-		color: #666;
+        background-color: #333;
+        border-radius: 50%;
+		width: 30px;
+		height: 30px;
+        padding: 5px;
+		color: #fff;
+        font-size: 12px;
+        font-weight: 300;
 	}
 }
 
