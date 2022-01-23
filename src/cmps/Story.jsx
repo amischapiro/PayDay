@@ -71,6 +71,9 @@ export function _Story(props) {
 				newStory.storyData.timeline = newData;
 				// console.log('Story.jsx 💤 69: ', newStory.storyData.timeline);
 				break;
+			case 'CHANGE_NUMBER':
+				newStory.storyData.number = data;
+				break;
 			default:
 				break;
 		}
