@@ -185,7 +185,6 @@ export function TimelineCmp({ story, group, onUpdate }) {
 								width: `${getPercent()}%`,
 								borderRadius: '25px 0 0 25px',
 								height: '22px',
-                                paddingTop: '15px'
 							}}></div>
 						<div className="grey-bck"></div>
 						<DatePicker
