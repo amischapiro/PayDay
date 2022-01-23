@@ -13,14 +13,6 @@ export function BoardHeader({ board, updateBoard }) {
     const titleRef = React.createRef()
     const decsRef = React.createRef()
 
-    const onToggleTitleEdit = () => {
-        isTitleEditOn ? toggleTitleEdit(false) : toggleTitleEdit(true)
-    }
-
-    const onToggleDescEdit = () => {
-        isDescEditOn ? toggleDescEdit(false) : toggleDescEdit(true)
-    }
-
 
     useEffect(() => {
         if (isTitleEditOn) titleRef.current.focus()

@@ -19,20 +19,20 @@ export function _AddStory(props) {
 		const groupIdx = newBoard.groups.findIndex(
 			(group) => group.id === groupId
 		);
-		// const newActivity = {
-		//     id: utilService.makeId(),
-		//     type: 'Story added',
-		//     createdAt: Date.now(),
-		//     byMember: userService.getLoggedinUser(),
-		//     story: {
-		//         id: newStory.id,
-		//         title: newStory.title
-		//     },
-		//     group: {
-		//         id: groupId,
-		//         title: props.group.title
-		//     }
-		// }
+		const newActivity = {
+		    // id: utilService.makeId(),
+		    type: 'Story added',
+		    createdAt: Date.now(),
+		    // byMember: userService.getLoggedinUser(),
+		    story: {
+		        id: newStory.id,
+		        title: newStory.title
+		    },
+		    group: {
+		        id: groupId,
+		        title: props.group.title
+		    }
+		}
 
 		if (
 			!newBoard.groups[groupIdx].stories ||

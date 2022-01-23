@@ -2,6 +2,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 import { Story } from '../cmps/Story';
 import { AddStory } from './AddStory';
+import { StoryMenuBtn } from './StoryMenuBtn';
 
 import { useEffect, useState } from 'react';
 
@@ -27,12 +28,27 @@ function _StoryList(props) {
 											ref={provided.innerRef}
 											{...provided.draggableProps}>
 											<span {...provided.dragHandleProps}>
+<<<<<<< HEAD
 												<Story
 													updateBoard={updateBoard}
 													board={board}
 													group={group}
 													story={story}
 												/>
+=======
+												<div className="story-main-wrapper">
+													<StoryMenuBtn updateBoard={updateBoard} board={board}
+														group={group} story={story} />
+
+													<Story
+														updateBoard={updateBoard}
+														board={board}
+														group={group}
+														story={story}
+
+													/>
+												</div>
+>>>>>>> bdeab29ef20f07d643a08b23f7f057bb9dfd66bf
 											</span>
 										</div>
 									)}

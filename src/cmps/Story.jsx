@@ -92,6 +92,7 @@ export function _Story(props) {
 	return (
 		<div className="story">
 			<div className="story-wrapper">
+		
 				<div className="story-txt-area">
 					<div
 						className="story-selector"
