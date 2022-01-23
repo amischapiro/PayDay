@@ -79,5 +79,11 @@ export function setSort(sortBy) {
         return Promise.resolve()
     }
 }
+export function setStory(story) {
+    return async (dispatch) => {
+        dispatch({ type: 'SET_STORY', story})
+    
+    }
+}
 
 

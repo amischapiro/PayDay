@@ -12,6 +12,10 @@
 	&:-moz-drag-over {
 		cursor: -moz-grab;
 	}
+	
+	// &:active {
+	// 	transform: rotate(1deg);
+	// }
 
 	&:hover {
 		background-color: #e6e9ef;
@@ -37,7 +41,6 @@
 			justify-content: space-between;
 			margin: none;
 			padding: 0.3rem;
-			
 
 			&:hover {
 				// background-color: #cce5ff; this needs to be onclick
@@ -50,11 +53,9 @@
 			.story-editor {
 				margin-inline-start: 0.5rem;
 				display: flex;
-				input:focus-visible{
+				input:focus-visible {
 					outline: none;
 					border: 1px dashed grey;
-
-						
 				}
 
 				button {
@@ -73,7 +74,6 @@
 					&:hover {
 						background-color: #f5f6f8;
 					}
-					
 				}
 			}
 
@@ -97,15 +97,11 @@
 		}
 	}
 
-	img {
-		width: 1.875rem;
-		height: 1.875rem;
-		border-radius: 50%;
-	}
-
 	button {
 		height: 2.25rem;
 		border: 1px solid #fff;
+		border-top: #c4c4c4;
+		border-bottom: #c4c4c4;
 		font-size: 0.8125rem;
 		box-shadow: none;
 		font-weight: 400;

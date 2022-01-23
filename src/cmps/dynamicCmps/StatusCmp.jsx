@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 export function StatusCmp({ story, onUpdate, boardStatuses }) {
+	
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);

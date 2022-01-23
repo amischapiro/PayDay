@@ -24,7 +24,7 @@ function _BoardActions() {
                     <span className="fa-solid search"></span>
                     {!isSearchOpen && <span>Search</span>}
                     {isSearchOpen && (
-                        <input ref={searchRef} type="text" placeholder="Search"
+                        <input ref={searchRef} type="text" placeholder="Search" 
                             onBlur={() => setSearchOpen(false)}
                         />
                     )}

@@ -30,11 +30,11 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 				{!members.length ? (
 					<AccountCircleOutlinedIcon className="no-members" />
 				) : members.length > 2 ? (
-					<div><img
+					<div className="active-member-list"><img
 						key={members[0]._id}
 						src={members[0].imgUrl}
 						alt=""
-					/> <span className="plus-members">+{members.length}</span> </div>
+					/> <span className="plus-members">+{members.length - 1}</span> </div>
 				) : (
 					members.map((member) => {
 						const nameArr = member.fullname.split(' ');

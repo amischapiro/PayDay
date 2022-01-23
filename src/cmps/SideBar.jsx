@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import Logo from '../assets/img/PayDayLogo3.png';
-
 import { logout } from '../store/user.action';
 
 function __SideBar(props) {

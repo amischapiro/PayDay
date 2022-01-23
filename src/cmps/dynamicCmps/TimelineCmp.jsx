@@ -163,7 +163,7 @@ export function TimelineCmp({ story, group, onUpdate }) {
                 onChange={(update) => {
                     setDateRange(update);
                 }}
-				dateFormat="MMMM"
+				// dateFormat="MMMM"
             />}
 
             {isDateSet && !isSettingDate && isHover &&

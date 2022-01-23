@@ -93,3 +93,11 @@
 		position: relative;
 	}
 }
+
+.add-board span,.filter-boards span,.board-preview span{
+	
+	color: grey;
+	&:not(:first-child){
+		color: #323338;
+	}
+}

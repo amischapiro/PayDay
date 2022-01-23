@@ -8,7 +8,7 @@ import { GroupList } from '../cmps/GroupList'
 import { Kanban } from './Kanban'
 import { Dashboard } from './Dashboard'
 
-
+import { ActivityModal } from './ActivityModal'
 
 
 export function BoardArea({ board, updateBoard }) {
@@ -17,6 +17,7 @@ export function BoardArea({ board, updateBoard }) {
 
     return (
         <section className='board-area'>
+            <ActivityModal />
             <div className='container'>
                 <BoardHeader board={board} updateBoard={updateBoard} />
                 <BoardNav board={board} />

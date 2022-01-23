@@ -4,7 +4,12 @@ const initialState = {
     boards: [],
     selectedBoard: null,
     filterBy: null,
-    sortBy: null
+    sortBy: null,
+    activityModalStory: {
+        boardId: null,
+        groupId: null,
+        storyId: null
+    }
 }
 
 export function boardReducer(state = initialState, action) {
@@ -46,6 +51,11 @@ export function boardReducer(state = initialState, action) {
             } else if (action.sortBy === 'price' && state.sortBy && state.sortBy.price === 1) {
                 newState = { ...state, sortBy: { price: -1 } }
             }
+        case 'SET_STORY':
+            newState = {
+                ...state, activityModalStory: { boardId: action.story.boardId, groupId: action.story.groupId, storyId: action.story.storyId }
+            }
+            break
 
         default:
             return newState;

@@ -3,7 +3,7 @@ import { DynamicCmp } from './dynamicCmps/DynamicCmp';
 import { connect } from 'react-redux'
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 
-// import { updateBoard } from '../store/board.action'
+import { setStory } from '../store/board.action'
 import { boardService } from '../services/board.service';
 
 export function _Story(props) {
@@ -78,6 +78,14 @@ export function _Story(props) {
 		}
 		onUpdateBoard(newStory)
 	}
+	const onSetStory = async (boardId, groupId, storyId) => {
+		const story = {
+			boardId,
+			groupId,
+			storyId
+		}
+		await props.setStory(story)
+	}
 
 	return (
 		<div className="story">
@@ -92,7 +100,7 @@ export function _Story(props) {
 							</form> : <div className="story-title">{story.title}</div>}
 						{!isTitleEditOn && <button onClick={() => toggleTitleEdit(!isTitleEditOn)} className="edit-title">Edit</button>}
 					</div>
-					<MapsUgcOutlinedIcon className="update-bubble" />
+					<MapsUgcOutlinedIcon onClick={() => onSetStory(board._id, group.id, story.id)} className="update-bubble" />
 				</div>
 			</div>
 			{cmpsOrder.map((cmp, idx) => {
@@ -117,11 +125,13 @@ function mapStateToProps({ boardModule }) {
 		// board: boardModule.board,
 		// users: state.userModule.users,
 		// loggedInUser: state.userModule.loggedInUser
+		selectedStoryIds: boardModule.activityModalStory
+
 	}
 }
 
 const mapDispatchToProps = {
-	// updateBoard,
+	setStory
 }
 
 
