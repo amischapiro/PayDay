@@ -53,3 +53,21 @@
     // padding-bottom: 2px;
   }
 }
+
+.btn-ellipsis.MuiButton-containedPrimary {
+  min-width: unset;
+  padding: 0 0.8rem;
+  font-size: 1rem;
+  background-color: transparent;
+  box-shadow: none;
+  &:hover {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .fa-solid {
+    color: black;
+  }
+}
+
+// MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root

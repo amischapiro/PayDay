@@ -64,7 +64,7 @@ export function __BoardPreview(props) {
                 variant="contained"
                 onClick={handleClick}
                 // sx={{padding: .1}}
-            // className="priority-button dog-ear"
+            className="btn-ellipsis"
             >
                 <span className="fa-solid ellipsis-h"></span>
             </Button>
