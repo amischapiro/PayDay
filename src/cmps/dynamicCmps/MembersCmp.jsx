@@ -40,11 +40,12 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 						const nameArr = member.fullname.split(' ');
 						const fName = nameArr[0].split('');
 						const lName = nameArr[1].split('');
+						const initials = fName[0] + lName[0];
 						return (
 							<img
 								key={member._id}
 								src={member.imgUrl}
-								alt={fName[0] + lName[0]}
+								alt={initials}
 							/>
 						);
 					})
