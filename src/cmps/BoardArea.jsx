@@ -20,7 +20,7 @@ export function __BoardArea(props) {
     const { board } = props
 
     useEffect(() => {
-        console.log('BoardArea.jsx 💤 22: ', board);
+        // console.log('BoardArea.jsx 💤 22: ', board);
     }, [board])
 
 

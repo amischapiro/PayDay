@@ -4,6 +4,8 @@ import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
 import { BoardArea } from '../cmps/BoardArea.jsx'
 import { connect } from 'react-redux'
+import { setStory } from '../store/board.action'
+
 // import { withRouter } from 'react-router-dom'
 import { loadBoards, getById } from '../store/board.action'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
@@ -14,13 +16,13 @@ function _BoardApp(props) {
     useEffect(async () => {
         await loadBoards()
         const { boardId } = props.match.params
-        console.log(boardId);
+        // console.log(boardId);
         const board = await props.getById(boardId)
-        console.log(board);
+        // console.log(board);
     }, [])
 
     useEffect(() => {
-        console.log(props.selectedBoard);
+        // console.log(props.selectedBoard);
     }, [props.selectedBoard])
 
     useEffect(async () => {
@@ -31,19 +33,28 @@ function _BoardApp(props) {
         // setBoard(board)
     }, [props.match.params])
 
+    const onRemoveStory = async () =>{
+        const story ={
+            boardId:null,
+            groupId:null,
+            storyId:null
+        }
+        await props.setStory(story)
+
+    }
 
     if (!props.selectedBoard) return <React.Fragment />
 
     return (
-        <div className={`darken-screen ${props.isOpen?'open':''}`}>
         <main className='main-container'>
             <SideBar />
             <BoardList board={props.selectedBoard} />
             {/* <BoardArea /> */}
             <BoardArea board={props.selectedBoard} />
 
+            <div onClick={() => onRemoveStory()} className={`darken-screen ${props.selectedStoryIds.storyId ? 'open' : ''}`}>
+            </div>
         </main>
-        </div>
     )
 }
 
@@ -52,7 +63,7 @@ function mapStateToProps({ boardModule }) {
     return {
         boards: boardModule.boards,
         board: boardModule.selectedBoard,
-        isOpen:boardModule.activityModalIsOpen,
+        selectedStoryIds: boardModule.activityModalStory,
         selectedBoard: boardModule.selectedBoard,
         // filterBy: state.boardModule.filterBy,
         // users: state.userModule.users,
@@ -63,6 +74,7 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
     loadBoards,
     getById,
+    setStory
 }
 
 // const _BoardApp = withRouter(__BoardApp)
