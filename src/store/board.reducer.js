@@ -4,12 +4,14 @@ const initialState = {
     boards: [],
     selectedBoard: null,
     filterBy: null,
-    sortBy: null
+    sortBy: null,
+    activityModalIsOpen:false
 }
 
 export function boardReducer(state = initialState, action) {
 
     let newState = state;
+    console.log('action.value:', action);
 
     switch (action.type) {
         case 'SET_BOARDS':
@@ -44,6 +46,13 @@ export function boardReducer(state = initialState, action) {
             } else if (action.sortBy === 'price' && state.sortBy && state.sortBy.price === 1) {
                 newState = { ...state, sortBy: { price: -1 } }
             }
+        case 'SET_ISOPEN':
+            console.log('action.value:', action.value);
+            
+            newState = {
+                ...state,activityModalIsOpen:action.value
+            }   
+            break 
 
         default:
             return newState;

@@ -1,0 +1,72 @@
+.activity-modal{
+    position: fixed;
+    top: 0;
+    right: -100%;
+    z-index: 10;
+    background-color: rgb(184, 173, 173);
+    // background-color: white;
+    height: 100vh;
+    width: 50vh;
+    transition: all 0.5s;
+    .btn-close-modal{
+        background-color: inherit;
+        border: none;
+        margin: 1rem;
+        cursor: pointer;
+    }
+    .modal-story-name{
+        margin-left: 1rem;
+    }
+    .update-input{
+        width: 100%;
+        input{
+            width: 90%;
+            margin-top: 0.5rem;
+            margin-left:5%;
+            border: 1px blue solid;
+            height: 2rem;
+            border-radius: 6px;
+            &:focus-visible{
+                outline: none;
+            }
+
+        }
+    }
+    &.open{
+        right: 0;
+    }
+}
+
+.update-activity-container{
+    display: flex;
+}
+.modal-break-line{
+    height: 1px;
+    background-color: darkgray;
+}
+.horiz-break-line{
+    width: 1px;
+    background-color: darkgray;
+    height: 20px;
+    margin-top: 0.8rem;
+}
+.modal-updates,.modal-activity{
+    cursor: pointer;
+    border-radius: 5px;
+    &.modal-active{
+        color: inherit;
+        font-weight: 600;
+        box-shadow: inset 0 -1px 0 #0073ea;
+    }
+    margin: 0.5rem;
+    &:hover{
+        background-color: darkgray;
+    }
+   
+}
+
+.darken-screen.open{
+    .main-container{
+        background-color: grey;
+    }
+}

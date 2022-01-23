@@ -77,5 +77,19 @@ export function setSort(sortBy) {
         return Promise.resolve()
     }
 }
+export function setIsOpen(value) {
+    console.log('value:', value);
+    return async (dispatch) => { 
+        console.log('dispatch:', dispatch);
+        
+    try{
+            dispatch({ type: 'SET_ISOPEN', value })
+            return Promise.resolve()
+        } catch(err){
+            console.log('board.action.js ❕ 87: ', err);
+            
+        }
+    }
+}
 
 

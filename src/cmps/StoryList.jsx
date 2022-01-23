@@ -38,6 +38,7 @@ function _StoryList(props) {
 													board={board}
 													group={group}
 													story={story}
+													
 												/>
 											</span>
 										</div>

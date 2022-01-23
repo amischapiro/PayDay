@@ -20,16 +20,19 @@ function _BoardApp(props) {
     // useEffect(() => {
     //     console.log(selectedBoard);
     // }, [selectedBoard])
+    
 
     if (!selectedBoard) return <React.Fragment />
 
     return (
+        <div className={`darken-screen ${props.isOpen?'open':''}`}>
         <main className='main-container'>
             <SideBar />
             <BoardList board={selectedBoard} />
             <BoardArea board={selectedBoard} />
 
         </main>
+        </div>
     )
 }
 
@@ -38,6 +41,7 @@ function mapStateToProps({ boardModule }) {
     return {
         boards: boardModule.boards,
         board: boardModule.selectedBoard,
+        isOpen:boardModule.activityModalIsOpen
         // filterBy: state.boardModule.filterBy,
         // users: state.userModule.users,
         // loggedInUser: state.userModule.loggedInUser

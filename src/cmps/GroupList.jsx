@@ -58,7 +58,7 @@ export class _GroupList extends Component {
 
 
 	render() {
-
+		
 
 		return (
 			<DragDropContext
@@ -87,6 +87,8 @@ export class _GroupList extends Component {
 													groupNum={index}
 													group={group}
 													board={this.props.board}
+													
+													
 												/>
 											</span>
 										</div>

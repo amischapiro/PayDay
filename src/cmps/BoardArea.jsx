@@ -13,6 +13,7 @@ import { loadBoards, getById } from '../store/board.action'
 import { BoardNav } from './BoardNav'
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min'
 import { boardService } from '../services/board.service'
+import { ActivityModal } from './ActivityModal'
 
 
 export function __BoardArea(props) {
@@ -26,7 +27,6 @@ export function __BoardArea(props) {
         // console.log(selectedBoard);
         setBoard({ ...board, selectedBoard })
     }, [selectedBoard])
-
     // useEffect(() => {
     //     console.log(board);
     // }, [board])
@@ -44,6 +44,7 @@ export function __BoardArea(props) {
 
     return (
         <section className='board-area'>
+                <ActivityModal />
             <div className='container'>
                 <BoardHeader board={selectedBoard} />
                 <BoardNav board={selectedBoard} />
