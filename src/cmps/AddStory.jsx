@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 
 export function _AddStory(props) {
-	const { board, group, onUpdateBoard } = props;
+	const { board, group, updateBoard } = props;
 	const [txt, setTxt] = useState('');
 	const inputEl = useRef();
 
@@ -40,14 +40,9 @@ export function _AddStory(props) {
 		)
 			newBoard.groups[groupIdx].stories = [newStory];
 		else
-			newBoard.groups[groupIdx].stories = [
-				...newBoard.groups[groupIdx].stories,
-				newStory,
-			];
-		// newBoard.groups[groupIdx].stories.push(newStory)
-		console.log('new story',newBoard.groups[groupIdx].stories );
+			newBoard.groups[groupIdx].stories.push(newStory)
 
-		await onUpdateBoard(newBoard);
+		await updateBoard(newBoard);
 		setTxt('');
 	};
 

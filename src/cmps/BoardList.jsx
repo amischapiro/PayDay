@@ -7,21 +7,23 @@ import { useState, useEffect } from 'react'
 import { BoardPreview } from './BoardPreview';
 
 
-import { loadBoards, } from '../store/board.action'
+// import { loadBoards, } from '../store/board.action'
 
 
 
 
-function _BoardList(props) {
+function _BoardList({ boards, updateBoard, removeBoard }) {
+
+
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [isBoardListOpen, toggleBoardList] = useState(true)
 
-  
 
-    useEffect(() => {
-        props.loadBoards()
-    }, [])
+
+    // useEffect(() => {
+    //     props.loadBoards()
+    // }, [])
 
 
 
@@ -36,7 +38,7 @@ function _BoardList(props) {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
 
-    const { boards } = props
+    // const { boards } = props
 
 
 
@@ -59,14 +61,14 @@ function _BoardList(props) {
             <div className='filter-boards' >
                 <span className='fa-solid filter'></span>
                 <span> Filter</span>
-            
+
             </div>
 
             <div className='break-line' ></div>
 
             <div className='boards-container'>
                 {boards.map(board => {
-                    return < BoardPreview key={board._id} board={board} />
+                    return < BoardPreview key={board._id} board={board} updateBoard={updateBoard} removeBoard={removeBoard} />
                 })}
             </div>
 
@@ -83,12 +85,12 @@ function _BoardList(props) {
 
 function mapStateToProps({ boardModule }) {
     return {
-        boards: boardModule.boards
+        // boards: boardModule.boards
     }
 }
 
 const mapDispatchToProps = {
-    loadBoards
+    // loadBoards
 }
 
 export const BoardList = connect(mapStateToProps, mapDispatchToProps)(_BoardList)

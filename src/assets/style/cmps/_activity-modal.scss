@@ -1,0 +1,92 @@
+.activity-modal{
+    position: fixed;
+    top: 0;
+    right: -100%;
+    z-index: 10;
+    background-color: white;
+    height: 100vh;
+    width: 50vh;
+    transition: all 0.5s;
+    box-shadow: 14px 0px 20px 20px #000000;
+    .btn-close-modal{
+        background-color: inherit;
+        border: none;
+        margin: 1rem;
+        cursor: pointer;
+    }
+    .modal-story-name{
+        margin-left: 1rem;
+    }
+    .update-input{
+        width: 100%;
+        input{
+            width: 90%;
+            margin-top: 0.5rem;
+            margin-left:5%;
+            border: 1px blue solid;
+            height: 2rem;
+            border-radius: 6px;
+            &:focus-visible{
+                outline: none;
+            }
+
+        }
+    }
+    &.open{
+        right: 0;
+    }
+}
+
+.update-activity-container{
+    display: flex;
+    margin-left: 0.5rem;
+}
+.modal-break-line{
+    height: 1px;
+    background-color: darkgray;
+}
+.horiz-break-line{
+    width: 1px;
+    background-color: darkgray;
+    height: 1.5rem;
+    margin-top: 1rem;
+}
+.modal-updates,.modal-activity{
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0.3rem;
+    margin: 0.5rem;
+    margin-bottom:0 ;
+    &:hover{
+        background-color: darkgray;
+    }
+   
+}
+
+.darken-screen{
+    opacity: 0;
+    pointer-events: none;
+    background-color: grey;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+}
+
+.darken-screen.open{
+    opacity: 0.8;  
+    transition: opacity 0.6s;
+    pointer-events: auto;
+
+
+
+}
+.modal-border-bottom.active{
+    height: 2px;
+    background-color: blue;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}

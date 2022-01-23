@@ -1,27 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { useState, useEffect } from 'react'
-// import Box from '@mui/material/Box';
-// import Popper from '@mui/material/Popper';
 
-import { getById, removeBoard } from '../store/board.action'
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min'
-import { PinDropSharp } from '@mui/icons-material'
 
-// import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 export function __BoardPreview(props) {
 
-    const { board, removeBoard } = props
+    const { board, removeBoard, updateBoard } = props
 
+    // TODO Hover on the elliphsis
     const [isBtnsShown, toggleBtnsShown] = useState(false)
-    // const [isMenuOpen, toggleMenu] = useState(false)
 
     const [anchorEl, setAnchorEl] = React.useState(null);
-    // console.log(props);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -35,13 +29,11 @@ export function __BoardPreview(props) {
     const id = open ? 'simple-popover' : undefined;
 
 
-
     const onRemove = (boardId) => {
         removeBoard(boardId)
     }
 
     const onGoTo = async () => {
-
         props.history.push(`/board/${board._id}/board`)
     }
 
@@ -63,8 +55,7 @@ export function __BoardPreview(props) {
                 aria-describedby={id}
                 variant="contained"
                 onClick={handleClick}
-                // sx={{padding: .1}}
-            className="btn-ellipsis"
+                className="btn-ellipsis"
             >
                 <span className="fa-solid ellipsis-h"></span>
             </Button>
@@ -77,12 +68,7 @@ export function __BoardPreview(props) {
                     vertical: 'bottom',
                     horizontal: 'left',
                 }}>
-                <Typography
-                    className="drop-down"
-                // onClick={() =>
-                // 	onUpdate('CHANGE_PRIORITY', priority.id)
-                >
-                    {/* {priority.title} */}
+                <Typography className="drop-down">
                     <span >
                         <span className="fa edit-hollow"></span>
                         <span>Rename Board</span>
@@ -108,13 +94,11 @@ export function __BoardPreview(props) {
 
 function mapStateToProps({ boardModule }) {
     return {
-        selectedBoard: boardModule.selectedBoard
     }
 }
 
 const mapDispatchToProps = {
-    getById,
-    removeBoard
+
 }
 
 const _BoardPreview = withRouter(__BoardPreview)
@@ -124,5 +108,3 @@ const _BoardPreview = withRouter(__BoardPreview)
 
 export const BoardPreview = connect(mapStateToProps, mapDispatchToProps)(_BoardPreview)
 
-
-// MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-sghohy-MuiButtonBase-root-MuiButton-root

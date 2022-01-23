@@ -4,15 +4,15 @@ import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
 import { BoardArea } from '../cmps/BoardArea.jsx'
 import { connect } from 'react-redux'
-// import { withRouter } from 'react-router-dom'
-import { loadBoards, getById } from '../store/board.action'
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { loadBoards, getById, removeBoard, updateBoard, setStory } from '../store/board.action'
 
 
-function _BoardApp(props) {
+function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, setStory, selectedStoryIds }) {
+
 
     useEffect(async () => {
         await loadBoards()
+<<<<<<< HEAD
         const { boardId } = props.match.params
         // console.log(boardId);
         const board = await props.getById(boardId)
@@ -23,24 +23,38 @@ function _BoardApp(props) {
         // console.log(props.selectedBoard);
     }, [props.selectedBoard])
 
+=======
+        const { boardId } = match.params
+        await getById(boardId)
+    }, [])
+
+>>>>>>> 943a9f33150b4439b1837d8d49e6a99248ee3f8c
     useEffect(async () => {
-        const { boardId } = props.match.params
-        const board = await props.getById(boardId)
-        // console.log('BoardApp.jsx 💤 29: ', board);
-        // console.log('BoardApp.jsx 💤 30: ', props.selectedBoard);
-        // setBoard(board)
-    }, [props.match.params])
+        const { boardId } = match.params
+        await getById(boardId)
+    }, [match.params])
+
+    const onRemoveStory = async () => {
+        const story = {
+            boardId: null,
+            groupId: null,
+            storyId: null
+        }
+        await setStory(story)
+
+    }
 
 
-    if (!props.selectedBoard) return <React.Fragment />
+    if (!selectedBoard) return <React.Fragment />
 
     return (
         <main className='main-container'>
             <SideBar />
-            <BoardList board={props.selectedBoard} />
-            {/* <BoardArea /> */}
-            <BoardArea board={props.selectedBoard} />
+            <BoardList boards={boards} removeBoard={removeBoard} />
+            <BoardArea boards={boards} board={selectedBoard} updateBoard={updateBoard} />
 
+            <div onClick={() => onRemoveStory()} className={`darken-screen ${selectedStoryIds.storyId ? 'open' : ''}`}>
+            </div>
         </main>
     )
 }
@@ -49,6 +63,7 @@ function _BoardApp(props) {
 function mapStateToProps({ boardModule }) {
     return {
         boards: boardModule.boards,
+        selectedStoryIds: boardModule.activityModalStory,
         selectedBoard: boardModule.selectedBoard,
         // filterBy: state.boardModule.filterBy,
         // users: state.userModule.users,
@@ -59,8 +74,11 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
     loadBoards,
     getById,
+    removeBoard,
+    updateBoard,
+    setStory
 }
 
-// const _BoardApp = withRouter(__BoardApp)
+
 
 export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp)

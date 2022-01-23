@@ -4,25 +4,10 @@ import { Story } from '../cmps/Story';
 import { AddStory } from './AddStory';
 
 import { useEffect, useState } from 'react';
-import { updateBoard } from '../store/board.action'
 
 function _StoryList(props) {
-	const { group, groupNum, board } = props;
-	const [newBoard, setNewBoard] = useState({ ...board })
+	const { group, groupNum, board, updateBoard } = props;
 
-	const onUpdateBoard = async (boardToUpdate) => {
-		setNewBoard({ ...newBoard, boardToUpdate });
-		props.updateBoard(boardToUpdate);
-	}
-
-
-	// const { group, groupNum, board } = props;
-	// const [newBoard, setNewBoard] = useState({ ...board })
-
-	// const onUpdateBoard = (boardToUpdate) => {
-	// 	setNewBoard({ ...newBoard, boardToUpdate });
-	// 	updateBoard(newBoard);
-	// }
 
 
 	return (
@@ -44,10 +29,11 @@ function _StoryList(props) {
 											{...provided.draggableProps}>
 											<span {...provided.dragHandleProps}>
 												<Story
-													onUpdateBoard={onUpdateBoard}
+													updateBoard={updateBoard}
 													board={board}
 													group={group}
 													story={story}
+													
 												/>
 											</span>
 										</div>
@@ -59,7 +45,7 @@ function _StoryList(props) {
 					</div>
 				)}
 			</Droppable>
-			<AddStory group={group} board={board} onUpdateBoard={onUpdateBoard} />
+			<AddStory group={group} board={board} updateBoard={updateBoard} />
 		</div>
 	);
 };
@@ -73,7 +59,6 @@ function mapStateToProps({ boardModule }) {
 }
 
 const mapDispatchToProps = {
-	updateBoard,
 }
 
 

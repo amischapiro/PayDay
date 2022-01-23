@@ -4,7 +4,12 @@ const initialState = {
     boards: [],
     selectedBoard: null,
     filterBy: null,
-    sortBy: null
+    sortBy: null,
+    activityModalStory: {
+        boardId: null,
+        groupId: null,
+        storyId: null
+    }
 }
 
 export function boardReducer(state = initialState, action) {
@@ -16,14 +21,15 @@ export function boardReducer(state = initialState, action) {
             newState = { ...state, boards: [...action.boards] }
             break
         case 'SET_BOARD':
-            // console.log('board.reducer.js 💤 19: ', action.board);
             return { ...state, selectedBoard: action.board }
         case 'REMOVE_BOARD':
             newState = { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
             break
         case 'UPDATE_BOARD':
             newState = {
-                ...state, boards: state.boards.map(currBoard => {
+                ...state,
+                selectedBoard: action.board,
+                boards: state.boards.map(currBoard => {
                     return (currBoard._id === action.board._id) ? action.board : currBoard
                 })
             }
@@ -45,6 +51,11 @@ export function boardReducer(state = initialState, action) {
             } else if (action.sortBy === 'price' && state.sortBy && state.sortBy.price === 1) {
                 newState = { ...state, sortBy: { price: -1 } }
             }
+        case 'SET_STORY':
+            newState = {
+                ...state, activityModalStory: { boardId: action.story.boardId, groupId: action.story.groupId, storyId: action.story.storyId }
+            }
+            break
 
         default:
             return newState;

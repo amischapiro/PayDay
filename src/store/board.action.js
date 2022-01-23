@@ -20,8 +20,9 @@ export function getById(boardId) {
     return async (dispatch) => {
         try {
             const board = await boardService.getById(boardId)
+            // console.log('board.action.js 💤 23: ', board);
             dispatch({ type: 'SET_BOARD', board })
-            return Promise.resolve(board)
+            return board
         } catch (error) {
             console.log('Cannot get Boards', error);
         }
@@ -76,6 +77,12 @@ export function setSort(sortBy) {
     return async (dispatch) => {
         dispatch({ type: 'SET_SORT', sortBy })
         return Promise.resolve()
+    }
+}
+export function setStory(story) {
+    return async (dispatch) => {
+        dispatch({ type: 'SET_STORY', story})
+    
     }
 }
 
