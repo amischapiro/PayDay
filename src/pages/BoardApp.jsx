@@ -9,7 +9,6 @@ import { loadBoards, getById, removeBoard, updateBoard, setStory } from '../stor
 
 function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, setStory, selectedStoryIds }) {
 
-
     useEffect(async () => {
         await loadBoards()
         const { boardId } = match.params

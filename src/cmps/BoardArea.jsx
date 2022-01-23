@@ -38,6 +38,3 @@ export function BoardArea({ board, updateBoard }) {
         </section>
     )
 }
-
-
-
