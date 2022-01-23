@@ -16,6 +16,7 @@ export function loadBoards() {
 
 
 export function getById(boardId) {
+    // console.log(boardId);
     return async (dispatch) => {
         try {
             const board = await boardService.getById(boardId)

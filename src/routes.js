@@ -14,7 +14,7 @@ const routes = [
         component: LoginSignup
     },
     {
-        path: '/board/:boardId?',
+        path: '/board/:boardId',
         component: BoardApp
     },
    
