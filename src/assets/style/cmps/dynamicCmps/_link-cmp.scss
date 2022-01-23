@@ -1,0 +1,31 @@
+.link-container {
+	width: 140px;
+
+	.link-button {
+		width: 140px;
+		background-color: inherit;
+
+		a {
+			color: #0086c0;
+			font-size: 0.8125rem;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		&:hover {
+			background-color: inherit;
+		}
+	}
+	// button: {
+	//     width: 140px;
+	// }
+
+    .MuiTypography-root.MuiTypography-body1.link-editor.css-ahj2mt-MuiTypography-root input {
+        border: 1px solid #0071d9;
+        width: 216px;
+    }
+	.link-popover {
+		// MuiTypography-root.MuiTypography-body1. link-editor css-ahj2mt-MuiTypography-root
+	}
+}

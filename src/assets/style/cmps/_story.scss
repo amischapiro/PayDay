@@ -11,10 +11,10 @@
 
 	&:-moz-drag-over {
 		cursor: -moz-grab;
+		transform: rotate(1deg);
 	}
 	
 	// &:active {
-	// 	transform: rotate(1deg);
 	// }
 
 	&:hover {

@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { StoryList } from './StoryList';
+import { DynamicColHeaders } from './DynamicColHeaders';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import UnfoldLessRoundedIcon from '@mui/icons-material/UnfoldLessRounded';
 export class _GroupList extends Component {
 	// state = {
 	// 	board: this.props.board
@@ -17,8 +19,6 @@ export class _GroupList extends Component {
 
 		return result;
 	};
-
-
 
 	constructor(props) {
 		super(props);
@@ -52,11 +52,7 @@ export class _GroupList extends Component {
 		}
 	}
 
-
-
 	render() {
-
-
 		return (
 			<DragDropContext
 				onDragEnd={this.onDragEnd}
@@ -75,15 +71,37 @@ export class _GroupList extends Component {
 										<div
 											ref={provided.innerRef}
 											{...provided.draggableProps}>
-											<span  {...provided.dragHandleProps}>
-												<div className='group-name-container'>
-													<DragIndicatorIcon className='drag-group' />
-													{group.title}
+											<span {...provided.dragHandleProps}>
+												<div className="group-header">
+													<div className="group-name-container">
+														<UnfoldLessRoundedIcon className="collapse-group" />
+														<DragIndicatorIcon className="drag-group" />
+														<div
+															style={{
+																color: group
+																	.style
+																	.backgroundColor,
+															}}>
+															{group.title}
+														</div>
+													</div>
+													{this.props.selectedBoard.cmpsOrder.map(
+														(cmp, idx) => {
+															return (
+																<DynamicColHeaders
+																	key={idx}
+																	cmp={cmp}
+																/>
+															);
+														}
+													)}
 												</div>
 												<StoryList
 													groupNum={index}
 													group={group}
-													board={this.props.selectedBoard}
+													board={
+														this.props.selectedBoard
+													}
 												/>
 											</span>
 										</div>
@@ -102,14 +120,16 @@ export class _GroupList extends Component {
 function mapStateToProps({ boardModule }) {
 	return {
 		boards: boardModule.boards,
-		selectedBoard: boardModule.selectedBoard
-	}
+		selectedBoard: boardModule.selectedBoard,
+	};
 }
 
 const mapDispatchToProps = {
 	// loadBoards,
 	// getById
-}
+};
 
-
-export const GroupList = connect(mapStateToProps, mapDispatchToProps)(_GroupList)
+export const GroupList = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(_GroupList);

@@ -81,6 +81,9 @@ export function _Story(props) {
 			case 'CHANGE_NUMBER':
 				newStory.storyData.number = data;
 				break;
+			case 'CHANGE_LINK':
+				console.log('Story.jsx 💤 85: ', data);
+				break;
 			default:
 				break;
 		}

@@ -206,7 +206,8 @@ function _createBoard(_id = _makeId(), title) {
                                 color: "#00c875"
                             },
                             timeline: [null, null],
-                            number: null
+                            number: null,
+                            link: {}
                         }
                     },
                     {
@@ -231,7 +232,8 @@ function _createBoard(_id = _makeId(), title) {
                                 color: "#fdab3d"
                             },
                             timeline: [null, null],
-                            number: null
+                            number: null,
+                            link: {}
                         }
                     }
                 ],
@@ -263,7 +265,8 @@ function _createBoard(_id = _makeId(), title) {
                                 color: "#e2445c"
                             },
                             timeline: [null, null],
-                            number: null
+                            number: null,
+                            link: {}
                         }
                     },
                     {
@@ -288,7 +291,8 @@ function _createBoard(_id = _makeId(), title) {
                                 color: "#a25ddc"
                             },
                             timeline: [null, null],
-                            number: null
+                            number: null,
+                            link: {}
                         }
                     }
                 ],
@@ -315,7 +319,8 @@ function _createBoard(_id = _makeId(), title) {
             "member-picker",
             "priority-picker",
             'timeline-picker',
-            'number-picker'
+            'number-picker',
+            'link-picker'
         ]
     }
 

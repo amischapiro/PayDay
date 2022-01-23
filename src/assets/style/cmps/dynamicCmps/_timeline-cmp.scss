@@ -47,6 +47,7 @@
 		.date-pick-wrapper {
 			display: flex;
 		}
+
 		.date-picker-cmp,
 		.date-picker,
 		.no-date,
@@ -60,15 +61,23 @@
 			border: none;
 			background-color: #c4c4c4;
 			color: white;
+			height: 22px;
 			line-height: 22px;
 			border-radius: 25px;
 			margin: 0 auto;
 			cursor: pointer;
             text-align: center;
+            caret-color: transparent;
+
+            &:focus {
+                outline: none;
+            }
 		}
 
         .date-picker-cmp {
-            padding-top: 7px;
+            &::placeholder {
+                color: #fff;
+            }
         }
 
 		.date-picker-container {

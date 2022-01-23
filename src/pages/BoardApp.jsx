@@ -14,13 +14,13 @@ function _BoardApp(props) {
     useEffect(async () => {
         await loadBoards()
         const { boardId } = props.match.params
-        console.log(boardId);
+        // console.log(boardId);
         const board = await props.getById(boardId)
-        console.log(board);
+        // console.log(board);
     }, [])
 
     useEffect(() => {
-        console.log(props.selectedBoard);
+        // console.log(props.selectedBoard);
     }, [props.selectedBoard])
 
     useEffect(async () => {
