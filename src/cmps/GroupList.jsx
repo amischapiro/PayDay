@@ -7,50 +7,49 @@ import { DynamicColHeaders } from './DynamicColHeaders';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import UnfoldLessRoundedIcon from '@mui/icons-material/UnfoldLessRounded';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
+
 export class _GroupList extends Component {
 
-
-
-	// a little function to help us with reordering the result
-	Reorder = (list, startIndex, endIndex) => {
-		const result = Array.from(list);
-		const [removed] = result.splice(startIndex, 1);
-		result.splice(endIndex, 0, removed);
-
-		return result;
-	};
-
-	constructor(props) {
-		super(props);
-		const { groups } = this.props.board;
-		this.state = {
-			groups,
-		};
-		this.onDragEnd = this.onDragEnd.bind(this);
-	}
-
-	onDragEnd(result) {
-		if (!result.destination) return;
-		if (result.type === 'GROUPS') {
-			const groups = this.Reorder(
-				this.state.groups,
-				result.source.index,
-				result.destination.index
+	onDragEnd = async (result) => {
+		const { board } = this.props;
+		const { destination, source, draggableId, type } = result;
+		// const { currBoard } = this.props;
+		if (!destination) return;
+		if (
+			destination.droppableId === source.droppableId &&
+			destination.index === source.index
+		)
+			return;
+		if (type === 'story') {
+			const sourceGroup = board.groups.find(
+				(group) => group.id === source.droppableId
 			);
-			this.setState({ groups });
-		} else {
-			const stories = this.Reorder(
-				this.state.groups[parseInt(result.type, 10)].stories,
-				result.source.index,
-				result.destination.index
+			const destinationGroup = board.groups.find(
+				(group) => group.id === destination.droppableId
 			);
-
-			const groups = JSON.parse(JSON.stringify(this.state.groups));
-			groups[result.type].stories = stories;
-
-			this.setState({ groups });
+			const story = sourceGroup.stories.find(
+				(story) => story.id === draggableId
+			);
+			sourceGroup.stories.splice(source.index, 1);
+			destinationGroup.stories.splice(destination.index, 0, story);
 		}
-	}
+		if (type === 'group') {
+			const sourceGroup = board.groups.find(
+				(group) => group.id === draggableId
+			);
+			board.groups.splice(source.index, 1);
+			board.groups.splice(destination.index, 0, sourceGroup);
+		}
+		// if (type === 'column') {
+		//     const idx = draggableId.indexOf('-')
+		//     const cellType = draggableId.slice(0, idx)
+		//     board.cellTypes.splice(source.index, 1);
+		//     board.cellTypes.splice(destination.index, 0, cellType)
+		// }
+		const newBoard = { ...board };
+		this.props.updateBoard(newBoard);
+		// socketService.emit('board updated', newBoard._id);
+	};
 
 	render() {
 
@@ -58,8 +57,9 @@ export class _GroupList extends Component {
 		return (
 			<DragDropContext
 				onDragEnd={this.onDragEnd}
-				onDragUpdate={this.onDragUpdate}>
-				<Droppable droppableId="droppable" type="GROUPS">
+				// onDragUpdate={this.onDragUpdate}
+				>
+				<Droppable droppableId="all-groups" type="group">
 					{(provided, snapshot) => (
 						<div
 							ref={provided.innerRef}
@@ -68,7 +68,8 @@ export class _GroupList extends Component {
 								<Draggable
 									key={group.id}
 									draggableId={group.id}
-									index={index}>
+									index={index}
+									type="group">
 									{(provided, snapshot) => (
 										<div
 											ref={provided.innerRef}
@@ -131,7 +132,7 @@ function mapStateToProps({ boardModule }) {
 	return {
 		// boards: boardModule.boards,
 		// selectedBoard: boardModule.selectedBoard
-	}
+	};
 }
 
 const mapDispatchToProps = {

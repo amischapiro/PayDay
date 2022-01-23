@@ -208,7 +208,7 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {}
+                            link: {name: null, url: null}
                         }
                     },
                     {
@@ -234,7 +234,7 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {}
+                            link: {name: null, url: null}
                         }
                     }
                 ],
@@ -267,7 +267,7 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {}
+                            link: {name: null, url: null}
                         }
                     },
                     {
@@ -293,7 +293,7 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {}
+                            link: {name: null, url: null}
                         }
                     }
                 ],
