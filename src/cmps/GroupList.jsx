@@ -5,9 +5,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { StoryList } from './StoryList';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 export class _GroupList extends Component {
-	// state = {
-	// 	board: this.props.board
-	// }
+
+
 
 	// a little function to help us with reordering the result
 	Reorder = (list, startIndex, endIndex) => {
@@ -56,7 +55,7 @@ export class _GroupList extends Component {
 
 	render() {
 
-
+		const { board, updateBoard } = this.props
 		return (
 			<DragDropContext
 				onDragEnd={this.onDragEnd}
@@ -66,7 +65,7 @@ export class _GroupList extends Component {
 						<div
 							ref={provided.innerRef}
 							className="groups-container">
-							{this.state.groups.map((group, index) => (
+							{board.groups.map((group, index) => (
 								<Draggable
 									key={group.id}
 									draggableId={group.id}
@@ -83,7 +82,8 @@ export class _GroupList extends Component {
 												<StoryList
 													groupNum={index}
 													group={group}
-													board={this.props.selectedBoard}
+													board={board}
+													updateBoard={updateBoard}
 												/>
 											</span>
 										</div>
@@ -101,8 +101,8 @@ export class _GroupList extends Component {
 
 function mapStateToProps({ boardModule }) {
 	return {
-		boards: boardModule.boards,
-		selectedBoard: boardModule.selectedBoard
+		// boards: boardModule.boards,
+		// selectedBoard: boardModule.selectedBoard
 	}
 }
 

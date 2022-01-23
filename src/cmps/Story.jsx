@@ -3,19 +3,19 @@ import { DynamicCmp } from './dynamicCmps/DynamicCmp';
 import { connect } from 'react-redux'
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 
-import { updateBoard } from '../store/board.action'
+// import { updateBoard } from '../store/board.action'
 import { boardService } from '../services/board.service';
 
 export function _Story(props) {
 	const { board, group, story, updateBoard } = props;
+
 	const { cmpsOrder } = board;
+	const newBoard = { ...board }
 	const groupId = group.id
 	const groupIdx = board.groups.findIndex((group) => group.id === groupId)
 	const storyId = story.id
 	const storyIdx = group.stories.findIndex(story => story.id === storyId)
 
-
-	const [newBoard, setNewBoard] = useState({ ...board })
 
 	const [isTitleEditOn, toggleTitleEdit] = useState(false)
 	const [newStoryTitle, setStoryTitle] = useState({ title: story.title })
@@ -41,17 +41,10 @@ export function _Story(props) {
 
 	const onUpdateBoard = async (storyToUpdate) => {
 		newBoard.groups[groupIdx].stories.splice(storyIdx, 1, storyToUpdate)
-		setNewBoard(newBoard)
-		props.onUpdateBoard(newBoard)
-		const updatedBoard = await updateBoard(newBoard)
+		await updateBoard(newBoard)
 	}
 
-	// const addStory = async (storyToUpdate) => {
-	// 	newBoard.groups[groupIdx].stories.push(storyToUpdate)
-	// 	setNewBoard(newBoard)
-	// 	props.onUpdateBoard(newBoard)
-	// 	// const updatedBoard = await updateBoard(newBoard)
-	// }
+
 
 	const onUpdateStory = async (dataType, data) => {
 		const newStory = { ...story }
@@ -76,7 +69,6 @@ export function _Story(props) {
 			case 'CHANGE_TIMELINE':
 				newData = await boardService.updateTimeline(data);
 				newStory.storyData.timeline = newData;
-				// console.log('Story.jsx 💤 69: ', newStory.storyData.timeline);
 				break;
 			case 'CHANGE_NUMBER':
 				newStory.storyData.number = data;
@@ -110,11 +102,6 @@ export function _Story(props) {
 						cmp={cmp}
 						story={story}
 						onUpdate={(dataType, data) => onUpdateStory(dataType, data)}
-						// onUpdate={(data) => {
-						// 	console.log('Updating:', cmp, 'with data:', data);
-						// 	// make a copy, update the task
-						// 	// Call action: updateTask(task)
-						// }}
 						board={board}
 						group={group}
 					/>
@@ -134,7 +121,7 @@ function mapStateToProps({ boardModule }) {
 }
 
 const mapDispatchToProps = {
-	updateBoard,
+	// updateBoard,
 }
 
 

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
 
-import { updateBoard } from '../store/board.action'
 
-function _BoardHeader({ board, updateBoard }) {
 
-    const [selectedBoard, setSelectedBoard] = useState(board)
-    const { title, desc } = selectedBoard
+export function BoardHeader({ board, updateBoard }) {
+
+    const { title, desc } = board
 
     const [isTitleEditOn, toggleTitleEdit] = useState(false)
     const [isDescEditOn, toggleDescEdit] = useState(false)
@@ -31,6 +29,7 @@ function _BoardHeader({ board, updateBoard }) {
     }, [isTitleEditOn, isDescEditOn])
 
 
+
     const handleChange = ({ target }) => {
         const { name, value } = target
         setEditBoard({ ...editBoard, [name]: value })
@@ -38,18 +37,18 @@ function _BoardHeader({ board, updateBoard }) {
 
     const onSubmitTitle = async (ev) => {
         ev.preventDefault()
-        onToggleTitleEdit()
-        const boardToUpdate = { ...selectedBoard, title: editBoard.title }
-        const updatedBoard = await updateBoard(boardToUpdate)
-        setSelectedBoard(updatedBoard)
+        toggleTitleEdit(false)
+        const boardToUpdate = { ...board, title: editBoard.title }
+        await updateBoard(boardToUpdate)
+        // setSelectedBoard(updatedBoard)
     }
 
     const onSubmitDesc = async (ev) => {
         ev.preventDefault()
-        onToggleDescEdit()
-        const boardToUpdate = { ...selectedBoard, desc: editBoard.desc }
+        toggleDescEdit(false)
+        const boardToUpdate = { ...board, desc: editBoard.desc }
         const updatedBoard = await updateBoard(boardToUpdate)
-        setSelectedBoard(updatedBoard)
+        // setSelectedBoard(updatedBoard)
     }
 
 
@@ -60,7 +59,7 @@ function _BoardHeader({ board, updateBoard }) {
             <div className='title-and-action'>
 
                 <div className='title-section'>
-                    {!isTitleEditOn && <h3 onClick={onToggleTitleEdit}>{title ? title : 'Enter title here'}</h3>}
+                    {!isTitleEditOn && <h3 onClick={() => { toggleTitleEdit(true) }}>{title ? title : 'Enter title here'}</h3>}
                     {isTitleEditOn &&
                         <form onSubmit={onSubmitTitle}>
                             <input ref={titleRef} type="text" onBlur={onSubmitTitle}
@@ -84,7 +83,7 @@ function _BoardHeader({ board, updateBoard }) {
             </div>
 
             {!isDescEditOn && <div className='description'
-                onClick={onToggleDescEdit}>{desc ? desc : 'Add description here'}</div>}
+                onClick={() => { toggleDescEdit(true) }}>{desc ? desc : 'Add description here'}</div>}
             {isDescEditOn &&
                 <form onSubmit={onSubmitDesc}>
                     <textarea ref={decsRef} type="text" onBlur={onSubmitDesc}
@@ -98,18 +97,3 @@ function _BoardHeader({ board, updateBoard }) {
     )
 }
 
-function mapStateToProps({ boardModule }) {
-    return {
-        board: boardModule.selectedBoard,
-        // users: state.userModule.users,
-        // loggedInUser: state.userModule.loggedInUser
-    }
-}
-
-const mapDispatchToProps = {
-    updateBoard,
-
-}
-
-
-export const BoardHeader = connect(mapStateToProps, mapDispatchToProps)(_BoardHeader)

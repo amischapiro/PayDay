@@ -1,32 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
+import { Switch, Route } from 'react-router';
 
+import { BoardNav } from './BoardNav'
 import { BoardHeader } from '../cmps/BoardHeader'
 import { BoardActions } from '../cmps/BoardActions'
 import { GroupList } from '../cmps/GroupList'
 import { Kanban } from './Kanban'
 import { Dashboard } from './Dashboard'
-import { Switch, Route } from 'react-router';
 
 
-import { loadBoards, getById } from '../store/board.action'
-import { BoardNav } from './BoardNav'
-import { withRouter } from 'react-router-dom/cjs/react-router-dom.min'
-import { boardService } from '../services/board.service'
 
 
-export function __BoardArea(props) {
-    const { board } = props
+export function BoardArea({ board, updateBoard }) {
 
-    useEffect(() => {
-        console.log('BoardArea.jsx 💤 22: ', board);
-    }, [board])
 
 
     return (
         <section className='board-area'>
             <div className='container'>
-                <BoardHeader  />
+                <BoardHeader board={board} updateBoard={updateBoard} />
                 <BoardNav board={board} />
                 <BoardActions board={board} />
                 <Switch className="board-switch-container">
@@ -37,7 +29,7 @@ export function __BoardArea(props) {
                         <Dashboard />
                     </Route>
                     <Route path="/board/:boardId/board">
-                        <GroupList board={board} />
+                        <GroupList board={board} updateBoard={updateBoard} />
                     </Route>
 
                 </Switch>
@@ -50,18 +42,3 @@ export function __BoardArea(props) {
 
 
 
-function mapStateToProps({ boardModule }) {
-    return {
-        boards: boardModule.boards,
-        board: boardModule.selectedBoard
-    }
-}
-
-const mapDispatchToProps = {
-    loadBoards,
-    getById
-}
-
-const _BoardArea = withRouter(__BoardArea)
-
-export const BoardArea = connect(mapStateToProps, mapDispatchToProps)(_BoardArea)

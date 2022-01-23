@@ -16,14 +16,15 @@ export function boardReducer(state = initialState, action) {
             newState = { ...state, boards: [...action.boards] }
             break
         case 'SET_BOARD':
-            // console.log('board.reducer.js 💤 19: ', action.board);
             return { ...state, selectedBoard: action.board }
         case 'REMOVE_BOARD':
             newState = { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
             break
         case 'UPDATE_BOARD':
             newState = {
-                ...state, boards: state.boards.map(currBoard => {
+                ...state,
+                selectedBoard: action.board,
+                boards: state.boards.map(currBoard => {
                     return (currBoard._id === action.board._id) ? action.board : currBoard
                 })
             }
