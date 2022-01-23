@@ -12,11 +12,12 @@
 
 .add-story {
     display: flex;
-    margin: 1px 0 0 0.05rem;
+    margin: 1px 0 0.05rem;
+    margin-inline-start: 1.425rem;
     height: 2.313rem;
-	font-size: 1.1rem;
-	line-height: 1.5rem;
-	font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
 
     &:hover {
         .story-selector {
@@ -41,17 +42,16 @@
         &:focus {
             outline: none;
             border-color: #0071d9;
-    
+
             &:hover {
                 border-color: #0071d9;
             }
-    
+
             .story-selector {
                 opacity: 1;
             }
         }
     }
-
 
     button {
         border-radius: 0;
@@ -63,7 +63,7 @@
         font-weight: 300;
         padding: 0 12px;
         width: fit-content;
-        transition: .1s ease;
+        transition: 0.1s ease;
         display: none;
 
         &:hover {
@@ -78,6 +78,6 @@
     .story-selector {
         width: 0.5rem;
         opacity: 0.5;
-        transition: opacity .1s ease;
+        transition: opacity 0.1s ease;
     }
 }
