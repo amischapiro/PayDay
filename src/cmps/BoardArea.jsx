@@ -26,11 +26,9 @@ export function __BoardArea(props) {
     return (
         <section className='board-area'>
             <div className='container'>
-                {/* <BoardHeader board={board} /> */}
                 <BoardHeader  />
                 <BoardNav board={board} />
                 <BoardActions board={board} />
-                {/* <GroupList board={selectedBoard} /> */}
                 <Switch className="board-switch-container">
                     <Route path="/board/:boardId/kanban" >
                         <Kanban />

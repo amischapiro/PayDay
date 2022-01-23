@@ -83,7 +83,7 @@ export class _GroupList extends Component {
 												<StoryList
 													groupNum={index}
 													group={group}
-													board={this.props.board}
+													board={this.props.selectedBoard}
 												/>
 											</span>
 										</div>
@@ -102,7 +102,7 @@ export class _GroupList extends Component {
 function mapStateToProps({ boardModule }) {
 	return {
 		boards: boardModule.boards,
-		board: boardModule.selectedBoard
+		selectedBoard: boardModule.selectedBoard
 	}
 }
 

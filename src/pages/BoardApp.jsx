@@ -38,8 +38,8 @@ function _BoardApp(props) {
         <main className='main-container'>
             <SideBar />
             <BoardList board={props.selectedBoard} />
-            <BoardArea />
-            {/* <BoardArea board={props.selectedBoard} /> */}
+            {/* <BoardArea /> */}
+            <BoardArea board={props.selectedBoard} />
 
         </main>
     )
