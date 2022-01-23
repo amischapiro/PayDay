@@ -8,7 +8,6 @@ function _BoardHeader({ board, updateBoard }) {
     const [selectedBoard, setSelectedBoard] = useState(board)
     const { title, desc } = selectedBoard
 
-
     const [isTitleEditOn, toggleTitleEdit] = useState(false)
     const [isDescEditOn, toggleDescEdit] = useState(false)
     const [editBoard, setEditBoard] = useState({ title, desc: desc || '' })
@@ -30,6 +29,7 @@ function _BoardHeader({ board, updateBoard }) {
         if (isDescEditOn) decsRef.current.focus()
 
     }, [isTitleEditOn, isDescEditOn])
+
 
     const handleChange = ({ target }) => {
         const { name, value } = target
@@ -100,7 +100,7 @@ function _BoardHeader({ board, updateBoard }) {
 
 function mapStateToProps({ boardModule }) {
     return {
-        // board: boardModule.board,
+        board: boardModule.selectedBoard,
         // users: state.userModule.users,
         // loggedInUser: state.userModule.loggedInUser
     }

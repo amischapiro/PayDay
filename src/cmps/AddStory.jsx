@@ -44,9 +44,10 @@ export function _AddStory(props) {
 				...newBoard.groups[groupIdx].stories,
 				newStory,
 			];
+		// newBoard.groups[groupIdx].stories.push(newStory)
+		console.log('new story',newBoard.groups[groupIdx].stories );
 
 		await onUpdateBoard(newBoard);
-		// await socketService.emit('board updated', newBoard._id)
 		setTxt('');
 	};
 
