@@ -30,3 +30,10 @@
 @import "./cmps/board-actions.scss";
 @import "./cmps/drop-down-menu.scss";
 @import "./cmps/dashboard.scss";
+
+// Dynamic cmps - columns
+@import "./cmps/dynamicCmps/number-cmp.scss";
+@import "./cmps/dynamicCmps/timeline-cmp.scss";
+@import "./cmps/dynamicCmps/members-cmp.scss";
+@import "./cmps/dynamicCmps/status-cmp.scss";
+@import "./cmps/dynamicCmps/priority-cmp.scss";

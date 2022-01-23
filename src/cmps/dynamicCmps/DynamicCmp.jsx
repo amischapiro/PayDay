@@ -3,6 +3,7 @@ import { StatusCmp } from './StatusCmp.jsx';
 import { PriorityCmp } from './PriorityCmp.jsx';
 import { TimelineCmp } from './TimelineCmp.jsx';
 import { MembersCmp } from './MembersCmp.jsx';
+import { NumberCmp } from './NumberCmp.jsx';
 
 export function DynamicCmp({ cmp, story, onUpdate, board, group }) {
 	const { members, priorities, statuses } = board;
@@ -33,6 +34,8 @@ export function DynamicCmp({ cmp, story, onUpdate, board, group }) {
 			);
 		case 'timeline-picker':
 			return <TimelineCmp story={story} onUpdate={onUpdate} group={group} />;
+		case 'number-picker':
+			return <NumberCmp story={story} onUpdate={onUpdate} />;
 		default:
 			return <React.Fragment></React.Fragment>;
 	}

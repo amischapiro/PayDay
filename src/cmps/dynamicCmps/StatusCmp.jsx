@@ -20,7 +20,7 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 
 	return (
 
-		<div>
+		<div className="status-cmp">
 			<Button
 				aria-describedby={id}
 				variant="contained"

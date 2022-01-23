@@ -21,7 +21,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 	const { members } = story.storyData;
 
 	return (
-		<div>
+		<div className="members-cmp">
 			<Button
 				aria-describedby={id}
 				variant="contained"

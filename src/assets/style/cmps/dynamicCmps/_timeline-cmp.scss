@@ -1,0 +1,105 @@
+.react-datepicker-wrapper {
+	width: unset;
+}
+
+// .timeline {
+// 	min-width: 180px;
+// 	padding: .4rem;
+// 	text-align: center;
+// 	height: 1.5rem;
+
+// 	input {
+// 		height: 1.5rem;
+// 		background-color: #c4c4c4;
+// 		border: none;
+// 		text-align: center;
+// 		border-radius: 25px;
+// 	};
+
+// 	&:hover {
+// 		input {
+// 			background-color: #666;
+// 		}
+// 	}
+// }
+
+// .num-of-days {
+// 	width: 180px;
+// 	padding: .4rem;
+// 	height: 1.5rem;
+// 	text-align: center;
+// 	border-radius: 25px;
+// 	background-color: #666;
+// }
+
+.story {
+	.timeline {
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-basis: 180px;
+		min-width: 180px;
+
+		.date-pick-wrapper {
+			display: flex;
+		}
+		.date-picker-cmp,
+		.date-picker,
+		.no-date,
+		.set-dates,
+		.num-of-days {
+			width: 152px;
+			font-size: 13px;
+			// amend width side so it won't use pixels.
+			display: inline-block;
+			padding: 1.25px 5.25px;
+			border: none;
+			background-color: #c4c4c4;
+			color: white;
+			line-height: 22px;
+			border-radius: 25px;
+			margin: 0 auto;
+			cursor: pointer;
+		}
+
+		.date-picker-container {
+			width: 152px;
+			height: 1.5rem;
+			border-radius: 25px;
+			position: relative;
+
+			.date-picker-cmp {
+				width: 152px;
+
+				background-color: transparent;
+				position: absolute;
+				top: -45px;
+				right: -78px;
+			}
+
+			.progress-bar {
+				position: absolute;
+				height: 25px;
+				border-radius: 11px;
+			}
+
+			.grey-bck {
+				width: 152px;
+				height: 1.5rem;
+				background-color: #c4c4c4;
+				border-radius: 25px;
+			}
+		}
+
+		// .date-picker-cmp {
+		//     // position: absolute;
+		//     // top: 36px;
+		//     // z-index: 3;
+		// }
+
+		// .date-picker-pos {
+		// 	transform: translate(-45px, 20px) !important;
+		// }
+	}
+}

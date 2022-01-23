@@ -53,6 +53,7 @@ export function TimelineCmp({ story, group, onUpdate }) {
     const [isHover, setIsHover] = useState(false)
     const { backgroundColor } = group.style
     const firstUpdate = useRef(true);
+    // const inputEl = useRef();
 
 	// const [dateRange, setDateRange] = useState([initData[0], initData[1]]);
 	// const [startDate, endDate] = dateRange;
@@ -137,6 +138,11 @@ export function TimelineCmp({ story, group, onUpdate }) {
         if (percent > 100) percent = 100
         return percent
     }
+
+    // const onFocusInput = () => {
+	// 	inputEl.current.focus();
+	// };
+
     return (
         <div className="timeline" onMouseEnter={onEnter} onMouseLeave={onLeave}>
 
@@ -147,6 +153,7 @@ export function TimelineCmp({ story, group, onUpdate }) {
                 <span className="set-dates" onClick={onSetDates}>Set Dates</span>}
 
             {!isDateSet && isSettingDate && <DatePicker
+                // placeholderText="-"
                 popperPlacement="bottom"
                 className="date-picker-cmp"
                 // locale="uk"
@@ -156,7 +163,7 @@ export function TimelineCmp({ story, group, onUpdate }) {
                 onChange={(update) => {
                     setDateRange(update);
                 }}
-				dateFormat="dd/mm"
+				dateFormat="MMMM"
             />}
 
             {isDateSet && !isSettingDate && isHover &&
@@ -166,7 +173,7 @@ export function TimelineCmp({ story, group, onUpdate }) {
                 <div className="date-pick-wrapper">
                     <div className="date-picker-container">
                         <div className="progress-bar"
-                            style={{ backgroundColor: backgroundColor, width: `${getPercent()}%` }}>
+                            style={{ backgroundColor: backgroundColor, width: `${getPercent()}%`, borderRadius:"25px 0 0 25px", height: '24px' }}>
                         </div>
                         <div className="grey-bck"></div>
                         <DatePicker
