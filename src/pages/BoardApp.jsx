@@ -4,32 +4,43 @@ import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
 import { BoardArea } from '../cmps/BoardArea.jsx'
 import { connect } from 'react-redux'
-
+// import { withRouter } from 'react-router-dom'
 import { loadBoards, getById } from '../store/board.action'
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 
 
 function _BoardApp(props) {
-    const [selectedBoard, setBoard] = useState(null)
+
+    useEffect(async () => {
+        await loadBoards()
+        const { boardId } = props.match.params
+        console.log(boardId);
+        const board = await props.getById(boardId)
+        console.log(board);
+    }, [])
+
+    useEffect(() => {
+        console.log(props.selectedBoard);
+    }, [props.selectedBoard])
 
     useEffect(async () => {
         const { boardId } = props.match.params
         const board = await props.getById(boardId)
-        setBoard(board)
-    }, [])
+        // console.log('BoardApp.jsx 💤 29: ', board);
+        // console.log('BoardApp.jsx 💤 30: ', props.selectedBoard);
+        // setBoard(board)
+    }, [props.match.params])
 
-    // useEffect(() => {
-    //     console.log(selectedBoard);
-    // }, [selectedBoard])
-    
 
-    if (!selectedBoard) return <React.Fragment />
+    if (!props.selectedBoard) return <React.Fragment />
 
     return (
         <div className={`darken-screen ${props.isOpen?'open':''}`}>
         <main className='main-container'>
             <SideBar />
-            <BoardList board={selectedBoard} />
-            <BoardArea board={selectedBoard} />
+            <BoardList board={props.selectedBoard} />
+            {/* <BoardArea /> */}
+            <BoardArea board={props.selectedBoard} />
 
         </main>
         </div>
@@ -41,7 +52,8 @@ function mapStateToProps({ boardModule }) {
     return {
         boards: boardModule.boards,
         board: boardModule.selectedBoard,
-        isOpen:boardModule.activityModalIsOpen
+        isOpen:boardModule.activityModalIsOpen,
+        selectedBoard: boardModule.selectedBoard,
         // filterBy: state.boardModule.filterBy,
         // users: state.userModule.users,
         // loggedInUser: state.userModule.loggedInUser
@@ -53,6 +65,6 @@ const mapDispatchToProps = {
     getById,
 }
 
-
+// const _BoardApp = withRouter(__BoardApp)
 
 export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp)

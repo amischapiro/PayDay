@@ -20,7 +20,7 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 	const { priority } = story.storyData;
 
 	return (
-		<div>
+		<div className="priority-cmp">
 			<Button
 				aria-describedby={id}
 				variant="contained"

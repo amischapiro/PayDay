@@ -3,17 +3,27 @@ import { connect } from 'react-redux'
 import { Story } from '../cmps/Story';
 import { AddStory } from './AddStory';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { updateBoard } from '../store/board.action'
 
 function _StoryList(props) {
 	const { group, groupNum, board } = props;
 	const [newBoard, setNewBoard] = useState({ ...board })
 
-	const onUpdateBoard = (boardToUpdate) => {
+	const onUpdateBoard = async (boardToUpdate) => {
 		setNewBoard({ ...newBoard, boardToUpdate });
-		updateBoard(newBoard);
+		props.updateBoard(boardToUpdate);
 	}
+
+
+	// const { group, groupNum, board } = props;
+	// const [newBoard, setNewBoard] = useState({ ...board })
+
+	// const onUpdateBoard = (boardToUpdate) => {
+	// 	setNewBoard({ ...newBoard, boardToUpdate });
+	// 	updateBoard(newBoard);
+	// }
+
 
 	return (
 		<div className="group-container">

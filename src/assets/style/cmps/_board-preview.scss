@@ -1,14 +1,73 @@
 .board-preview {
+  position: relative;
+  overflow: visible;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
   .btns-container {
     visibility: hidden;
   }
+
   &.on-hover {
     .btns-container {
       visibility: visible;
     }
   }
 }
+
+.MuiTypography-root.drop-down {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  border-radius: 4px;
+  > * {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.875rem;
+    line-height: 1.5em;
+    border-radius: 4px;
+    padding: 0.2rem 1rem;
+    padding-inline-end: 5rem;
+    margin: 0.3rem;
+    margin-bottom: 0.3rem;
+    &:first-child {
+      padding-top: 0.5rem;
+    }
+    &:last-child {
+      border-top: 1px solid #e6e9ef;
+      padding-top: 0.5rem;
+    }
+  }
+  *:hover {
+    background-color: #e6e9ef;
+    cursor: pointer;
+  }
+  .fa,
+  .fa-solid {
+    display: inline-block;
+    margin-inline-end: 0.5rem;
+    // padding-bottom: 2px;
+  }
+}
+
+.btn-ellipsis.MuiButton-containedPrimary {
+  min-width: unset;
+  padding: 0 0.8rem;
+  font-size: 1rem;
+  background-color: transparent;
+  box-shadow: none;
+  &:hover {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .fa-solid {
+    color: black;
+  }
+}
+
+// MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root

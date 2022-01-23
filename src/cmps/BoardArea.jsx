@@ -17,47 +17,29 @@ import { ActivityModal } from './ActivityModal'
 
 
 export function __BoardArea(props) {
-    const { selectedBoard } = props
-    // const { board } = props 
+    const { board } = props
 
-    const [board, setBoard] = useState(null)
-    // const { selectedBoard } = props
     useEffect(() => {
-        // getBoard()
-        // console.log(selectedBoard);
-        setBoard({ ...board, selectedBoard })
-    }, [selectedBoard])
-    // useEffect(() => {
-    //     console.log(board);
-    // }, [board])
+        console.log('BoardArea.jsx 💤 22: ', board);
+    }, [board])
 
-
-    // const getBoard = async () => {
-    //     const { boardId } = props.match.params
-    //     const board = await props.getById(boardId)
-    //     // setBoard({...board, selectedBoard})
-    //     // console.log(selectedBoard);
-    // }
-
-
-    if (!selectedBoard) return <React.Fragment />
 
     return (
         <section className='board-area'>
                 <ActivityModal />
             <div className='container'>
-                <BoardHeader board={selectedBoard} />
-                <BoardNav board={selectedBoard} />
-                <BoardActions board={selectedBoard} />
+                <BoardHeader  />
+                <BoardNav board={board} />
+                <BoardActions board={board} />
                 <Switch className="board-switch-container">
-                    <Route path="/board/:boardId?/kanban" >
+                    <Route path="/board/:boardId/kanban" >
                         <Kanban />
                     </Route>
-                    <Route path="/board/:boardId?/dashboard">
+                    <Route path="/board/:boardId/dashboard">
                         <Dashboard />
                     </Route>
                     <Route path="/board/:boardId/board">
-                        <GroupList board={selectedBoard} />
+                        <GroupList board={board} />
                     </Route>
 
                 </Switch>
@@ -73,7 +55,7 @@ export function __BoardArea(props) {
 function mapStateToProps({ boardModule }) {
     return {
         boards: boardModule.boards,
-        selectedBoard: boardModule.selectedBoard
+        board: boardModule.selectedBoard
     }
 }
 

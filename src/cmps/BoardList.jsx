@@ -5,7 +5,7 @@ import Popper from '@mui/material/Popper';
 import { useState, useEffect } from 'react'
 
 import { BoardPreview } from './BoardPreview';
-import { DropDownMenu } from './dynamicCmps/DropDownMenu'
+
 
 import { loadBoards, } from '../store/board.action'
 
@@ -17,7 +17,7 @@ function _BoardList(props) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isBoardListOpen, toggleBoardList] = useState(true)
 
-    const [isMenuOpen, toggleMenu] = useState(true)
+  
 
     useEffect(() => {
         props.loadBoards()
@@ -56,37 +56,20 @@ function _BoardList(props) {
                 <span className='fa-solid plus'></span>
                 <span> Add</span>
             </div>
-            <div className='filter-boards' onClick={() => { toggleMenu(!isMenuOpen) }}>
+            <div className='filter-boards' >
                 <span className='fa-solid filter'></span>
                 <span> Filter</span>
+            
             </div>
 
             <div className='break-line' ></div>
 
             <div className='boards-container'>
                 {boards.map(board => {
-                    return < BoardPreview key={board._id} board={board}/>
+                    return < BoardPreview key={board._id} board={board} />
                 })}
             </div>
-            {isMenuOpen && (
-                <div className="menu-pos">
 
-                    <DropDownMenu>
-                        <div>
-                            <span className="fa edit-hollow"></span>
-                            <span>Rename Board</span>
-                        </div>
-                        <div>
-                            <span className="fa copy"></span>
-                            <span>Duplicate Board</span>
-                        </div>
-                        <div>
-                            <span className="fa trash"></span>
-                            <span>Delete</span>
-                        </div>
-                    </DropDownMenu>
-                </div>
-            )}
 
         </section>
 

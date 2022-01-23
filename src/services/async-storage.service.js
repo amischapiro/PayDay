@@ -205,7 +205,8 @@ function _createBoard(_id = _makeId(), title) {
                                 title: "Done",
                                 color: "#00c875"
                             },
-                            timeline: [null, null]
+                            timeline: [null, null],
+                            number: null
                         }
                     },
                     {
@@ -229,7 +230,8 @@ function _createBoard(_id = _makeId(), title) {
                                 title: "Working on it",
                                 color: "#fdab3d"
                             },
-                            timeline: [null, null]
+                            timeline: [null, null],
+                            number: null
                         }
                     }
                 ],
@@ -260,7 +262,8 @@ function _createBoard(_id = _makeId(), title) {
                                 title: "Stuck",
                                 color: "#e2445c"
                             },
-                            timeline: [null, null]
+                            timeline: [null, null],
+                            number: null
                         }
                     },
                     {
@@ -284,7 +287,8 @@ function _createBoard(_id = _makeId(), title) {
                                 title: "Ready for review",
                                 color: "#a25ddc"
                             },
-                            timeline: [null, null]
+                            timeline: [null, null],
+                            number: null
                         }
                     }
                 ],
@@ -310,7 +314,8 @@ function _createBoard(_id = _makeId(), title) {
             "status-picker",
             "member-picker",
             "priority-picker",
-            'timeline-picker'
+            'timeline-picker',
+            'number-picker'
         ]
     }
 

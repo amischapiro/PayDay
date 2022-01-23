@@ -46,6 +46,13 @@ export function _Story(props) {
 		const updatedBoard = await updateBoard(newBoard)
 	}
 
+	// const addStory = async (storyToUpdate) => {
+	// 	newBoard.groups[groupIdx].stories.push(storyToUpdate)
+	// 	setNewBoard(newBoard)
+	// 	props.onUpdateBoard(newBoard)
+	// 	// const updatedBoard = await updateBoard(newBoard)
+	// }
+
 	const onUpdateStory = async (dataType, data) => {
 		const newStory = { ...story }
 		let newData;
@@ -60,7 +67,7 @@ export function _Story(props) {
 				newStory.storyData.priority = newData
 				break;
 			case 'ADD_MEMBER':
-				if(newStory.storyData.members.some(member => {
+				if (newStory.storyData.members.some(member => {
 					return member._id === data;
 				})) return;
 				newData = await boardService.getMemberById(board._id, data);
@@ -70,6 +77,9 @@ export function _Story(props) {
 				newData = await boardService.updateTimeline(data);
 				newStory.storyData.timeline = newData;
 				// console.log('Story.jsx 💤 69: ', newStory.storyData.timeline);
+				break;
+			case 'CHANGE_NUMBER':
+				newStory.storyData.number = data;
 				break;
 			default:
 				break;
@@ -86,7 +96,7 @@ export function _Story(props) {
 					<div className="story-editor">
 						{isTitleEditOn ?
 							<form onSubmit={onSubmitTitle}>
-								<input ref={titleRef} type="text" onBlur={onSubmitTitle} 
+								<input ref={titleRef} type="text" onBlur={onSubmitTitle}
 									value={newStoryTitle.title} name="title" onChange={handleChange} />
 							</form> : <div className="story-title">{story.title}</div>}
 						{!isTitleEditOn && <button onClick={() => toggleTitleEdit(!isTitleEditOn)} className="edit-title">Edit</button>}
