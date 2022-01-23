@@ -14,7 +14,7 @@ export function LinkCmp({ story, onUpdate }) {
 
 	const onAddLink = async ({ target }) => {
 		const value = target.value;
-        // console.log('LinkCmp.jsx 💤 17: ', value);
+		// console.log('LinkCmp.jsx 💤 17: ', value);
 		if (!value.name && !value.url) return;
 
 		await onUpdate('CHANGE_LINK', value);
@@ -30,8 +30,8 @@ export function LinkCmp({ story, onUpdate }) {
 
 	const handleChange = ({ target }) => {
 		const { value } = target;
-        if(target.name === 'name') setName(value);
-        else setUrl(value);
+		if (target.name === 'name') setName(value);
+		else setUrl(value);
 	};
 
 	const onFocusInput = () => {
@@ -46,6 +46,10 @@ export function LinkCmp({ story, onUpdate }) {
 		setAnchorEl(null);
 	};
 
+	const handleLink = (ev) => {
+		ev.stopPropagation();
+	};
+
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
 
@@ -56,7 +60,16 @@ export function LinkCmp({ story, onUpdate }) {
 				variant="contained"
 				onClick={handleClick}
 				className="link-button">
-				<a href={link.url || '#'}>{name}</a>
+				<a
+					href={'http://' + url || '#'}
+					onClick={(ev) => handleLink(ev)}
+					// target="_blank"
+                    // rel="noreferrer"
+                    // rel="noopener"
+                    // aria-label={name}
+                    >
+					{name}
+				</a>
 			</Button>
 			<Popover
 				id={id}
@@ -68,7 +81,9 @@ export function LinkCmp({ story, onUpdate }) {
 					horizontal: 'left',
 				}}>
 				<div className="link-popover">
-					<form onSubmit={(ev) => handleUpdate(ev)} onBlur={(ev) => handleUpdate(ev)}>
+					<form
+						onSubmit={(ev) => handleUpdate(ev)}
+						onBlur={(ev) => handleUpdate(ev)}>
 						<Typography className="link-editor">
 							<input
 								autoComplete="off"
@@ -80,7 +95,7 @@ export function LinkCmp({ story, onUpdate }) {
 								value={url}
 								onChange={handleChange}
 								ref={inputEl}
-                                onSubmit={(ev) => handleUpdate(ev)}
+								onSubmit={(ev) => handleUpdate(ev)}
 							/>
 						</Typography>
 						<Typography className="link-editor">
@@ -94,7 +109,7 @@ export function LinkCmp({ story, onUpdate }) {
 								value={name}
 								onChange={handleChange}
 								ref={inputEl}
-                                onSubmit={(ev) => handleUpdate(ev)}
+								onSubmit={(ev) => handleUpdate(ev)}
 							/>
 						</Typography>
 					</form>
