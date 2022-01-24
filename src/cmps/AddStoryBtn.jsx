@@ -9,14 +9,7 @@ import Button from '@mui/material/Button';
 
 export function AddStoryBtn(props) {
 
-    const { board, updateBoard } = props
-
-    // const newBoard = { ...board };
-    // const groupId = group.id;
-    // const groupIdx = board.groups.findIndex((group) => group.id === groupId);
-    // const storyId = story.id;
-    // const storyIdx = group.stories.findIndex((story) => story.id === storyId);
-
+    const { board, updateBoard, onAddGroup, onAddStory } = props
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -55,11 +48,12 @@ export function AddStoryBtn(props) {
                 }}>
                 <Typography className="drop-down add-story-menu">
 
-                    <span>
+                    <span onClick={onAddStory} >
                         <span className="fa-solid plus"></span>
                         <span>New Story</span>
                     </span>
-                    <span>
+                    
+                    <span onClick={onAddGroup}>
                         <span className="fa-solid th-list"></span>
                         <span>New group of stories</span>
                     </span>

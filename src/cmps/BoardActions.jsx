@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
-import {utilService} from '../services/util.service'
+import { utilService } from '../services/util.service'
 
 import { AddStoryBtn } from './AddStoryBtn'
 
@@ -8,42 +8,43 @@ function _BoardActions({ board, updateBoard }) {
 
     const [isSearchOpen, setSearchOpen] = useState(false)
 
-    const onAddStory = async() => {
+    const onAddStory = async () => {
         const newStory = utilService.createStory();
-        const newBoard = {...board};
+        const newBoard = { ...board };
 
         if (
-			!newBoard.groups[0].stories ||
-			!newBoard.groups[0].stories.length
-		)
-			newBoard.groups[0].stories = [newStory];
-		else
-			newBoard.groups[0].stories.unshift(newStory)
+            !newBoard.groups[0].stories ||
+            !newBoard.groups[0].stories.length
+        )
+            newBoard.groups[0].stories = [newStory];
+        else
+            newBoard.groups[0].stories.unshift(newStory)
 
-		await updateBoard(newBoard);    
+        await updateBoard(newBoard);
     }
 
-    const onAddGroup = async() => {
+    const onAddGroup = async () => {
         const newGroup = utilService.createEmptyGroup();
-        const newBoard = {...board};
+        const newBoard = { ...board };
 
         if (
-			!newBoard.groups ||
-			!newBoard.groups.length
-		)
-			newBoard.groups = [newGroup];
-		else
-			newBoard.groups.unshift(newGroup)
+            !newBoard.groups ||
+            !newBoard.groups.length
+        )
+            newBoard.groups = [newGroup];
+        else
+            newBoard.groups.unshift(newGroup)
 
-		await updateBoard(newBoard);
+        await updateBoard(newBoard);
     }
 
     return (
         <div className="board-actions">
             <div className='main-actions'>
                 <div className="new-story">
-                    <span>New Story</span>
-                        <AddStoryBtn board={board} updateBoard={updateBoard} />
+                    <span onClick={onAddStory}>New Story</span>
+                    <AddStoryBtn board={board} updateBoard={updateBoard}
+                        onAddGroup={onAddGroup} onAddStory={onAddStory} />
                 </div>
 
                 <div onClick={() => setSearchOpen(true)}
