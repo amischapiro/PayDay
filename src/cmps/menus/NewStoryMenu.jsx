@@ -7,7 +7,7 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-export function AddStoryBtn(props) {
+export function NewStoryMenu(props) {
 
     const { board, updateBoard, onAddGroup, onAddStory } = props
 
@@ -46,7 +46,7 @@ export function AddStoryBtn(props) {
                     vertical: 'bottom',
                     horizontal: 'left',
                 }}>
-                <Typography className="drop-down add-story-menu">
+                <Typography className="drop-down">
 
                     <span onClick={onAddStory} >
                         <span className="fa-solid plus"></span>

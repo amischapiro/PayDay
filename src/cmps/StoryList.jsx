@@ -2,12 +2,14 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 import { Story } from '../cmps/Story';
 import { AddStory } from './AddStory';
-import { StoryMenuBtn } from './StoryMenuBtn';
+import { StoryMenu } from './menus/StoryMenu';
 
-import { useEffect, useState } from 'react';
 
 function _StoryList(props) {
 	const { group, groupNum, board, updateBoard } = props;
+
+	// const [isTitleEditOn, toggleTitleEdit] = useState(false)
+	// const [titleInput, setTitleInput] = useState(group.title)
 
 	return (
 		<div className="group-container">
@@ -29,7 +31,7 @@ function _StoryList(props) {
 											{...provided.draggableProps}>
 											<span {...provided.dragHandleProps}>
 												<div className="story-main-wrapper">
-													<StoryMenuBtn updateBoard={updateBoard} board={board}
+													<StoryMenu updateBoard={updateBoard} board={board}
 														group={group} story={story} />
 
 													<Story

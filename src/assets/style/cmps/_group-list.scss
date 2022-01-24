@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: space-between;
 	cursor: pointer;
-	margin-inline-start: 1.425rem;
+	// margin-inline-start: 1.425rem;
 
 	.header-add-col {
 		width: 38px;
@@ -24,6 +24,7 @@
 		flex-direction: row;
 	}
 
+
 	.cell {
 		// margin: 0 0 0 1px;
 		display: flex;
@@ -42,12 +43,12 @@
 
 		&:hover {
 			background-color: #f5f6f8;
-			transition: .1s ease;
+			transition: 0.1s ease;
 			.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root.col-dragger {
 				visibility: visible;
 			}
 		}
-		
+
 		&:active {
 			.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root.col-dragger {
 				visibility: visible;
@@ -63,7 +64,7 @@
 		height: 100%;
 		cursor: move;
 		// transition: .1s ease;
-		
+
 		// &:hover {
 		// 	display: block;
 		// }
@@ -116,14 +117,38 @@
 		// border: 1px solid #fff;
 		width: 406px;
 		display: flex;
+		justify-content: flex-start;
+		align-items: center;
 		font-size: 18px;
 
+		.MuiButton-containedPrimary.group-menu-btn {
+			display: block;
+			background-color: transparent;
+			padding: 0;
+			min-width: unset;
+			line-height: 1.2rem;
+			font-size: unset;
+			box-shadow: none;
+			margin-inline-end: 0.4rem;
+			
+			&:hover {
+				background-color: transparent;
+				box-shadow: none;
+			}
+			.fa-solid.caret-down {
+				font-size: 0.75rem;
+				padding: 0.7px 3px;
+				border-radius: 50%;
+				border-width: 0.5px;
+				border-style: solid;
+			}
+		}
+		
 		.drag-group {
 			color: #c4c4c4;
 			font-size: 1.2rem;
 			display: none;
 			height: 100%;
-			// padding-top:.2rem;
 			cursor: move;
 		}
 
@@ -134,7 +159,7 @@
 			font-size: 1.2rem;
 			display: none;
 			// height: 100%;
-			margin-top: 0.6rem;
+			// margin-top: 0.6rem;
 		}
 
 		&:active {
