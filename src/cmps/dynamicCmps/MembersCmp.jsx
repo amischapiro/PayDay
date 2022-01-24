@@ -3,6 +3,8 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import Avatar from '@material-ui/core/Avatar';
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
 export function MembersCmp({ story, onUpdate, boardMembers }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -36,19 +38,32 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 						alt=""
 					/> <span className="plus-members">+{members.length - 1}</span> </div>
 				) : (
-					members.map((member) => {
-						const nameArr = member.fullname.split(' ');
-						const fName = nameArr[0].split('');
-						const lName = nameArr[1].split('');
-						const initials = fName[0] + lName[0];
-						return (
-							<img
-								key={member._id}
-								src={member.imgUrl}
-								alt={initials}
-							/>
-						);
-					})
+					<AvatarGroup max={2}>
+						{members.map(member => {
+							const nameArr = member.fullname.split(' ');
+							const fName = nameArr[0].split('');
+							const lName = nameArr[1].split('');
+							const initials = fName[0] + lName[0];
+
+							return (member.imgUrl? <Avatar key={member._id} alt={initials} src={member.imgUrl}
+								style={{ width: '30px', height: '30px' }} /> : <div className='members-cmp-initials' >{initials}</div> )
+						})
+
+						}
+					</AvatarGroup>
+					// members.map((member) => {
+					// 	const nameArr = member.fullname.split(' ');
+					// 	const fName = nameArr[0].split('');
+					// 	const lName = nameArr[1].split('');
+					// 	const initials = fName[0] + lName[0];
+					// 	return (
+					// 		<img
+					// 			key={member._id}
+					// 			src={member.imgUrl}
+					// 			alt={initials}
+					// 		/>
+					// 	);
+					// })
 				)}
 			</Button>
 			<Popover
@@ -69,7 +84,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 							<Typography
 								sx={{ p: 2 }}
 								className="member-picker"
-								onClick={() =>{
+								onClick={() => {
 									onUpdate('ADD_MEMBER', member._id)
 									handleClose()
 								}

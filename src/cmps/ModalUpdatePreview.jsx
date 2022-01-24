@@ -5,7 +5,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
 
-export const ModalUpdatePreview = ({comment, onRemoveComment,getInitials })=>{
+export const ModalUpdatePreview = ({comment, onRemoveComment,getInitials,imgUrl })=>{
 
     return (
         <div className="update-preview">
@@ -21,6 +21,7 @@ export const ModalUpdatePreview = ({comment, onRemoveComment,getInitials })=>{
             </div>
             <span className="fa-solid times" onClick={() => onRemoveComment(comment)}></span>  
             <span className="comment-txt" >{comment.txt}</span>
+            {imgUrl && <img className="uploaded-img" src={imgUrl} alt='img'></img> }
         </div>
     )
 }

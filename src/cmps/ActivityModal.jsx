@@ -7,7 +7,7 @@ import { storageService } from '../services/async-storage.service'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { ModalUpdatePreview } from './ModalUpdatePreview'
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-// import { cloudinaryService } from '../../services/cloudinaryService'
+import { cloudinaryService } from '../services/cloudinary.service'
 
 export function _ActivityModal(props) {
 
@@ -22,21 +22,21 @@ export function _ActivityModal(props) {
 
     }
 
-    // const [img, setImg] = useState({
-    //     imgUrl: null,
-    //     height: '40px',
-    //     width: '100%',
-    //     isUploading: false
-    // })
-    // // const dispatch = useDispatch()
+    const [img, setImg] = useState({
+        imgUrl: null,
+        height: '40px',
+        width: '100%',
+        isUploading: false
+    })
+    // const dispatch = useDispatch()
 
-    // const uploadImg = async (ev) => {
-    //     setImg({ ...img, isUploading: true, height: 500, width: 500 })
-    //     const { secure_url, height, width } = await cloudinaryService.uploadImg(ev)
-    //     setImg({ isUploading: false, imgUrl: secure_url, height, width })
-    // }
+    const uploadImg = async (ev) => {  
+        setImg({ ...img, isUploading: true, height: 500, width: 500 })
+        const { secure_url, height, width } = await cloudinaryService.uploadImg(ev)
+        setImg({ isUploading: false, imgUrl: secure_url, height, width })
+    }
 
-    // add this to input in render  onChange={uploadImg}
+    // add this to input in render 
 
     const [isActivityShown, setActivityToggle] = useState(null)
     const [comment, setComment] = useState('')
@@ -64,14 +64,13 @@ export function _ActivityModal(props) {
         return initials
     }
 
-    const onAddComment = (ev) => {
-        
-        
+    const onAddComment = (ev) => {   
         ev.preventDefault()
+        if(!comment&&!img.imgUrl) return
         const newComment = {
             id: utilService.makeId(),
             txt: comment,
-            // imgUrl: img.imgUrl,
+            imgUrl: img.imgUrl,
             createdAt: Date.now(),
             //change to logged in user
             byMember: storageService.user(),
@@ -81,7 +80,7 @@ export function _ActivityModal(props) {
         story.comments.unshift(newComment)
         onUpdateStory(story)
         setComment('')
-        // setImg({ ...img, imgUrl: null, height: '40px', width: '100%' })
+        setImg({ ...img, imgUrl: null, height: '40px', width: '40px' })
     }
 
     const getCurrStory = (commentId) => {
@@ -123,6 +122,7 @@ export function _ActivityModal(props) {
 
     const handleChange = ({ target }) => {
         const { value } = target
+        if(value===' '||value==='\n') return
         setComment(value)
     }
 
@@ -153,14 +153,15 @@ export function _ActivityModal(props) {
                     <form onSubmit={(ev)=>onAddComment(ev)}>
                         <div className="update-input" >
                             <textarea name="update" id="" cols="30" rows="2" placeholder='Write an update...' value={comment} onChange={handleChange}></textarea>
+                            {img.imgUrl&& <img src={img.imgUrl}  />}
                             <div className='modal-update-btns' ><div className='file-input-container'>
-                                <AttachFileIcon className='file-icon' /><input className='file-input' type="file" accept='img/*' />Add file</div>
+                                <AttachFileIcon className='file-icon' /><input className='file-input' type="file" accept='img/*' onChange={uploadImg} />Add file</div>
                                 <button >Update</button>
                             </div>
                         </div>
                     </form>
                     <div className='updates-list' >
-                    {story.comments.map(comment => <ModalUpdatePreview key={comment.id} comment={comment} onRemoveComment={onRemoveComment} getInitials={getInitials}/>)}
+                    {story.comments.map(comment => <ModalUpdatePreview key={comment.id} comment={comment} onRemoveComment={onRemoveComment} getInitials={getInitials} imgUrl={comment.imgUrl}/>)}
                     </div>
                 </React.Fragment>}
             {isActivityShown && <ul>

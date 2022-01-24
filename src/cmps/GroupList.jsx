@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import { StoryList } from './StoryList';
-import { DynamicColHeaders } from './DynamicColHeaders';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import UnfoldLessRoundedIcon from '@mui/icons-material/UnfoldLessRounded';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 
+import { StoryList } from './StoryList';
+import { DynamicColHeaders } from './DynamicColHeaders';
+import { GroupMenu } from './menus/GroupMenu';
+import { GroupTitle } from './GroupTitle';
+
 export class _GroupList extends Component {
+
+
 	onDragEnd = async (result) => {
 		const { board } = this.props;
 		const { destination, source, draggableId, type } = result;
@@ -52,10 +57,11 @@ export class _GroupList extends Component {
 
 	render() {
 		const { board, updateBoard } = this.props;
+
 		return (
 			<DragDropContext
 				onDragEnd={this.onDragEnd}
-				// onDragUpdate={this.onDragUpdate}
+			// onDragUpdate={this.onDragUpdate}
 			>
 				<Droppable droppableId="all-groups" type="group">
 					{(provided, snapshot) => (
@@ -76,14 +82,15 @@ export class _GroupList extends Component {
 											<div className="group-header">
 												<div className="header-info-container">
 													<div className="group-name-container">
+														<GroupMenu board={board} group={group} updateBoard={updateBoard}
+															groupColor={group.style.backgroundColor} />
 														<UnfoldLessRoundedIcon className="collapse-group" />
 														<span
 															{...provided.dragHandleProps}>
 															<DragIndicatorIcon className="drag-group" />
 														</span>
-														<div style={{ color: group.style.backgroundColor }}>
-															{group.title}
-														</div>
+														<GroupTitle board={board} group={group}
+															updateBoard={updateBoard} />
 													</div>
 													<DynamicColHeaders
 														board={board}

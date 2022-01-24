@@ -33,4 +33,16 @@
     margin-inline-end: 0.5rem;
     // padding-bottom: 2px;
   }
+
+  // ONLY FOR GROUP MENU
+
+  &.group-drop-down-menu {
+    .group-color-indicator {
+      width: 0.875rem;
+      height: 0.875rem;
+      border-radius: 50%;
+      transform: translateX(-0.0625rem);
+      margin-inline-end: 0.55rem;
+    }
+  }
 }

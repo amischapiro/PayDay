@@ -8,6 +8,21 @@
     width: 70vh;
     transition: all 0.5s;
     box-shadow: 14px 0px 20px 20px #000000;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 15px;
+      }
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey; 
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #0073ea; 
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: #0252a8; 
+      }
     .btn-close-modal{
         background-color: inherit;
         border: none;
@@ -31,6 +46,11 @@
                 outline: none;
             }
         }
+        img{
+            height: 40px;
+            width: 40px;
+            border: none;
+        }
     }
     &.open{
         right: 0;
@@ -41,17 +61,20 @@
     width: 80%;
     margin-left: 10%;
     justify-content: space-between;
-    .file-input{
-        // cursor: pointer;
-        position: absolute;
-        opacity: 0;
-    }
     .file-input-container{
         position: relative;
         width: 6rem;
         height: 2rem;
         color: #0073ea ;
-        cursor: pointer;
+        // cursor: pointer;
+    }
+    .file-input{
+        // cursor: pointer;
+        position: absolute;
+        opacity: 0;
+        top: 0.25rem;
+        left: 0;
+        
     }
     button{
         background-color:#0073ea ;

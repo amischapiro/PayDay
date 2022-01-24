@@ -1,0 +1,25 @@
+.group-title {
+    font-size: 1.125rem;
+    line-height: 1.5em;
+    font-weight: 200;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 0 0.2rem;
+    &:hover {
+        border: 1px dashed lightgrey;
+    }
+}
+
+.group-title-input {
+    width: 100%;
+    border: 1px dashed lightgrey;
+    border-radius: 4px;
+    font-size: 1.125rem;
+    line-height: 1.5em;
+    font-weight: normal;
+    padding: 0 0.2rem;
+
+    &:focus-visible {
+        outline: none;
+    }
+}

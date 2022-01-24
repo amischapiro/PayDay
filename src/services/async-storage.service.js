@@ -192,6 +192,7 @@ function _createBoard(_id = _makeId(), title) {
                             {
                                 id:'c232',
                                 txt: 'change the label',
+                                imgUrl:null,
                                 createdAt:1611214354355,
                                 byMember:{
                                     _id:'u909',
@@ -234,6 +235,7 @@ function _createBoard(_id = _makeId(), title) {
                             {
                                 id:'c234',
                                 txt: 'change the name',
+                                imgUrl:null,
                                 createdAt:1611214354355,
                                 byMember:{
                                     _id:'u909',
@@ -284,6 +286,7 @@ function _createBoard(_id = _makeId(), title) {
                             {
                                 id:'c252',
                                 txt: 'change the board',
+                                imgUrl:null,
                                 createdAt:1611214354355,
                                 byMember:{
                                     _id:'u909',
@@ -326,6 +329,7 @@ function _createBoard(_id = _makeId(), title) {
                             {
                                 id:'c235',
                                 txt: 'change the game',
+                                imgUrl:null,
                                 createdAt:1611214354355,
                                 byMember:{
                                     _id:'u909',
