@@ -64,7 +64,22 @@
                     border-radius: 4px;
                 }
             }
+
+            .MuiButton-containedPrimary.add-story-menu {
+                display: block;
+                background-color: transparent;
+                padding: 0;
+                min-width: unset;
+                font-size: unset;
+                box-shadow: none;
+
+                &:hover {
+                    background-color: transparent;
+                    box-shadow: none;
+                }
+            }
             .fa-solid.chevron-down {
+                font-size: 0.7rem;
                 color: white;
             }
         }
@@ -74,7 +89,7 @@
                 display: flex;
                 align-items: center;
                 width: 12rem;
-                
+
                 border: 1px solid #0085ff;
                 &:hover {
                     background-color: white;
@@ -89,7 +104,6 @@
                 }
             }
         }
-
 
         .filter {
             display: flex;

@@ -27,7 +27,6 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
             storyId: null
         }
         await setStory(story)
-
     }
 
 
