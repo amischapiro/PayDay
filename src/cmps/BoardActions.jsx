@@ -1,16 +1,46 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
+import {utilService} from '../services/util.service'
 
 function _BoardActions({ board, updateBoard }) {
 
     const [isSearchOpen, setSearchOpen] = useState(false)
 
+    const onAddStory = async() => {
+        const newStory = utilService.createStory();
+        const newBoard = {...board};
+
+        if (
+			!newBoard.groups[0].stories ||
+			!newBoard.groups[0].stories.length
+		)
+			newBoard.groups[0].stories = [newStory];
+		else
+			newBoard.groups[0].stories.unshift(newStory)
+
+		await updateBoard(newBoard);    
+    }
+
+    const onAddGroup = async() => {
+        const newGroup = utilService.createEmptyGroup();
+        const newBoard = {...board};
+
+        if (
+			!newBoard.groups ||
+			!newBoard.groups.length
+		)
+			newBoard.groups = [newGroup];
+		else
+			newBoard.groups.unshift(newGroup)
+
+		await updateBoard(newBoard);
+    }
+
     return (
         <div className="board-actions">
             <div className='main-actions'>
-
                 <div className="new-story">
-                    <span>New Story</span>
+                    <span onClick={() => onAddStory()}>New Story</span>
                     <span className="fa-solid chevron-down"></span>
                 </div>
 

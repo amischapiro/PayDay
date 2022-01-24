@@ -7,7 +7,8 @@ export const utilService = {
     formatPrice,
     formatDate,
     groupColorPicker,
-    createStory
+    createStory,
+    createEmptyGroup
 }
 
 function makeId(length = 6) {
@@ -69,7 +70,7 @@ function groupColorPicker(colorIdx = getRandomIntInclusive(0, 17)) {
 }
 
 
-function createStory(title = '') {
+function createStory(title = 'New Story') {
     const story = {
         id: makeId(),
         title,
@@ -91,6 +92,17 @@ function createStory(title = '') {
     }
 
     return story;
+}
+
+function createEmptyGroup(title = 'New Group') {
+    const group = {
+        id: makeId(),
+        title,
+        style: { backgroundColor: groupColorPicker() },
+        stories: [],
+    };
+
+    return group;
 }
 
 // const grid = 6;

@@ -65,7 +65,8 @@ export class DynamicColHeaders extends Component {
 					<Draggable
 						draggableId={`member-picker_${id}`}
 						index={index}
-						type="column">
+						type="column"
+						key={`member-picker_${id}`}>
 						{(provided, snapshot) => (
 							<div
 								className={
@@ -75,10 +76,7 @@ export class DynamicColHeaders extends Component {
 								}
 								{...provided.draggableProps}
 								ref={provided.innerRef}
-								style={{
-									width: '97px',
-									backgroundColor: 'inherit',
-								}}>
+								>
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
@@ -95,7 +93,8 @@ export class DynamicColHeaders extends Component {
 					<Draggable
 						draggableId={`status-picker_${id}`}
 						index={index}
-						type="column">
+						type="column"
+						key={`status-picker_${id}`}>
 						{(provided, snapshot) => (
 							<div
 								className={
@@ -105,10 +104,7 @@ export class DynamicColHeaders extends Component {
 								}
 								{...provided.draggableProps}
 								ref={provided.innerRef}
-								style={{
-									width: '117px',
-									backgroundColor: '#f5f6f8',
-								}}>
+								>
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
@@ -125,7 +121,8 @@ export class DynamicColHeaders extends Component {
 					<Draggable
 						draggableId={`priority-picker_${id}`}
 						index={index}
-						type="column">
+						type="column"
+						key={`priority-picker_${id}`}>
 						{(provided, snapshot) => (
 							<div
 								className={
@@ -135,10 +132,7 @@ export class DynamicColHeaders extends Component {
 								}
 								{...provided.draggableProps}
 								ref={provided.innerRef}
-								style={{
-									width: '92px',
-									backgroundColor: 'inherit',
-								}}>
+								>
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
@@ -155,7 +149,8 @@ export class DynamicColHeaders extends Component {
 					<Draggable
 						draggableId={`timeline-picker_${id}`}
 						index={index}
-						type="column">
+						type="column"
+						key={`timeline-picker_${id}`}>
 						{(provided, snapshot) => (
 							<div
 								className={
@@ -165,10 +160,7 @@ export class DynamicColHeaders extends Component {
 								}
 								{...provided.draggableProps}
 								ref={provided.innerRef}
-								style={{
-									width: '180px',
-									backgroundColor: 'inherit',
-								}}>
+								>
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
@@ -185,7 +177,8 @@ export class DynamicColHeaders extends Component {
 					<Draggable
 						draggableId={`number-picker_${id}`}
 						index={index}
-						type="column">
+						type="column"
+						key={`number-picker_${id}`}>
 						{(provided, snapshot) => (
 							<div
 								className={
@@ -194,11 +187,7 @@ export class DynamicColHeaders extends Component {
 										: 'cell number'
 								}
 								{...provided.draggableProps}
-								ref={provided.innerRef}
-								style={{
-									width: '125px',
-									backgroundColor: 'inherit',
-								}}>
+								ref={provided.innerRef}>
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
@@ -215,7 +204,8 @@ export class DynamicColHeaders extends Component {
 					<Draggable
 						draggableId={`link-picker_${id}`}
 						index={index}
-						type="column">
+						type="column"
+						key={`link-picker_${id}`}>
 						{(provided, snapshot) => (
 							<div
 								className={
@@ -223,12 +213,9 @@ export class DynamicColHeaders extends Component {
 										? 'cell link isDragging'
 										: 'cell link'
 								}
-								{...provided.draggableProps}
 								ref={provided.innerRef}
-								style={{
-									width: '140px',
-									backgroundColor: 'inherit',
-								}}>
+								{...provided.draggableProps}
+								>
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
@@ -260,8 +247,7 @@ export class DynamicColHeaders extends Component {
 							? 'column-dnd-container isDragging'
 							: 'column-dnd-container'
 					}
-					ref={provided.innerRef}
-					{...provided.droppableProps}>
+					ref={provided.innerRef}>
 					{board.cmpsOrder.map((cmp, index) => {
 						return <this.DynamicGroupHeader key={index} cmp={cmp} index={index} id={group.id} />
 					})}
