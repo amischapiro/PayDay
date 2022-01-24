@@ -80,7 +80,7 @@ export class DynamicColHeaders extends Component {
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
-									<DragIndicatorIcon />
+									<DragIndicatorIcon className="col-dragger" />
 								</span>
 								<span>People</span>
 								<span className="right-border"></span>
@@ -108,7 +108,7 @@ export class DynamicColHeaders extends Component {
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
-									<DragIndicatorIcon />
+									<DragIndicatorIcon className="col-dragger" />
 								</span>
 								<span>Status</span>
 								<span className="right-border"></span>
@@ -136,7 +136,7 @@ export class DynamicColHeaders extends Component {
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
-									<DragIndicatorIcon />
+									<DragIndicatorIcon className="col-dragger" />
 								</span>
 								<span>Priority</span>
 								<span className="right-border"></span>
@@ -164,7 +164,7 @@ export class DynamicColHeaders extends Component {
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
-									<DragIndicatorIcon />
+									<DragIndicatorIcon className="col-dragger" />
 								</span>
 								<span>Timeline</span>
 								<span className="right-border"></span>
@@ -191,7 +191,7 @@ export class DynamicColHeaders extends Component {
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
-									<DragIndicatorIcon />
+									<DragIndicatorIcon className="col-dragger" />
 								</span>
 								<span>Estimated SP</span>
 								<span className="right-border"></span>
@@ -219,7 +219,7 @@ export class DynamicColHeaders extends Component {
 								<span
 									className="left-border"
 									{...provided.dragHandleProps}>
-									<DragIndicatorIcon />
+									<DragIndicatorIcon className="col-dragger" />
 								</span>
 								<span>Link to Design</span>
 								<span className="right-border"></span>

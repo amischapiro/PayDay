@@ -33,27 +33,36 @@
 		font-size: 0.875rem;
 		font-weight: 400;
 		padding-top: 5px;
-		// border: 1px solid #fff;
+		border-left: 1px solid #fff;
+		border-right: 1px solid #fff;
+
+		&:-moz-drag-over {
+			cursor: -moz-grab;
+		}
+
 		&:hover {
 			background-color: #f5f6f8;
-			.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root {
-				display: block;
+			transition: .1s ease;
+			.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root.col-dragger {
+				visibility: visible;
 			}
 		}
 		
 		&:active {
-			.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root {
-				display: block;
+			.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root.col-dragger {
+				visibility: visible;
 			}
 		}
 	}
 
-	.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root {
+	.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root.col-dragger {
 		color: #323338;
-		font-size: 1.2rem;
-		display: none;
+		font-size: 1rem;
+		// display: none;
+		visibility: hidden;
 		height: 100%;
 		cursor: move;
+		// transition: .1s ease;
 		
 		// &:hover {
 		// 	display: block;
