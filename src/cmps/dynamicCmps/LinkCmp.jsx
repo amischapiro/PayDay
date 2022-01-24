@@ -12,18 +12,18 @@ export function LinkCmp({ story, onUpdate }) {
 	const [url, setUrl] = useState(link.url || '');
 	const inputEl = useRef();
 
-	const onAddLink = async ({ target }) => {
-		const value = target.value;
-		if (!value.name && !value.url) return;
-
-		await onUpdate('CHANGE_LINK', value);
-		setName(value.name || '');
-		setUrl(value.url || '');
+	const onAddLink = async () => {	
+		if (name && !url) return;
+		const data = {name, url}
+		
+		await onUpdate('CHANGE_LINK', data);
+		setName(name || '');
+		setUrl(url || '');
 	};
 
 	const handleUpdate = (ev) => {
 		if (ev.key === 'Enter' || ev.type === 'blur') {
-			onAddLink(ev);
+			onAddLink();
 		}
 	};
 
@@ -60,7 +60,7 @@ export function LinkCmp({ story, onUpdate }) {
 				onClick={handleClick}
 				className="link-button">
 				<a
-					href={'http://' + url || '#'}
+					href={!url ? '#' : (url.slice(0,8) === 'https://' || url.slice(0,7) === 'http://') ? url : 'https://' + url}
 					onClick={(ev) => handleLink(ev)}
 					// target="_blank"
                     // rel="noreferrer"
@@ -84,6 +84,7 @@ export function LinkCmp({ story, onUpdate }) {
 						onSubmit={(ev) => handleUpdate(ev)}
 						onBlur={(ev) => handleUpdate(ev)}>
 						<Typography className="link-editor">
+							Web address
 							<input
 								autoComplete="off"
 								name="url"
@@ -98,6 +99,7 @@ export function LinkCmp({ story, onUpdate }) {
 							/>
 						</Typography>
 						<Typography className="link-editor">
+							Text to display
 							<input
 								autoComplete="off"
 								name="name"
