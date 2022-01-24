@@ -19,7 +19,7 @@ export function BoardArea({ board, updateBoard }) {
             <div className='container'>
                 <BoardHeader board={board} updateBoard={updateBoard} />
                 <BoardNav board={board} />
-                <BoardActions board={board} />
+                <BoardActions board={board} updateBoard={updateBoard} />
                 <Switch className="board-switch-container">
                     <Route path="/board/:boardId/kanban" >
                         <Kanban />

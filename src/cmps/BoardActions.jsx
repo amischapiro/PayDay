@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 
-function _BoardActions() {
+function _BoardActions({ board, updateBoard }) {
+
     const [isSearchOpen, setSearchOpen] = useState(false)
-
-    const searchRef = React.createRef()
-
-    useEffect(() => {
-        if (isSearchOpen) searchRef.current.focus()
-    }, [isSearchOpen])
 
     return (
         <div className="board-actions">
@@ -24,8 +19,8 @@ function _BoardActions() {
                     <span className="fa-solid search"></span>
                     {!isSearchOpen && <span>Search</span>}
                     {isSearchOpen && (
-                        <input ref={searchRef} type="text" placeholder="Search" 
-                            onBlur={() => setSearchOpen(false)}
+                        <input type="text" placeholder="Search"
+                            onBlur={() => setSearchOpen(false)} autoFocus={true}
                         />
                     )}
                 </div>
