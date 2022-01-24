@@ -24,6 +24,7 @@ export function BoardHeader({ board, updateBoard }) {
 
     const handleChange = ({ target }) => {
         const { name, value } = target
+        if (value === ' ' || value === '\n') return
         setEditBoard({ ...editBoard, [name]: value })
     }
 
@@ -32,15 +33,13 @@ export function BoardHeader({ board, updateBoard }) {
         toggleTitleEdit(false)
         const boardToUpdate = { ...board, title: editBoard.title }
         await updateBoard(boardToUpdate)
-        // setSelectedBoard(updatedBoard)
     }
 
     const onSubmitDesc = async (ev) => {
         ev.preventDefault()
         toggleDescEdit(false)
         const boardToUpdate = { ...board, desc: editBoard.desc }
-        const updatedBoard = await updateBoard(boardToUpdate)
-        // setSelectedBoard(updatedBoard)
+        await updateBoard(boardToUpdate)
     }
 
 

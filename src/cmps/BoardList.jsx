@@ -68,7 +68,8 @@ function _BoardList({ boards, updateBoard, removeBoard }) {
 
             <div className='boards-container'>
                 {boards.map(board => {
-                    return < BoardPreview key={board._id} board={board} updateBoard={updateBoard} removeBoard={removeBoard} />
+                    return < BoardPreview key={board._id} board={board} boards={boards}
+                        updateBoard={updateBoard} removeBoard={removeBoard} />
                 })}
             </div>
 

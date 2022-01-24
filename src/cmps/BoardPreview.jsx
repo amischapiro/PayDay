@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 
 export function __BoardPreview(props) {
 
-    const { board, removeBoard, updateBoard } = props
+    const { boards, board, removeBoard, updateBoard } = props
 
     // TODO Hover on the elliphsis
     const [isBtnsShown, toggleBtnsShown] = useState(false)
@@ -18,10 +18,12 @@ export function __BoardPreview(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
+        event.stopPropagation()
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = (event) => {
+        event.stopPropagation()
         setAnchorEl(null);
     };
 
@@ -29,11 +31,19 @@ export function __BoardPreview(props) {
     const id = open ? 'simple-popover' : undefined;
 
 
-    const onRemove = (boardId) => {
-        removeBoard(boardId)
+    const onRemove = async (ev, boardId) => {
+        ev.stopPropagation()
+        const currBoardId = props.match.params.boardId
+        if (boardId === currBoardId) goToNextBoard(currBoardId)
+        await removeBoard(boardId)
     }
 
-    const onGoTo = async () => {
+    const goToNextBoard = (currBoardId) => {
+        const nextBoard = boards.find(diffBoard => diffBoard._id !== currBoardId)
+        props.history.push(`/board/${nextBoard?._id}/board`)
+    }
+
+    const onGoTo = () => {
         props.history.push(`/board/${board._id}/board`)
     }
 
@@ -77,7 +87,7 @@ export function __BoardPreview(props) {
                         <span className="fa copy"></span>
                         <span>Duplicate Board</span>
                     </span>
-                    <span onClick={() => { onRemove(board._id) }}>
+                    <span onClick={(ev) => { onRemove(ev, board._id) }}>
                         <span className="fa trash"></span>
                         <span>Delete</span>
                     </span>
