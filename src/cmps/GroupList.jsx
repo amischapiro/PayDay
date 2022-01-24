@@ -9,11 +9,9 @@ import UnfoldLessRoundedIcon from '@mui/icons-material/UnfoldLessRounded';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 
 export class _GroupList extends Component {
-
 	onDragEnd = async (result) => {
 		const { board } = this.props;
 		const { destination, source, draggableId, type } = result;
-		// const { currBoard } = this.props;
 		if (!destination) return;
 		if (
 			destination.droppableId === source.droppableId &&
@@ -40,30 +38,31 @@ export class _GroupList extends Component {
 			board.groups.splice(source.index, 1);
 			board.groups.splice(destination.index, 0, sourceGroup);
 		}
-		// if (type === 'column') {
-		//     const idx = draggableId.indexOf('-')
-		//     const cellType = draggableId.slice(0, idx)
-		//     board.cellTypes.splice(source.index, 1);
-		//     board.cellTypes.splice(destination.index, 0, cellType)
-		// }
+		if (type === 'column') {
+			// console.log('GroupList.jsx 💤 44: ', 'col');
+			const idx = draggableId.indexOf('_');
+			const cmp = draggableId.slice(0, idx);
+			board.cmpsOrder.splice(source.index, 1);
+			board.cmpsOrder.splice(destination.index, 0, cmp);
+		}
 		const newBoard = { ...board };
 		this.props.updateBoard(newBoard);
 		// socketService.emit('board updated', newBoard._id);
 	};
 
 	render() {
-
-		const { board, updateBoard } = this.props
+		const { board, updateBoard } = this.props;
 		return (
 			<DragDropContext
 				onDragEnd={this.onDragEnd}
 				// onDragUpdate={this.onDragUpdate}
-				>
+			>
 				<Droppable droppableId="all-groups" type="group">
 					{(provided, snapshot) => (
 						<div
 							ref={provided.innerRef}
-							className="groups-container">
+							className="groups-container"
+							key={board._id}>
 							{board.groups.map((group, index) => (
 								<Draggable
 									key={group.id}
@@ -74,47 +73,33 @@ export class _GroupList extends Component {
 										<div
 											ref={provided.innerRef}
 											{...provided.draggableProps}>
-											<span {...provided.dragHandleProps}>
-												<div className="group-header">
-													<div className="header-info-container">
-														<div className="group-name-container">
-															<UnfoldLessRoundedIcon className="collapse-group" />
+											<div className="group-header">
+												<div className="header-info-container">
+													<div className="group-name-container">
+														<UnfoldLessRoundedIcon className="collapse-group" />
+														<span
+															{...provided.dragHandleProps}>
 															<DragIndicatorIcon className="drag-group" />
-															<div
-																style={{
-																	color: group
-																		.style
-																		.backgroundColor,
-																}}>
-																{group.title}
-															</div>
+														</span>
+														<div style={{ color: group.style.backgroundColor }}>
+															{group.title}
 														</div>
-														{board.cmpsOrder.map(
-															(cmp, idx) => {
-																return (
-																	<DynamicColHeaders
-																		key={
-																			idx
-																		}
-																		cmp={
-																			cmp
-																		}
-																	/>
-																);
-															}
-														)}
 													</div>
-													<div className="header-add-col">
-														<AddCircleOutlineRoundedIcon className="add-col-but" />
-													</div>
+													<DynamicColHeaders
+														board={board}
+														group={group}
+													/>
 												</div>
-												<StoryList
-													groupNum={index}
-													group={group}
-													board={board}
-													updateBoard={updateBoard}
-												/>
-											</span>
+												<div className="header-add-col">
+													<AddCircleOutlineRoundedIcon className="add-col-but" />
+												</div>
+											</div>
+											<StoryList
+												groupNum={index}
+												group={group}
+												board={board}
+												updateBoard={updateBoard}
+											/>
 										</div>
 									)}
 								</Draggable>

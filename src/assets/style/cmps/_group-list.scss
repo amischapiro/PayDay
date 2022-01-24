@@ -1,83 +1,154 @@
-.group-header{
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    margin-inline-start: 1.425rem;
+.group-header {
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+	margin-inline-start: 1.425rem;
 
-    .header-add-col{
-        width: 38px;
-        height: 36px;
-        text-align: center;
-        padding-top: 7px;
-        .add-col-but {
-            color: #c4c4c4;
-            cursor: pointer;
-        }
-    }
+	.header-add-col {
+		width: 38px;
+		height: 36px;
+		text-align: center;
+		padding-top: 7px;
+		.add-col-but {
+			color: #c4c4c4;
+			cursor: pointer;
+		}
+	}
 
-    .header-info-container {
-        display: flex;
-    }
+	.header-info-container {
+		display: flex;
+	}
 
-    .dynamic-cmp {
-        text-align: center;
-        color: #323338;
-        font-size: 0.875rem;
-        border-radius: 8px 8px 0 0;
-        font-weight: 400;
-        padding-top: 5px;
-        // border: 1px solid #fff;
-        &:hover {
-            // background-color: #f5f6f8;
-            background-color: black;
-        }
-    }
+	.column-dnd-container {
+		display: flex;
+		flex-direction: row;
+	}
 
-    .group-name-container{
-        // border: 1px solid #fff;
-        width: 406px;
-        display: flex;
-        font-size: 18px;
-        
-        .drag-group{
-            color: #c4c4c4;
-            font-size: 1.2rem;
-            display: none;
-            height: 100%;
-            // padding-top:.2rem;
-            cursor: move;
-        }
-        
-        .collapse-group {
-            background-color: #e1e1e1;
-            border-radius: 4px;
-            color: #666;
-            font-size: 1.2rem;
-            display: none;
-            // height: 100%;
-            margin-top:.6rem;
-        }
+	.cell {
+		// margin: 0 0 0 1px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #323338;
+		font-size: 0.875rem;
+		font-weight: 400;
+		padding-top: 5px;
+		// border: 1px solid #fff;
+		&:hover {
+			background-color: #f5f6f8;
+			.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root {
+				display: block;
+			}
+		}
+		
+		&:active {
+			.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root {
+				display: block;
+			}
+		}
+	}
 
-        &:active {
-            .drag-group{
-                display: block;
-            }
-            .collapse-group {
-                display: block;
-                opacity: 0.8;
-            }
-        }
-    
-        &:hover{
-            .drag-group{
-                display: block;
-            }
-            .collapse-group {
-                display: block;
-                opacity: 0.8;
-                &:hover {opacity: 1}
-            }
-        }
-    }
+	.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root {
+		color: #323338;
+		font-size: 1.2rem;
+		display: none;
+		height: 100%;
+		cursor: move;
+		
+		// &:hover {
+		// 	display: block;
+		// }
+	}
 
+	.left-border,
+	.right-border {
+		display: flex;
+		flex: 1;
+	}
+
+	.isDragging {
+		background-color: #ffffffe4;
+		// border: 1px solid #fff;
+		// padding: 35px 35px 105px 35px;
+		border-radius: 4px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1rem;
+	}
+
+	.members {
+		width: 97px;
+	}
+
+	.status {
+		width: 117px;
+		background-color: #f5f6f8;
+		border-radius: 8px 8px 0 0;
+	}
+
+	.priority {
+		width: 92px;
+	}
+
+	.timeline {
+		width: 180px;
+	}
+
+	.number {
+		width: 125px;
+	}
+
+	.link {
+		width: 140px;
+	}
+
+	.group-name-container {
+		// border: 1px solid #fff;
+		width: 406px;
+		display: flex;
+		font-size: 18px;
+
+		.drag-group {
+			color: #c4c4c4;
+			font-size: 1.2rem;
+			display: none;
+			height: 100%;
+			// padding-top:.2rem;
+			cursor: move;
+		}
+
+		.collapse-group {
+			background-color: #e1e1e1;
+			border-radius: 4px;
+			color: #666;
+			font-size: 1.2rem;
+			display: none;
+			// height: 100%;
+			margin-top: 0.6rem;
+		}
+
+		&:active {
+			.drag-group {
+				display: block;
+			}
+			.collapse-group {
+				display: block;
+				opacity: 0.8;
+			}
+		}
+
+		&:hover {
+			.drag-group {
+				display: block;
+			}
+			.collapse-group {
+				display: block;
+				opacity: 0.8;
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
 }
