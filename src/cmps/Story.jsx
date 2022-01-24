@@ -125,7 +125,6 @@ export function _Story(props) {
 								</button>
 							)}
 						</div>
-						{/* <MapsUgcOutlinedIcon className="update-bubble" /> */}
 						<div className='story-update-icons' ><MapsUgcOutlinedIcon
 							onClick={() =>
 								onSetStory(board._id, group.id, story.id)

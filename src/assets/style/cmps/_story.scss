@@ -169,6 +169,9 @@
 	.story-update-icons{
 		display: flex;
 		position: relative;
+		.update-bubble{
+			cursor: pointer;
+		}
 	}
 	.updates-count-bubble{
 		background-color: #4099f8;
