@@ -28,6 +28,11 @@
         border: none;
         margin: 1rem;
         cursor: pointer;
+        font-size: 1.2rem;
+        border-radius: 6px;
+        &:hover{
+            background-color: rgb(218, 218, 218);
+        }
     }
     .modal-story-name{
         margin-left: 1rem;
