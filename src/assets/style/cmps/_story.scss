@@ -189,6 +189,37 @@
 	}
 }
 
+.link-popover {
+	padding: 1rem;
+	.link-editor{
+		display: flex;
+		flex-direction: column;
+		input {
+			color: #323338;
+			border: 1px solid #c5c7d0;
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+			font-size: 0.875rem;
+			height: 40px;
+			width: 216px;
+			padding: 0 1rem; 
+			font-weight: 300;
+			&:hover {
+				border-color: black;
+			}
+			&:focus {
+				border-color: #4099f8;
+				outline: none;
+			}
+		}
+		&:first-child {
+			input {
+				margin-bottom: 1.5rem;
+			}
+		}
+	}
+}
+
 .picker-container {
 	padding: 0.5rem;
 	.MuiTypography-root.MuiTypography-body1.element-picker {
