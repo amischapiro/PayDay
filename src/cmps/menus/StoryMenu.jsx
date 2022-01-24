@@ -5,7 +5,7 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-export function StoryMenuBtn(props) {
+export function StoryMenu(props) {
 
     const { board, group, story, updateBoard } = props
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { utilService } from '../services/util.service'
 
-import { AddStoryBtn } from './AddStoryBtn'
+import { NewStoryMenu } from './menus/NewStoryMenu'
 
 function _BoardActions({ board, updateBoard }) {
 
@@ -43,7 +43,7 @@ function _BoardActions({ board, updateBoard }) {
             <div className='main-actions'>
                 <div className="new-story">
                     <span onClick={onAddStory}>New Story</span>
-                    <AddStoryBtn board={board} updateBoard={updateBoard}
+                    <NewStoryMenu board={board} updateBoard={updateBoard}
                         onAddGroup={onAddGroup} onAddStory={onAddStory} />
                 </div>
 
