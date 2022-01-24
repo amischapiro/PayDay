@@ -3,57 +3,6 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
 export class DynamicColHeaders extends Component {
-	// onUpdateGroupTitle = async ({ target }) => {
-	//     let value = target.innerText;
-	//     if (!value) value = 'New group';
-	//     const newBoard = { ...this.props.board };
-	//     const groupId = this.props.group.id;
-	//     const groupIdx = newBoard.groups.findIndex(group => group.id === groupId);
-	//     const newActivity = {
-	//         id: utilService.makeId(),
-	//         type: 'Group title changed',
-	//         createdAt: Date.now(),
-	//         byMember: userService.getLoggedinUser(),
-	//         task: null,
-	//         group: {
-	//             id: groupId,
-	//             title: value
-	//         }
-	//     }
-	//     newBoard.groups[groupIdx].title = value;
-	//     newBoard.activities.unshift(newActivity)
-	//     await this.props.updateBoard(newBoard);
-	//     socketService.emit('board updated', newBoard._id);
-	// }
-
-	// let data = {};
-
-	// switch(cmp) {
-	//     case 'member-picker':
-	//         data = {name: 'People', width: "97px", bgColor: "inherit"};
-	//         break;
-	//     case 'status-picker':
-	//         data = {name: 'Status', width: "117px", bgColor: "#f5f6f8"};
-	//         break;
-	//     case 'priority-picker':
-	//         data = {name: 'Priority', width: "92px", bgColor: "inherit"};
-	//         break;
-	//     case 'timeline-picker':
-	//         data = {name: 'Timeline', width: "180px", bgColor: "inherit"};
-	//         break;
-	//     case 'number-picker':
-	//         data = {name: 'Estimated SP', width: "125px", bgColor: "inherit"};
-	//         break;
-	//     case 'link-picker':
-	//         data = {name: 'Link to Design', width: "140px", bgColor: "inherit"};
-	//         break;
-	//     default:
-	//         break;
-	// }
-
-	// { id } = this.props.group;
-
-	// let data = {};
 
 	DynamicGroupHeader = ({cmp, index, id}) => {
         // console.log('DynamicColHeaders.jsx 💤 59: ', cmp);

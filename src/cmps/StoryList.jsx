@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Story } from '../cmps/Story';
 import { AddStory } from './AddStory';
 import { StoryMenuBtn } from './StoryMenuBtn';
+import { GroupSum } from './GroupSums';
 
 import { useEffect, useState } from 'react';
 
@@ -51,6 +52,7 @@ function _StoryList(props) {
 				)}
 			</Droppable>
 			<AddStory group={group} board={board} updateBoard={updateBoard} />
+			<GroupSum group={group} cmpsOrder={board.cmpsOrder} />
 		</div>
 	);
 }
