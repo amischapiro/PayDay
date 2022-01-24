@@ -19,23 +19,54 @@
     }
     .update-input{
         width: 100%;
-        input{
-            width: 90%;
-            margin-top: 0.5rem;
-            margin-left:5%;
-            border: 1px blue solid;
-            height: 2rem;
+        textarea{
+            width: 80%;
+            margin-left: 10%;
+            margin-top: 1rem;
             border-radius: 6px;
+            border: 1px #0073ea solid;
+            resize: none;
             &:focus-visible{
+                height: 5rem;
                 outline: none;
             }
-
         }
     }
     &.open{
         right: 0;
     }
 }
+.modal-update-btns{
+    display: flex;
+    width: 80%;
+    margin-left: 10%;
+    justify-content: space-between;
+    .file-input{
+        // cursor: pointer;
+        position: absolute;
+        opacity: 0;
+    }
+    .file-input-container{
+        position: relative;
+        width: 6rem;
+        height: 2rem;
+        color: #0073ea ;
+        cursor: pointer;
+    }
+    button{
+        background-color:#0073ea ;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        height: 2rem;
+        cursor: pointer;
+    }
+}
+.MuiSvgIcon-fontSizeMedium.file-icon{
+    // margin-top: 0.2rem;
+    padding-top: 0.25rem;
+}
+
 
 .update-activity-container{
     display: flex;
@@ -86,7 +117,7 @@
 }
 .modal-border-bottom.active{
     height: 2px;
-    background-color: blue;
+    background-color: #0073ea;
     width: 100%;
     margin-bottom: 0.5rem;
 }

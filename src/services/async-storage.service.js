@@ -181,13 +181,29 @@ function _createBoard(_id = _makeId(), title) {
         ],
         groups: [
             {
-                id: _makeId(),
+                id: 'g202',
                 title: "Group 1",
                 style: { backgroundColor: utilService.groupColorPicker() },
                 stories: [
                     {
                         id: _makeId(),
                         title: "Replace logo",
+                        comments:[
+                            {
+                                id:'c232',
+                                txt: 'change the label',
+                                createdAt:1611214354355,
+                                byMember:{
+                                    _id:'u909',
+                                    fullname:'Yarden Levy',
+                                    username: 'Yarden',
+
+                                },
+                                storyId:_makeId(),
+                                groupId:'g202'
+
+                            }
+                        ],
                         storyData: {
                             members: [
                                 {
@@ -214,6 +230,23 @@ function _createBoard(_id = _makeId(), title) {
                     {
                         id: _makeId(),
                         title: "Add Samples",
+                        comments:[
+                            {
+                                id:'c234',
+                                txt: 'change the name',
+                                createdAt:1611214354355,
+                                byMember:{
+                                    _id:'u909',
+                                    fullname:'Yarden Levy',
+                                    username: 'Yarden',
+
+                                },
+                                storyId:_makeId(),
+                                groupId:'g202',
+                                
+
+                            }
+                        ],
                         storyData: {
                             members: [
                                 {
@@ -240,13 +273,29 @@ function _createBoard(_id = _makeId(), title) {
                 ],
             },
             {
-                id: _makeId(),
+                id: 'g203',
                 title: "Group 2",
                 style: { backgroundColor: utilService.groupColorPicker() },
                 stories: [
                     {
                         id: _makeId(),
                         title: "Replace logo",
+                        comments:[
+                            {
+                                id:'c252',
+                                txt: 'change the board',
+                                createdAt:1611214354355,
+                                byMember:{
+                                    _id:'u909',
+                                    fullname:'Yarden Levy',
+                                    username: 'Yarden',
+
+                                },
+                                storyId:_makeId(),
+                                groupId:'g203'
+
+                            }
+                        ],
                         storyData: {
                             members: [
                                 {
@@ -273,6 +322,22 @@ function _createBoard(_id = _makeId(), title) {
                     {
                         id: _makeId(),
                         title: "Add Samples",
+                        comments:[
+                            {
+                                id:'c235',
+                                txt: 'change the game',
+                                createdAt:1611214354355,
+                                byMember:{
+                                    _id:'u909',
+                                    fullname:'Yarden Levy',
+                                    username: 'Yarden',
+
+                                },
+                                storyId:_makeId(),
+                                groupId:'g203'
+
+                            }
+                        ],
                         storyData: {
                             members: [
                                 {
