@@ -144,7 +144,7 @@ export function _ActivityModal(props) {
 
     
     // activites to new cmp
-    if(!story) return <div>loading</div>
+    if(!story) return <React.Fragment></React.Fragment>
     return (
         <div className={`activity-modal ${props.selectedStoryIds.storyId ? 'open' : ''}`}>
             <button onClick={() => { onRemoveStory() }} className="btn-close-modal fa-solid times" ></button>
