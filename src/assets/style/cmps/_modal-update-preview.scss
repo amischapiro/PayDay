@@ -1,0 +1,22 @@
+.update-preview{
+    position: relative;
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px #0073ea solid;
+    border-radius: 6px;
+    .edit{
+        display: flex;
+        justify-content: space-between;
+    }
+    .comment-txt{
+        // text-align: center;
+        font-weight: bolder;
+    }
+    .fa-solid.times{
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 0.5rem;
+    }
+      
+}

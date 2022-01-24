@@ -7,7 +7,8 @@ export const utilService = {
     formatPrice,
     formatDate,
     groupColorPicker,
-    createStory
+    createStory,
+    createEmptyGroup
 }
 
 function makeId(length = 6) {
@@ -63,13 +64,13 @@ function formatDate(createdAt) {
         new Date(createdAt).toLocaleTimeString('he-IL')
 }
 
-function groupColorPicker(colorIdx = getRandomIntInclusive(0, 18)) {
+function groupColorPicker(colorIdx = getRandomIntInclusive(0, 17)) {
     const colors = ['#037c4a', '#00c875', '#9cd326', '#cab641', '#784bd1', '#a25ddc', '#0086c0', '#579bfc', '#66ccff', '#bb3354', '#e2445c', '#ff158a', '#ff5ac4', '#ff642e', '#fdab3d', '#7f5347', '#c4c4c4', '#808080'];
     return colors[colorIdx];
 }
 
 
-function createStory(title = '') {
+function createStory(title = 'New Story') {
     const story = {
         id: makeId(),
         title,
@@ -91,6 +92,17 @@ function createStory(title = '') {
     }
 
     return story;
+}
+
+function createEmptyGroup(title = 'New Group') {
+    const group = {
+        id: makeId(),
+        title,
+        style: { backgroundColor: groupColorPicker() },
+        stories: [],
+    };
+
+    return group;
 }
 
 // const grid = 6;

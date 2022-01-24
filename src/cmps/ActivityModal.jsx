@@ -65,10 +65,9 @@ export function _ActivityModal(props) {
     }
 
     const onAddComment = (ev) => {
-        console.log('adding');
         
         
-        // ev.preventDefault()
+        ev.preventDefault()
         const newComment = {
             id: utilService.makeId(),
             txt: comment,
@@ -83,19 +82,6 @@ export function _ActivityModal(props) {
         onUpdateStory(story)
         setComment('')
         // setImg({ ...img, imgUrl: null, height: '40px', width: '100%' })
-    }
-
-    const onUpdateComment = ({ target }) => {
-        let value = target.innerText
-        if (!value) value = 'New Story'
-        const commentId = target.dataset.id
-        if (!story) {
-            story = selectedBoard.groups.find(group => group.stories.find(story => story.comments.find(comment => comment.id === commentId)))
-        }
-        const commentIdx = story.comments.findIndex(comment => comment.id === commentId)
-        const updatedComment = { ...story.comments[commentIdx], txt: value }
-        story.comments.splice(commentIdx, 1, updatedComment)
-        onUpdateStory(story)
     }
 
     const getCurrStory = (commentId) => {
@@ -125,10 +111,8 @@ export function _ActivityModal(props) {
     const onUpdateStory = (updatedStory, currGroupId = null) => {
         const newBoard = { ...selectedBoard }
         if (!currGroupId) currGroupId = groupId
-        console.log('currGroupId:', currGroupId);
         
         const groupIdx = newBoard.groups.findIndex(group => group.id === currGroupId)
-        console.log('groupIdx:', groupIdx);
         
         const group = newBoard.groups.find(group => group.id === currGroupId)
         const storyIdx = group.stories.findIndex(story => story.id === storyId)
@@ -166,7 +150,7 @@ export function _ActivityModal(props) {
 
             {!isActivityShown &&
                 <React.Fragment>
-                    <form onSubmit={()=>onAddComment()}>
+                    <form onSubmit={(ev)=>onAddComment(ev)}>
                         <div className="update-input" >
                             <textarea name="update" id="" cols="30" rows="2" placeholder='Write an update...' value={comment} onChange={handleChange}></textarea>
                             <div className='modal-update-btns' ><div className='file-input-container'>
