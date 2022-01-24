@@ -126,12 +126,14 @@ export function _Story(props) {
 							)}
 						</div>
 						{/* <MapsUgcOutlinedIcon className="update-bubble" /> */}
-						<MapsUgcOutlinedIcon
+						<div className='story-update-icons' ><MapsUgcOutlinedIcon
 							onClick={() =>
 								onSetStory(board._id, group.id, story.id)
 							}
 							className="update-bubble"
-						/>
+						/>{story.comments?.length?<div className='updates-count-bubble'>{story.comments.length}</div>:'' }
+						</div>
+
 					</div>
 				</div>
 				{cmpsOrder.map((cmp, idx) => {
