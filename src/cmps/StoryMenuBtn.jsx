@@ -9,17 +9,14 @@ export function StoryMenuBtn(props) {
 
     const { board, group, story, updateBoard } = props
 
-
     const newBoard = { ...board };
     const groupId = group.id;
     const groupIdx = board.groups.findIndex((group) => group.id === groupId);
     const storyId = story.id;
     const storyIdx = group.stories.findIndex((story) => story.id === storyId);
 
-    // TODO Hover on the elliphsis
-    const [isBtnsShown, toggleBtnsShown] = useState(false)
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
