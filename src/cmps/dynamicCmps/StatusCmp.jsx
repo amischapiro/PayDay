@@ -49,8 +49,10 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 							<Typography
 								sx={{ p: 2, background: status.color }}
 								className="element-picker"
-								onClick={() =>
+								onClick={() => {
 									onUpdate('CHANGE_STATUS', status.id)
+									handleClose()
+								}
 								}>
 								{status.title}
 							</Typography>

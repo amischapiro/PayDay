@@ -69,8 +69,10 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 							<Typography
 								sx={{ p: 2 }}
 								className="member-picker"
-								onClick={() =>
+								onClick={() =>{
 									onUpdate('ADD_MEMBER', member._id)
+									handleClose()
+								}
 								}>
 								<img
 									src={member.imgUrl}

@@ -48,8 +48,10 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 								sx={{ p: 2, background: priority.color }}
 								key={priority.id}
 								className="element-picker"
-								onClick={() =>
-									onUpdate('CHANGE_PRIORITY', priority.id)
+								onClick={() => {
+									onUpdate('CHANGE_PRIORITY', priority.id);
+									handleClose();
+								}
 								}>
 								{priority.title}
 							</Typography>
