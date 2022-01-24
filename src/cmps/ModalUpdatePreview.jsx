@@ -1,5 +1,7 @@
 import React from "react"
 import moment from "moment"
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+
 
 
 
@@ -14,10 +16,11 @@ export const ModalUpdatePreview = ({comment, onRemoveComment,getInitials })=>{
                 <span>{comment.byMember.fullname}</span>
                 </div>
                 <div className="edit">
-                <span>{moment(comment.createdAt).fromNow()}</span><span className="fa-solid times" onClick={() => onRemoveComment(comment)}></span>  
+                <span><span><AccessTimeIcon/></span>{moment(comment.createdAt).fromNow()}</span>
                 </div>
             </div>
-            {comment.txt}
+            <span className="fa-solid times" onClick={() => onRemoveComment(comment)}></span>  
+            <span className="comment-txt" >{comment.txt}</span>
         </div>
     )
 }
