@@ -19,7 +19,13 @@
         display: flex;
     }
 
+    .column-dnd-container {
+        display: flex;
+        flex-direction: row;
+    }
+
     .dynamic-cmp {
+        display: flex;
         text-align: center;
         color: #323338;
         font-size: 0.875rem;
