@@ -31,13 +31,15 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
     }
 
 
-    if (!selectedBoard) return <React.Fragment />
 
     return (
         <main className='main-container'>
             <SideBar />
             <BoardList boards={boards} removeBoard={removeBoard} />
-            <BoardArea boards={boards} board={selectedBoard} updateBoard={updateBoard} />
+            {selectedBoard ? (
+                <BoardArea boards={boards} board={selectedBoard} updateBoard={updateBoard} />
+            ) : <div>No Boards</div>
+            }
 
             <div onClick={() => onRemoveStory()} className={`darken-screen ${selectedStoryIds.storyId ? 'open' : ''}`}>
             </div>

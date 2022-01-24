@@ -114,7 +114,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        padding: 0 0.3rem;
+        padding: 0 0.35rem;
         margin-inline-end: 0.5rem;
         border: 1px solid transparent;
         border-radius: 4px;
@@ -124,13 +124,19 @@
         }
     }
 
-    textarea {
+     textarea {
+         width: 75%;
+         height: 100px;
+        font-family: inherit;
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1.5em;
+        padding: 0 0.35rem;
         resize: none;
-        width: 75%;
-        height: 100px;
 
         &:focus-visible {
             outline: none;
         }
     }
+
 }

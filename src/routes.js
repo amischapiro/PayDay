@@ -1,7 +1,6 @@
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { HomePage } from './pages/HomePage.jsx';
 import { BoardApp } from './pages/BoardApp.jsx';
-import { BoardArea } from './cmps/BoardArea.jsx';
 
 
 const routes = [
