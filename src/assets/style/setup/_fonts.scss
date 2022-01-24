@@ -104,6 +104,10 @@
 
 /* Solid Style */
 
+.fa-solid.th-list::before {
+	content: "\f00b";
+}
+
 .fa-solid.caret-down::before {
 	content: "\f0d7";
 }

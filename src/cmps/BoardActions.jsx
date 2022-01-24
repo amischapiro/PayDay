@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 
+import { AddStoryBtn } from './AddStoryBtn'
+
 function _BoardActions({ board, updateBoard }) {
 
     const [isSearchOpen, setSearchOpen] = useState(false)
@@ -11,7 +13,7 @@ function _BoardActions({ board, updateBoard }) {
 
                 <div className="new-story">
                     <span>New Story</span>
-                    <span className="fa-solid chevron-down"></span>
+                        <AddStoryBtn board={board} updateBoard={updateBoard} />
                 </div>
 
                 <div onClick={() => setSearchOpen(true)}
