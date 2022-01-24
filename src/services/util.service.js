@@ -74,6 +74,7 @@ function createStory(title = 'New Story') {
     const story = {
         id: makeId(),
         title,
+        comments:[],
         storyData: {
             members: [],
             priority: {

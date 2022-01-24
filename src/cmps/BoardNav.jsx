@@ -26,7 +26,6 @@ function _BoardNav({board}) {
         }, 1000)
     }
 
-
     return (
         <div className='board-nav'>
 
