@@ -71,54 +71,6 @@ export class GroupSum extends Component {
 		}
 	};
 
-	// MembersSum = ({ group }) => {
-	// 	// let membersSum = group.stories.map((story) => {
-	// 	// 	return story.storyData.members;
-	// 	// });
-
-	// 	return <div className="members-sum"></div>;
-	// };
-
-	// StatusSum = ({ group }) => {
-	// 	return (
-	// 		<div className="status-sum">
-	// 			{group.stories.map((story) => {
-	// 				return (
-	// 					<span
-	// 						className="bat-fragment"
-	// 						style={{
-	// 							backgroundColor: story.storyData.status.color,
-	// 						}}></span>
-	// 				);
-	// 			})}
-	// 		</div>
-	// 	);
-	// };
-
-	// PrioritySum = ({ group }) => {
-	// 	return (
-	// 		<div className="priority-sum">
-	// 			{group.stories.map((story) => {
-	// 				return (
-	// 					<span
-	// 						className="bat-fragment"
-	// 						style={{
-	// 							backgroundColor: story.storyData.priority.color,
-	// 						}}></span>
-	// 				);
-	// 			})}
-	// 		</div>
-	// 	);
-	// };
-
-	// NumberSum = ({ group }) => {
-	// 	let sum = 0;
-	// 	group.stories.forEach((story) => {
-	// 		sum += story.storyData.number ? +story.storyData.number : 0;
-	// 	});
-	// 	return <div className="num-sum">{sum}</div>;
-	// };
-
 	render() {
 		const { cmpsOrder, group } = this.props;
 		return (
