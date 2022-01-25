@@ -1,15 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { utilService } from '../services/util.service';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { userService } from '../services/user.service';
-
 
 export function _AddStory(props) {
 	const { board, group, updateBoard } = props;
-	const currUser = userService.getMiniLoggedInUser()
+	const currUser = userService.getMiniLoggedInUser();
 	const [txt, setTxt] = useState('');
 	const inputEl = useRef();
-
 
 	const onAddStory = async ({ target }) => {
 		const value = target.value;
@@ -29,22 +27,21 @@ export function _AddStory(props) {
 			byMember: currUser,
 			story: {
 				id: newStory.id,
-				title: newStory.title
+				title: newStory.title,
 			},
 			group: {
 				id: groupId,
-				title: group.title
-			}
-		}
-		newBoard.activities.unshift(newActivity)
+				title: group.title,
+			},
+		};
+		newBoard.activities.unshift(newActivity);
 
 		if (
 			!newBoard.groups[groupIdx].stories ||
 			!newBoard.groups[groupIdx].stories.length
 		)
 			newBoard.groups[groupIdx].stories = [newStory];
-		else
-			newBoard.groups[groupIdx].stories.push(newStory)
+		else newBoard.groups[groupIdx].stories.push(newStory);
 
 		await updateBoard(newBoard);
 		setTxt('');
@@ -86,6 +83,7 @@ export function _AddStory(props) {
 			<button className="add" onClick={handleUpdate}>
 				Add
 			</button>
+			<div className="story-closer"></div>
 		</div>
 	);
 }
@@ -95,11 +93,9 @@ function mapStateToProps({ boardModule }) {
 		// board: boardModule.board,
 		// users: state.userModule.users,
 		// loggedInUser: state.userModule.loggedInUser
-	}
+	};
 }
 
-const mapDispatchToProps = {
-}
+const mapDispatchToProps = {};
 
-
-export const AddStory = connect(mapStateToProps, mapDispatchToProps)(_AddStory)
+export const AddStory = connect(mapStateToProps, mapDispatchToProps)(_AddStory);

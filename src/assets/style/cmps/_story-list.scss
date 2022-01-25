@@ -17,12 +17,18 @@
 
 .add-story {
 	display: flex;
-	margin: 1px 0 0.05rem;
-	margin-inline-start: 1.425rem;
+	margin: 1px 0.09rem 0.05rem 1.425rem;
+	// margin-inline-start: 1.425rem;
 	height: 2.313rem;
 	font-size: 1.1rem;
 	line-height: 1.5rem;
 	font-weight: 400;
+	// width: 100%;
+	
+	.story-closer {
+		width: 7px;
+		background-color: #e6e9ef;
+	}
 
 
 	&:hover {
