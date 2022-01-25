@@ -39,6 +39,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
                 <BoardArea boards={boards} board={selectedBoard} updateBoard={updateBoard} />
             ) : <div>No Boards</div>
             }
+            
 
             <div onClick={() => onRemoveStory()} className={`darken-screen ${selectedStoryIds.storyId ? 'open' : ''}`}>
             </div>

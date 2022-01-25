@@ -1,11 +1,8 @@
-.main-container{
+.main-container {
     display: flex;
+    max-width: 100vw;
+    // max-width: 1000px;
 }
-.board-area{
-    justify-content: flex-start;
-}
-
-
 
 // export function TaskPreview({ task }) {
 //     //GET FROM STORE
@@ -35,8 +32,6 @@
 //     );
 //   }
 //   }
-
-  
 
 //   import { StatusCmp } from "./StatusCmp.jsx";
 // export function DynamicCmp({ cmp, info, onUpdate }) {
