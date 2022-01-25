@@ -5,14 +5,10 @@ import Popper from '@mui/material/Popper';
 import { useState, useEffect } from 'react'
 
 import { BoardPreview } from './BoardPreview';
+import { utilService } from '../services/util.service'
 
 
-// import { loadBoards, } from '../store/board.action'
-
-
-
-
-function _BoardList({ boards, updateBoard, removeBoard, currBoard }) {
+function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard }) {
 
 
 
@@ -31,6 +27,10 @@ function _BoardList({ boards, updateBoard, removeBoard, currBoard }) {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
 
+    const onAddBoard = async () => {
+        const newBoard = utilService.createEmptyBoard()
+        await addBoard(newBoard)
+    }
 
 
 
@@ -46,7 +46,7 @@ function _BoardList({ boards, updateBoard, removeBoard, currBoard }) {
                     <h5>Main workspace</h5>
                 </Box>
             </Popper>
-            <div className='add-board' >
+            <div onClick={onAddBoard} className='add-board' >
                 <span className='fa-solid plus'></span>
                 <span> Add</span>
             </div>
@@ -61,7 +61,7 @@ function _BoardList({ boards, updateBoard, removeBoard, currBoard }) {
             <div className='boards-container'>
                 {boards.map(board => {
                     return < BoardPreview key={board._id} board={board} currBoard={currBoard} boards={boards}
-                        updateBoard={updateBoard} removeBoard={removeBoard} />
+                        updateBoard={updateBoard} removeBoard={removeBoard} addBoard={addBoard} />
                 })}
             </div>
 

@@ -57,7 +57,7 @@ export function updateBoard(boardToUpdate) {
 export function addBoard(boardToSave) {
     return async (dispatch) => {
         try {
-            const savedBoard = await boardService.save(boardToSave)
+            const savedBoard = await boardService.addBoard(boardToSave)
             dispatch({ type: 'ADD_BOARD', board: savedBoard })
             return Promise.resolve(savedBoard)
         } catch (err) {

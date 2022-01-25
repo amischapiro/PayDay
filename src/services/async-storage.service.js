@@ -7,7 +7,7 @@ export const storageService = {
     put,
     remove,
     postMany,
-    user
+    
 }
 
 
@@ -196,20 +196,20 @@ function _createBoard(_id = _makeId(), title) {
                             fullname: "Tal Tarablus",
                             imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
                         },
-                        comments:[
+                        comments: [
                             {
-                                id:'c232',
+                                id: 'c232',
                                 txt: 'change the label',
-                                imgUrl:null,
-                                createdAt:1611214354355,
-                                byMember:{
-                                    _id:'u909',
-                                    fullname:'Yarden Levy',
+                                imgUrl: null,
+                                createdAt: 1611214354355,
+                                byMember: {
+                                    _id: 'u909',
+                                    fullname: 'Yarden Levy',
                                     username: 'Yarden',
 
                                 },
-                                storyId:_makeId(),
-                                groupId:'g202'
+                                storyId: _makeId(),
+                                groupId: 'g202'
 
                             }
                         ],
@@ -233,7 +233,7 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {name: null, url: null},
+                            link: { name: null, url: null },
                             dueDate: null,
                             file: null
                         }
@@ -247,20 +247,20 @@ function _createBoard(_id = _makeId(), title) {
                             fullname: "Tal Tarablus",
                             imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
                         },
-                        comments:[
+                        comments: [
                             {
-                                id:'c234',
+                                id: 'c234',
                                 txt: 'change the name',
-                                imgUrl:null,
-                                createdAt:1611214354355,
-                                byMember:{
-                                    _id:'u909',
-                                    fullname:'Yarden Levy',
+                                imgUrl: null,
+                                createdAt: 1611214354355,
+                                byMember: {
+                                    _id: 'u909',
+                                    fullname: 'Yarden Levy',
                                     username: 'Yarden',
 
                                 },
-                                storyId:_makeId(),
-                                groupId:'g202',
+                                storyId: _makeId(),
+                                groupId: 'g202',
                             }
                         ],
                         storyData: {
@@ -283,7 +283,7 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {name: null, url: null},
+                            link: { name: null, url: null },
                             dueDate: null,
                             file: null
                         }
@@ -304,20 +304,20 @@ function _createBoard(_id = _makeId(), title) {
                             fullname: "Tal Tarablus",
                             imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
                         },
-                        comments:[
+                        comments: [
                             {
-                                id:'c252',
+                                id: 'c252',
                                 txt: 'change the board',
-                                imgUrl:null,
-                                createdAt:1611214354355,
-                                byMember:{
-                                    _id:'u909',
-                                    fullname:'Yarden Levy',
+                                imgUrl: null,
+                                createdAt: 1611214354355,
+                                byMember: {
+                                    _id: 'u909',
+                                    fullname: 'Yarden Levy',
                                     username: 'Yarden',
 
                                 },
-                                storyId:_makeId(),
-                                groupId:'g203'
+                                storyId: _makeId(),
+                                groupId: 'g203'
 
                             }
                         ],
@@ -341,7 +341,7 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {name: null, url: null},
+                            link: { name: null, url: null },
                             dueDate: null,
                             file: null
                         }
@@ -355,20 +355,20 @@ function _createBoard(_id = _makeId(), title) {
                             fullname: "Tal Tarablus",
                             imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
                         },
-                        comments:[
+                        comments: [
                             {
-                                id:'c235',
+                                id: 'c235',
                                 txt: 'change the game',
-                                imgUrl:null,
-                                createdAt:1611214354355,
-                                byMember:{
-                                    _id:'u909',
-                                    fullname:'Yarden Levy',
+                                imgUrl: null,
+                                createdAt: 1611214354355,
+                                byMember: {
+                                    _id: 'u909',
+                                    fullname: 'Yarden Levy',
                                     username: 'Yarden',
 
                                 },
-                                storyId:_makeId(),
-                                groupId:'g203'
+                                storyId: _makeId(),
+                                groupId: 'g203'
 
                             }
                         ],
@@ -392,7 +392,7 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {name: null, url: null},
+                            link: { name: null, url: null },
                             dueDate: null,
                             file: null
                         }
@@ -414,8 +414,8 @@ function _createBoard(_id = _makeId(), title) {
                     id: "c101",
                     title: "Replace Logo"
                 },
-                group:{
-                    id:_makeId(),
+                group: {
+                    id: _makeId(),
                     title: 'group 1'
                 }
             }
@@ -432,289 +432,5 @@ function _createBoard(_id = _makeId(), title) {
 
 }
 
-export function user() {
-    const user = {
-        _id: "u101",
-        fullname: "Abi Abambi",
-        username: "abi@ababmi.com",
-        password: "aBambi123",
-        imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg",
-        mentions: [
-            {
-                id: "m101",
-                boardId: "m101",
-                storyId: "t101"
-            }
-        ]
-    }
-    return user
-}
 
 
-
-// stories: [
-//     {
-//         id: "c103",
-//         title: "Do that"
-//     },
-//     {
-//         id: "c104",
-//         title: "Help me",
-//         status: "in-progress",
-//         description: "description",
-//         comments: [
-//             {
-//                 id: "ZdPnm",
-//                 txt: "also @yaronb please CR this",
-//                 createdAt: 1590999817436,
-//                 byMember: {
-//                     _id: "u101",
-//                     fullname: "Tal Tarablus",
-//                     imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-//                 }
-//             }
-//         ],
-//         checklists: [
-//             {
-//                 id: "YEhmF",
-//                 title: "Checklist",
-//                 todos: [
-//                     {
-//                         id: "212jX",
-//                         title: "To Do 1",
-//                         isDone: false
-//                     }
-//                 ]
-//             }
-//         ],
-//         members: [
-//             {
-//                 _id: "u101",
-//                 username: "Tal",
-//                 fullname: "Tal Tarablus",
-//                 imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-//             }
-//         ],
-//         labelIds: [
-//             "l101",
-//             "l102"
-//         ],
-//         createdAt: 1590999730348,
-//         dueDate: 16156215211,
-//         byMember: {
-//             _id: "u101",
-//             username: "Tal",
-//             fullname: "Tal Tarablus",
-//             imgUrl: "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-//         },
-//         style: {
-//             bgColor: "#26de81"
-//         }
-//     }
-// ]
-
-// function _createBoard() {
-//     return {
-//         _id: _makeId(),
-//         title: "Robot dev proj",
-//         createdAt: 1589983468418,
-//         createdBy: {
-//             _id: "u101",
-//             fullname: "Abi Abambi",
-//             imgUrl: "http://some-img"
-//         },
-//         style: {},
-//         statuses: [
-//             {
-//                 id: "s101",
-//                 title: "Done",
-//                 color: "#00c875"
-//             },
-//             {
-//                 id: "s102",
-//                 title: "Stuck",
-//                 color: "#e2445c"
-//             },
-//             {
-//                 id: "s103",
-//                 title: "Working on it",
-//                 color: "#fdab3d"
-//             },
-//             {
-//                 id: "s104",
-//                 title: "To do",
-//                 color: "#c4c4c4"
-//             },
-//             {
-//                 id: "s105",
-//                 title: "Ready for review",
-//                 color: "#a25ddc"
-//             },
-//         ],
-//         priorities: [
-//             {
-//                 id: "p101",
-//                 title: "High",
-//                 color: "#bb3354"
-//             },
-//             {
-//                 id: "p102",
-//                 title: "Medium",
-//                 color: "#cab641"
-//             },
-//             {
-//                 id: "p103",
-//                 title: "Low",
-//                 color: "#66ccff"
-//             },
-//             {
-//                 id: "p104",
-//                 title: "",
-//                 color: "#c4c4c4"
-//             },
-
-//         ],
-//         members: [
-//             {
-//                 _id: "u101",
-//                 fullname: "Tal Tarablus",
-//                 imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
-//             }
-//         ],
-//         groups: [
-//             {
-//                 id: "g101",
-//                 title: "Group 1",
-//                 stories: [
-//                     {
-//                         id: "c101",
-//                         title: "Replace logo",
-//                         storyData: {
-//                             members: [
-//                                 {
-//                                     _id: "u101",
-//                                     fullname: "Tal Tarablus",
-//                                     imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
-//                                 }
-//                             ],
-//                             priority: {
-//                                 id: "p104",
-//                                 title: "",
-//                                 color: "#c4c4c4"
-//                             },
-//                             status: {
-//                                 id: "s101",
-//                                 title: "Done",
-//                                 color: "#00c875"
-//                             },
-//                             timeline: ''
-//                         }
-//                     },
-//                     {
-//                         id: "c102",
-//                         title: "Add Samples",
-//                         storyData: {
-//                             members: [
-//                                 {
-//                                     _id: "u101",
-//                                     fullname: "Tal Tarablus",
-//                                     imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
-//                                 }
-//                             ],
-//                             priority: {
-//                                 id: "p101",
-//                                 title: "High",
-//                                 color: "#bb3354"
-//                             },
-//                             status: {
-//                                 id: "s103",
-//                                 title: "Working on it",
-//                                 color: "#fdab3d"
-//                             },
-//                             timeline: ''
-//                         }
-//                     }
-//                 ],
-//                 style: {}
-//             },
-//             {
-//                 id: "g102",
-//                 title: "Group 2",
-//                 stories: [
-//                     {
-//                         id: "c103",
-//                         title: "Replace logo",
-//                         storyData: {
-//                             members: [
-//                                 {
-//                                     _id: "u101",
-//                                     fullname: "Tal Tarablus",
-//                                     imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
-//                                 }
-//                             ],
-//                             priority: {
-//                                 id: "p102",
-//                                 title: "Medium",
-//                                 color: "#cab641"
-//                             },
-//                             status: {
-//                                 id: "s102",
-//                                 title: "Stuck",
-//                                 color: "#e2445c"
-//                             },
-//                             timeline: ''
-//                         }
-//                     },
-//                     {
-//                         id: "c104",
-//                         title: "Add Samples",
-//                         storyData: {
-//                             members: [
-//                                 {
-//                                     _id: "u101",
-//                                     fullname: "Tal Tarablus",
-//                                     imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
-//                                 }
-//                             ],
-//                             priority: {
-//                                 id: "p103",
-//                                 title: "Low",
-//                                 color: "#66ccff"
-//                             },
-//                             status: {
-//                                 id: "s105",
-//                                 title: "Ready for review",
-//                                 color: "#a25ddc"
-//                             },
-//                             timeline: ''
-//                         }
-//                     }
-//                 ],
-//                 style: {}
-//             }
-//         ],
-//         activities: [
-//             {
-//                 id: "a101",
-//                 txt: "Changed Color",
-//                 createdAt: 154514,
-//                 byMember: {
-//                     _id: "u101",
-//                     fullname: "Abi Abambi",
-//                     imgUrl: "http://some-img"
-//                 },
-//                 story: {
-//                     id: "c101",
-//                     title: "Replace Logo"
-//                 }
-//             }
-//         ],
-//         cmpsOrder: [
-//             "status-picker",
-//             "member-picker",
-//             "priority-picker",
-//             'timeline-picker'
-//         ]
-//     }
-
-// }

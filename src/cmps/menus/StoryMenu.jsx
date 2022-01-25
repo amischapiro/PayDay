@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+
 import { utilService } from '../../services/util.service';
+import { userService } from '../../services/user.service';
 
 export function StoryMenu(props) {
 
@@ -15,6 +17,8 @@ export function StoryMenu(props) {
     const groupIdx = board.groups.findIndex((group) => group.id === groupId);
     const storyId = story.id;
     const storyIdx = group.stories.findIndex((story) => story.id === storyId);
+
+    const currUser = userService.getMiniLoggedInUser()
 
     const [isHover, toggleIsHover] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
@@ -34,16 +38,35 @@ export function StoryMenu(props) {
     const id = open ? 'simple-popover' : undefined;
 
 
-    const onRemoveStory = (storyId) => {
-        console.log(storyId);
-
+    const onRemoveStory = async () => {
         newBoard.groups[groupIdx].stories.splice(storyIdx, 1)
-        updateBoard(newBoard)
+        addNewActivity('Story deleted')
+        await updateBoard(newBoard)
     }
+
     const onDuplicateStory = async () => {
         const newStory = { ...story, id: utilService.makeId() }
         newBoard.groups[groupIdx].stories.unshift(newStory)
+        addNewActivity('Story duplicated')
         await updateBoard(newBoard)
+    }
+
+    const addNewActivity = (type) => {
+        const newActivity = {
+            id: utilService.makeId(),
+            type,
+            createdAt: Date.now(),
+            byMember: currUser,
+            story: {
+                id: story.id,
+                title: story.title
+            },
+            group: {
+                id: groupId,
+                title: group.title
+            }
+        }
+        newBoard.activities.unshift(newActivity)
     }
 
     return (

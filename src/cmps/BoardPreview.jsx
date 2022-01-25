@@ -7,22 +7,23 @@ import { withRouter } from 'react-router-dom/cjs/react-router-dom.min'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { utilService } from '../services/util.service';
 
-export function __BoardPreview(props) {
+export function _BoardPreview(props) {
 
-    const { boards, board, removeBoard, updateBoard, currBoard } = props
+    const { boards, board, removeBoard, updateBoard, addBoard, currBoard } = props
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [isHover, toggleOnHover] = useState(false)
 
     const handleClick = (event) => {
-        event.stopPropagation()
+
         toggleOnHover(true)
         setAnchorEl(event.currentTarget);
     };
 
     const handleClose = (event) => {
-        event.stopPropagation()
+        if (event) event.stopPropagation()
         toggleOnHover(false)
         setAnchorEl(null)
     }
@@ -47,7 +48,22 @@ export function __BoardPreview(props) {
         props.history.push(`/board/${board._id}/board`)
     }
 
-
+    const onDuplicateBoard = async () => {
+        const newBoard = { ...board }
+        delete newBoard._id
+        const newGroups = newBoard.groups.map(group => {
+            return { ...group, id: utilService.makeId() }
+        })
+        newBoard.groups = newGroups
+        const newStories = newGroups.map(newGroup => {
+            return newGroup.stories.map(story => {
+                return { ...story, id: utilService.makeId() }
+            })
+        })
+        newBoard.groups.stories = newStories
+        await addBoard(newBoard)
+        handleClose()
+    }
 
     return (
 
@@ -86,7 +102,7 @@ export function __BoardPreview(props) {
                         <span className="fa edit-hollow"></span>
                         <span>Rename Board</span>
                     </span>
-                    <span>
+                    <span onClick={onDuplicateBoard}>
                         <span className="fa copy"></span>
                         <span>Duplicate Board</span>
                     </span>
@@ -104,20 +120,7 @@ export function __BoardPreview(props) {
 }
 
 
-
-function mapStateToProps({ boardModule }) {
-    return {
-    }
-}
-
-const mapDispatchToProps = {
-
-}
-
-const _BoardPreview = withRouter(__BoardPreview)
+export const BoardPreview = withRouter(_BoardPreview)
 
 
-
-
-export const BoardPreview = connect(mapStateToProps, mapDispatchToProps)(_BoardPreview)
 
