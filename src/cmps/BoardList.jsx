@@ -36,6 +36,7 @@ function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard }) {
 
     return (
         <section className={`boardlist-container ${isBoardListOpen ? 'open' : ''}`} >
+            <span className="workspace-title" >Workspace</span>
             <button className={`toggle-btn fa-solid ${isBoardListOpen ? 'angleleft' : 'angleright'} `} onClick={() => onToggleBoardListShown()} ></button>
             <button className='workspace-toggle' aria-describedby={id} type="button" onClick={handleClick}>
                 <h2>Main workspace <span className={`fa-solid ${open ? 'angleup' : 'angledown'} `} ></span> </h2>
