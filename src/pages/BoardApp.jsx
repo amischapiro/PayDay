@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from 'react'
 
+import { Switch, Route } from 'react-router';
+
+import { BoardNav } from '../cmps/BoardNav'
+import { BoardHeader } from '../cmps/BoardHeader'
+import { BoardActions } from '../cmps/BoardActions'
+import { GroupList } from '../cmps/GroupList'
+import { Kanban } from '../cmps/Kanban'
+import { Dashboard } from '../cmps/Dashboard'
+
+import { ActivityModal } from '../cmps/ActivityModal'
+
+
+
+
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
-import { BoardArea } from '../cmps/BoardArea.jsx'
+// import { BoardArea } from '../cmps/BoardArea.jsx'
 import { connect } from 'react-redux'
 import { loadBoards, getById, removeBoard, updateBoard, setStory } from '../store/board.action'
 
@@ -35,11 +49,36 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
         <main className='main-container'>
             <SideBar />
             <BoardList boards={boards} currBoard={selectedBoard} removeBoard={removeBoard} />
-            {selectedBoard ? (
+
+            <section className="main-content">
+                <section className="main-header">
+                    <BoardHeader board={selectedBoard} updateBoard={updateBoard} />
+                    <BoardNav board={selectedBoard} />
+                    <BoardActions board={selectedBoard} updateBoard={updateBoard} />
+                </section>
+                {/* {selectedBoard ? (
                 <BoardArea boards={boards} board={selectedBoard} updateBoard={updateBoard} />
-            ) : <div>No Boards</div>
-            }
-            
+                ) : <div>No Boards</div>
+            } */}
+                <div className="board-content">
+
+                    <Switch className="board-switch-container">
+                        <Route path="/board/:boardId/kanban" >
+                            <Kanban />
+                        </Route>
+                        <Route path="/board/:boardId/dashboard">
+                            <Dashboard />
+                        </Route>
+                        <Route path="/board/:boardId/board">
+                            <GroupList board={selectedBoard} updateBoard={updateBoard} />
+                        </Route>
+
+                    </Switch>
+                    <ActivityModal />
+
+
+                </div>
+            </section>
 
             <div onClick={() => onRemoveStory()} className={`darken-screen ${selectedStoryIds.storyId ? 'open' : ''}`}>
             </div>
