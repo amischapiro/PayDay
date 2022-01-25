@@ -110,12 +110,14 @@ export function TimelineCmp({ story, group, onUpdate }) {
 	// };
 
 	return (
-		<div className="timeline" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+		<div className="timeline" >
 			{!isDateSet ? (
+				<div onMouseEnter={onEnter} onMouseLeave={onLeave}>
 				<DatePicker
 					placeholderText={
 						isSettingDate ? '-' : isHover ? 'Set Dates' : '-'
 					}
+					
 					onFocus={onSetDatesFocus}
 					onBlur={onSetDatesBlur}
 					popperPlacement="bottom"
@@ -129,19 +131,20 @@ export function TimelineCmp({ story, group, onUpdate }) {
 					}}
 					// dateFormat="MMMM"
 				/>
+				</div>
 			) : !isSettingDate && isHover ? (
-				<div className="num-of-days" onClick={onLeave}>
+				<div className="num-of-days" onMouseEnter={onEnter} onMouseLeave={onLeave} onClick={onLeave}>
 					{getNumOfDays()}d
 				</div>
 			) : (
-				<div className="date-picker-container">
+				<div className="date-picker-container" onMouseEnter={onEnter} onMouseLeave={onLeave}>
 					<div
 						className="progress-bar"
 						style={{
 							backgroundColor: backgroundColor,
 							width: `${getPercent()}%`,
-						}}></div>
-					<div className="grey-bck"></div>
+						}} ></div>
+					<div className="grey-bck" ></div>
 					<DatePicker
 						className="date-picker-cmp"
 						popperPlacement="bottom"

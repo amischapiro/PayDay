@@ -1,13 +1,14 @@
 .boardlist-container {
 	position: sticky;
 	top:0;
-	width: 2rem;
+	flex-basis: 2rem;
+	min-width: 2rem;
 	height: 100vh;
-	// color: #676879;
 	color: #323338;
 	transition: 0.3s;
 	background-color: #f5f6f8;
 	padding: 2.5rem 1rem;
+	z-index: 5;
 
 	display: flex;
 	flex-direction: column;
@@ -38,7 +39,8 @@
 	}
 
 	&.open {
-		width: 16rem;
+		flex-basis: 16rem;
+		min-width: 16rem;
 
 		.workspace-toggle,
 		div,

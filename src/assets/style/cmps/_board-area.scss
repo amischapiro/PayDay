@@ -1,8 +1,7 @@
-.board-area {
-    overflow-x: scroll;
+.main-header {
+    // overflow-x: scroll;
+    
     display: flex;
     flex-direction: column;
-    // margin-inline-start: 1rem;
-    margin: 1.2rem 1rem 1rem 2rem;
-    width: 100%;
+    padding: 1.2rem 1rem 1rem 2rem;
 }

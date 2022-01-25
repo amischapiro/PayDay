@@ -42,7 +42,6 @@
 	.story-txt-area {
 		display: flex;
 		width: 25.375rem;
-		cursor: pointer;
 
 		&:hover {
 			.story-title {
@@ -55,7 +54,6 @@
 		}
 
 		.story-txt {
-			cursor: text;
 			width: 100%;
 			display: flex;
 			justify-content: space-between;
@@ -71,6 +69,7 @@
 			}
 
 			.story-editor {
+				cursor: text;
 				margin-inline-start: 0.5rem;
 				display: flex;
 				input:focus-visible {
@@ -88,7 +87,6 @@
 					border: none;
 					color: #676879;
 					background-color: inherit;
-					cursor: pointer;
 					font-weight: 400;
 
 					&:hover {
@@ -169,9 +167,6 @@
 	.story-update-icons{
 		display: flex;
 		position: relative;
-		.update-bubble{
-			cursor: pointer;
-		}
 	}
 	.updates-count-bubble{
 		background-color: #4099f8;
@@ -242,7 +237,6 @@
 	display: flex;
 	justify-content: stretch;
 	align-items: center;
-	cursor: auto;
 
 	.btn-toggle-menu.MuiButton-containedPrimary {
 		min-width: unset;

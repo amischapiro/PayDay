@@ -39,11 +39,16 @@ export function StoryMenu(props) {
         newBoard.groups[groupIdx].stories.splice(storyIdx, 1)
         updateBoard(newBoard)
     }
+    const onDuplicateStory = () => {
+
+    }
 
     return (
-        <div onMouseEnter={() => { toggleIsHover(true) }}
+        <div
+            onMouseEnter={() => { toggleIsHover(true) }}
             onMouseOver={() => { toggleIsHover(true) }}
-            onMouseLeave={() => { toggleIsHover(false) }}>
+            onMouseLeave={() => { toggleIsHover(false) }}
+        >
 
             <Button
                 aria-describedby={id}
@@ -64,7 +69,7 @@ export function StoryMenu(props) {
                     horizontal: 'left',
                 }}>
                 <Typography className="drop-down">
-                    <span>
+                    <span onClick={() => { onDuplicateStory() }}>
                         <span className="fa copy"></span>
                         <span>Duplicate</span>
                     </span>
