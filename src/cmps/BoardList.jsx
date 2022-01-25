@@ -12,7 +12,7 @@ import { BoardPreview } from './BoardPreview';
 
 
 
-function _BoardList({ boards, updateBoard, removeBoard }) {
+function _BoardList({ boards, updateBoard, removeBoard, currBoard }) {
 
 
 
@@ -68,7 +68,7 @@ function _BoardList({ boards, updateBoard, removeBoard }) {
 
             <div className='boards-container'>
                 {boards.map(board => {
-                    return < BoardPreview key={board._id} board={board} boards={boards}
+                    return < BoardPreview key={board._id} board={board} currBoard={currBoard} boards={boards}
                         updateBoard={updateBoard} removeBoard={removeBoard} />
                 })}
             </div>

@@ -81,9 +81,8 @@ export function setSort(sortBy) {
 }
 export function setStory(story) {
     return async (dispatch) => {
-        dispatch({ type: 'SET_STORY', story})
-    
+        dispatch({ type: 'SET_STORY', story })
+
     }
 }
-
 

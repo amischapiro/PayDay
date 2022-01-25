@@ -1,35 +1,74 @@
 .btn-primary {
     background-color: $clr2;
-    padding: .3rem .8rem;
-    border-radius: .8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.8rem;
     border: none;
 
     font-size: 1rem;
     line-height: 1rem;
     color: inherit;
-    
+
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
 
     &:hover {
-        background-color: darken(rgba($clr2, .8) ,5%);
+        background-color: darken(rgba($clr2, 0.8), 5%);
     }
 }
 
-
 .btn-fa {
     background-color: $clr2;
-    padding: .6rem ;
+    padding: 0.6rem;
     border-radius: 50%;
     border: none;
 
     font-size: 1rem;
     color: inherit;
-    
+
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
 
     &:hover {
-        background-color: darken(rgba($clr2, .8) ,5%);
+        background-color: darken(rgba($clr2, 0.8), 5%);
     }
 }
+
+.MuiButton-containedPrimary.group-color-menu-btn {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    font-family: inherit;
+    text-transform: none;
+    min-width: unset;
+    line-height: 1.2rem;
+    font-size: unset;
+    box-shadow: none;
+    margin-inline-end: 0.48rem;
+
+    &:hover {
+        background-color: transparent;
+        box-shadow: none;
+    }
+    .group-color-row {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .group-color-indicator {
+        width: 0.875rem;
+        height: 0.875rem;
+        border-radius: 50%;
+        transform: translateX(-0.0625rem);
+        margin-inline-end: 0.55rem;
+    }
+    .chevron-right {
+        position: absolute;
+        font-size: 0.8125rem;
+        line-height: 1em;
+        right: -75px;
+
+    }
+}
+

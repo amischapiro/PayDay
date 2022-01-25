@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+
 
 
 export function GroupTitle({ board, group, updateBoard }) {
@@ -12,6 +13,7 @@ export function GroupTitle({ board, group, updateBoard }) {
     const [isTitleEditOn, toggleEditTitle] = useState(false)
     const [titleInput, setTitleInput] = useState(title)
 
+
     const handleChange = ({ target }) => {
         const { name, value } = target
         if (value === ' ' || value === '\n') return
@@ -24,8 +26,6 @@ export function GroupTitle({ board, group, updateBoard }) {
         const newGroup = { ...group, title: titleInput }
         newBoard.groups.splice(groupIdx, 1, newGroup)
         await updateBoard(newBoard)
-
-
     }
 
     return (
@@ -36,10 +36,11 @@ export function GroupTitle({ board, group, updateBoard }) {
                 <form onSubmit={onSubmit} >
                     <input className="group-title-input" type="text" name="titleInput" value={titleInput}
                         onChange={handleChange} autoFocus
-                        onBlur={onSubmit} autoComplete="false"
+                        onBlur={onSubmit} autoComplete="off"
                         style={{ color: groupColor }} />
                 </form>
             )}
         </React.Fragment>
     )
 }
+

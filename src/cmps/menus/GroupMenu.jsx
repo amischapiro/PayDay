@@ -6,14 +6,14 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import { utilService } from '../../services/util.service';
+import { GroupColorMenu } from './GroupColorMenu';
+
 
 export function GroupMenu({ board, group, updateBoard, groupColor }) {
-    
+
     const newBoard = { ...board };
     const groupId = group.id;
     const groupIdx = board.groups.findIndex((group) => group.id === groupId);
-    // const storyId = story.id;
-    // const storyIdx = group.stories.findIndex((story) => story.id === storyId);
 
     const [isOnHover, toggleHover] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
@@ -33,13 +33,8 @@ export function GroupMenu({ board, group, updateBoard, groupColor }) {
     const onAddGroup = async () => {
         const newGroup = utilService.createEmptyGroup();
 
-        if (
-            !newBoard.groups ||
-            !newBoard.groups.length
-        )
-            newBoard.groups = [newGroup];
-        else
-            newBoard.groups.unshift(newGroup)
+        if (!newBoard.groups?.length) newBoard.groups = [newGroup];
+        else newBoard.groups.unshift(newGroup)
 
         await updateBoard(newBoard);
         handleClose()
@@ -47,23 +42,27 @@ export function GroupMenu({ board, group, updateBoard, groupColor }) {
 
     const onRemoveGroup = async () => {
         newBoard.groups.splice(groupIdx, 1)
-
         await updateBoard(newBoard);
     }
 
     const onDuplicateGroup = async () => {
-        const newGroup = { ...group, id: utilService.makeId() }
+        const newGroup = {
+            ...group,
+            id: utilService.makeId(),
+            title: group.title + ' (Copy)'
+        }
         console.log(newGroup);
         newBoard.groups.unshift(newGroup)
         await updateBoard(newBoard)
         handleClose()
     }
 
+
+
     return (
         <div>
 
             <Button
-                aria-describedby={id}
                 variant="contained"
                 onClick={handleClick}
                 className="group-menu-btn"
@@ -101,11 +100,9 @@ export function GroupMenu({ board, group, updateBoard, groupColor }) {
                         <span className="fa copy"></span>
                         <span>Duplicate</span>
                     </span>
-                    <span>
-                        <span className="group-color-indicator"
-                            style={{ backgroundColor: groupColor }} ></span>
-                        <span>Change group color</span>
-                    </span>
+                    <GroupColorMenu board={board} group={group}
+                        updateBoard={updateBoard} groupColor={groupColor}
+                        closePrevMenu={handleClose} />
                     <span onClick={onRemoveGroup}>
                         <span className="fa trash"></span>
                         <span>Delete</span>
@@ -117,5 +114,6 @@ export function GroupMenu({ board, group, updateBoard, groupColor }) {
 
     )
 }
+
 
 

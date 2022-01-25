@@ -12,8 +12,7 @@ import { GroupMenu } from './menus/GroupMenu';
 import { GroupTitle } from './GroupTitle';
 
 export class _GroupList extends Component {
-
-
+	
 	onDragEnd = async (result) => {
 		const { board } = this.props;
 		const { destination, source, draggableId, type } = result;
@@ -84,6 +83,7 @@ export class _GroupList extends Component {
 													<div className="group-name-container">
 														<GroupMenu board={board} group={group} updateBoard={updateBoard}
 															groupColor={group.style.backgroundColor} />
+
 														<UnfoldLessRoundedIcon className="collapse-group" />
 														<span
 															{...provided.dragHandleProps}>
