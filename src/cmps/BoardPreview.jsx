@@ -49,7 +49,7 @@ export function __BoardPreview(props) {
 
     return (
 
-        <div className={currBoard._id === board._id ? 
+        <div className={currBoard?._id === board._id ? 
             "board-preview curr-board" : "board-preview"}
             onClick={onGoTo}>
             <div>

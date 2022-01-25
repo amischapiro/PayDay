@@ -12,8 +12,7 @@ import { GroupMenu } from './menus/GroupMenu';
 import { GroupTitle } from './GroupTitle';
 
 export class _GroupList extends Component {
-
-
+	
 	onDragEnd = async (result) => {
 		const { board } = this.props;
 		const { destination, source, draggableId, type } = result;
