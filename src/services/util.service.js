@@ -201,10 +201,3 @@ function createEmptyBoard(title = 'New Board') {
 }
 
 
-<<<<<<< HEAD
-//         // styles we need to apply on draggables
-//         ...draggableStyle
-//     };
-// };
-=======
->>>>>>> 838e74fc9301d4fe05c08afe48e93b8e749542a5

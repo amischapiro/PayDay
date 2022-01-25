@@ -101,12 +101,8 @@ const mapDispatchToProps = {
     getById,
     removeBoard,
     updateBoard,
-<<<<<<< HEAD
-    setStory,
-=======
     addBoard,
     setStory
->>>>>>> 838e74fc9301d4fe05c08afe48e93b8e749542a5
 }
 
 
