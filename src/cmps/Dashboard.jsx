@@ -32,6 +32,55 @@ export function _Dashboard(props) {
         })
         return [count.s101,count.s102,count.s103,count.s104,count.s105]
     }
+    const getStoriesPerGroupCount = ()=>{
+        const storyCount = board.groups.map(group=>{
+            return group.stories.length
+        })
+        return storyCount   
+    }
+
+    const getGroupNames =()=>{
+        const names = board.groups.map(group=>{
+            return group.title
+        })
+        return names
+    }
+    const getMembersPerStory =()=>{
+        let members =[]
+        const count = board.groups.map(group=>{
+            group.stories.map(story=>{
+                members.push(story.storyData.members.length)
+            })
+        })
+        return members
+    }
+    
+    
+
+    const getPriorityNames=()=>{
+        const names = board.priorities.map(priority=>{
+            if(priority.title==='')return 'None'
+            return priority.title
+        })
+        return names
+    }
+    
+    const getPriorityCount = ()=>{
+        let count = {p101:0,p102:0,p103:0,p104:0,}
+        board.groups.map(group=>{
+            group.stories.map(story=>{
+                const priority = story.storyData.priority.id
+                count[priority]++ 
+            })
+        })
+        return [count.p101,count.p102,count.p103,count.p104]
+    }
+
+
+    
+
+    
+    
     
     
 
@@ -70,7 +119,8 @@ export function _Dashboard(props) {
                     </div>
                 </div>
             </div>
-            <DashboardCharts statusCount={getStatusCount()} />
+            <DashboardCharts statusCount={getStatusCount()} storiesPerGroup={getStoriesPerGroupCount()}
+             groupNames={getGroupNames()} priorityNames={getPriorityNames()} priorityCount={getPriorityCount()} membersPerStory ={getMembersPerStory()}/>
            
 
         </section>
