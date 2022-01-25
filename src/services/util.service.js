@@ -79,6 +79,7 @@ function createStory(title = 'New Story') {
     const story = {
         id: makeId(),
         title,
+        createdAt: Date.now(),
         comments: [],
         storyData: {
             members: [],

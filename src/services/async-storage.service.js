@@ -188,6 +188,7 @@ function _createBoard(_id = _makeId(), title) {
                     {
                         id: _makeId(),
                         title: "Replace logo",
+                        createdAt: Date.now(),
                         comments:[
                             {
                                 id:'c232',
@@ -231,6 +232,7 @@ function _createBoard(_id = _makeId(), title) {
                     {
                         id: _makeId(),
                         title: "Add Samples",
+                        createdAt: Date.now(),
                         comments:[
                             {
                                 id:'c234',
@@ -282,6 +284,7 @@ function _createBoard(_id = _makeId(), title) {
                     {
                         id: _makeId(),
                         title: "Replace logo",
+                        createdAt: Date.now(),
                         comments:[
                             {
                                 id:'c252',
@@ -325,6 +328,7 @@ function _createBoard(_id = _makeId(), title) {
                     {
                         id: _makeId(),
                         title: "Add Samples",
+                        createdAt: Date.now(),
                         comments:[
                             {
                                 id:'c235',
