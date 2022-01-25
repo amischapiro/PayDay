@@ -150,16 +150,14 @@ export function _ActivityModal(props) {
 
             {!isActivityShown &&
                 <React.Fragment>
-                    <form onSubmit={(ev)=>onAddComment(ev)}>
                         <div className="update-input" >
                             <textarea name="update" id="" cols="30" rows="2" placeholder='Write an update...' value={comment} onChange={handleChange}></textarea>
                             {img.imgUrl&& <img src={img.imgUrl}  />}
                             <div className='modal-update-btns' ><div className='file-input-container'>
                                 <AttachFileIcon className='file-icon' /><input className='file-input' type="file" accept='img/*' onChange={uploadImg} />Add file</div>
-                                <button >Update</button>
+                                <button  onClick={(ev)=>onAddComment(ev)}>Update</button>
                             </div>
                         </div>
-                    </form>
                     <div className='updates-list' >
                     {story.comments.map(comment => <ModalUpdatePreview key={comment.id} comment={comment} onRemoveComment={onRemoveComment} getInitials={getInitials} imgUrl={comment.imgUrl}/>)}
                     </div>
