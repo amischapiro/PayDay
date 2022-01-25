@@ -2,19 +2,13 @@ import React, { useState, useRef } from 'react';
 import { utilService } from '../services/util.service';
 import { connect } from 'react-redux'
 import { userService } from '../services/user.service';
-import { storageService } from '../services/async-storage.service';
 
 
 export function _AddStory(props) {
 	const { board, group, updateBoard } = props;
+	const currUser = userService.getMiniLoggedInUser()
 	const [txt, setTxt] = useState('');
 	const inputEl = useRef();
-	let currUser = storageService.user()
-	delete currUser.password
-	delete currUser.username
-	delete currUser.mentions
-	
-	
 
 
 	const onAddStory = async ({ target }) => {
@@ -29,18 +23,18 @@ export function _AddStory(props) {
 			(group) => group.id === groupId
 		);
 		const newActivity = {
-		    id: utilService.makeId(),
-		    type: 'Story added',
-		    createdAt: Date.now(),
-		    byMember: currUser,
-		    story: {
-		        id: newStory.id,
-		        title: newStory.title
-		    },
-		    group: {
-		        id: groupId,
-		        title: props.group.title
-		    }
+			id: utilService.makeId(),
+			type: 'Story added',
+			createdAt: Date.now(),
+			byMember: currUser,
+			story: {
+				id: newStory.id,
+				title: newStory.title
+			},
+			group: {
+				id: groupId,
+				title: group.title
+			}
 		}
 		newBoard.activities.unshift(newActivity)
 

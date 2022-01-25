@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import { utilService } from '../../services/util.service';
+import { userService } from '../../services/user.service';
 import { GroupColorMenu } from './GroupColorMenu';
 
 
@@ -14,6 +15,8 @@ export function GroupMenu({ board, group, updateBoard, groupColor }) {
     const newBoard = { ...board };
     const groupId = group.id;
     const groupIdx = board.groups.findIndex((group) => group.id === groupId);
+
+    const currUser = userService.getMiniLoggedInUser()
 
     const [isOnHover, toggleHover] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
@@ -36,12 +39,14 @@ export function GroupMenu({ board, group, updateBoard, groupColor }) {
         if (!newBoard.groups?.length) newBoard.groups = [newGroup];
         else newBoard.groups.unshift(newGroup)
 
+        addNewActivity('Group Added')
         await updateBoard(newBoard);
         handleClose()
     }
 
     const onRemoveGroup = async () => {
         newBoard.groups.splice(groupIdx, 1)
+        addNewActivity('Group removed')
         await updateBoard(newBoard);
     }
 
@@ -49,15 +54,32 @@ export function GroupMenu({ board, group, updateBoard, groupColor }) {
         const newGroup = {
             ...group,
             id: utilService.makeId(),
-            title: group.title + ' (Copy)'
+            title: group.title + ' (Copy)',
         }
-        console.log(newGroup);
+        const newStories = newGroup.stories.map(story => {
+            return { ...story, id: utilService.makeId() }
+        })
+        newGroup.stories = newStories
         newBoard.groups.unshift(newGroup)
+
+        addNewActivity('Group duplicated')
         await updateBoard(newBoard)
         handleClose()
     }
 
-
+    const addNewActivity = (type) => {
+        const newActivity = {
+            id: utilService.makeId(),
+            type,
+            createdAt: Date.now(),
+            byMember: currUser,
+            group: {
+                id: groupId,
+                title: group.title
+            }
+        }
+        newBoard.activities.unshift(newActivity)
+    }
 
     return (
         <div>

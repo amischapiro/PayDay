@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import { utilService } from '../../services/util.service';
+import { userService } from '../../services/user.service';
 
 
 export function GroupColorMenu({ board, group, updateBoard, groupColor, closePrevMenu }) {
@@ -13,6 +14,8 @@ export function GroupColorMenu({ board, group, updateBoard, groupColor, closePre
     const newBoard = { ...board };
     const groupId = group.id;
     const groupIdx = board.groups.findIndex((group) => group.id === groupId);
+
+    const currUser = userService.getMiniLoggedInUser()
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -30,9 +33,24 @@ export function GroupColorMenu({ board, group, updateBoard, groupColor, closePre
     const onChangeGroupColor = async (selectedColor) => {
         const newGroup = { ...group, style: { backgroundColor: selectedColor } }
         newBoard.groups.splice(groupIdx, 1, newGroup)
+        addNewActivity('Changed color')
         await updateBoard(newBoard)
         handleClose()
         closePrevMenu()
+    }
+
+    const addNewActivity = (type) => {
+        const newActivity = {
+            id: utilService.makeId(),
+            type,
+            createdAt: Date.now(),
+            byMember: currUser,
+            group: {
+                id: groupId,
+                title: group.title
+            }
+        }
+        newBoard.activities.unshift(newActivity)
     }
 
     return (

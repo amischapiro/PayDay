@@ -10,6 +10,7 @@ export const utilService = {
     getGroupColors,
     createStory,
     createEmptyGroup,
+    createEmptyBoard
 }
 
 function makeId(length = 6) {
@@ -119,19 +120,91 @@ function createEmptyGroup(title = 'New Group') {
     return group;
 }
 
-// const grid = 6;
-// const getItemStyle = (isDragging, draggableStyle) => {
-//     return {
-//         // some basic styles to make the items look a bit nicer
-//         userSelect: "none",
-//         padding: grid * 2,
-//         margin: `0 0 ${grid}px 0`,
-//         textAlign: "right",
+function createEmptyBoard(title = 'New Board') {
+    const board = {
+        title,
+        createdAt: 1589983468418,
+        sortBy: { name: null, order: -1 },
+        filterBy: {},
+        createdBy: {
+            _id: "u101",
+            fullname: "Abi Abambi",
+            imgUrl: "http://some-img"
+        },
+        style: {},
+        statuses: [
+            {
+                id: "s101",
+                title: "Done",
+                color: "#00c875"
+            },
+            {
+                id: "s102",
+                title: "Stuck",
+                color: "#e2445c"
+            },
+            {
+                id: "s103",
+                title: "Working on it",
+                color: "#fdab3d"
+            },
+            {
+                id: "s104",
+                title: "To do",
+                color: "#c4c4c4"
+            },
+            {
+                id: "s105",
+                title: "Ready for review",
+                color: "#a25ddc"
+            },
+        ],
+        priorities: [
+            {
+                id: "p101",
+                title: "High",
+                color: "#bb3354"
+            },
+            {
+                id: "p102",
+                title: "Medium",
+                color: "#cab641"
+            },
+            {
+                id: "p103",
+                title: "Low",
+                color: "#66ccff"
+            },
+            {
+                id: "p104",
+                title: "",
+                color: "#c4c4c4"
+            },
 
-//         // change background colour if dragging
-//         background: isDragging ? "lightgreen" : "grey",
+        ],
+        members: [],
+        groups: [
+            createEmptyGroup(),
+            createEmptyGroup()
+        ],
+        activities: [],
+        cmpsOrder: [
+            "status-picker",
+            "member-picker",
+            "priority-picker",
+            'timeline-picker',
+            'number-picker',
+            'link-picker'
+        ]
+    }
+    return board
+}
 
+
+<<<<<<< HEAD
 //         // styles we need to apply on draggables
 //         ...draggableStyle
 //     };
 // };
+=======
+>>>>>>> 838e74fc9301d4fe05c08afe48e93b8e749542a5

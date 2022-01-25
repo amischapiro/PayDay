@@ -12,16 +12,13 @@ import { Dashboard } from '../cmps/Dashboard'
 import { ActivityModal } from '../cmps/ActivityModal'
 
 
-
-
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
-// import { BoardArea } from '../cmps/BoardArea.jsx'
 import { connect } from 'react-redux'
-import { loadBoards, getById, removeBoard, updateBoard, setStory } from '../store/board.action'
+import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory } from '../store/board.action'
 
 
-function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, setStory, selectedStoryIds }) {
+function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds }) {
 
     useEffect(async () => {
         await loadBoards()
@@ -48,7 +45,8 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
     return (
         <main className='main-container'>
             <SideBar />
-            <BoardList boards={boards} currBoard={selectedBoard} removeBoard={removeBoard} />
+            <BoardList boards={boards} currBoard={selectedBoard}
+                removeBoard={removeBoard} addBoard={addBoard} />
 
             <section className="main-content">
                 <section className="main-header">
@@ -103,7 +101,12 @@ const mapDispatchToProps = {
     getById,
     removeBoard,
     updateBoard,
+<<<<<<< HEAD
     setStory,
+=======
+    addBoard,
+    setStory
+>>>>>>> 838e74fc9301d4fe05c08afe48e93b8e749542a5
 }
 
 

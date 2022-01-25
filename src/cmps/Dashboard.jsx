@@ -1,135 +1,154 @@
-import { Chart, Bar, Line, Pie } from 'react-chartjs-2';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    ArcElement,
-    PointElement,
-    LineElement,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
-
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    ArcElement,
-    PointElement,
-    BarElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-);
+import { connect } from 'react-redux'
+import ListIcon from '@mui/icons-material/List';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import SplitscreenIcon from '@mui/icons-material/Splitscreen';
+import ChatIcon from '@mui/icons-material/Chat';
+import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+import { DashboardCharts } from './DashboardCharts';
 
 
-export function Dashboard() {
-    function getRandomIntInclusive(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1) + min);
+
+export function _Dashboard(props) {
+    const board = props.selectedBoard
+
+    const getStoriesCount = () => {
+        let count = 0
+        board.groups.map(group => {
+            group.stories.map(story => {
+                count++
+            })
+        })
+        return count
     }
 
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top' ,
-            },
-            title: {
-                display: true,
-                text: 'Board statistics',
-            },
-        },
-    };
-    const horizontalOptions = {
-        indexAxis: 'y' ,
-        elements: {
-            bar: {
-                borderWidth: 2,
-            },
-        },
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'right',
-            },
-            title: {
-                display: true,
-                text: 'Chart.js Horizontal Bar Chart',
-            },
-        },
-    };
+    const getStatusCount = () => {
+        let count = {s101:0,s102:0,s103:0,s104:0,s105:0}
+        board.groups.map(group=>{
+            group.stories.map(story=>{
+                const status = story.storyData.status.id
+                count[status] ++
+            })
+        })
+        return [count.s101,count.s102,count.s103,count.s104,count.s105]
+    }
+    const getStoriesPerGroupCount = ()=>{
+        const storyCount = board.groups.map(group=>{
+            return group.stories.length
+        })
+        return storyCount   
+    }
 
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    const getGroupNames =()=>{
+        const names = board.groups.map(group=>{
+            return group.title
+        })
+        return names
+    }
+    const getMembersPerStory =()=>{
+        let members =[]
+        const count = board.groups.map(group=>{
+            group.stories.map(story=>{
+                members.push(story.storyData.members.length)
+            })
+        })
+        return members
+    }
+    
+    
 
-    const pieData = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [
-            {
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                ],
-                borderWidth: 1,
-            },
-        ],
-    };
+    const getPriorityNames=()=>{
+        const names = board.priorities.map(priority=>{
+            if(priority.title==='')return 'None'
+            return priority.title
+        })
+        return names
+    }
+    
+    const getPriorityCount = ()=>{
+        let count = {p101:0,p102:0,p103:0,p104:0,}
+        board.groups.map(group=>{
+            group.stories.map(story=>{
+                const priority = story.storyData.priority.id
+                count[priority]++ 
+            })
+        })
+        return [count.p101,count.p102,count.p103,count.p104]
+    }
 
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: 'Dataset 1',
-                data: labels.map(() => getRandomIntInclusive(1, 1000)),
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            },
-            {
-                label: 'Dataset 2',
-                data: labels.map(() => getRandomIntInclusive(1, 1000)),
-                borderColor: 'rgb(53, 162, 235)',
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
-        ],
-    };
+
+    
+
+    
+    
+    
+    
+
+
 
     return (
         <section className='dashboard-container'>
-            <div className='dash-top-container'>
-                <div className='line-chart'>
-                    <Line options={options} data={data} />
+
+            <div className='dashboard-stats-container' >
+                <div className='groups-stats'>
+                    <div className='stats-icon' ><ListIcon /></div>
+                    <div className='inner-stats'>
+                        <div>{board.groups.length}</div>
+                        <div>Groups</div>
+                    </div>
                 </div>
-                <div className="bar-chart">
-                    <Bar options={options} data={data} />
+                <div className='stories-stats'>
+                    <div className='stats-icon' ><HorizontalRuleIcon /></div>
+                    <div className='inner-stats'>
+                        <div>{getStoriesCount()}</div>
+                        <div>Stories</div>
+                    </div>
+                </div>
+                <div className='members-stats'>
+                    <div className='stats-icon' ><AssignmentIndIcon /></div>
+                    <div className='inner-stats'>
+                        <div>{board.members.length}</div>
+                        <div>Members</div>
+                    </div>
+                </div>
+                <div className='activities-stats'>
+                    <div className='stats-icon' ><MonitorHeartIcon /></div>
+                    <div className='inner-stats'>
+                        <div>{board.activities.length}</div>
+                        <div>Activities</div>
+                    </div>
                 </div>
             </div>
-            <div className="dash-bottom-container">
-                <div className='pie-chart'>
-                    <Pie data={pieData} />;
-                </div>
-                {/* <div className='horizontal-chart'>
-                    <Bar options={options} data={data} />
-                </div> */}
-            </div>
+            <DashboardCharts statusCount={getStatusCount()} storiesPerGroup={getStoriesPerGroupCount()}
+             groupNames={getGroupNames()} priorityNames={getPriorityNames()} priorityCount={getPriorityCount()} membersPerStory ={getMembersPerStory()}/>
+           
 
         </section>
     )
 
 }
+
+
+
+function mapStateToProps({ boardModule }) {
+    return {
+        // boards: boardModule.boards,
+        selectedBoard: boardModule.selectedBoard,
+        // selectedStoryIds: boardModule.activityModalStory
+        // filterBy: state.boardModule.filterBy,
+        // users: state.userModule.users,
+        // loggedInUser: state.userModule.loggedInUser
+    }
+}
+
+const mapDispatchToProps = {
+    // setStory,
+    // updateBoard
+    // loadBoards,
+    // getById,
+}
+
+
+
+export const Dashboard = connect(mapStateToProps, mapDispatchToProps)(_Dashboard)
+
