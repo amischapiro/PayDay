@@ -1,7 +1,6 @@
 .groups-container {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
 	// overflow: auto;
 	// overflow-x: scroll;
 }
@@ -98,8 +97,9 @@
 .group-sums {
 	display: flex;
 	// justify-content: flex-start;
-	height: 40px;
+	height: 80px;
 	width: fit-content;
+	padding-bottom: 40px;
 
 	.empty-txt-area {
 		width: 429px;
