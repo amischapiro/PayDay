@@ -137,5 +137,17 @@
                 padding-inline-end: 0.35rem;
             }
         }
+
+        .sort {
+            display: flex;
+            align-items: center;
+            // color: #7a7b7e;
+            .sort-icon{
+                margin-inline-end: 10px;
+                font-size: 1.1rem;
+                font-weight: 300;
+                transform: rotate(90deg);
+            }
+        }
     }
 }

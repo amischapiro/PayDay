@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { utilService } from '../services/util.service'
 
 import { NewStoryMenu } from './menus/NewStoryMenu'
+import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 
 function _BoardActions({ board, updateBoard }) {
 
@@ -38,6 +39,13 @@ function _BoardActions({ board, updateBoard }) {
         await updateBoard(newBoard);
     }
 
+    const onSetSort = async() => {
+        // let sortBy = {};
+
+        // const newBoard = await (board);
+        return;
+    }
+
     return (
         <div className="board-actions">
             <div className='main-actions'>
@@ -66,6 +74,10 @@ function _BoardActions({ board, updateBoard }) {
                     <span className="fa-solid filter"></span>
                     <span>Filter</span>
                     <span className="fa-solid chevron-down"></span>
+                </div>
+                <div className="sort" onClick={onSetSort}>
+                    <SyncAltRoundedIcon className="sort-icon"/>
+                    <span>Sort</span>
                 </div>
             </div>
         </div>

@@ -10,7 +10,8 @@ export const boardService = {
     getStatusById,
     getPriorityById,
     getMemberById,
-    updateTimeline
+    updateTimeline,
+    sortBoard
 }
 
 const STORAGE_KEY = 'boardDB'
@@ -32,7 +33,7 @@ async function getMemberById(boardId, memberId) {
 
 async function updateTimeline(timeline) {
     const timeStamp = timeline.map(date => {
-        if(date) return date.getTime();
+        if (date) return date.getTime();
         return null;
     });
     return timeStamp;
@@ -67,21 +68,26 @@ async function addBoard(boardToAdd) {
 }
 
 async function sortBoard(boardToSort, sortBy) {
-    switch(sortBy.type) {
+    let sortedBoard = {...boardToSort};
+    switch (sortBy.type) {
         case 'name':
-            boardToSort.groups.map(group => {
-                const sortedGroup = group.stories.sort(function(a, b){
-                    if(a.title < b.title) return -1;
-                    else if(a.title > b.title) return 1;
+            sortedBoard.groups = boardToSort.groups.map(group => {
+                if (sortBy.ascending === true) return group.stories.sort(function (a, b) {
+                    if (a.title < b.title) return -1;
+                    else if (a.title > b.title) return 1;
                     else return 0;
-                })
-                return sortedGroup;
+                });
+                else return group.stories.sort(function (a, b) {
+                    if (a.title > b.title) return -1;
+                    else if (a.title < b.title) return 1;
+                    else return 0;
+                });
             })
             break;
         default:
             return;
     }
-    return;
+    return sortedBoard;
 }
 
 
