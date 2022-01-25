@@ -9,7 +9,7 @@ const initialState = {
         boardId: null,
         groupId: null,
         storyId: null
-    }
+    },
 }
 
 export function boardReducer(state = initialState, action) {

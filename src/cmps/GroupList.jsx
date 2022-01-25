@@ -84,6 +84,7 @@ export class _GroupList extends Component {
 													<div className="group-name-container">
 														<GroupMenu board={board} group={group} updateBoard={updateBoard}
 															groupColor={group.style.backgroundColor} />
+
 														<UnfoldLessRoundedIcon className="collapse-group" />
 														<span
 															{...provided.dragHandleProps}>

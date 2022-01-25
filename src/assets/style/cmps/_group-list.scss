@@ -24,7 +24,6 @@
 		flex-direction: row;
 	}
 
-
 	.cell {
 		// margin: 0 0 0 1px;
 		display: flex;
@@ -112,10 +111,9 @@
 	.link {
 		width: 140px;
 	}
-
+	
 	.group-name-container {
-		// border: 1px solid #fff;
-		width: 406px;
+		width: 26.875rem;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
@@ -126,11 +124,11 @@
 			background-color: transparent;
 			padding: 0;
 			min-width: unset;
-			line-height: 1.2rem;
 			font-size: unset;
+			line-height: 1.2rem;
 			box-shadow: none;
-			margin-inline-end: 0.4rem;
-			
+			margin-inline-end: 0.48rem;
+
 			&:hover {
 				background-color: transparent;
 				box-shadow: none;
@@ -142,8 +140,11 @@
 				border-width: 0.5px;
 				border-style: solid;
 			}
-		}
 		
+		}
+
+		// MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root group-color-menu-btn css-sghohy-MuiButtonBase-root-MuiButton-root
+
 		.drag-group {
 			color: #c4c4c4;
 			font-size: 1.2rem;
@@ -162,16 +163,6 @@
 			// margin-top: 0.6rem;
 		}
 
-		&:active {
-			.drag-group {
-				display: block;
-			}
-			.collapse-group {
-				display: block;
-				opacity: 0.8;
-			}
-		}
-
 		&:hover {
 			.drag-group {
 				display: block;
@@ -184,5 +175,34 @@
 				}
 			}
 		}
+
+		&:active {
+			.drag-group {
+				display: block;
+			}
+			.collapse-group {
+				display: block;
+				opacity: 0.8;
+			}
+		}
+
+		// .drag-group {
+		// 	color: #c4c4c4;
+		// 	font-size: 1.2rem;
+		// 	display: block;
+		// 	height: 100%;
+		// 	cursor: move;
+		// }
+
+		// .collapse-group {
+		// 	background-color: #e1e1e1;
+		// 	border-radius: 4px;
+		// 	color: #666;
+		// 	font-size: 1.2rem;
+		// 	opacity: 0.8;
+		// 	&:hover {
+		// 		opacity: 1;
+		// 	}
+		// }
 	}
 }
