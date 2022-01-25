@@ -66,4 +66,22 @@ async function addBoard(boardToAdd) {
     return newBoard
 }
 
+async function sortBoard(boardToSort, sortBy) {
+    switch(sortBy.type) {
+        case 'name':
+            boardToSort.groups.map(group => {
+                const sortedGroup = group.stories.sort(function(a, b){
+                    if(a.title < b.title) return -1;
+                    else if(a.title > b.title) return 1;
+                    else return 0;
+                })
+                return sortedGroup;
+            })
+            break;
+        default:
+            return;
+    }
+    return;
+}
+
 

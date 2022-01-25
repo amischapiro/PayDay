@@ -7,10 +7,14 @@
   width: 100%;
 
   
-  &:hover {
-    .btn-ellipsis.MuiButton-containedPrimary {
-      display: inline-block;
-    }
+  // &.hover {
+  //   .btn-ellipsis.MuiButton-containedPrimary {
+  //     display: inline-block;
+  //   }
+  // }
+
+  .btn-ellipsis.MuiButton-containedPrimary.hover {
+    display: inline-block;
   }
   
   &.curr-board {
