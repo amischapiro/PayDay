@@ -1,17 +1,24 @@
 .boardlist-container {
 	position: sticky;
-	top:0;
+	top: 0;
 	flex-basis: 2rem;
 	min-width: 2rem;
 	height: 100vh;
 	color: #323338;
+	border-right: 1px solid #e6e9ef;
 	transition: 0.3s;
 	background-color: #f5f6f8;
-	padding: 2.5rem 1rem;
+	padding: 1rem 1rem;
 	z-index: 5;
 
 	display: flex;
 	flex-direction: column;
+
+	.workspace-title {
+		font-size: 0.875rem;
+		line-height: 1.5em;
+		margin-bottom: .3rem;
+	}
 
 	.workspace-toggle,
 	div,
@@ -50,7 +57,7 @@
 		}
 	}
 
-	> *:not(.boards-container) {
+	> *:not(.boards-container):not(.workspace-title):not(.toggle-btn) {
 		padding-inline-start: 0.5rem;
 		cursor: pointer;
 		border-radius: 6px;
@@ -62,15 +69,17 @@
 
 	.toggle-btn {
 		position: absolute;
-		transition: 0.3s;
+		transition: 0.2s;
 		right: 0;
-		transform: translate(50%, -100%);
+		transform: translate(50%, 20%);
 		border-radius: 50%;
-		border: none;
-		padding: 4px 8px;
+		border: 1px solid #e6e9ef;
+		background-color: white;
+		padding: 5px 9px;
 
 		&:hover {
 			background-color: #0073ea;
+			border: 1px solid #0073ea;
 			color: white;
 		}
 	}
@@ -97,4 +106,3 @@
 		position: relative;
 	}
 }
-
