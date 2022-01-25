@@ -68,17 +68,24 @@ export function addBoard(boardToSave) {
 
 export function setFilter(filterBy) {
     return async (dispatch) => {
-        dispatch({ type: 'SET_FILTER', filterBy })
-        return Promise.resolve()
+        try {
+            dispatch({ type: 'SET_FILTER', filterBy })
+        } catch (err) {
+            console.log('Encountered error on set filter:', err);
+        }
     }
 }
 
 export function setSort(sortBy) {
     return async (dispatch) => {
-        dispatch({ type: 'SET_SORT', sortBy })
-        return Promise.resolve()
+        try{
+            dispatch({ type: 'SET_SORT', sortBy })
+        } catch (err) {
+            console.log('Cannot sort', err)
+        }
     }
 }
+
 export function setStory(story) {
     return async (dispatch) => {
         dispatch({ type: 'SET_STORY', story })

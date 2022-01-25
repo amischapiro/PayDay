@@ -6,7 +6,7 @@ import { BoardNav } from '../cmps/BoardNav'
 import { BoardHeader } from '../cmps/BoardHeader'
 import { BoardActions } from '../cmps/BoardActions'
 import { GroupList } from '../cmps/GroupList'
-import { Kanban } from '../cmps/Kanban'
+import { Kanban } from '../cmps/kanban/Kanban'
 import { Dashboard } from '../cmps/Dashboard'
 
 import { ActivityModal } from '../cmps/ActivityModal'
@@ -103,7 +103,7 @@ const mapDispatchToProps = {
     getById,
     removeBoard,
     updateBoard,
-    setStory
+    setStory,
 }
 
 

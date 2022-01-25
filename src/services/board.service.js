@@ -11,7 +11,6 @@ export const boardService = {
     getPriorityById,
     getMemberById,
     updateTimeline,
-    sortBoard
 }
 
 const STORAGE_KEY = 'boardDB'
@@ -40,7 +39,7 @@ async function updateTimeline(timeline) {
 }
 
 async function query() {
-    const boards = await storageService.query(STORAGE_KEY)
+    let boards = await storageService.query(STORAGE_KEY)
     // console.log(boards);
     return boards
 }
@@ -67,27 +66,32 @@ async function addBoard(boardToAdd) {
     return newBoard
 }
 
-async function sortBoard(boardToSort, sortBy) {
-    let sortedBoard = {...boardToSort};
+async function sortBoard(boardId) {
+    const board = await storageService.get(STORAGE_KEY, boardId)
+    let sortedBoard = {...board};
+    let sortBy = board.sortBy;
     switch (sortBy.type) {
         case 'name':
-            sortedBoard.groups = boardToSort.groups.map(group => {
-                if (sortBy.ascending === true) return group.stories.sort(function (a, b) {
-                    if (a.title < b.title) return -1;
-                    else if (a.title > b.title) return 1;
+            sortedBoard.groups = board.groups.map(group => {
+                return group.stories.sort(function (a, b) {
+                    if (a.title < b.title) return group.order;
+                    else if (a.title > b.title) return (group.order * -1);
                     else return 0;
                 });
-                else return group.stories.sort(function (a, b) {
-                    if (a.title > b.title) return -1;
-                    else if (a.title < b.title) return 1;
+            })
+            break;
+        case 'date':
+            sortedBoard.groups = board.groups.map(group => {
+                return group.stories.sort(function (a, b) {
+                    if (a.createdAt < b.createdAt) return group.order;
+                    else if (a.createdAt > b.createdAt) return (group.order * -1);
                     else return 0;
                 });
             })
             break;
         default:
-            return;
+            break;
     }
     return sortedBoard;
 }
-
 

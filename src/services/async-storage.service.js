@@ -190,7 +190,7 @@ function _createBoard(_id = _makeId(), title) {
                     {
                         id: _makeId(),
                         title: "Replace logo",
-                        createdAt: Date.now(),
+                        createdAt: 123,
                         createdBy: {
                             _id: "u101",
                             fullname: "Tal Tarablus",
@@ -241,7 +241,7 @@ function _createBoard(_id = _makeId(), title) {
                     {
                         id: _makeId(),
                         title: "Add Samples",
-                        createdAt: Date.now(),
+                        createdAt: 1234,
                         createdBy: {
                             _id: "u101",
                             fullname: "Tal Tarablus",
@@ -298,7 +298,7 @@ function _createBoard(_id = _makeId(), title) {
                     {
                         id: _makeId(),
                         title: "Replace logo",
-                        createdAt: Date.now(),
+                        createdAt: 123,
                         createdBy: {
                             _id: "u101",
                             fullname: "Tal Tarablus",
@@ -349,7 +349,7 @@ function _createBoard(_id = _makeId(), title) {
                     {
                         id: _makeId(),
                         title: "Add Samples",
-                        createdAt: Date.now(),
+                        createdAt: 1234,
                         createdBy: {
                             _id: "u101",
                             fullname: "Tal Tarablus",

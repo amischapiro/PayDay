@@ -1,10 +1,10 @@
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Story } from '../cmps/Story';
 import { AddStory } from './AddStory';
 import { GroupSum } from './GroupSums';
 import { StoryMenu } from './menus/StoryMenu';
-
 
 function _StoryList(props) {
 	const { group, groupNum, board, updateBoard } = props;
@@ -14,41 +14,60 @@ function _StoryList(props) {
 
 	return (
 		<div className="group-container">
-			<Droppable
-				droppableId={group.id}
-				type="story">
+			<Droppable droppableId={group.id} type="story">
 				{(provided, snapshot) => (
 					<div ref={provided.innerRef}>
-						{group.stories.map((story, index) => {
-							return (
-								<Draggable
-									key={story.id}
-									draggableId={story.id}
-									index={index}
-									type="story">
-									{(provided, snapshot) => (
-										<div
-											ref={provided.innerRef}
-											{...provided.draggableProps}>
-											<span {...provided.dragHandleProps}>
-												<div className="story-main-wrapper">
-													<StoryMenu updateBoard={updateBoard} board={board}
-														group={group} story={story} />
-
-													<Story
-														updateBoard={updateBoard}
-														board={board}
-														group={group}
-														story={story}
-
-													/>
-												</div>
-											</span>
-										</div>
-									)}
-								</Draggable>
-							);
-						})}
+						{group.stories.length ? (
+							group.stories.map((story, index) => {
+								return (
+									<Draggable
+										key={story.id}
+										draggableId={story.id}
+										index={index}
+										type="story">
+										{(provided, snapshot) => (
+											<div
+												ref={provided.innerRef}
+												{...provided.draggableProps}>
+												<span
+													{...provided.dragHandleProps}>
+													<div className="story-main-wrapper">
+														<StoryMenu
+															updateBoard={updateBoard}
+															board={board}
+															group={group}
+															story={story}
+														/>
+														<Story
+															updateBoard={updateBoard}
+															board={board}
+															group={group}
+															story={story}
+														/>
+													</div>
+												</span>
+											</div>
+										)}
+									</Draggable>
+								);
+							})
+						) : (
+							<Draggable
+								key="fragment-placeholder"
+								draggableId="fragment-placeholder"
+								index={17}
+								type="story">
+								{(provided) => (
+									<div
+										ref={provided.innerRef}
+										{...provided.draggableProps}
+										className="placement-empty-group">
+										<span
+											{...provided.dragHandleProps}></span>
+									</div>
+								)}
+							</Draggable>
+						)}
 						{provided.placeholder}
 					</div>
 				)}
