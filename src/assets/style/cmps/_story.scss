@@ -167,9 +167,6 @@
 	.story-update-icons{
 		display: flex;
 		position: relative;
-		.update-bubble{
-			// cursor: pointer;
-		}
 	}
 	.updates-count-bubble{
 		background-color: #4099f8;
@@ -240,7 +237,6 @@
 	display: flex;
 	justify-content: stretch;
 	align-items: center;
-	cursor: auto;
 
 	.btn-toggle-menu.MuiButton-containedPrimary {
 		min-width: unset;
