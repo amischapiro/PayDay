@@ -101,6 +101,8 @@ function _createBoard(_id = _makeId(), title) {
         _id,
         title,
         createdAt: 1589983468418,
+        sortBy: {name: null, order: -1},
+        filterBy: {},
         createdBy: {
             _id: "u101",
             fullname: "Abi Abambi",

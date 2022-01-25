@@ -76,7 +76,7 @@
 
 			
         .date-picker-cmp {
-			height: inherit;
+			height: 22px;
 			border-radius: 25px;
 			text-align: center;
             &::placeholder {
@@ -86,17 +86,17 @@
 
 		.date-picker-container {
 			width: 152px;
-			height: 1.5rem;
+			height: 22px;
 			border-radius: 25px;
 			position: relative;
 			// height: fit-content;
 
 			.date-picker-cmp {
-				margin-top: 5px;
+				// margin-top: 7px;
 				width: 152px;
 				background-color: transparent;
 				position: absolute;
-				top: -45px;
+				top: -38px;
 				right: -78px;
 			}
 
@@ -111,7 +111,7 @@
 
 			.grey-bck {
 				width: 152px;
-				height: 1.5rem;
+				height: 22px;
 				background-color: #323338;
 				border-radius: 25px;
 			}
