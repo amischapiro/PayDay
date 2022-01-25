@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { utilService } from '../../services/util.service';
 
 export function StoryMenu(props) {
 
@@ -39,8 +40,10 @@ export function StoryMenu(props) {
         newBoard.groups[groupIdx].stories.splice(storyIdx, 1)
         updateBoard(newBoard)
     }
-    const onDuplicateStory = () => {
-
+    const onDuplicateStory = async () => {
+        const newStory = { ...story, id: utilService.makeId() }
+        newBoard.groups[groupIdx].stories.unshift(newStory)
+        await updateBoard(newBoard)
     }
 
     return (

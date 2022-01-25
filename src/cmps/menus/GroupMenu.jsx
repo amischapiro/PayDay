@@ -49,9 +49,14 @@ export function GroupMenu({ board, group, updateBoard, groupColor }) {
         const newGroup = {
             ...group,
             id: utilService.makeId(),
-            title: group.title + ' (Copy)'
+            title: group.title + ' (Copy)',
+
         }
-        console.log(newGroup);
+        const newStories = newGroup.stories.map(story => {
+            return { ...story, id: utilService.makeId() }
+
+        })
+        newGroup.stories = newStories
         newBoard.groups.unshift(newGroup)
         await updateBoard(newBoard)
         handleClose()

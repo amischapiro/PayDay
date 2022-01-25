@@ -20,13 +20,6 @@ function _BoardList({ boards, updateBoard, removeBoard, currBoard }) {
     const [isBoardListOpen, toggleBoardList] = useState(true)
 
 
-
-    // useEffect(() => {
-    //     props.loadBoards()
-    // }, [])
-
-
-
     const onToggleBoardListShown = () => {
         isBoardListOpen ? toggleBoardList(false) : toggleBoardList(true)
     }
@@ -38,7 +31,6 @@ function _BoardList({ boards, updateBoard, removeBoard, currBoard }) {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
 
-    // const { boards } = props
 
 
 
