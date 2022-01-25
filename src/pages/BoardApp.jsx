@@ -29,7 +29,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
         await setStory(story)
     }
 
-
+    if (!selectedBoard) return <React.Fragment />
 
     return (
         <main className='main-container'>

@@ -57,8 +57,8 @@ export function GroupColorMenu({ board, group, updateBoard, groupColor, closePre
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
+                    vertical: 0,
+                    horizontal: 252,
                 }}>
                 <Typography className="drop-down group-color-opts-menu">
                     {utilService.getGroupColors().map(color => {

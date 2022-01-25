@@ -12,18 +12,21 @@ export function __BoardPreview(props) {
 
     const { boards, board, removeBoard, updateBoard, currBoard } = props
 
-    // const [isBtnsShown, toggleBtnsShown] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
+    const [isHover, toggleOnHover] = useState(false)
 
     const handleClick = (event) => {
         event.stopPropagation()
+        toggleOnHover(true)
         setAnchorEl(event.currentTarget);
     };
 
     const handleClose = (event) => {
         event.stopPropagation()
-        setAnchorEl(null);
-    };
+        toggleOnHover(false)
+        setAnchorEl(null)
+    }
+
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -49,9 +52,12 @@ export function __BoardPreview(props) {
 
     return (
 
-        <div className={currBoard?._id === board._id ? 
+        <div className={currBoard?._id === board._id ?
             "board-preview curr-board" : "board-preview"}
-            onClick={onGoTo}>
+            onClick={onGoTo}
+            onMouseEnter={() => { toggleOnHover(true) }}
+            onMouseOver={() => { toggleOnHover(true) }}
+            onMouseLeave={() => { toggleOnHover(false) }} >
             <div>
                 <span className='fa-solid window'></span>
                 <span>&nbsp;{board.title}</span>
@@ -63,7 +69,7 @@ export function __BoardPreview(props) {
                 aria-describedby={id}
                 variant="contained"
                 onClick={handleClick}
-                className="btn-ellipsis"
+                className={isHover ? "btn-ellipsis hover" : "btn-ellipsis"}
             >
                 <span className="fa-solid ellipsis-h"></span>
             </Button>

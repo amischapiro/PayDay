@@ -15,16 +15,19 @@ export function StoryMenu(props) {
     const storyId = story.id;
     const storyIdx = group.stories.findIndex((story) => story.id === storyId);
 
-
+    const [isHover, toggleIsHover] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
+        toggleIsHover(true)
         setAnchorEl(event.currentTarget);
     };
 
     const handleClose = () => {
+        toggleIsHover(false)
         setAnchorEl(null);
     };
+
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -38,15 +41,18 @@ export function StoryMenu(props) {
     }
 
     return (
-        <div className="">
+        <div onMouseEnter={() => { toggleIsHover(true) }}
+            onMouseOver={() => { toggleIsHover(true) }}
+            onMouseLeave={() => { toggleIsHover(false) }}>
 
             <Button
                 aria-describedby={id}
                 variant="contained"
                 onClick={handleClick}
                 className="btn-toggle-menu"
+
             >
-                <span className="fa-solid caret-down"></span>
+                <span className={isHover ? "fa-solid caret-down hover" : "fa-solid caret-down"}></span>
             </Button>
             <Popover
                 id={id}
@@ -69,7 +75,7 @@ export function StoryMenu(props) {
                 </Typography>
 
             </Popover>
-        </div>
+        </div >
 
     )
 }

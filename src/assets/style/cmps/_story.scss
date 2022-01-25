@@ -242,7 +242,7 @@
 	display: flex;
 	justify-content: stretch;
 	align-items: center;
-	cursor: pointer;
+	cursor: auto;
 
 	.btn-toggle-menu.MuiButton-containedPrimary {
 		min-width: unset;
@@ -260,8 +260,14 @@
 			background-color: #e2e5eb;
 			visibility: hidden;
 		}
-		&:hover .fa-solid.caret-down {
-			visibility: visible;
+		// &:hover .fa-solid.caret-down {
+		// 	visibility: visible;
+		// }
+		.fa-solid.caret-down {
+			&.hover{
+				visibility: visible;
+
+			}
 		}
 	}
 }
