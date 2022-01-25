@@ -34,7 +34,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
     return (
         <main className='main-container'>
             <SideBar />
-            <BoardList boards={boards} removeBoard={removeBoard} />
+            <BoardList boards={boards} currBoard={selectedBoard} removeBoard={removeBoard} />
             {selectedBoard ? (
                 <BoardArea boards={boards} board={selectedBoard} updateBoard={updateBoard} />
             ) : <div>No Boards</div>

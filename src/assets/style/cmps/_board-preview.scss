@@ -6,32 +6,37 @@
   align-items: center;
   width: 100%;
 
-  .btns-container {
-    visibility: hidden;
+  
+  &:hover {
+    .btn-ellipsis.MuiButton-containedPrimary {
+      display: inline-block;
+    }
   }
-
-  &.on-hover {
-    .btns-container {
-      visibility: visible;
+  
+  &.curr-board {
+    background-color: #cce5ff;
+    &:hover {
+      background-color: #cce5ff;
+    }
+  }
+  
+  .btn-ellipsis.MuiButton-containedPrimary {
+    display: none;
+    min-width: unset;
+    padding: 0 0.8rem;
+    font-size: 1rem;
+    background-color: transparent;
+    box-shadow: none;
+    &:hover {
+      background-color: transparent;
+      box-shadow: none;
+    }
+  
+    .fa-solid {
+      color: $clr5;
     }
   }
 }
 
 
-
-.btn-ellipsis.MuiButton-containedPrimary {
-  min-width: unset;
-  padding: 0 0.8rem;
-  font-size: 1rem;
-  background-color: transparent;
-  box-shadow: none;
-  &:hover {
-    background-color: transparent;
-    box-shadow: none;
-  }
-
-  .fa-solid {
-    color: $clr5;
-  }
-}
 

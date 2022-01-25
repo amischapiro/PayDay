@@ -10,12 +10,10 @@ import Button from '@mui/material/Button';
 
 export function __BoardPreview(props) {
 
-    const { boards, board, removeBoard, updateBoard } = props
+    const { boards, board, removeBoard, updateBoard, currBoard } = props
 
-    // TODO Hover on the elliphsis
-    const [isBtnsShown, toggleBtnsShown] = useState(false)
-
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    // const [isBtnsShown, toggleBtnsShown] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
         event.stopPropagation()
@@ -51,8 +49,8 @@ export function __BoardPreview(props) {
 
     return (
 
-        <div className={isBtnsShown ? 'board-preview on-hover' : 'board-preview'}
-            onMouseLeave={() => { toggleBtnsShown(false) }} onMouseEnter={() => { toggleBtnsShown(true) }}
+        <div className={currBoard._id === board._id ? 
+            "board-preview curr-board" : "board-preview"}
             onClick={onGoTo}>
             <div>
                 <span className='fa-solid window'></span>
