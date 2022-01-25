@@ -1,4 +1,55 @@
+.dashboard-stats-container{
+    display: flex;
+    justify-content: space-evenly;
+    >*{
+        // background-color: darkkhaki;
+        border: 1px black solid;
+        height: 5rem;
+        width: 10rem;
+        text-align: center;
+        line-height: 5rem;
+        display: flex;
+        border-radius: 10px;
+        >*{
+            width: 50%;
+        }
 
+
+    }
+    .stats-icon>*{
+        font-size: 4rem;  
+        // color:white;  
+    }
+    .inner-stats{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        >*{
+            height: 50%;
+            line-height: 2rem;
+        }
+        :first-child{
+            font-size: 1.8rem;
+        }
+        :not(:first-child){
+            font-size: 1.1rem;
+        }
+    }
+    .groups-stats{
+        background-color: lightcyan;
+    }
+    .stories-stats{
+        background-color: lightgreen;
+    }
+    .members-stats{
+        background-color: lightsalmon;
+    }
+    .activities-stats{
+        background-color: thistle;
+    }
+
+
+}
 .dash-top-container{
     display: flex;
     .line-chart{
