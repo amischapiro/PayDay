@@ -1,13 +1,15 @@
-.group {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-}
-
 .groups-container {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+	// overflow: auto;
+	// overflow-x: scroll;
+}
+
+.group {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
 .add-story {
@@ -88,7 +90,7 @@
 .group-sums {
 	display: flex;
 	// justify-content: flex-start;
-    height: 40px;
+	height: 40px;
 	width: fit-content;
 
 	.empty-txt-area {
@@ -98,7 +100,7 @@
 	.members-sum {
 		background-color: #f5f6f8;
 		width: 97px;
-        border-radius: 0 0 4px 4px;
+		border-radius: 0 0 4px 4px;
 	}
 
 	.status-sum {
@@ -107,12 +109,12 @@
 		width: 117px;
 		display: grid;
 		grid-auto-flow: column;
-        border-radius: 0 0 4px 4px;
-        transition: .1s ease;
-        
-        &:hover {
-            padding: 5px 7px;
-        }
+		border-radius: 0 0 4px 4px;
+		transition: 0.1s ease;
+
+		&:hover {
+			padding: 5px 7px;
+		}
 	}
 
 	.priority-sum {
@@ -121,41 +123,41 @@
 		width: 92px;
 		display: grid;
 		grid-auto-flow: column;
-        border-radius: 0 0 4px 4px;
-        transition: .1s ease;
-        
-        &:hover {
-            padding: 5px 7px;
-        }
+		border-radius: 0 0 4px 4px;
+		transition: 0.1s ease;
+
+		&:hover {
+			padding: 5px 7px;
+		}
 	}
 
 	.num-sum {
 		background-color: #f5f6f8;
 		width: 125px;
 		text-align: center;
-        border-radius: 0 0 4px 4px;
-        transition: .1s ease;
+		border-radius: 0 0 4px 4px;
+		transition: 0.1s ease;
 
-        &:hover {
-            background-color: #e6e9ef;
-        }
+		&:hover {
+			background-color: #e6e9ef;
+		}
 
 		.sum-var {
 			padding: 3px 5px;
 			margin: 0;
-            font-size: 15px;
-            height: 30.5px;
-            color: #323338;
+			font-size: 15px;
+			height: 30.5px;
+			color: #323338;
 		}
 
 		.sum-txt {
 			padding: 0;
 			margin: 0;
 			font-size: 12px;
-            height: 18px;
-            position: relative;
-            bottom: 11px;
-            color: #676879;
+			height: 18px;
+			position: relative;
+			bottom: 11px;
+			color: #676879;
 		}
 	}
 	.link-sum {
