@@ -1,44 +1,10 @@
-// import React, { useState } from 'react';
-// import DatePicker from 'react-datepicker';
-
-// import 'react-datepicker/dist/react-datepicker.css';
-
-// export function TimelineCmp({ story, onUpdate }) {
-// 	const { timeline } = story.storyData;
-// 	let initData = [];
-// 	if (timeline.length) {
-// 		initData.push(timeline[0]);
-// 		initData.push(timeline[1] ? timeline[1] : null);
-// 	} else initData = [null, null];
-// 	const [dateRange, setDateRange] = useState([initData[0], initData[1]]);
-// 	const [startDate, endDate] = dateRange;
-// 	// if(startDate)console.log('TimelineCmp.jsx 💤 9: ', startDate.getTime());
-// 	return (
-// 		<DatePicker
-// 			selectsRange={true}
-// 			startDate={startDate}
-// 			endDate={endDate}
-// 			onChange={(update) => {
-// 				setDateRange(update);
-// 				onUpdate('CHANGE_TIMELINE', update);
-// 			}}
-// 			dateFormat="dd/MM/yyyy"
-// 			// isClearable={true}
-// 		/>
-// 	);
-// }
-
 import React, { useState, useEffect, useRef } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-// import { registerLocale, setDefaultLocale } from "react-datepicker";
-// import uk from 'date-fns/locale/en-GB';
-// registerLocale('uk', uk)
 
 export function TimelineCmp({ story, group, onUpdate }) {
 	//try with debounce
 	//dynamic cmp
-	// placeholder selector
 
 	const { timeline } = story.storyData;
 	let initData = [];
@@ -54,10 +20,6 @@ export function TimelineCmp({ story, group, onUpdate }) {
 	const [isHover, setIsHover] = useState(false);
 	const { backgroundColor } = group.style;
 	const firstUpdate = useRef(true);
-	// const inputEl = useRef();
-
-	// const [dateRange, setDateRange] = useState([initData[0], initData[1]]);
-	// const [startDate, endDate] = dateRange;
 
 	useEffect(() => {
 		setIsDateSet(!initData[0] && !initData[1] ? false : true);
@@ -114,26 +76,26 @@ export function TimelineCmp({ story, group, onUpdate }) {
 	const onEnter = () => {
 		setIsHover(true);
 	};
+
 	const onLeave = () => {
 		setIsHover(false);
 	};
+
 	const onSetDatesFocus = () => {
 		setIsSettingDate(true);
 	};
+
 	const onSetDatesBlur = () => {
 		setIsSettingDate(false);
 	};
 
 	const getNumOfDays = () => {
 		if (!startDate || !endDate) return;
-		// const timestampStart = startDate
-		// const timestampEnd = endDate
 		const totalDays = (endDate - startDate) / 1000 / 60 / 60 / 24;
 		return totalDays;
 	};
 	const getPercent = () => {
 		const now = Date.now();
-		// const timestampStart = startDate
 		const totalDays = getNumOfDays();
 		let milliPassed = now - startDate;
 		const daysPassed = Math.floor(milliPassed / 1000 / 60 / 60 / 24);
@@ -149,7 +111,7 @@ export function TimelineCmp({ story, group, onUpdate }) {
 
 	return (
 		<div className="timeline" onMouseEnter={onEnter} onMouseLeave={onLeave}>
-			{!isDateSet && (
+			{!isDateSet ? (
 				<DatePicker
 					placeholderText={
 						isSettingDate ? '-' : isHover ? 'Set Dates' : '-'
@@ -167,40 +129,32 @@ export function TimelineCmp({ story, group, onUpdate }) {
 					}}
 					// dateFormat="MMMM"
 				/>
-			)}
-
-			{isDateSet && !isSettingDate && isHover && (
-				<span className="num-of-days" onClick={() => setIsHover(false)}>
+			) : !isSettingDate && isHover ? (
+				<div className="num-of-days" onClick={onLeave}>
 					{getNumOfDays()}d
-				</span>
-			)}
-
-			{isDateSet && !isHover && (
-				<div className="date-pick-wrapper">
-					<div className="date-picker-container">
-						<div
-							className="progress-bar"
-							style={{
-								backgroundColor: backgroundColor,
-								width: `${getPercent()}%`,
-								borderRadius: '25px 0 0 25px',
-								height: '22px',
-							}}></div>
-						<div className="grey-bck"></div>
-						<DatePicker
-							className="date-picker-cmp"
-							popperPlacement="bottom"
-							popperClassName="date-picker-pos"
-							// dateFormat="us"
-							// locale="uk"
-							selectsRange={true}
-							startDate={startDate}
-							endDate={endDate}
-							onChange={(update) => {
-								setDateRange(update);
-							}}
-						/>
-					</div>
+				</div>
+			) : (
+				<div className="date-picker-container">
+					<div
+						className="progress-bar"
+						style={{
+							backgroundColor: backgroundColor,
+							width: `${getPercent()}%`,
+						}}></div>
+					<div className="grey-bck"></div>
+					<DatePicker
+						className="date-picker-cmp"
+						popperPlacement="bottom"
+						popperClassName="date-picker-pos"
+						// dateFormat="us"
+						// locale="uk"
+						selectsRange={true}
+						startDate={startDate}
+						endDate={endDate}
+						onChange={(update) => {
+							setDateRange(update);
+						}}
+					/>
 				</div>
 			)}
 		</div>
