@@ -189,6 +189,11 @@ function _createBoard(_id = _makeId(), title) {
                         id: _makeId(),
                         title: "Replace logo",
                         createdAt: Date.now(),
+                        createdBy: {
+                            _id: "u101",
+                            fullname: "Tal Tarablus",
+                            imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
+                        },
                         comments:[
                             {
                                 id:'c232',
@@ -226,13 +231,20 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {name: null, url: null}
+                            link: {name: null, url: null},
+                            dueDate: null,
+                            file: null
                         }
                     },
                     {
                         id: _makeId(),
                         title: "Add Samples",
                         createdAt: Date.now(),
+                        createdBy: {
+                            _id: "u101",
+                            fullname: "Tal Tarablus",
+                            imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
+                        },
                         comments:[
                             {
                                 id:'c234',
@@ -247,8 +259,6 @@ function _createBoard(_id = _makeId(), title) {
                                 },
                                 storyId:_makeId(),
                                 groupId:'g202',
-                                
-
                             }
                         ],
                         storyData: {
@@ -271,7 +281,9 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {name: null, url: null}
+                            link: {name: null, url: null},
+                            dueDate: null,
+                            file: null
                         }
                     }
                 ],
@@ -285,6 +297,11 @@ function _createBoard(_id = _makeId(), title) {
                         id: _makeId(),
                         title: "Replace logo",
                         createdAt: Date.now(),
+                        createdBy: {
+                            _id: "u101",
+                            fullname: "Tal Tarablus",
+                            imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
+                        },
                         comments:[
                             {
                                 id:'c252',
@@ -322,13 +339,20 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {name: null, url: null}
+                            link: {name: null, url: null},
+                            dueDate: null,
+                            file: null
                         }
                     },
                     {
                         id: _makeId(),
                         title: "Add Samples",
                         createdAt: Date.now(),
+                        createdBy: {
+                            _id: "u101",
+                            fullname: "Tal Tarablus",
+                            imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
+                        },
                         comments:[
                             {
                                 id:'c235',
@@ -366,7 +390,9 @@ function _createBoard(_id = _makeId(), title) {
                             },
                             timeline: [null, null],
                             number: null,
-                            link: {name: null, url: null}
+                            link: {name: null, url: null},
+                            dueDate: null,
+                            file: null
                         }
                     }
                 ],

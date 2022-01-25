@@ -70,7 +70,7 @@ function groupColorPicker(colorIdx = getRandomIntInclusive(0, 17)) {
     return colors[colorIdx];
 }
 
-function getGroupColors(colorIdx = getRandomIntInclusive(0, 17)) {
+function getGroupColors() {
     return ['#037c4a', '#00c875', '#9cd326', '#cab641', '#784bd1', '#a25ddc', '#0086c0', '#579bfc', '#66ccff', '#bb3354', '#e2445c', '#ff158a', '#ff5ac4', '#ff642e', '#fdab3d', '#7f5347', '#c4c4c4', '#808080'];
 }
 
@@ -80,6 +80,11 @@ function createStory(title = 'New Story') {
         id: makeId(),
         title,
         createdAt: Date.now(),
+        createdBy: { // need to change this to loggedinUser function
+            _id: "u101",
+            fullname: "Tal Tarablus",
+            imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
+        },
         comments: [],
         storyData: {
             members: [],
@@ -94,7 +99,9 @@ function createStory(title = 'New Story') {
                 color: "#c4c4c4"
             },
             timeline: [null, null],
-            link: {}
+            link: { name: null, url: null },
+            dueDate: null,
+            file: null
         }
     }
 
