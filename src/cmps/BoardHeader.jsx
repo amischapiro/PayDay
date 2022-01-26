@@ -5,17 +5,16 @@ import React, { useEffect, useState } from 'react'
 export function BoardHeader({ board, updateBoard }) {
 
     const { title, desc } = board
+    const { members } = board
 
     const [isTitleEditOn, toggleTitleEdit] = useState(false)
     const [isDescEditOn, toggleDescEdit] = useState(false)
+    const [isDescShow, toggleisDescShow] = useState(false)
     const [editBoard, setEditBoard] = useState({ title, desc: desc || '' })
 
     const titleRef = React.createRef()
     const decsRef = React.createRef()
 
-    const { members } = board
-
-    console.log(members);
 
     useEffect(() => {
         if (isTitleEditOn) titleRef.current.focus()
@@ -53,13 +52,15 @@ export function BoardHeader({ board, updateBoard }) {
             <div className='title-and-action'>
 
                 <div className='title-section'>
-                    {!isTitleEditOn && <h3 onClick={() => { toggleTitleEdit(true) }}>{title ? title : 'Enter title here'}</h3>}
-                    {isTitleEditOn &&
+                    {!isTitleEditOn ? (
+                        <h3 onClick={() => { toggleTitleEdit(true) }}>{title ? title : 'Enter title here'}</h3>
+                    ) : (
                         <form onSubmit={onSubmitTitle}>
                             <input ref={titleRef} type="text" onBlur={onSubmitTitle}
                                 value={editBoard.title} name="title" onChange={handleChange} />
-                        </form>}
-                    <div className='fa-solid info-circle'></div>
+                        </form>
+                    )}
+                    <div onClick={() => { toggleisDescShow(!isDescShow) }} className='fa-solid info-circle'></div>
                     <div className='fa star'></div>
                 </div>
 
@@ -75,14 +76,22 @@ export function BoardHeader({ board, updateBoard }) {
                 </div>
 
             </div>
+            {!isDescShow &&
+                <React.Fragment>
+                    {!isDescEditOn ? (
+                        <div className='description'
+                            onClick={() => { toggleDescEdit(true) }}>{desc ? desc : 'Add description here'}</div>
+                    ) : (
+                        <form onSubmit={onSubmitDesc}>
+                            <textarea ref={decsRef} type="text" onBlur={onSubmitDesc}
+                                value={editBoard.desc} name="desc" onChange={handleChange} />
+                        </form>
+                    )}
+                </React.Fragment>
+            }
 
-            {!isDescEditOn && <div className='description'
-                onClick={() => { toggleDescEdit(true) }}>{desc ? desc : 'Add description here'}</div>}
-            {isDescEditOn &&
-                <form onSubmit={onSubmitDesc}>
-                    <textarea ref={decsRef} type="text" onBlur={onSubmitDesc}
-                        value={editBoard.desc} name="desc" onChange={handleChange} />
-                </form>}
+
+
 
 
 
