@@ -117,8 +117,8 @@ function _createBoard(_id = _makeId(), title) {
             },
             {
                 id: "s102",
-                title: "Stuck",
-                color: "#e2445c"
+                title: "Ready for review",
+                color: "#a25ddc"
             },
             {
                 id: "s103",
@@ -127,13 +127,13 @@ function _createBoard(_id = _makeId(), title) {
             },
             {
                 id: "s104",
-                title: "To do",
-                color: "#c4c4c4"
+                title: "Stuck",
+                color: "#e2445c"
             },
             {
                 id: "s105",
-                title: "Ready for review",
-                color: "#a25ddc"
+                title: "To do",
+                color: "#c4c4c4"
             },
         ],
         priorities: [

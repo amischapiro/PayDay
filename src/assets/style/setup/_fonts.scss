@@ -6,6 +6,11 @@
 }
 
 @font-face {
+	font-family: Roboto light;
+	src: url('../../fonts/Roboto-Light.ttf');
+}
+
+@font-face {
 	font-family: fa;
 	src: url('../../fonts/fa/fa-regular-400.ttf');
 }
@@ -96,6 +101,10 @@
 	content: '\f0c5';
 }
 
+.fa.clock::before {
+	content: '\f017';
+}
+
 /*  Brands */
 
 .fa-brands.youtube::before {
@@ -103,6 +112,10 @@
 }
 
 /* Solid Style */
+
+.fa-solid.undo::before {
+	content: '\f0e2';
+}
 
 .fa-solid.th-list::before {
 	content: '\f00b';
@@ -240,4 +253,12 @@
 
 .fa-solid.home::before {
 	content: '\f015';
+}
+
+.fa-solid.traffic-light::before {
+	content: '\f637';
+}
+
+.fa-solid.align-center::before {
+	content: '\f037';
 }

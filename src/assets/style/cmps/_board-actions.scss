@@ -66,23 +66,7 @@
                 }
             }
 
-            .MuiButton-containedPrimary.add-story-menu {
-                display: block;
-                background-color: transparent;
-                padding: 0;
-                min-width: unset;
-                font-size: unset;
-                box-shadow: none;
-
-                &:hover {
-                    background-color: transparent;
-                    box-shadow: none;
-                }
-            }
-            .fa-solid.chevron-down {
-                font-size: 0.7rem;
-                color: white;
-            }
+          
         }
 
         .search-bar {
@@ -135,17 +119,6 @@
             }
         }
 
-        .sort {
-            display: flex;
-            align-items: center;
-            .sort-icon{
-                color: #7a7b7e;
-                margin-inline-end: 10px;
-                font-size: 1.1rem;
-                font-weight: 300;
-                transform: rotate(90deg);
-            }
-        }
     }
 }
 
