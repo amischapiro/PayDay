@@ -44,8 +44,6 @@ async function addBoard(boardToAdd) {
 }
 
 
-
-
 // ADD FIRST NEW BOARD IF EMPTY
 
 // utilService.createFirstBoard()
