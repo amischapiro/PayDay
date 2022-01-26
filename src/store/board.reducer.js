@@ -23,9 +23,11 @@ export function boardReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_BOARDS':
+            // console.log('board.reducer.js 💤 26: ', action.boards);
             newState = { ...state, boards: [...action.boards] }
             break
         case 'SET_BOARD':
+            
             return { ...state, selectedBoard: action.board }
         case 'REMOVE_BOARD':
             newState = { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }

@@ -40,6 +40,8 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
         await setStory(story)
     }
 
+    if (!boards?.length) return <div>No Boards!</div>
+    
     if (!selectedBoard) return <React.Fragment />
 
     return (
@@ -72,7 +74,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
                         </Route>
 
                     </Switch>
-                    <ActivityModal />
+                    <ActivityModal updateBoard={updateBoard} />
 
 
                 </div>
