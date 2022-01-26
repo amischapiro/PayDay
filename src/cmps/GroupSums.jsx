@@ -35,7 +35,7 @@ export class GroupSum extends Component {
 									src={filteredMems[0].imgUrl}
 									alt=""
 								/>{' '}
-								<span className="plus-members">
+								<span className="plus-members sum">
 									+{filteredMems.length - 1}
 								</span>{' '}
 							</div>

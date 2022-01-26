@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { utilService } from '../services/util.service';
 
 import { NewStoryMenu } from './menus/NewStoryMenu';
+import { SortMenu } from './menus/SortMenu';
 import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 
 
@@ -37,7 +38,7 @@ function _BoardActions({ board, updateBoard }) {
 
 	const onSetSort = async (type) => {
 		const sortBy = newBoard.sortBy;
-		if(type === sortBy.name) sortBy.order *= -1;
+		if (type === sortBy.name) sortBy.order *= -1;
 		else {
 			sortBy.name = type;
 			sortBy.order = -1;
@@ -57,6 +58,14 @@ function _BoardActions({ board, updateBoard }) {
 					case 'priority':
 						if (a.priority.id < b.priority.id) return sortBy.order;
 						else if (a.priority.id > b.priority.id) return sortBy.order * -1;
+						else return 0;
+					case 'people':
+						if (a.members.length < b.members.length) return sortBy.order;
+						else if (a.members.length > b.members.length) return sortBy.order * -1;
+						else return 0;
+					case 'SP':
+						if (a.number < b.number) return sortBy.order;
+						else if (a.number > b.number) return sortBy.order * -1;
 						else return 0;
 					default:
 						if (a.createdAt < b.createdAt) return sortBy.order;
@@ -133,10 +142,8 @@ function _BoardActions({ board, updateBoard }) {
 					<span className="fa-solid chevron-down"></span>
 				</div>
 
-				<div className="sort" onClick={() => onSetSort('name')}>
-					<SyncAltRoundedIcon className="sort-icon" />
-					<span>Sort</span>
-				</div>
+				<SortMenu board={board} updateBoard={updateBoard} />
+
 			</div>
 		</div>
 	);
