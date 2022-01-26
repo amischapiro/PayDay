@@ -72,7 +72,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
                         </Route>
 
                     </Switch>
-                    <ActivityModal />
+                    <ActivityModal updateBoard={updateBoard} />
 
 
                 </div>
