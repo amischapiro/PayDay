@@ -40,8 +40,15 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
         await setStory(story)
     }
 
-    if (!boards?.length) return <div>No Boards!</div>
-    
+    if (!boards?.length) return (
+        <main className="main-container">
+            <SideBar />
+            <BoardList boards={boards} currBoard={selectedBoard}
+                removeBoard={removeBoard} addBoard={addBoard} />
+            <div class="loader"></div>
+        </main>
+    )
+
     if (!selectedBoard) return <React.Fragment />
 
     return (
@@ -56,10 +63,6 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
                     <BoardNav board={selectedBoard} />
                     <BoardActions board={selectedBoard} updateBoard={updateBoard} />
                 </section>
-                {/* {selectedBoard ? (
-                <BoardArea boards={boards} board={selectedBoard} updateBoard={updateBoard} />
-                ) : <div>No Boards</div>
-            } */}
                 <div className="board-content">
 
                     <Switch className="board-switch-container">
