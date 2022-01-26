@@ -32,37 +32,29 @@ function _BoardActions({ board, updateBoard }) {
 
 	const onSetSort = async (type) => {
 		const sortBy = newBoard.sortBy;
-		let newGroups;
 		sortBy.order *= -1;
         sortBy.name = type;
-		switch (sortBy.name) {
-			case 'name':
-				newGroups = newBoard.groups.map((group) => {
-					const newStories = group.stories.sort(function (a, b) {
+		let newGroups = newBoard.groups.map((group) => {
+			const newStories = group.stories.sort(function (a, b) {
+				switch(sortBy.name) {
+					case 'name':
 						if (a.title.toLowerCase() < b.title.toLowerCase()) return sortBy.order;
 						else if (a.title.toLowerCase() > b.title.toLowerCase()) return sortBy.order * -1;
 						else return 0;
-					});
-					group.stories = newStories;
-					return group;
-				    });
-				newBoard.groups = newGroups
-				break;
-			case 'date':
-				newGroups = newBoard.groups.map((group) => {
-					const newStories = group.stories.sort(function (a, b) {
+					case 'date':
 						if (a.createdAt < b.createdAt) return sortBy.order;
 						else if (a.createdAt > b.createdAt) return sortBy.order * -1;
 						else return 0;
-					});
-					group.stories = newStories;
-					return group;
-				    });
-				newBoard.groups = newGroups
-				break;
-			default:
-				break;
-		}
+					default: 
+						return null;
+				}
+			});
+
+			group.stories = newStories;
+			return group;
+		});
+
+		newBoard.groups = newGroups;
 		await updateBoard(newBoard);
 	};
 
