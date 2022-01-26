@@ -192,7 +192,7 @@ function _createBoard(_id = _makeId(), title) {
                         title: "Replace logo",
                         createdAt: 123,
                         createdBy: {
-                            _id: "u101",
+                            _id: "u102",
                             fullname: "Tal Tarablus",
                             imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
                         },
