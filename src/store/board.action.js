@@ -20,6 +20,7 @@ export function getById(boardId) {
         try {
             const board = await boardService.getById(boardId)
             const filteredBoard = _filterBoard(board);
+            console.log('board.action.js 💤 99: ', filteredBoard);
             dispatch({ type: 'SET_BOARD', filteredBoard })
             return filteredBoard
         } catch (error) {
@@ -98,28 +99,28 @@ function _filterBoard(board) {
     const { filterBy } = board;
     if (filterBy === {}) return board;
 
-    if (filterBy.name) board.groups.forEach((group, idx) => {
+    if (filterBy?.name) board.groups.forEach((group, idx) => {
         const stories = group.stories.filter(story => {
             return story.title.toLowerCase().includes(filterBy.name)
         })
         board.groups[idx].stories = stories;
     });
 
-    if (filterBy.priority) board.groups.forEach((group, idx) => {
+    if (filterBy?.priority) board.groups.forEach((group, idx) => {
         const stories = group.stories.filter(story => {
             return story.storyData.priority.title === filterBy.priority;
         })
         board.groups[idx].stories = stories;
     });
 
-    if (filterBy.status) board.groups.forEach((group, idx) => {
+    if (filterBy?.status) board.groups.forEach((group, idx) => {
         const stories = group.stories.filter(story => {
             return story.storyData.status.title === filterBy.status;
         })
         board.groups[idx].stories = stories;
     });
 
-    if (filterBy.members) board.groups.forEach((group, idx) => {
+    if (filterBy?.members) board.groups.forEach((group, idx) => {
         const stories = group.stories.filter(story => {
             return story.storyData.status.members.some(member => {
                 return filterBy.members.some(filterMem => {
