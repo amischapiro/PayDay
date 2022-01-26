@@ -13,6 +13,7 @@ import { GroupColorMenu } from './GroupColorMenu';
 export function GroupMenu({ board, group, updateBoard, groupColor }) {
 
     const newBoard = { ...board };
+    console.log('GroupMenu.jsx 💤 16: ', newBoard);
     const groupId = group.id;
     const groupIdx = board.groups.findIndex((group) => group.id === groupId);
 

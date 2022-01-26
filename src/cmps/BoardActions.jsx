@@ -8,9 +8,10 @@ import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 function _BoardActions({ board, updateBoard }) {
 	const [isSearchOpen, setSearchOpen] = useState(false);
 
+	const newBoard = { ...board };
+	console.log('BoardActions.jsx 💤 12: ', newBoard);
 	const onAddStory = async () => {
 		const newStory = utilService.createStory();
-		const newBoard = { ...board };
 
 		if (!newBoard.groups[0].stories || !newBoard.groups[0].stories.length)
 			newBoard.groups[0].stories = [newStory];
@@ -21,7 +22,6 @@ function _BoardActions({ board, updateBoard }) {
 
 	const onAddGroup = async () => {
 		const newGroup = utilService.createEmptyGroup();
-		const newBoard = { ...board };
 
 		if (!newBoard.groups || !newBoard.groups.length)
 			newBoard.groups = [newGroup];
@@ -31,37 +31,33 @@ function _BoardActions({ board, updateBoard }) {
 	};
 
 	const onSetSort = async (type) => {
-        // console.log('BoardActions.jsx 💤 34: ', 'here');
-		// const newBoard = JSON.parse(JSON.stringify(board));
-        return;
-        // const newBoard = { ...board };
-        // console.log('BoardActions.jsx 💤 36: ', board);
-        // console.log('BoardActions.jsx 💤 37: ', newBoard);
-		// const sortBy = newBoard.sortBy;
-        // sortBy.name = type;
-		// switch (sortBy.name) {
-		// 	case 'name':
-		// 		newBoard.groups = board.groups.map((group) => {
-		// 			return group.stories.sort(function (a, b) {
-		// 				if (a.title < b.title) return group.order;
-		// 				else if (a.title > b.title) return group.order * -1;
-		// 				else return 0;
-		// 			});
-		// 		    });
-		// 		break;
-		// 	case 'date':
-		// 		newBoard.groups = board.groups.map((group) => {
-		// 			return group.stories.sort(function (a, b) {
-		// 				if (a.createdAt < b.createdAt) return group.order;
-		// 				else if (a.createdAt > b.createdAt) return group.order * -1;
-		// 				else return 0;
-		// 			});
-		// 		    });
-		// 		break;
-		// 	default:
-		// 		break;
-		// }
-		// await updateBoard(newBoard);
+		console.log('BoardActions.jsx 💤 34: ', newBoard);
+		
+		const sortBy = newBoard.sortBy;
+		sortBy.name = type;
+		switch (sortBy.name) {
+			case 'name':
+				newBoard.groups = board.groups.map((group) => {
+					return group.stories.sort(function (a, b) {
+						if (a.title < b.title) return group.order;
+						else if (a.title > b.title) return group.order * -1;
+						else return 0;
+					});
+				    });
+				break;
+			case 'date':
+				newBoard.groups = board.groups.map((group) => {
+					return group.stories.sort(function (a, b) {
+						if (a.createdAt < b.createdAt) return group.order;
+						else if (a.createdAt > b.createdAt) return group.order * -1;
+						else return 0;
+					});
+				    });
+				break;
+			default:
+				break;
+		}
+		await updateBoard(newBoard);
 	};
 
 	return (

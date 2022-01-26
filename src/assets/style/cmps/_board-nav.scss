@@ -47,12 +47,6 @@
             cursor: pointer;
         }
 
-        // .css-i4bv87-MuiSvgIcon-root {
-        //     position: relative;
-        //     font-size: 1.3rem;
-        //     // top: 3px;
-        // }
-
         .fa.chart-bar {
             display: inline-block;
             transform: rotate(-90deg);
@@ -63,6 +57,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        // overflow: hidden;
+        // > * {
+        //     overflow: hidden;
+        // }
 
         .integrate {
             padding: 6px 16px;
