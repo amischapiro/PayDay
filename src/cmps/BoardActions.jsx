@@ -31,33 +31,39 @@ function _BoardActions({ board, updateBoard }) {
 	};
 
 	const onSetSort = async (type) => {
-		// const newBoard = JSON.parse(JSON.stringify(board));
-        console.log('BoardActions.jsx 💤 36: ', board);
-        console.log('BoardActions.jsx 💤 37: ', newBoard);
 		const sortBy = newBoard.sortBy;
+		let newGroups;
+		sortBy.order *= -1;
         sortBy.name = type;
 		switch (sortBy.name) {
 			case 'name':
-				newBoard.groups = board.groups.map((group) => {
-					return group.stories.sort(function (a, b) {
-						if (a.title < b.title) return group.order;
-						else if (a.title > b.title) return group.order * -1;
+				newGroups = newBoard.groups.map((group) => {
+					const newStories = group.stories.sort(function (a, b) {
+						if (a.title.toLowerCase() < b.title.toLowerCase()) return sortBy.order;
+						else if (a.title.toLowerCase() > b.title.toLowerCase()) return sortBy.order * -1;
 						else return 0;
 					});
+					group.stories = newStories;
+					return group;
 				    });
+				newBoard.groups = newGroups
 				break;
 			case 'date':
-				newBoard.groups = board.groups.map((group) => {
-					return group.stories.sort(function (a, b) {
-						if (a.createdAt < b.createdAt) return group.order;
-						else if (a.createdAt > b.createdAt) return group.order * -1;
+				newGroups = newBoard.groups.map((group) => {
+					const newStories = group.stories.sort(function (a, b) {
+						if (a.createdAt < b.createdAt) return sortBy.order;
+						else if (a.createdAt > b.createdAt) return sortBy.order * -1;
 						else return 0;
 					});
+					group.stories = newStories;
+					return group;
 				    });
+				newBoard.groups = newGroups
 				break;
 			default:
 				break;
 		}
+
 		await updateBoard(newBoard);
 	};
 
