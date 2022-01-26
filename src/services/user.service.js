@@ -16,8 +16,6 @@ export const userService = {
 }
 
 // AUTH
-
-
 async function login(credentials) {
     const user = await httpService.post('auth/login', credentials)
     _setLoggedinUser(user)
@@ -37,11 +35,7 @@ async function logout() {
     return signupUser
 }
 
-
-
 // User
-
-
 async function getUsers() {
     const users = await httpService.get('user/')
     return users
@@ -64,28 +58,29 @@ async function update(userToUpdate) {
     return updatedUser
 }
 
+
 // SESSION STORAGE
+function getLoggedinUser() {
+    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
+}
 
 // function getLoggedinUser() {
-//     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
+//     return {
+//         _id: "u101",
+//         fullname: "Abi Abambi",
+//         username: "abi@ababmi.com",
+//         password: "aBambi123",
+//         imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg",
+//         mentions: [
+//             {
+//                 id: "m101",
+//                 boardId: "m101",
+//                 storyId: "t101"
+//             }
+//         ]
+//     }
 // }
 
-function getLoggedinUser() {
-    return {
-        _id: "u101",
-        fullname: "Abi Abambi",
-        username: "abi@ababmi.com",
-        password: "aBambi123",
-        imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg",
-        mentions: [
-            {
-                id: "m101",
-                boardId: "m101",
-                storyId: "t101"
-            }
-        ]
-    }
-}
 function getMiniLoggedInUser() {
     const user = getLoggedinUser()
     delete user.password
