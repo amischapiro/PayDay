@@ -58,6 +58,14 @@ function _BoardActions({ board, updateBoard }) {
 						if (a.priority.id < b.priority.id) return sortBy.order;
 						else if (a.priority.id > b.priority.id) return sortBy.order * -1;
 						else return 0;
+					case 'people':
+						if (a.members.length < b.members.length) return sortBy.order;
+						else if (a.members.length > b.members.length) return sortBy.order * -1;
+						else return 0;
+					case 'SP':
+						if (a.number < b.number) return sortBy.order;
+						else if (a.number > b.number) return sortBy.order * -1;
+						else return 0;
 					default:
 						if (a.createdAt < b.createdAt) return sortBy.order;
 						else if (a.createdAt > b.createdAt) return sortBy.order * -1;
