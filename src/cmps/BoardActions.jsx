@@ -37,8 +37,11 @@ function _BoardActions({ board, updateBoard }) {
 
 	const onSetSort = async (type) => {
 		const sortBy = newBoard.sortBy;
-		if (type === sortBy.name) sortBy.order *= -1;
-		else sortBy.name = type;
+		if(type === sortBy.name) sortBy.order *= -1;
+		else {
+			sortBy.name = type;
+			sortBy.order = -1;
+		}
 
 		let newGroups = newBoard.groups.map((group) => {
 			const newStories = group.stories.sort(function (a, b) {

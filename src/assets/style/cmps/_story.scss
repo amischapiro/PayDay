@@ -107,6 +107,9 @@
 				&:hover {
 					color: #0085ff;
 				}
+				&.blue{
+					color: #0085ff;
+				}
 			}
 		}
 
@@ -123,7 +126,7 @@
 	button {
 		height: 2.25rem;
 		border: 1px solid #fff;
-		// border-top: #c4c4c4;
+		border-top: #c4c4c4;
 		// border-bottom: #c4c4c4;
 		font-size: 0.8125rem;
 		box-shadow: none;
@@ -173,8 +176,9 @@
 		display: flex;
 		position: relative;
 	}
+	
 	.updates-count-bubble {
-		background-color: #4099f8;
+		background-color: #0085ff;
 		height: 0.8rem;
 		width: 0.8rem;
 		position: absolute;

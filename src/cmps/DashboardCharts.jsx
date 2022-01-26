@@ -45,11 +45,12 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
                 label: 'Statuses',
                 data: statusCount,
                 borderColor: 'lightblue',
-                backgroundColor: ['rgba(255, 99, 132, 0.5)',
+                backgroundColor: [
+                    'rgba(75, 255, 150, 0.5)',
+                    'rgba(255, 99, 132, 0.5)',
                     'rgba(255, 159, 64, 0.5)',
-                    'rgba(255, 205, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',]
+                    'rgba(128, 128, 128, 0.5)',
+                    'rgba(121, 42, 194, 0.5)',]
             },
         ],
     };
@@ -84,8 +85,8 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.5)',
                     'rgba(255, 205, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
                     'rgba(54, 162, 235, 0.5)',
+                    'rgba(128, 128, 128, 0.5)',
                 ]
             },
         ],
