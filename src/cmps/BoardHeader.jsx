@@ -13,6 +13,9 @@ export function BoardHeader({ board, updateBoard }) {
     const titleRef = React.createRef()
     const decsRef = React.createRef()
 
+    const { members } = board
+
+    console.log(members);
 
     useEffect(() => {
         if (isTitleEditOn) titleRef.current.focus()
@@ -65,7 +68,7 @@ export function BoardHeader({ board, updateBoard }) {
                         Last seen
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg" alt="Foxy Fox" />
                     </div>
-                    <div className='invite'> <span className='fa-solid user-plus'></span> Invite /</div>
+                    <div className='invite'> <span className='fa-solid user-plus'></span> Invite / {members.length} </div>
                     <div className='activity'>  <span className='fa-solid chart-line'></span> Activity</div>
                     <div className='add-to-board'><span className='fa-solid plus'></span> Add to board</div>
                     <div className="options fa-solid ellipsis-h"></div>
