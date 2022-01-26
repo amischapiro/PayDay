@@ -46,7 +46,12 @@
             border-radius: 6px;
             border: 1px #0073ea solid;
             resize: none;
-            &:focus-visible{
+            transition:  0.3s;
+            // &:focus{
+            //     height: 5rem;
+            //     outline: none;
+            // }
+            &.open{
                 height: 5rem;
                 outline: none;
             }
