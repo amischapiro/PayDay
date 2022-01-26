@@ -5,10 +5,13 @@ import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 
 import { setStory } from '../store/board.action';
 import { boardService } from '../services/board.service';
+import { utilService } from '../services/util.service';
+import { userService } from '../services/user.service'
 
 export function _Story(props) {
 	const { board, group, story, updateBoard } = props;
 
+	const currUser = userService.getMiniLoggedInUser()
 	const { cmpsOrder } = board;
 	const newBoard = { ...board };
 	const groupId = group.id;
@@ -50,10 +53,12 @@ export function _Story(props) {
 			case 'CHANGE_STATUS':
 				newData = await boardService.getStatusById(board._id, data);
 				newStory.storyData.status = newData;
+				addNewActivity('Status changed')
 				break;
 			case 'CHANGE_PRIORITY':
 				newData = await boardService.getPriorityById(board._id, data);
 				newStory.storyData.priority = newData;
+				addNewActivity('Priority changed')
 				break;
 			case 'ADD_MEMBER':
 				if (
@@ -64,22 +69,45 @@ export function _Story(props) {
 					return;
 				newData = await boardService.getMemberById(board._id, data);
 				newStory.storyData.members.push(newData);
+				addNewActivity('Member added')
 				break;
 			case 'CHANGE_TIMELINE':
 				newData = await boardService.updateTimeline(data);
 				newStory.storyData.timeline = newData;
+				addNewActivity('Timeline changed')
 				break;
 			case 'CHANGE_NUMBER':
 				newStory.storyData.number = data;
+				addNewActivity('Number added')
 				break;
 			case 'CHANGE_LINK':
 				newStory.storyData.link = data;
+				addNewActivity('Link changed')
 				break;
 			default:
 				break;
 		}
 		onUpdateBoard(newStory);
 	};
+
+	const addNewActivity = (type) => {
+		const newActivity = {
+			id: utilService.makeId(),
+			type,
+			createdAt: Date.now(),
+			byMember: currUser,
+			story: {
+				id: story.id,
+				title: story.title
+			},
+			group: {
+				id: groupId,
+				title: group.title
+			}
+		}
+		newBoard.activities.unshift(newActivity)
+	}
+
 	const onSetStory = async (boardId, groupId, storyId) => {
 		const story = {
 			boardId,
@@ -92,7 +120,7 @@ export function _Story(props) {
 	return (
 		<div className="story">
 			<div className="story-wrapper">
-		
+
 				<div className="story-txt-area">
 					<div
 						className="story-selector"
@@ -130,7 +158,7 @@ export function _Story(props) {
 								onSetStory(board._id, group.id, story.id)
 							}
 							className="update-bubble"
-						/>{story.comments?.length?<div className='updates-count-bubble'>{story.comments.length}</div>:'' }
+						/>{story.comments?.length ? <div className='updates-count-bubble'>{story.comments.length}</div> : ''}
 						</div>
 
 					</div>
