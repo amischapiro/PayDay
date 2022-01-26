@@ -100,7 +100,7 @@ function createStory(title = 'New Story') {
                 color: "#c4c4c4"
             },
             status: {
-                id: "s104",
+                id: "s105",
                 title: "To do",
                 color: "#c4c4c4"
             },

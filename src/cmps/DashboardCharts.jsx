@@ -37,7 +37,7 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
         },
     };
 
-    const statusLabels = ['Done', 'Stuck', 'Working on it', 'To do', 'Ready for review'];
+    const statusLabels = ['Done', 'Ready for review', 'Working on it','Stuck', 'To do' ];
     const statusData = {
         labels: statusLabels,
         datasets: [
@@ -46,11 +46,11 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
                 data: statusCount,
                 borderColor: 'lightblue',
                 backgroundColor: [
-                    'rgba(75, 255, 150, 0.5)',
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(255, 159, 64, 0.5)',
-                    'rgba(128, 128, 128, 0.5)',
-                    'rgba(121, 42, 194, 0.5)',]
+                    'rgba(75, 255, 150, 0.7)',
+                    'rgba(121, 42, 194, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(128, 128, 128, 0.7)',]
             },
         ],
     };
@@ -130,9 +130,6 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
             <div className='pie-chart'>
                 <h4>Board Priorities</h4>
                 <Pie className='pie' data={priorityData} />
-            </div>
-            <div className='scatter-chart'>
-                {/* <Scatter options={membersPerStoryOptions} data={membersPerStoryData} /> */}
             </div>
         </div>
     </section>

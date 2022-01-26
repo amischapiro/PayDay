@@ -27,11 +27,15 @@ export function _Dashboard(props) {
         board.groups.map(group=>{
             group.stories.map(story=>{
                 const status = story.storyData.status.id
+                console.log('status:', status);
+                
                 count[status] ++
             })
         })
         return [count.s101,count.s102,count.s103,count.s104,count.s105]
     }
+    console.log('status:', getStatusCount());
+    
     const getStoriesPerGroupCount = ()=>{
         const storyCount = board.groups.map(group=>{
             return group.stories.length

@@ -1,4 +1,5 @@
 import { boardService } from "../services/board.service";
+import { swalService } from "../services/swal.service.js";
 
 export function loadBoards() {
     return async (dispatch, getState) => {
@@ -33,6 +34,7 @@ export function getById(boardId) {
 export function removeBoard(boardId) {
     return async (dispatch) => {
         try {
+            await swalService.onDeleteSwal()
             await boardService.remove(boardId)
             dispatch({ type: 'REMOVE_BOARD', boardId })
             return Promise.resolve()
