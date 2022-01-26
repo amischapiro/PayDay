@@ -72,3 +72,33 @@
     }
 }
 
+.MuiButton-containedPrimary.filter-menu-btn {
+    background-color: transparent;
+    color: inherit;
+    width: 4.375rem;
+    height: 2.1875rem;
+    padding: 0;
+    font-size: 1.1rem;
+    font-family: inherit;
+    text-transform: none;
+    min-width: unset;
+    line-height: 1.2rem;
+    font-size: unset;
+    box-shadow: none;
+    margin-inline-end: 0.48rem;
+    transition: none;
+    -webkit-transition: none;
+
+    &:hover {
+        background-color: transparent;
+        box-shadow: none;
+    }
+    .sort-icon{
+        color: #7a7b7e;
+        margin-inline-end: 10px;
+        font-size: 1.1rem;
+        font-weight: 300;
+        transform: rotate(90deg);
+    }
+}
+
