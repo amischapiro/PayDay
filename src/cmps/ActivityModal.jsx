@@ -40,7 +40,7 @@ export function _ActivityModal(props) {
 
     const [isActivityShown, setActivityToggle] = useState(null)
     const [comment, setComment] = useState('')
-    const [isUpdateFocused,setUpdateFocus] = useState(null)
+    const [isUpdateFocused,setUpdateFocus] = useState(false)
 
     const { selectedStoryIds, boards, selectedBoard } = props
     const { boardId, groupId, storyId } = selectedStoryIds
@@ -162,7 +162,7 @@ export function _ActivityModal(props) {
             {!isActivityShown && story!=='none' &&
                 <React.Fragment>
                         <div className="update-input">
-                            <textarea  onClick={setUpdateFocus(true)}  className={isUpdateFocused?'open':''}  name="update" id="" cols="30" rows="2" placeholder='Write an update...' value={comment} onChange={handleChange}></textarea>
+                            <textarea  onClick={()=>setUpdateFocus(true)}  className={isUpdateFocused?'open':''}  name="update" id="" cols="30" rows="2" placeholder='Write an update...' value={comment} onChange={handleChange}></textarea>
                             {img.imgUrl&& <img src={img.imgUrl}  />}
                             <div className='modal-update-btns' ><div className='file-input-container'>
                                 <AttachFileIcon className='file-icon' /><input className='file-input' type="file" accept='img/*' onChange={uploadImg} />Add file</div>

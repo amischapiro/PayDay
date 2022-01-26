@@ -1,23 +1,4 @@
-// .toy-dashboard {
-//     margin: auto;
 
-//     h2 {
-//         font-size: 2.2rem;
-//         text-align: center;
-//     }
-//     .charts-container{
-//         display: flex;
-//         justify-content: center;
-
-//         >*{
-//             flex-basis: 50%;
-
-//             h3 {
-//                 text-align: center;
-//             }
-//         }
-//     }
-// }
 
 .home-name img{
     height: 150px;
@@ -38,19 +19,20 @@
     font-size: 70px;
     line-height: 150px;
     letter-spacing: 10px;
+    color: white;
 }
 
 .home-container{
     background-color: #fff;
     height: 80vh;
-    
 }
 
 .login-link,.demo-link{
-    background-color: lightblue;
+    background-color: rgb(127, 210, 238);
     padding: 10px;
     border-radius: 6px;
     margin: 10px;
+
 }
 .login-link:hover,.demo-link:hover{
     color: white;
@@ -59,4 +41,33 @@
 .links-container{
     display: flex;
     justify-content: center;
+}
+.group-img-container{
+    display: flex;
+    height: 18.75rem;
+    margin-top: 2rem;
+}
+.group-img{
+    width: 70%;
+}
+.dashboard-img-container{
+    display: flex;
+    height: 18.75rem;
+}
+.dashboard-img{
+    width: 70%;
+}
+.dashboard-txt,.group-txt{
+    padding: 2rem;
+    width: 30%;
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.connections-img-container{
+    position: relative;
+    .name-links-container{
+        position: absolute;
+        top: 20%;
+        left: 7%;
+    }
 }
