@@ -128,7 +128,7 @@ export function _Story(props) {
 								onClick={() =>
 									onSetStory(board._id, group.id, story.id)
 								}
-								className="update-bubble"
+								className={`update-bubble ${story.comments?.length ? 'blue':''}`}
 							/>
 							{story.comments?.length ? (
 								<div className="updates-count-bubble">

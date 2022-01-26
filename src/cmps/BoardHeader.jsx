@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux';
+import { setStory } from '../store/board.action';
 
 
 
-export function BoardHeader({ board, updateBoard }) {
+export function _BoardHeader({ board, updateBoard,setStory,selectedBoard }) {
 
     const { title, desc } = board
     const { members } = board
@@ -44,6 +46,15 @@ export function BoardHeader({ board, updateBoard }) {
         await updateBoard(boardToUpdate)
     }
 
+    const onSetStory = async () => {
+		const story = {
+			boardId:selectedBoard._id,
+			groupId:'none',
+			storyId:'none',
+		};
+		await setStory(story);
+	};
+
 
 
     return (
@@ -70,7 +81,7 @@ export function BoardHeader({ board, updateBoard }) {
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg" alt="Foxy Fox" />
                     </div>
                     <div className='invite'> <span className='fa-solid user-plus'></span> Invite / {members.length} </div>
-                    <div className='activity'>  <span className='fa-solid chart-line'></span> Activity</div>
+                    <div className='activity' onClick={onSetStory}>  <span className='fa-solid chart-line'></span> Activity</div>
                     <div className='add-to-board'><span className='fa-solid plus'></span> Add to board</div>
                     <div className="options fa-solid ellipsis-h"></div>
                 </div>
@@ -100,3 +111,19 @@ export function BoardHeader({ board, updateBoard }) {
     )
 }
 
+
+function mapStateToProps({ boardModule }) {
+	return {
+		// board: boardModule.board,
+        selectedBoard:boardModule.selectedBoard
+		// users: state.userModule.users,
+		// loggedInUser: state.userModule.loggedInUser
+		// selectedStoryIds: boardModule.activityModalStory,
+	};
+}
+
+const mapDispatchToProps = {
+	setStory,
+};
+
+export const BoardHeader = connect(mapStateToProps, mapDispatchToProps)(_BoardHeader);
