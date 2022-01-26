@@ -27,32 +27,36 @@
             }
         }
         h3 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            line-height: 2rem;
+            font-size: 2rem;
+            line-height: 1.5rem;
+            font-weight: 600;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            padding: 0 0.3rem;
+            padding: 1rem 0.3rem;
             margin-inline-end: 0.5rem;
             border: 1px solid transparent;
             border-radius: 4px;
         }
-        
+
         h3:hover {
             border: 1px solid #c5c7d0;
         }
-        
+
         input {
             width: 100%;
-            border: 1px solid #0085ff ;
+            flex-grow: 1;
             border-radius: 4px;
-            font-size: 1.5rem;
-            font-weight: 500;
-            line-height: 2rem;
-            padding: 0 0.3rem;
+            font-family: inherit;
+            font-size: 2rem;
+            line-height: 1.5rem;
+            font-weight: 600;
+            vertical-align: baseline;
+            letter-spacing: small;
+            padding: 0.55rem 0.3rem;
+            margin: 0;
             margin-inline-end: 0.5rem;
-            // border: 1px solid transparent;
+            border: 1px solid #0085ff;
 
             &:focus-visible {
                 outline: none;
@@ -97,7 +101,6 @@
             align-items: center;
             // vertical-align: middle;
 
-
             img {
                 width: 1.5rem;
                 height: 1.5rem;
@@ -107,11 +110,11 @@
         }
     }
 
-    .description{
+    .description {
         font-size: 0.875rem;
         font-weight: 500;
         line-height: 1.5em;
-        color:#676879;
+        color: #676879;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -125,19 +128,19 @@
         }
     }
 
-     textarea {
-         width: 75%;
-         height: 100px;
+    textarea {
+        width: 75%;
+        height: 100px;
         font-family: inherit;
         font-size: 0.875rem;
         font-weight: 500;
         line-height: 1.5em;
         padding: 0 0.35rem;
         resize: none;
+        border:1px solid #b0b0b8;
 
         &:focus-visible {
             outline: none;
         }
     }
-
 }

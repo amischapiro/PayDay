@@ -5,9 +5,11 @@ import React, { useEffect, useState } from 'react'
 export function BoardHeader({ board, updateBoard }) {
 
     const { title, desc } = board
+    const { members } = board
 
     const [isTitleEditOn, toggleTitleEdit] = useState(false)
     const [isDescEditOn, toggleDescEdit] = useState(false)
+    const [isDescShow, toggleisDescShow] = useState(false)
     const [editBoard, setEditBoard] = useState({ title, desc: desc || '' })
 
     const titleRef = React.createRef()
@@ -50,13 +52,15 @@ export function BoardHeader({ board, updateBoard }) {
             <div className='title-and-action'>
 
                 <div className='title-section'>
-                    {!isTitleEditOn && <h3 onClick={() => { toggleTitleEdit(true) }}>{title ? title : 'Enter title here'}</h3>}
-                    {isTitleEditOn &&
+                    {!isTitleEditOn ? (
+                        <h3 onClick={() => { toggleTitleEdit(true) }}>{title ? title : 'Enter title here'}</h3>
+                    ) : (
                         <form onSubmit={onSubmitTitle}>
                             <input ref={titleRef} type="text" onBlur={onSubmitTitle}
                                 value={editBoard.title} name="title" onChange={handleChange} />
-                        </form>}
-                    <div className='fa-solid info-circle'></div>
+                        </form>
+                    )}
+                    <div onClick={() => { toggleisDescShow(!isDescShow) }} className='fa-solid info-circle'></div>
                     <div className='fa star'></div>
                 </div>
 
@@ -65,21 +69,29 @@ export function BoardHeader({ board, updateBoard }) {
                         Last seen
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg" alt="Foxy Fox" />
                     </div>
-                    <div className='invite'> <span className='fa-solid user-plus'></span> Invite /</div>
+                    <div className='invite'> <span className='fa-solid user-plus'></span> Invite / {members.length} </div>
                     <div className='activity'>  <span className='fa-solid chart-line'></span> Activity</div>
                     <div className='add-to-board'><span className='fa-solid plus'></span> Add to board</div>
                     <div className="options fa-solid ellipsis-h"></div>
                 </div>
 
             </div>
+            {!isDescShow &&
+                <React.Fragment>
+                    {!isDescEditOn ? (
+                        <div className='description'
+                            onClick={() => { toggleDescEdit(true) }}>{desc ? desc : 'Add description here'}</div>
+                    ) : (
+                        <form onSubmit={onSubmitDesc}>
+                            <textarea ref={decsRef} type="text" onBlur={onSubmitDesc}
+                                value={editBoard.desc} name="desc" onChange={handleChange} />
+                        </form>
+                    )}
+                </React.Fragment>
+            }
 
-            {!isDescEditOn && <div className='description'
-                onClick={() => { toggleDescEdit(true) }}>{desc ? desc : 'Add description here'}</div>}
-            {isDescEditOn &&
-                <form onSubmit={onSubmitDesc}>
-                    <textarea ref={decsRef} type="text" onBlur={onSubmitDesc}
-                        value={editBoard.desc} name="desc" onChange={handleChange} />
-                </form>}
+
+
 
 
 

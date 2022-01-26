@@ -18,7 +18,7 @@ export function _BoardPreview(props) {
     const [isHover, toggleOnHover] = useState(false)
 
     const handleClick = (event) => {
-
+        event.stopPropagation()
         toggleOnHover(true)
         setAnchorEl(event.currentTarget);
     };

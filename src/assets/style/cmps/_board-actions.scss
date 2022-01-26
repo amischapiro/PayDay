@@ -90,7 +90,7 @@
                 display: flex;
                 align-items: center;
                 width: 12rem;
-
+                animation: search-bar .2s;
                 border: 1px solid #0085ff;
                 &:hover {
                     background-color: white;
@@ -120,10 +120,6 @@
             > *:not(:first-child) {
                 padding: 0.35rem 0.35rem;
             }
-            // >*:nth-child(2) {
-            //     line-height: 1rem;
-            //     vertical-align: middle;
-            // }
             &:hover {
                 > *:last-child {
                     border-left: 1px solid white;
@@ -142,13 +138,22 @@
         .sort {
             display: flex;
             align-items: center;
-            // color: #7a7b7e;
             .sort-icon{
+                color: #7a7b7e;
                 margin-inline-end: 10px;
                 font-size: 1.1rem;
                 font-weight: 300;
                 transform: rotate(90deg);
             }
         }
+    }
+}
+
+@keyframes search-bar {
+    0% {
+        width: 5rem;
+    }
+    100% {
+        width: 12rem;
     }
 }
