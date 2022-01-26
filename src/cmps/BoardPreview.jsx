@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom/cjs/react-router-dom.min'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import TableRowsOutlinedIcon from '@mui/icons-material/TableRowsOutlined';
 import { utilService } from '../services/util.service';
 
 export function _BoardPreview(props) {
@@ -74,7 +75,8 @@ export function _BoardPreview(props) {
             onMouseOver={() => { toggleOnHover(true) }}
             onMouseLeave={() => { toggleOnHover(false) }} >
             <div>
-                <span className='fa-solid window'></span>
+                {/* <span className='fa-solid window'></span> */}
+                <TableRowsOutlinedIcon className="board-icon"/>
                 <span>&nbsp;{board.title}</span>
 
 
