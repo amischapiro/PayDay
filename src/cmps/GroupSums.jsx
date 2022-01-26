@@ -1,10 +1,72 @@
 import React, { Component } from 'react';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import Avatar from '@material-ui/core/Avatar';
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
 export class GroupSum extends Component {
 	DynamicGroupSum = ({ cmp, group, index }) => {
 		switch (cmp) {
 			case 'member-picker':
-				return <div key={'s' + index} className="members-sum"></div>;
+				let allMems = [];
+				group.stories.map((story) => {
+					const members = story.storyData.members;
+					if (members.length)
+						members.forEach((member) => allMems.push(member));
+					return story;
+				});
+				allMems.sort(function (a, b) {
+					if (a._id > b._id) return -1;
+					else if (a._id < b._id) return 1;
+					else return 0;
+				});
+				const filteredMems = allMems.filter((mem, idx) => {
+					if (idx + 1 < allMems.length)
+						return mem._id !== allMems[idx + 1]._id;
+					else return mem;
+				});
+				return (
+					<div key={'s' + index} className="members-sum">
+						{!filteredMems.length ? (
+							<AccountCircleOutlinedIcon className="no-members" />
+						) : filteredMems.length > 2 ? (
+							<div className="active-member-list">
+								<img
+									key={filteredMems[0]._id}
+									src={filteredMems[0].imgUrl}
+									alt=""
+								/>{' '}
+								<span className="plus-members">
+									+{filteredMems.length - 1}
+								</span>{' '}
+							</div>
+						) : (
+							<AvatarGroup max={2}>
+								{filteredMems.map((member) => {
+									const nameArr = member.fullname.split(' ');
+									const fName = nameArr[0].split('');
+									const lName = nameArr[1].split('');
+									const initials = fName[0] + lName[0];
+
+									return member.imgUrl ? (
+										<Avatar
+											key={member._id}
+											alt={initials}
+											src={member.imgUrl}
+											style={{
+												width: '30px',
+												height: '30px',
+											}}
+										/>
+									) : (
+										<div className="members-cmp-initials">
+											{initials}
+										</div>
+									);
+								})}
+							</AvatarGroup>
+						)}
+					</div>
+				);
 			case 'status-picker':
 				let sortedStatus = group.stories.map((story) => {
 					return story.storyData.status;
