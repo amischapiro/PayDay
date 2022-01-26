@@ -3,6 +3,15 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import Logo from '../assets/img/PayDayLogo3.png';
 import { logout } from '../store/user.action';
+import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
+import EventAvailableOutlinedIcon from '@mui/icons-material/EventAvailableOutlined';
+import ExtensionOutlinedIcon from '@mui/icons-material/ExtensionOutlined';
+import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 function __SideBar(props) {
 
@@ -16,17 +25,17 @@ function __SideBar(props) {
 				<button className='logo-btn' onClick={onGoToHome}>
 					<img src={Logo} alt="PD" />
 				</button>
-				<button className=' workspace fa-solid th-large btn-fa'></button>
-				<button className="fa bell  btn-fa"></button>
-				<button className="fa-solid inbox  btn-fa"></button>
-				<button className="fa calendar-check  btn-fa"></button>
+				<button className='workspace'><GridViewOutlinedIcon className="grid-view-icon" /></button>
+				<button><NotificationsNoneOutlinedIcon className="notification-bell-icon" /></button>
+				<button><InboxOutlinedIcon className="inbox-icon" /></button>
+				<button><EventAvailableOutlinedIcon className="calendar-icon" /></button>	
 			</div>
-			<button className="see-plans btn-primary">See plans</button>
+			<button className="see-plans btn-primary"><AutoAwesomeIcon className="stars-icon" /> See plans</button>
 			<div className="actions-bottom">
-				<button className="fa-solid puzzle-piece btn-fa"></button>
-				<button className="fa-solid user-plus btn-fa"></button>
-				<button className="fa-solid search btn-fa"></button>
-				<button className="fa-solid question btn-fa"></button>
+				<button><ExtensionOutlinedIcon className="extension-icon" /></button>
+				<button><PersonAddAlt1OutlinedIcon className="person-add-icon" /></button>
+				<button><SearchOutlinedIcon className="search-icon" /></button>
+				<button><LogoutOutlinedIcon className="logout-icon" /></button>
 				<div className='user-btn-container'><button className='user-btn'>AS</button></div>
 
 				{/* <button></button> setUser name letters or pic */}

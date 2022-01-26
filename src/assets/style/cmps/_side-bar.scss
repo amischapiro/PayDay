@@ -6,21 +6,23 @@
     grid-template-rows: repeat(3, 1fr);
     grid-auto-columns: auto;
     height: 100vh;
-    min-width: 4rem;
+    min-width: 4.125rem;
     justify-items: center;
 
     .actions-top {
         grid-row: 1/2;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        gap: 8px;
+        margin-top: 10px;
     }
 
     .actions-bottom {
-        grid-row: 3/4;
+        margin-bottom: 10px;
+        grid-row: 8/10;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        gap: 8px;
     }
 }
 
@@ -31,22 +33,16 @@
     font-size: 18px;
     border-radius: 8px;
     cursor: not-allowed;
+    height: 36px;
+    width: 36px;
+    border: none;
+    padding-top: 5px;
+
     &:hover {
         background-color: #121529;
     }
 }
 
-.actions-top button,
-.actions-bottom button {
-    background-color: #292f4c;
-    color: white;
-    font-size: 18px;
-    border-radius: 8px;
-    cursor: not-allowed;
-    &:hover {
-        background-color: #121529;
-    }
-}
 .actions-top .workspace {
     background-color: #6a6e82;
     &:hover {
@@ -54,26 +50,28 @@
     }
 }
 
-.actions-top button,
-.actions-bottom button {
-    height: 40px;
-    width: 40px;
-}
-
 .see-plans {
     background-color: #258750;
-    width: 7rem;
-    height: 4rem;
+    width: 126px;
+    height: 3.3rem;
     color: white;
     position: absolute;
-    top: 50%;
+    top: 54%;
     transform: rotate(270deg) translate(50%);
     // transform: translate(0,-50%);
     left: -55px;
-    line-height: 5rem;
+    line-height: 3.8rem;
+    font-size: 15px;
+    transition: .2s ease;
+
+    .stars-icon {
+        transform: rotate(225deg);
+        font-size: 15px;
+        margin-inline-end: 5px;
+    }
     &:hover {
-        left: -45px;
-        background-color: #145a32;
+        left: -50px;
+        background-color: #007038;
     }
 }
 
