@@ -56,14 +56,13 @@ export function _Story(props) {
 				newStory.storyData.priority = newData;
 				break;
 			case 'ADD_MEMBER':
-				if (
-					newStory.storyData.members.some((member) => {
-						return member._id === data;
-					})
-				)
-					return;
 				newData = await boardService.getMemberById(board._id, data);
-				newStory.storyData.members.push(newData);
+				const memberIdx = newStory.storyData.members.findIndex((member) => {
+						return member._id === data;
+					}
+				);
+				if (memberIdx >= 0) newStory.storyData.members.splice(memberIdx, 1);
+				else newStory.storyData.members.push(newData);
 				break;
 			case 'CHANGE_TIMELINE':
 				newData = await boardService.updateTimeline(data);
@@ -92,7 +91,6 @@ export function _Story(props) {
 	return (
 		<div className="story">
 			<div className="story-wrapper">
-		
 				<div className="story-txt-area">
 					<div
 						className="story-selector"
@@ -125,14 +123,21 @@ export function _Story(props) {
 								</button>
 							)}
 						</div>
-						<div className='story-update-icons' ><MapsUgcOutlinedIcon
-							onClick={() =>
-								onSetStory(board._id, group.id, story.id)
-							}
-							className="update-bubble"
-						/>{story.comments?.length?<div className='updates-count-bubble'>{story.comments.length}</div>:'' }
+						<div className="story-update-icons">
+							<MapsUgcOutlinedIcon
+								onClick={() =>
+									onSetStory(board._id, group.id, story.id)
+								}
+								className="update-bubble"
+							/>
+							{story.comments?.length ? (
+								<div className="updates-count-bubble">
+									{story.comments.length}
+								</div>
+							) : (
+								''
+							)}
 						</div>
-
 					</div>
 				</div>
 				{cmpsOrder.map((cmp, idx) => {
