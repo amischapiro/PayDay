@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import { setStory,updateBoard } from '../store/board.action'
+import { setStory, updateBoard } from '../store/board.action'
 import React, { useState } from 'react'
 import moment from 'moment'
 import { utilService } from '../services/util.service'
-import {userService}from '../services/user.service'
+import { userService } from '../services/user.service'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { ModalUpdatePreview } from './ModalUpdatePreview'
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -30,7 +30,7 @@ export function _ActivityModal(props) {
     })
     // const dispatch = useDispatch()
 
-    const uploadImg = async (ev) => {  
+    const uploadImg = async (ev) => {
         setImg({ ...img, isUploading: true, height: 500, width: 500 })
         const { secure_url, height, width } = await cloudinaryService.uploadImg(ev)
         setImg({ isUploading: false, imgUrl: secure_url, height, width })
@@ -40,21 +40,21 @@ export function _ActivityModal(props) {
 
     const [isActivityShown, setActivityToggle] = useState(null)
     const [comment, setComment] = useState('')
-    const [isUpdateFocused,setUpdateFocus] = useState(false)
+    const [isUpdateFocused, setUpdateFocus] = useState(false)
 
     const { selectedStoryIds, boards, selectedBoard } = props
     const { boardId, groupId, storyId } = selectedStoryIds
 
-    
+
     const getStory = () => {
         if (!boardId) return null
-        if(storyId==='none') return 'none'
+        if (storyId === 'none') return 'none'
         const boardIdx = boards.findIndex((board) => board._id === boardId)
         const groupIdx = boards[boardIdx].groups.findIndex((group) => group.id === groupId)
         const storyIdx = boards[boardIdx].groups[groupIdx].stories.findIndex((story) => story.id === storyId)
         const story = boards[boardIdx].groups[groupIdx].stories[storyIdx]
         return story
-        
+
     }
     let story = getStory()
 
@@ -67,16 +67,16 @@ export function _ActivityModal(props) {
         return initials
     }
 
-    const onAddComment = () => {  
-        setUpdateFocus(false) 
-        if(!comment&&!img.imgUrl) return
+    const onAddComment = () => {
+        setUpdateFocus(false)
+        if (!comment && !img.imgUrl) return
         const newComment = {
             id: utilService.makeId(),
             txt: comment,
             imgUrl: img.imgUrl,
             createdAt: Date.now(),
             //change to logged in user
-            byMember:userService.getMiniLoggedInUser() ,
+            byMember: userService.getMiniLoggedInUser(),
             groupId: groupId,
             storyId: story.id
         }
@@ -113,9 +113,9 @@ export function _ActivityModal(props) {
     const onUpdateStory = (updatedStory, currGroupId = null) => {
         const newBoard = { ...selectedBoard }
         if (!currGroupId) currGroupId = groupId
-        
+
         const groupIdx = newBoard.groups.findIndex(group => group.id === currGroupId)
-        
+
         const group = newBoard.groups.find(group => group.id === currGroupId)
         const storyIdx = group.stories.findIndex(story => story.id === storyId)
         newBoard.groups[groupIdx].stories.splice(storyIdx, 1, updatedStory)
@@ -125,33 +125,33 @@ export function _ActivityModal(props) {
 
     const handleChange = ({ target }) => {
         const { value } = target
-        if(value===' '||value==='\n') return
+        if (value === ' ' || value === '\n') return
         setComment(value)
     }
 
-    const getActivities=()=>{
-        if(story==='none') return props.selectedBoard.activities
-        return props.selectedBoard.activities.filter(activity=>{
-            if(!activity.story) return 
-            return activity.story.id===story.id
+    const getActivities = () => {
+        if (story === 'none') return props.selectedBoard.activities
+        return props.selectedBoard.activities.filter(activity => {
+            if (!activity.story) return
+            return activity.story.id === story.id
         })
     }
 
-    
+
     // activites to new cmp
-    if(!story) return <React.Fragment></React.Fragment>
+    if (!story) return <React.Fragment></React.Fragment>
     return (
         <div className={`activity-modal ${props.selectedStoryIds.storyId ? 'open' : ''}`}>
             <button onClick={() => { onRemoveStory() }} className="btn-close-modal fa-solid times" ></button>
-            {story!=='none' ?<div className="modal-story-name">
+            {story !== 'none' ? <div className="modal-story-name">
                 <h3>{story ? story.title : ' '}</h3>
-            </div>:''}
+            </div> : ''}
             <div className="update-activity-container">
-                {story!=='none' ?<div>
+                {story !== 'none' ? <div>
                     <div onClick={() => setActivityToggle(false)} className='modal-updates'>Updates</div>
                     <div className={`modal-border-bottom ${!isActivityShown ? 'active' : ''}`} ></div>
-                </div>:''}
-                {story!=='none' ?<div className="horiz-break-line"></div>:''}
+                </div> : ''}
+                {story !== 'none' ? <div className="horiz-break-line"></div> : ''}
                 <div>
                     <div onClick={() => setActivityToggle(true)} className='modal-activity'>Activity Log</div>
                     <div className={`modal-border-bottom ${isActivityShown ? 'active' : ''}`} ></div>
@@ -159,23 +159,23 @@ export function _ActivityModal(props) {
             </div>
             <div className="modal-break-line"></div>
 
-            {!isActivityShown && story!=='none' &&
+            {!isActivityShown && story !== 'none' &&
                 <React.Fragment>
-                        <div className="update-input">
-                            <textarea  onClick={()=>setUpdateFocus(true)}  className={isUpdateFocused?'open':''}  name="update" id="" cols="30" rows="2" placeholder='Write an update...' value={comment} onChange={handleChange}></textarea>
-                            {img.imgUrl&& <img src={img.imgUrl}  />}
-                            <div className='modal-update-btns' ><div className='file-input-container'>
-                                <AttachFileIcon className='file-icon' /><input className='file-input' type="file" accept='img/*' onChange={uploadImg} />Add file</div>
-                                <button onClick={onAddComment} >Update</button>
-                            </div>
+                    <div className="update-input">
+                        <textarea onClick={() => setUpdateFocus(true)} className={isUpdateFocused ? 'open' : ''} name="update" id="" cols="30" rows="2" placeholder='Write an update...' value={comment} onChange={handleChange}></textarea>
+                        {img.imgUrl && <img src={img.imgUrl} />}
+                        <div className='modal-update-btns' ><div className='file-input-container'>
+                            <AttachFileIcon className='file-icon' /><input className='file-input' type="file" accept='img/*' onChange={uploadImg} />Add file</div>
+                            <button onClick={onAddComment} >Update</button>
                         </div>
+                    </div>
                     <div className='updates-list' >
-                    {story.comments.map(comment => <ModalUpdatePreview key={comment.id} comment={comment} onRemoveComment={onRemoveComment} getInitials={getInitials} imgUrl={comment.imgUrl}/>)}
+                        {story.comments.map(comment => <ModalUpdatePreview key={comment.id} comment={comment} onRemoveComment={onRemoveComment} getInitials={getInitials} imgUrl={comment.imgUrl} />)}
                     </div>
                 </React.Fragment>}
-            {(story==='none' ||isActivityShown) && <ul>
+            {(story === 'none' || isActivityShown) && <ul>
                 {getActivities()?.map((activity) => {
-                    
+
                     return <div key={activity.id} className='activity-preview' >
                         <div className='activity-time' ><AccessTimeIcon className='activity-clock' /><span>{moment(activity.createdAt).fromNow()}</span></div>
                         <div className='activity-member' ><div className='member-img'>{activity.byMember.imgUrl ? <img src={activity.byMember.imgUrl} /> : getInitials(activity.byMember.fullname)}</div>
