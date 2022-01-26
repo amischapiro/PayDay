@@ -102,3 +102,22 @@
     }
 }
 
+.MuiButton-containedPrimary.add-story-btn {
+    display: block;
+    background-color: transparent;
+    padding: 0;
+    min-width: unset;
+    font-size: unset;
+    box-shadow: none;
+    display: inline-block;
+    // padding: 0.1rem 0;
+
+    &:hover {
+        background-color: transparent;
+        box-shadow: none;
+    }
+    .fa-solid.chevron-down {
+        font-size: 0.7rem;
+        color: white;
+    }
+}

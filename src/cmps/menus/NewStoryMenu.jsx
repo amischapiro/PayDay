@@ -33,7 +33,7 @@ export function NewStoryMenu(props) {
                 aria-describedby={id}
                 variant="contained"
                 onClick={handleClick}
-                className="add-story-menu"
+                className="add-story-btn"
             >
                 <span className="fa-solid chevron-down"></span>
             </Button>

@@ -22,12 +22,6 @@ export function _Story(props) {
 	const [isTitleEditOn, toggleTitleEdit] = useState(false);
 	const [newStoryTitle, setStoryTitle] = useState({ title: story.title });
 
-	const titleRef = React.createRef();
-
-	useEffect(() => {
-		if (isTitleEditOn) titleRef.current.focus();
-	}, [isTitleEditOn]);
-
 	const handleChange = ({ target }) => {
 		const { name, value } = target;
 		setStoryTitle({ ...newStoryTitle, [name]: value });
@@ -35,7 +29,7 @@ export function _Story(props) {
 
 	const onSubmitTitle = async (ev) => {
 		ev.preventDefault();
-		toggleTitleEdit(!isTitleEditOn);
+		toggleTitleEdit(false);
 		const storyToUpdate = { ...story, title: newStoryTitle.title };
 		onUpdateBoard(storyToUpdate);
 	};
@@ -130,7 +124,7 @@ export function _Story(props) {
 							{isTitleEditOn ? (
 								<form onSubmit={onSubmitTitle}>
 									<input
-										ref={titleRef}
+										autoFocus={true}
 										type="text"
 										onBlur={onSubmitTitle}
 										value={newStoryTitle.title}
