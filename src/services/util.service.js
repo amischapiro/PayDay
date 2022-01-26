@@ -1,3 +1,5 @@
+import { boardService } from "./board.service";
+
 export const utilService = {
     makeId,
     makeLorem,
@@ -10,8 +12,11 @@ export const utilService = {
     getGroupColors,
     createStory,
     createEmptyGroup,
-    createEmptyBoard
+    createEmptyBoard,
+    createFirstBoard
+
 }
+
 
 function makeId(length = 6) {
     var txt = '';
@@ -140,8 +145,8 @@ function createEmptyBoard(title = 'New Board') {
             },
             {
                 id: "s102",
-                title: "Stuck",
-                color: "#e2445c"
+                title: "Ready for review",
+                color: "#a25ddc"
             },
             {
                 id: "s103",
@@ -150,13 +155,13 @@ function createEmptyBoard(title = 'New Board') {
             },
             {
                 id: "s104",
-                title: "To do",
-                color: "#c4c4c4"
+                title: "Stuck",
+                color: "#e2445c"
             },
             {
                 id: "s105",
-                title: "Ready for review",
-                color: "#a25ddc"
+                title: "To do",
+                color: "#c4c4c4"
             },
         ],
         priorities: [
@@ -201,3 +206,7 @@ function createEmptyBoard(title = 'New Board') {
 }
 
 
+function createFirstBoard() {
+    const newBoard = createEmptyBoard()
+    boardService.addBoard(newBoard)
+}

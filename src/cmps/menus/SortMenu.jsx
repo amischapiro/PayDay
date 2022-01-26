@@ -70,7 +70,6 @@ export function SortMenu({ board, updateBoard }) {
 
     return (
         <React.Fragment>
-            {/* className="sort" onClick={() => onSetSort('name')} */}
             <Button
                 variant="contained"
                 onClick={handleClick}

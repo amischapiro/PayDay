@@ -10,6 +10,7 @@ import connectionsImg from '../assets/img/connections.jpg'
 
 export function HomePage() {
 
+    const demoBoardId = '61f19e89c754d0978a2e3051'
 
     return (
         <main>
@@ -25,7 +26,7 @@ export function HomePage() {
                 </div>
                 <div className='links-container' >
                     <Link className='login-link' to={'/signup'} >Sign Up / Sign In </Link>
-                    <Link className='demo-link' to={'/board/TFQES/board'}>Demo Mode</Link>
+                    <Link className='demo-link' to={`/board/${demoBoardId}/board`}>Demo Mode</Link>
                 </div>
                 </div>
                 </div>

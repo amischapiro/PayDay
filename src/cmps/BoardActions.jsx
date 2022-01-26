@@ -100,7 +100,6 @@ function _BoardActions({ board, updateBoard }) {
 				title: story.title
 			}
 		}
-		console.log(newActivity);
 		newBoard.activities.unshift(newActivity)
 	}
 
