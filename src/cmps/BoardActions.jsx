@@ -32,8 +32,12 @@ function _BoardActions({ board, updateBoard }) {
 
 	const onSetSort = async (type) => {
 		const sortBy = newBoard.sortBy;
-		sortBy.order *= -1;
-        sortBy.name = type;
+		if(type === sortBy.name) sortBy.order *= -1;
+		else {
+			sortBy.name = type;
+			sortBy.order = -1;
+		}
+
 		let newGroups = newBoard.groups.map((group) => {
 			const newStories = group.stories.sort(function (a, b) {
 				switch(sortBy.name) {
@@ -41,12 +45,18 @@ function _BoardActions({ board, updateBoard }) {
 						if (a.title.toLowerCase() < b.title.toLowerCase()) return sortBy.order;
 						else if (a.title.toLowerCase() > b.title.toLowerCase()) return sortBy.order * -1;
 						else return 0;
-					case 'date':
+					case 'status':
+						if (a.status.id < b.status.id) return sortBy.order;
+						else if (a.status.id > b.status.id) return sortBy.order * -1;
+						else return 0;
+					case 'priority':
+						if (a.priority.id < b.priority.id) return sortBy.order;
+						else if (a.priority.id > b.priority.id) return sortBy.order * -1;
+						else return 0;
+					default: 
 						if (a.createdAt < b.createdAt) return sortBy.order;
 						else if (a.createdAt > b.createdAt) return sortBy.order * -1;
 						else return 0;
-					default: 
-						return null;
 				}
 			});
 
