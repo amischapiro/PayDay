@@ -46,7 +46,13 @@
             border-radius: 6px;
             border: 1px #0073ea solid;
             resize: none;
-            &:focus-visible{
+            transition:  0.3s;
+            outline: none;
+            // &:focus{
+            //     height: 5rem;
+            //     outline: none;
+            // }
+            &.open{
                 height: 5rem;
                 outline: none;
             }
@@ -79,6 +85,7 @@
         opacity: 0;
         top: 0.25rem;
         left: 0;
+        width: 5rem;
         
     }
     button{
