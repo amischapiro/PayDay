@@ -130,6 +130,5 @@ function _filterBoard(board) {
         })
         board.groups[idx].stories = stories;
     });
-
     return board;
 }

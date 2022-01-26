@@ -20,6 +20,8 @@ import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory } fro
 
 function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds }) {
 
+    console.log('BoardApp.jsx 💤 23: ', selectedBoard);
+    
     useEffect(async () => {
         await loadBoards()
         const { boardId } = match.params
