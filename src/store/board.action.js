@@ -14,21 +14,19 @@ export function loadBoards() {
     }
 }
 
-
 export function getById(boardId) {
     return async (dispatch) => {
         try {
-            const board = await boardService.getById(boardId)
-            const filteredBoard = _filterBoard(board);
-            console.log('board.action.js 💤 99: ', filteredBoard);
-            dispatch({ type: 'SET_BOARD', filteredBoard })
-            return filteredBoard
+            let board = await boardService.getById(boardId)
+            board = _filterBoard(board);
+            // console.log('board.action.js 💤 99: ', filteredBoard);
+            dispatch({ type: 'SET_BOARD', board })
+            return board
         } catch (error) {
             console.log('Cannot get Boards', error);
         }
     }
 }
-
 
 export function removeBoard(boardId) {
     return async (dispatch) => {
@@ -67,33 +65,12 @@ export function addBoard(boardToSave) {
     }
 }
 
-export function setFilter(filterBy) {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: 'SET_FILTER', filterBy })
-        } catch (err) {
-            console.log('Encountered error on set filter:', err);
-        }
-    }
-}
-
-export function setSort(sortBy) {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: 'SET_SORT', sortBy })
-        } catch (err) {
-            console.log('Cannot sort', err)
-        }
-    }
-}
-
 export function setStory(story) {
     return async (dispatch) => {
         dispatch({ type: 'SET_STORY', story })
 
     }
 }
-
 
 function _filterBoard(board) {
     const { filterBy } = board;

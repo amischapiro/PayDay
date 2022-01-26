@@ -3,13 +3,6 @@
 const initialState = {
     boards: [],
     selectedBoard: null,
-    filterBy: {
-        txt: '',
-        membersId: [],
-        priority: [],
-        status: []
-    },
-    sortBy: null,
     activityModalStory: {
         boardId: null,
         groupId: null,
