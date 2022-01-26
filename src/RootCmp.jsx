@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router';
 
 import routes from './routes.js';
 import { boardService } from './services/board.service.js';
+import { socketService } from './services/socket.service.js';
 
 export class RootCmp extends React.Component {
 	render() {
