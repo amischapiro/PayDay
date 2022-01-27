@@ -16,10 +16,10 @@ import { socketService } from '../services/socket.service';
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
 import { connect } from 'react-redux'
-import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory } from '../store/board.action'
+import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy } from '../store/board.action'
 
 
-function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds }) {
+function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy }) {
 
     const { boardId } = match.params
 
@@ -41,6 +41,10 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
         socketService.emit('enter board', boardId)
     }, [match.params])
 
+    useEffect(() => {
+        selectedBoard = filterBoard(selectedBoard, filterBy)
+    }, [filterBy])
+
 
     const onUpdateBoard = async (boardToUpdate) => {
         await updateBoard(boardToUpdate)
@@ -55,6 +59,45 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
             storyId: null
         }
         await setStory(story)
+    }
+
+    const filterBoard = (board, filterBy) => {
+        console.log('BoardApp.jsx 💤 65: ', filterBy);
+        if(!filterBy || filterBy === {}) return board;
+    
+        if (filterBy?.name) board.groups.forEach((group, idx) => {
+            const stories = group.stories.filter(story => {
+                return story.title.toLowerCase().includes(filterBy.name)
+            })
+            board.groups[idx].stories = stories;
+        });
+    
+        if (filterBy?.priority) board.groups.forEach((group, idx) => {
+            const stories = group.stories.filter(story => {
+                return story.storyData.priority.title === filterBy.priority;
+            })
+            board.groups[idx].stories = stories;
+        });
+    
+        if (filterBy?.status) board.groups.forEach((group, idx) => {
+            const stories = group.stories.filter(story => {
+                return story.storyData.status.title === filterBy.status;
+            })
+            board.groups[idx].stories = stories;
+        });
+    
+        if (filterBy?.members) board.groups.forEach((group, idx) => {
+            const stories = group.stories.filter(story => {
+                return story.storyData.status.members.some(member => {
+                    return filterBy.members.some(filterMem => {
+                        return filterMem.id === member._id;
+                    });
+                })
+            })
+            board.groups[idx].stories = stories;
+        });
+        
+        return board;
     }
 
     if (!boards?.length) return (
@@ -79,7 +122,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
                 <section className="main-header">
                     <BoardHeader board={selectedBoard} updateBoard={onUpdateBoard} />
                     <BoardNav board={selectedBoard} />
-                    <BoardActions board={selectedBoard} updateBoard={onUpdateBoard} getById={getById} />
+                    <BoardActions board={selectedBoard} updateBoard={onUpdateBoard} getById={getById} setFilterBy={setFilterBy} />
                 </section>
                 <div className="board-content">
 
@@ -113,7 +156,7 @@ function mapStateToProps({ boardModule }) {
         boards: boardModule.boards,
         selectedStoryIds: boardModule.activityModalStory,
         selectedBoard: boardModule.selectedBoard,
-        // filterBy: state.boardModule.filterBy,
+        filterBy: boardModule.filterBy,
         // users: state.userModule.users,
         // loggedInUser: state.userModule.loggedInUser
     }
@@ -125,7 +168,8 @@ const mapDispatchToProps = {
     removeBoard,
     updateBoard,
     addBoard,
-    setStory
+    setStory,
+    setFilterBy
 }
 
 
