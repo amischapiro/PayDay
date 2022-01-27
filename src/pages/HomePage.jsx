@@ -10,7 +10,7 @@ import connectionsImg from '../assets/img/connections.jpg'
 
 export function HomePage() {
 
-    const demoBoardId = '61f19e89c754d0978a2e3051'
+    const demoBoardId = '61f1f52eb1247c7b90bd613a'
 
     return (
         <main>

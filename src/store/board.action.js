@@ -73,8 +73,8 @@ export function setStory(story) {
 }
 
 function _filterBoard(board) {
+    if(!board?.filterBy || board.filterBy === {}) return board;
     const { filterBy } = board;
-    if (filterBy === {}) return board;
 
     if (filterBy?.name) board.groups.forEach((group, idx) => {
         const stories = group.stories.filter(story => {
