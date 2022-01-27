@@ -46,7 +46,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 							const lName = nameArr[1].split('');
 							const initials = fName[0] + lName[0];
 
-							return (member.imgUrl? <Avatar key={member._id} alt={initials} src={member.imgUrl}
+							return (member.imgUrl ? <Avatar key={member._id} alt={initials} src={member.imgUrl}
 								style={{ width: '30px', height: '30px' }} /> : <div className='members-cmp-initials' key={member._id} >{initials}</div> )
 						})
 
@@ -67,6 +67,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 					const nameArr = member.fullname.split(' ');
 					const fName = nameArr[0].split('');
 					const lName = nameArr[1].split('');
+					const initials = fName[0] + lName[0];
 					return (
 						<div className="picker-container" key={member._id}>
 							<Typography
@@ -77,11 +78,11 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 									handleClose()
 								}
 								}>
-								<img
+								{member.imgUrl ? (<img
 									src={member.imgUrl}
 									alt={fName[0] + lName[0]}
-								/>{' '}
-								{member.fullname}
+								/>) : (<div className='members-cmp-initials' key={member._id} >{initials}</div>)} {' '}
+								{member.fullname} 
 							</Typography>
 						</div>
 					);
