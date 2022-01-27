@@ -12,7 +12,6 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
-	console.log('boardMembers:', boardMembers);
 	
 
 	const handleClose = () => {
