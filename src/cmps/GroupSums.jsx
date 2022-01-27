@@ -81,7 +81,7 @@ export class GroupSum extends Component {
 					<div key={'s' + index} className="status-sum">
 						{sortedStatus.map((status, index) => {
 							return (
-								<Tooltip title='Add' arrow>
+								<Tooltip title='Add' arrow key={status + index}>
 									<span
 										key={'s2' + index}
 										className="bat-fragment"
@@ -103,21 +103,21 @@ export class GroupSum extends Component {
 					else return 0;
 				});
 				return (
-					<Tooltip title="add" arrow>
 
-						<div key={'s' + index} className="priority-sum">
-							{sortedPriority.map((priority, index) => {
-								return (
+					<div key={'s' + index} className="priority-sum">
+						{sortedPriority.map((priority, index) => {
+							return (
+								<Tooltip title="add" arrow key={priority + index}>
 									<span
 										key={'s2' + index}
 										className="bat-fragment"
 										style={{
 											backgroundColor: priority.color,
 										}}></span>
-								);
-							})}
-						</div>
-					</Tooltip>
+								</Tooltip>
+							);
+						})}
+					</div>
 				);
 			case 'number-picker':
 				let sum = 0;
