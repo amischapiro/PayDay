@@ -43,9 +43,10 @@ export function removeBoard(boardId) {
 export function updateBoard(boardToUpdate) {
     return async (dispatch) => {
         try {
+            if(boardToUpdate.filterBy !== {}) console.log('cant update with filter')
             const savedBoard = await boardService.save(boardToUpdate)
             dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
-            return Promise.resolve(savedBoard)
+            return savedBoard
         } catch (err) {
             console.log('Cannot Update', boardToUpdate)
         }
