@@ -26,10 +26,10 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
     useEffect(async () => {
         await loadBoards()
         await getById(boardId)
-        // socketService.setup()
-        socketService.emit('enter board', boardId)
-        socketService.on('board has updated', async () => {
-            await getById(boardId)
+        socketService.setup()
+
+        socketService.on('board has updated', async updatedBoardId => {
+            await getById(updatedBoardId)
         })
         return () => {
             socketService.terminate()
@@ -38,16 +38,16 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
     useEffect(async () => {
         await getById(boardId)
-        // socketService.on('update board', async (boardId) => {
-        //     await getById(boardId)
-        // })
+        socketService.emit('enter board', boardId)
+        return () => {
+            console.log('closing');
+        }
     }, [match.params])
 
 
     const onUpdateBoard = async (boardToUpdate) => {
-        console.log('work');
         await updateBoard(boardToUpdate)
-        socketService.emit('update board')
+        socketService.emit('update board', boardId)
     }
 
 
