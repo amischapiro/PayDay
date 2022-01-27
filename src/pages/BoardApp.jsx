@@ -26,24 +26,28 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
     useEffect(async () => {
         await loadBoards()
         await getById(boardId)
+        // socketService.setup()
         socketService.emit('enter board', boardId)
-        socketService.on('updated', async (newBoardId) => {
-            await getById(newBoardId)
+        socketService.on('board has updated', async () => {
+            await getById(boardId)
         })
-
+        return () => {
+            socketService.terminate()
+        }
     }, [])
 
     useEffect(async () => {
         await getById(boardId)
-        socketService.on('update board', async (boardId) => {
-            await getById(boardId)
-        })
+        // socketService.on('update board', async (boardId) => {
+        //     await getById(boardId)
+        // })
     }, [match.params])
 
 
     const onUpdateBoard = async (boardToUpdate) => {
-        const newBoard = await updateBoard(boardToUpdate)
-        socketService.emit('update board', newBoard._id)
+        console.log('work');
+        await updateBoard(boardToUpdate)
+        socketService.emit('update board')
     }
 
 
@@ -75,9 +79,9 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
             <section className="main-content">
                 <section className="main-header">
-                    <BoardHeader board={selectedBoard} updateBoard={updateBoard} />
+                    <BoardHeader board={selectedBoard} updateBoard={onUpdateBoard} />
                     <BoardNav board={selectedBoard} />
-                    <BoardActions board={selectedBoard} updateBoard={updateBoard} getById={getById} />
+                    <BoardActions board={selectedBoard} updateBoard={onUpdateBoard} getById={getById} />
                 </section>
                 <div className="board-content">
 
@@ -93,7 +97,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
                         </Route>
 
                     </Switch>
-                    <ActivityModal updateBoard={updateBoard} />
+                    <ActivityModal boards={boards} selectedBoard={selectedBoard} updateBoard={onUpdateBoard} />
 
 
                 </div>
