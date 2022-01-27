@@ -41,12 +41,12 @@ function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard }) {
             <button className='workspace-toggle' aria-describedby={id} type="button" onClick={handleClick}>
                 <h2>Main workspace <span className={`fa-solid ${open ? 'angleup' : 'angledown'} `} ></span> </h2>
             </button>
-            <Popper id={id} open={open} anchorEl={anchorEl}>
+            {/* <Popper id={id} open={open} anchorEl={anchorEl}>
                 <Box sx={{ border: 0, borderRadius: 2, p: 5, bgcolor: 'white' }}>
                     <h3>My workspaces</h3>
                     <h5>Main workspace</h5>
                 </Box>
-            </Popper>
+            </Popper> */}
             <div onClick={onAddBoard} className='add-board' >
                 <span className='fa-solid plus'></span>
                 <span> Add</span>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
+import Tooltip from '@mui/material/Tooltip';
 
 export class GroupSum extends Component {
 	DynamicGroupSum = ({ cmp, group, index }) => {
@@ -80,12 +81,14 @@ export class GroupSum extends Component {
 					<div key={'s' + index} className="status-sum">
 						{sortedStatus.map((status, index) => {
 							return (
-								<span
-									key={'s2' + index}
-									className="bat-fragment"
-									style={{
-										backgroundColor: status.color,
-									}}></span>
+								<Tooltip title='Add' arrow>
+									<span
+										key={'s2' + index}
+										className="bat-fragment"
+										style={{
+											backgroundColor: status.color,
+										}}></span>
+								</Tooltip>
 							);
 						})}
 					</div>
@@ -100,18 +103,21 @@ export class GroupSum extends Component {
 					else return 0;
 				});
 				return (
-					<div key={'s' + index} className="priority-sum">
-						{sortedPriority.map((priority, index) => {
-							return (
-								<span
-									key={'s2' + index}
-									className="bat-fragment"
-									style={{
-										backgroundColor: priority.color,
-									}}></span>
-							);
-						})}
-					</div>
+					<Tooltip title="add" arrow>
+
+						<div key={'s' + index} className="priority-sum">
+							{sortedPriority.map((priority, index) => {
+								return (
+									<span
+										key={'s2' + index}
+										className="bat-fragment"
+										style={{
+											backgroundColor: priority.color,
+										}}></span>
+								);
+							})}
+						</div>
+					</Tooltip>
 				);
 			case 'number-picker':
 				let sum = 0;

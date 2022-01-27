@@ -8,8 +8,9 @@ import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 
 
 import { userService } from '../services/user.service'
+import { BoardSearch } from './BoardSearch';
 
-function _BoardActions({ board, updateBoard }) {
+function _BoardActions({ board, updateBoard, getById }) {
 
 	const newBoard = { ...board };
 
@@ -117,7 +118,7 @@ function _BoardActions({ board, updateBoard }) {
 					/>
 				</div>
 
-				<div
+				{/* <div
 					onClick={() => setSearchOpen(true)}
 					className={isSearchOpen ? 'search-bar open' : 'search-bar'}>
 					<span className="fa-solid search"></span>
@@ -130,7 +131,8 @@ function _BoardActions({ board, updateBoard }) {
 							autoFocus={true}
 						/>
 					)}
-				</div>
+				</div> */}
+				<BoardSearch board={board} updateBoard={updateBoard} getById={getById} />
 				<div>
 					<span className="fa user"></span>
 					<span>Person</span>
