@@ -4,10 +4,9 @@ import { setStory } from '../store/board.action';
 
 
 
-export function _BoardHeader({ board, updateBoard,setStory,selectedBoard }) {
+export function _BoardHeader({ board, updateBoard, setStory }) {
 
-    const { title, desc } = board
-    const { members } = board
+    const { title, desc, members } = board
 
     const [isTitleEditOn, toggleTitleEdit] = useState(false)
     const [isDescEditOn, toggleDescEdit] = useState(false)
@@ -24,6 +23,10 @@ export function _BoardHeader({ board, updateBoard,setStory,selectedBoard }) {
 
     }, [isTitleEditOn, isDescEditOn])
 
+
+    useEffect(() => {
+        setEditBoard({ title, desc })
+    }, [board])
 
 
     const handleChange = ({ target }) => {
@@ -47,13 +50,13 @@ export function _BoardHeader({ board, updateBoard,setStory,selectedBoard }) {
     }
 
     const onSetStory = async () => {
-		const story = {
-			boardId:selectedBoard._id,
-			groupId:'none',
-			storyId:'none',
-		};
-		await setStory(story);
-	};
+        const story = {
+            boardId: board._id,
+            groupId: 'none',
+            storyId: 'none',
+        };
+        await setStory(story);
+    };
 
 
 
@@ -100,30 +103,23 @@ export function _BoardHeader({ board, updateBoard,setStory,selectedBoard }) {
                     )}
                 </React.Fragment>
             }
-
-
-
-
-
-
-
         </div>
     )
 }
 
 
 function mapStateToProps({ boardModule }) {
-	return {
-		// board: boardModule.board,
-        selectedBoard:boardModule.selectedBoard
-		// users: state.userModule.users,
-		// loggedInUser: state.userModule.loggedInUser
-		// selectedStoryIds: boardModule.activityModalStory,
-	};
+    return {
+        // board: boardModule.board,
+        // selectedBoard: boardModule.selectedBoard
+        // users: state.userModule.users,
+        // loggedInUser: state.userModule.loggedInUser
+        // selectedStoryIds: boardModule.activityModalStory,
+    };
 }
 
 const mapDispatchToProps = {
-	setStory,
+    setStory,
 };
 
 export const BoardHeader = connect(mapStateToProps, mapDispatchToProps)(_BoardHeader);

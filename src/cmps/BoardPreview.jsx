@@ -35,6 +35,7 @@ export function _BoardPreview(props) {
 
     const onRemove = async (ev, boardId) => {
         ev.stopPropagation()
+        handleClose(null)
         const currBoardId = props.match.params.boardId
         if (boardId === currBoardId) goToNextBoard(currBoardId)
         await removeBoard(boardId)
@@ -76,7 +77,7 @@ export function _BoardPreview(props) {
             onMouseLeave={() => { toggleOnHover(false) }} >
             <div>
                 {/* <span className='fa-solid window'></span> */}
-                <TableRowsOutlinedIcon className="board-icon"/>
+                <TableRowsOutlinedIcon className="board-icon" />
                 <span>&nbsp;{board.title}</span>
 
 

@@ -6,16 +6,11 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 
-// import { utilService } from '../../services/util.service';
-
 
 export function SortMenu({ board, updateBoard }) {
 
     const newBoard = { ...board };
 
-    // const currUser = userService.getMiniLoggedInUser()
-
-    const [isOnHover, toggleHover] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
@@ -102,11 +97,7 @@ export function SortMenu({ board, updateBoard }) {
                     </span>
                     <span onClick={() => onSetSort('created-at')}>
                         <span className="fa-solid undo"></span>
-                        <span>Reset</span>
-                    </span>
-                    <span onClick={() => onSetSort('created-at')}>
-                        <span className="fa clock"></span>
-                        <span>Sort by creation time</span>
+                        <span>Reset defualt</span>
                     </span>
                 </Typography>
 

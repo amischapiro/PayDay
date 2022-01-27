@@ -21,6 +21,17 @@ export function NewStoryMenu(props) {
         setAnchorEl(null);
     };
 
+    const preAddStory = () => {
+        handleClose()
+        onAddStory()
+    }
+
+    const preAddGroup = () => {
+        handleClose()
+        onAddGroup()
+    }
+
+
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
@@ -48,12 +59,12 @@ export function NewStoryMenu(props) {
                 }}>
                 <Typography className="drop-down">
 
-                    <span onClick={onAddStory} >
+                    <span onClick={preAddStory} >
                         <span className="fa-solid plus"></span>
                         <span>New Story</span>
                     </span>
-                    
-                    <span onClick={onAddGroup}>
+
+                    <span onClick={preAddGroup}>
                         <span className="fa-solid th-list"></span>
                         <span>New group of stories</span>
                     </span>

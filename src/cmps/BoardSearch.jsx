@@ -1,39 +1,68 @@
 import React, { useEffect, useState } from 'react'
-import { Input } from '@material-ui/core'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import SearchIcon from '@material-ui/icons/Search';
+// import { Input } from '@material-ui/core'
+// import SearchIcon from '@material-ui/icons/Search';
 
-export const BoardSearch = (props) => {
+export const BoardSearch = ({ board, updateBoard, getById }) => {
+
+    const newBoard = { ...board }
 
     const [txt, setTxt] = useState('')
+    const [isSearchOpen, setSearchOpen] = useState(false);
 
-    useEffect(() => {
-        props.filterBoard({ txt })
+    useEffect(async () => {
+        // props.filterBoard({ txt })
         //  eslint-disable-next-line
+        if (!txt) newBoard.filterBy = {}
+        else newBoard.filterBy = { name: txt }
+        await updateBoard(newBoard)
+        await getById(board._id)
     }, [txt])
 
-    const handleChange = async (ev) => {
-        // const field = ev.target.name
-        const value = ev.target.value
+
+
+    const handleChange = async ({ target }) => {
+        const { value } = target
         setTxt(value)
         // props.filterBoard({ txt })
     }
-    const onClickAway = () => {
-        props.setIsSearching(false)
-    }
-    return (
-        <form className="board-search fade-in">
-            <label htmlFor="txt" ></label>
-            <ClickAwayListener onClickAway={onClickAway}>
-                <div className="flex align-center">
-                    <SearchIcon ></SearchIcon>
-                    <Input
-                        className="board-search" autoComplete="off" type="text" name="txt" id="txt"
-                        value={txt} placeholder="Enter here" onChange={handleChange}
-                        autoFocus />
-                </div>
-            </ClickAwayListener>
-        </form>
 
+    // const onClickAway = () => {
+    //     props.setIsSearching(false)
+    // }
+
+    return (
+        <div
+            onClick={() => setSearchOpen(true)}
+            className={isSearchOpen ? 'search-bar open' : 'search-bar'}>
+            <span className="fa-solid search"></span>
+            {!isSearchOpen && <span>Search</span>}
+            {isSearchOpen && (
+                <input
+                    type="text"
+                    value={txt}
+                    onChange={handleChange}
+                    placeholder="Search"
+                    onBlur={() => setSearchOpen(false)}
+                    autoFocus={true}
+                />
+            )}
+        </div>
     )
+
+    // return (
+    //     <form className="board-search fade-in">
+    //         <label htmlFor="txt" ></label>
+    //         <ClickAwayListener onClickAway={onClickAway}>
+    //             <div className="flex align-center">
+    //                 <SearchIcon ></SearchIcon>
+    //                 <Input
+    //                     className="board-search" autoComplete="off" type="text" name="txt" id="txt"
+    //                     value={txt} placeholder="Enter here" onChange={handleChange}
+    //                     autoFocus />
+    //             </div>
+    //         </ClickAwayListener>
+    //     </form>
+
+    // )
 }

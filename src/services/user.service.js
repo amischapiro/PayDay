@@ -76,16 +76,23 @@ function getLoggedinUser() {
 //                 id: "m101",
 //                 boardId: "m101",
 //                 storyId: "t101"
-//             }
+//             }board
 //         ]
 //     }
 // }
 
 function getMiniLoggedInUser() {    
     const user = getLoggedinUser()
-    delete user.password
-    delete user.username
-    delete user.mentions
+    if (!user) user = {
+        _id: "u101",
+        fullname: "Abi Abambi",
+        imgUrl: "http://some-img"
+    } 
+    else {
+        delete user.password
+        delete user.username
+        delete user.mentions
+    }
     return user
 }
 
