@@ -48,7 +48,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 							const initials = fName[0] + lName[0];
 
 							return (member.imgUrl? <Avatar key={member._id} alt={initials} src={member.imgUrl}
-								style={{ width: '30px', height: '30px' }} /> : <div className='members-cmp-initials' >{initials}</div> )
+								style={{ width: '30px', height: '30px' }} /> : <div className='members-cmp-initials' key={member._id} >{initials}</div> )
 						})
 
 						}

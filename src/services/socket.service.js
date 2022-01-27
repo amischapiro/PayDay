@@ -39,3 +39,4 @@ function createSocketService() {
 
 function cb(x) {console.log('Socket Test - Expected Puk, Actual:', x)}
 socketService.on('baba', cb)
+socketService.on('chat addMsg', cb)
