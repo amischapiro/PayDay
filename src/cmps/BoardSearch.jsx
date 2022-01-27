@@ -15,8 +15,9 @@ export const BoardSearch = ({ board, updateBoard, getById }) => {
         //  eslint-disable-next-line
         if (!txt) newBoard.filterBy = {}
         else newBoard.filterBy = { name: txt }
-        await updateBoard(newBoard)
-        await getById(board._id)
+        
+        // await updateBoard(newBoard)
+        // await getById(board._id)
     }, [txt])
 
 
@@ -24,7 +25,6 @@ export const BoardSearch = ({ board, updateBoard, getById }) => {
     const handleChange = async ({ target }) => {
         const { value } = target
         setTxt(value)
-        // props.filterBoard({ txt })
     }
 
     // const onClickAway = () => {
