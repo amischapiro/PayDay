@@ -1,4 +1,5 @@
 import { boardService } from "./board.service";
+import { userService } from "./user.service";
 
 export const utilService = {
     makeId,
@@ -14,7 +15,6 @@ export const utilService = {
     createEmptyGroup,
     createEmptyBoard,
     createFirstBoard
-
 }
 
 
@@ -86,11 +86,7 @@ function createStory(title = 'New Story') {
         id: makeId(),
         title,
         createdAt: Date.now(),
-        createdBy: { // need to change this to loggedinUser function
-            _id: "u101",
-            fullname: "Tal Tarablus",
-            imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
-        },
+        createdBy: userService.getMiniLoggedInUser(),
         comments: [],
         storyData: {
             members: [],
@@ -131,11 +127,7 @@ function createEmptyBoard(title = 'New Board') {
         createdAt: 1589983468418,
         sortBy: { name: null, order: -1 },
         filterBy: {},
-        createdBy: {
-            _id: "u101",
-            fullname: "Abi Abambi",
-            imgUrl: "http://some-img"
-        },
+        createdBy: userService.getMiniLoggedInUser(),
         style: {},
         statuses: [
             {
@@ -187,7 +179,7 @@ function createEmptyBoard(title = 'New Board') {
             },
 
         ],
-        members: [],
+        members: userService.getMiniUsers(),
         groups: [
             createEmptyGroup(),
             createEmptyGroup()
@@ -209,28 +201,7 @@ function createEmptyBoard(title = 'New Board') {
 function createFirstBoard() {
     let newBoard = createEmptyBoard()
     newBoard = {
-        ...newBoard, members: [
-            {
-                _id: "u102",
-                fullname: "Tal Tarablus",
-                imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg"
-            },
-            {
-                _id: "u103",
-                fullname: "Amitai Schapiro",
-                imgUrl: "https://ca.slack-edge.com/T02BJ4W8H45-U02FR69PJG2-b5be0246d951-72"
-            },
-            {
-                _id: "u104",
-                fullname: "Omri Steinberg",
-                imgUrl: "https://ca.slack-edge.com/T02BJ4W8H45-U02G1DTRWS3-d194bd058b90-512"
-            },
-            {
-                _id: "u105",
-                fullname: "Yarden Levy",
-                imgUrl: "https://ca.slack-edge.com/T02BJ4W8H45-U02LCCZFQ8G-b2dbb5f8311a-512"
-            },
-        ]
+        ...newBoard, members: userService.getMiniUsers()
     }
     boardService.addBoard(newBoard)
 }

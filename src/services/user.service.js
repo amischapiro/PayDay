@@ -12,7 +12,8 @@ export const userService = {
     getUsers,
     remove,
     update,
-    getMiniLoggedInUser
+    getMiniLoggedInUser,
+    getMiniUsers
 }
 
 // AUTH
@@ -81,12 +82,27 @@ function getLoggedinUser() {
 //     }
 // }
 
-function getMiniLoggedInUser() {    
+function getMiniLoggedInUser() {
     const user = getLoggedinUser()
     delete user.password
     delete user.username
     delete user.mentions
+    delete user.createdAt
     return user
+}
+
+async function getMiniUsers() {
+    let users = await getUsers();
+    users = users.map(user => {
+        delete user.password
+        delete user.username
+        delete user.mentions
+        delete user.createdAt
+        return user
+    })
+
+    console.log('user.service.js 💤 102: ', users);
+    return users;
 }
 
 function _setLoggedinUser(user) {
