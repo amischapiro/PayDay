@@ -12,8 +12,6 @@ import { userService } from '../services/user.service'
 export function HomePage() {
 
     const demoBoardId = '61f1f52eb1247c7b90bd613a'
-<<<<<<< HEAD
-=======
 
     const loginDemoUser = () => {
 
@@ -25,7 +23,6 @@ export function HomePage() {
         }
         sessionStorage.setItem('loggedinUser', JSON.stringify(demoUser))
     }
->>>>>>> 4871845cec80d85bd21a633eeeefbcde69a16129
 
     return (
         <main>
