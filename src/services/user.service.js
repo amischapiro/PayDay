@@ -81,7 +81,7 @@ function getLoggedinUser() {
 //     }
 // }
 
-function getMiniLoggedInUser() {
+function getMiniLoggedInUser() {    
     const user = getLoggedinUser()
     delete user.password
     delete user.username
