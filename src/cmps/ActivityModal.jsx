@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { setStory } from '../store/board.action'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 import { utilService } from '../services/util.service'
 import { userService } from '../services/user.service'
@@ -10,6 +10,12 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { cloudinaryService } from '../services/cloudinary.service'
 
 export function _ActivityModal(props) {
+    
+        const [isActivityShown, setActivityToggle] = useState(null)
+        const [comment, setComment] = useState('')
+        const [isUpdateFocused, setUpdateFocus] = useState(false)
+    
+        const { selectedStoryIds, selectedBoard } = props
 
     const onRemoveStory = async () => {
 
@@ -28,7 +34,6 @@ export function _ActivityModal(props) {
         width: '100%',
         isUploading: false
     })
-    // const dispatch = useDispatch()
 
     const uploadImg = async (ev) => {
         setImg({ ...img, isUploading: true, height: 500, width: 500 })
@@ -36,23 +41,16 @@ export function _ActivityModal(props) {
         setImg({ isUploading: false, imgUrl: secure_url, height, width })
     }
 
-    // add this to input in render 
-
-    const [isActivityShown, setActivityToggle] = useState(null)
-    const [comment, setComment] = useState('')
-    const [isUpdateFocused, setUpdateFocus] = useState(false)
-
-    const { selectedStoryIds, boards, selectedBoard } = props
-    const { boardId, groupId, storyId } = selectedStoryIds
+    const { groupId, storyId } = selectedStoryIds
 
 
     const getStory = () => {
-        if (!boardId) return null
+        if (!storyId) return null
         if (storyId === 'none') return 'none'
-        const boardIdx = boards.findIndex((board) => board._id === boardId)
-        const groupIdx = boards[boardIdx].groups.findIndex((group) => group.id === groupId)
-        const storyIdx = boards[boardIdx].groups[groupIdx].stories.findIndex((story) => story.id === storyId)
-        const story = boards[boardIdx].groups[groupIdx].stories[storyIdx]
+        const groupIdx = selectedBoard.groups.findIndex((group) => group.id === groupId)
+        const storyIdx = selectedBoard.groups[groupIdx].stories.findIndex((story) => story.id === storyId)
+        const story = selectedBoard.groups[groupIdx].stories[storyIdx]
+        
         return story
 
     }
@@ -130,8 +128,8 @@ export function _ActivityModal(props) {
     }
 
     const getActivities = () => {
-        if (story === 'none') return props.selectedBoard.activities
-        return props.selectedBoard.activities.filter(activity => {
+        if (story === 'none') return selectedBoard.activities
+        return selectedBoard.activities.filter(activity => {
             if (!activity.story) return
             return activity.story.id === story.id
         })
