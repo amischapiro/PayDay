@@ -28,7 +28,7 @@ function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard }) {
     const id = open ? 'simple-popper' : undefined;
 
     const onAddBoard = async () => {
-        const newBoard = utilService.createEmptyBoard()
+        const newBoard = await utilService.createEmptyBoard()
         await addBoard(newBoard)
     }
 

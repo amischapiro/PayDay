@@ -8,7 +8,6 @@ import { LinkCmp } from './LinkCmp.jsx';
 
 export function DynamicCmp({ cmp, story, onUpdate, board, group }) {
 	
-	console.log('DynamicCmp.jsx 💤 11: ', board);
 	const { members, priorities, statuses } = board;
 	switch (cmp) {
 		case 'status-picker':

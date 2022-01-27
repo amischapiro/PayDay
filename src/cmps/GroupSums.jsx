@@ -59,7 +59,7 @@ export class GroupSum extends Component {
 											}}
 										/>
 									) : (
-										<div className="members-cmp-initials">
+										<div className="members-cmp-initials" key={member._id}>
 											{initials}
 										</div>
 									);

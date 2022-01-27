@@ -82,6 +82,8 @@ function getLoggedinUser() {
 //     }
 // }
 
+
+// delete passwords in back
 function getMiniLoggedInUser() {
     const user = getLoggedinUser()
     delete user.password
@@ -91,6 +93,7 @@ function getMiniLoggedInUser() {
     return user
 }
 
+// delete passwords in back
 async function getMiniUsers() {
     let users = await getUsers();
     users = users.map(user => {
@@ -101,7 +104,7 @@ async function getMiniUsers() {
         return user
     })
 
-    console.log('user.service.js 💤 102: ', users);
+    console.log('user.service.js 💤 104: ', users);
     return users;
 }
 

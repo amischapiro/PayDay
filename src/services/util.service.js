@@ -121,7 +121,7 @@ function createEmptyGroup(title = 'New Group') {
     return group;
 }
 
-function createEmptyBoard(title = 'New Board') {
+async function createEmptyBoard(title = 'New Board') {
     const board = {
         title,
         createdAt: 1589983468418,
@@ -179,7 +179,7 @@ function createEmptyBoard(title = 'New Board') {
             },
 
         ],
-        members: userService.getMiniUsers(),
+        members: await userService.getMiniUsers(),
         groups: [
             createEmptyGroup(),
             createEmptyGroup()
@@ -198,11 +198,8 @@ function createEmptyBoard(title = 'New Board') {
 }
 
 
-function createFirstBoard() {
-    let newBoard = createEmptyBoard()
-    newBoard = {
-        ...newBoard, members: userService.getMiniUsers()
-    }
+async function createFirstBoard() {
+    const newBoard = createEmptyBoard()
     boardService.addBoard(newBoard)
 }
 
