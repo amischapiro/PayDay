@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import groupImg from '../assets/img/group.png'
 import dashboardImg from '../assets/img/dashboard.png'
 import connectionsImg from '../assets/img/connections.jpg'
+import demoUser from '../assets/img/demoUser.png'
 
 import { userService } from '../services/user.service'
 
