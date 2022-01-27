@@ -39,7 +39,7 @@ function _LoginSignup({ login, signup }) {
                 password: data.get('password'),
             };
             signup(user);
-            history.push('/');
+            history.push('/board/61f279052924b85c48f369f4/board');
         } else {
             const user = {
                 username: data.get('username'),
@@ -47,7 +47,7 @@ function _LoginSignup({ login, signup }) {
             };
             login(user);
             setTimeout(() => {
-                history.push('/');
+                history.push('/board/61f279052924b85c48f369f4/board');
             }, 1000);
         }
     };
