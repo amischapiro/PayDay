@@ -22,6 +22,7 @@ export function NumberCmp({ story, onUpdate }) {
 
 	const handleChange = ({ target }) => {
 		const { value } = target;
+		if (isNaN(value)) return;
 		setTxt(value);
 	};
 
