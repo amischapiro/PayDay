@@ -39,9 +39,6 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
     useEffect(async () => {
         await getById(boardId)
         socketService.emit('enter board', boardId)
-        return () => {
-            console.log('closing');
-        }
     }, [match.params])
 
 
@@ -64,7 +61,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
         <main className="main-container">
             <SideBar />
             <BoardList boards={boards} currBoard={selectedBoard}
-                removeBoard={removeBoard} addBoard={addBoard} />
+                removeBoard={removeBoard} addBoard={addBoard} loadBoards={loadBoards} />
             <div className="loader"></div>
         </main>
     )
@@ -75,7 +72,8 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
         <main className='main-container'>
             <SideBar />
             <BoardList boards={boards} currBoard={selectedBoard}
-                removeBoard={removeBoard} addBoard={addBoard} />
+                loadBoards={loadBoards} removeBoard={removeBoard}
+                addBoard={addBoard} />
 
             <section className="main-content">
                 <section className="main-header">

@@ -6,15 +6,24 @@ import { useState, useEffect } from 'react'
 
 import { BoardPreview } from './BoardPreview';
 import { utilService } from '../services/util.service'
+import { socketService } from '../services/socket.service'
 
 
-function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard }) {
-
+function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard, loadBoards }) {
 
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [isBoardListOpen, toggleBoardList] = useState(true)
 
+    useEffect(async () => {
+        socketService.emit('enter workspace')
+        socketService.on('workspace has updated', async () => {
+            await loadBoards()
+        })
+        return () => {
+            socketService.terminate()
+        }
+    }, [])
 
     const onToggleBoardListShown = () => {
         isBoardListOpen ? toggleBoardList(false) : toggleBoardList(true)
@@ -30,6 +39,7 @@ function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard }) {
     const onAddBoard = async () => {
         const newBoard = await utilService.createEmptyBoard()
         await addBoard(newBoard)
+        socketService.emit('update workspace')
     }
 
 
@@ -41,12 +51,6 @@ function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard }) {
             <button className='workspace-toggle' aria-describedby={id} type="button" onClick={handleClick}>
                 <h2>Main workspace <span className={`fa-solid ${open ? 'angleup' : 'angledown'} `} ></span> </h2>
             </button>
-            {/* <Popper id={id} open={open} anchorEl={anchorEl}>
-                <Box sx={{ border: 0, borderRadius: 2, p: 5, bgcolor: 'white' }}>
-                    <h3>My workspaces</h3>
-                    <h5>Main workspace</h5>
-                </Box>
-            </Popper> */}
             <div onClick={onAddBoard} className='add-board' >
                 <span className='fa-solid plus'></span>
                 <span> Add</span>

@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TableRowsOutlinedIcon from '@mui/icons-material/TableRowsOutlined';
 import { utilService } from '../services/util.service';
+import { socketService } from '../services/socket.service';
 
 export function _BoardPreview(props) {
 
@@ -39,6 +40,7 @@ export function _BoardPreview(props) {
         const currBoardId = props.match.params.boardId
         if (boardId === currBoardId) goToNextBoard(currBoardId)
         await removeBoard(boardId)
+        socketService.emit('update workspace')
     }
 
     const goToNextBoard = (currBoardId) => {
@@ -63,8 +65,9 @@ export function _BoardPreview(props) {
             })
         })
         newBoard.groups.stories = newStories
-        await addBoard(newBoard)
         handleClose()
+        await addBoard(newBoard)
+        socketService.emit('update workspace')
     }
 
     return (
