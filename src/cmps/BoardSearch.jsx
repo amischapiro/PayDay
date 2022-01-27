@@ -11,12 +11,10 @@ export const BoardSearch = ({ board, updateBoard, getById }) => {
     const [isSearchOpen, setSearchOpen] = useState(false);
 
     useEffect(async () => {
-        // props.filterBoard({ txt })
-        //  eslint-disable-next-line
         if (!txt) newBoard.filterBy = {}
         else newBoard.filterBy = { name: txt }
         
-        // await updateBoard(newBoard)
+        await updateBoard(newBoard)
         // await getById(board._id)
     }, [txt])
 
@@ -27,9 +25,6 @@ export const BoardSearch = ({ board, updateBoard, getById }) => {
         setTxt(value)
     }
 
-    // const onClickAway = () => {
-    //     props.setIsSearching(false)
-    // }
 
     return (
         <div
@@ -50,19 +45,4 @@ export const BoardSearch = ({ board, updateBoard, getById }) => {
         </div>
     )
 
-    // return (
-    //     <form className="board-search fade-in">
-    //         <label htmlFor="txt" ></label>
-    //         <ClickAwayListener onClickAway={onClickAway}>
-    //             <div className="flex align-center">
-    //                 <SearchIcon ></SearchIcon>
-    //                 <Input
-    //                     className="board-search" autoComplete="off" type="text" name="txt" id="txt"
-    //                     value={txt} placeholder="Enter here" onChange={handleChange}
-    //                     autoFocus />
-    //             </div>
-    //         </ClickAwayListener>
-    //     </form>
-
-    // )
 }
