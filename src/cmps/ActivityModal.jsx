@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setStory, updateBoard } from '../store/board.action'
+import { setStory } from '../store/board.action'
 import React, { useState } from 'react'
 import moment from 'moment'
 import { utilService } from '../services/util.service'
@@ -189,21 +189,12 @@ export function _ActivityModal(props) {
 
 function mapStateToProps({ boardModule }) {
     return {
-        boards: boardModule.boards,
-        // board: boardModule.selectedBoard,
-        selectedBoard: boardModule.selectedBoard,
         selectedStoryIds: boardModule.activityModalStory
-        // filterBy: state.boardModule.filterBy,
-        // users: state.userModule.users,
-        // loggedInUser: state.userModule.loggedInUser
     }
 }
 
 const mapDispatchToProps = {
     setStory,
-    updateBoard
-    // loadBoards,
-    // getById,
 }
 
 

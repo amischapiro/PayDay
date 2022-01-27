@@ -57,9 +57,9 @@ export function _Story(props) {
 			case 'ADD_MEMBER':
 				newData = await boardService.getMemberById(board._id, data);
 				const memberIdx = newStory.storyData.members.findIndex((member) => {
-						return member._id === data;
-					}
-				);
+					return member._id === data;
+				});
+
 				if (memberIdx >= 0) newStory.storyData.members.splice(memberIdx, 1);
 				else newStory.storyData.members.push(newData);
 				addNewActivity('Member added')
@@ -150,7 +150,7 @@ export function _Story(props) {
 								onClick={() =>
 									onSetStory(board._id, group.id, story.id)
 								}
-								className={`update-bubble ${story.comments?.length ? 'blue':''}`}
+								className={`update-bubble ${story.comments?.length ? 'blue' : ''}`}
 							/>
 							{story.comments?.length ? (
 								<div className="updates-count-bubble">

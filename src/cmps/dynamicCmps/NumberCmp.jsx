@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 export function NumberCmp({ story, onUpdate }) {
-	const { number } = story.storyData;
+	const newStory = { ...story }
+	const { number } = newStory.storyData;
 	// console.log('NumberCmp.jsx 💤 5: ', number);
 	const [txt, setTxt] = useState(number || '');
 	const inputEl = useRef();
@@ -11,7 +12,7 @@ export function NumberCmp({ story, onUpdate }) {
 		if (!value) return;
 
 		await onUpdate('CHANGE_NUMBER', value);
-		setTxt(value || '');
+		// setTxt(value || '');
 	};
 
 	const handleUpdate = (ev) => {
@@ -19,6 +20,10 @@ export function NumberCmp({ story, onUpdate }) {
 			onAddNumber(ev);
 		}
 	};
+
+	useEffect(() => {
+		setTxt(number || '');
+	}, [story])
 
 	const handleChange = ({ target }) => {
 		const { value } = target;
