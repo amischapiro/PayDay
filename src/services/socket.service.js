@@ -1,6 +1,5 @@
 import { FormControlUnstyledContext } from '@mui/material'
 import io from 'socket.io-client'
-import { getById } from '../store/board.action'
 
 export const SOCKET_EMIT_JOIN_BOARD_ROOM = 'join board-room'
 
@@ -39,6 +38,6 @@ function createSocketService() {
 	return socketService
 }
 
-function cb(x) {console.log(x)}
-socketService.on('updated board', cb)
-socketService.on('chat addMsg', cb)
+// function cb(x) {console.log(x)}
+// socketService.on('updated board', cb)
+// socketService.on('chat addMsg', cb)

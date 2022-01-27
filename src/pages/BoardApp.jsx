@@ -12,6 +12,7 @@ import { Dashboard } from '../cmps/Dashboard'
 import { ActivityModal } from '../cmps/ActivityModal'
 
 
+import { socketService } from '../services/socket.service';
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
 import { connect } from 'react-redux'
@@ -25,12 +26,25 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
     useEffect(async () => {
         await loadBoards()
         await getById(boardId)
+        socketService.emit('enter board', boardId)
+        socketService.on('updated', async (newBoardId) => {
+            await getById(newBoardId)
+        })
+
     }, [])
 
     useEffect(async () => {
-
         await getById(boardId)
+        socketService.on('update board', async (boardId) => {
+            await getById(boardId)
+        })
     }, [match.params])
+
+
+    const onUpdateBoard = async (boardToUpdate) => {
+        const newBoard = await updateBoard(boardToUpdate)
+        socketService.emit('update board', newBoard._id)
+    }
 
 
     const onRemoveStory = async () => {
@@ -75,7 +89,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
                             <Dashboard />
                         </Route>
                         <Route path="/board/:boardId/board">
-                            <GroupList board={selectedBoard} updateBoard={updateBoard} />
+                            <GroupList board={selectedBoard} updateBoard={onUpdateBoard} />
                         </Route>
 
                     </Switch>
