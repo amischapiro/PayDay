@@ -17,9 +17,8 @@ export function loadBoards() {
 export function getById(boardId) {
     return async (dispatch) => {
         try {
-            let board = await boardService.getById(boardId)
+            let board = await boardService.getById(boardId)            
             board = _filterBoard(board);
-            // console.log('board.action.js 💤 99: ', filteredBoard);
             dispatch({ type: 'SET_BOARD', board })
             return board
         } catch (error) {
@@ -107,6 +106,5 @@ function _filterBoard(board) {
         })
         board.groups[idx].stories = stories;
     });
-
     return board;
 }

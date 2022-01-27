@@ -39,12 +39,14 @@ export function StoryMenu(props) {
 
 
     const onRemoveStory = async () => {
+        handleClose()
         newBoard.groups[groupIdx].stories.splice(storyIdx, 1)
         addNewActivity('Story deleted')
         await updateBoard(newBoard)
     }
 
     const onDuplicateStory = async () => {
+        handleClose()
         const newStory = { ...story, id: utilService.makeId() }
         newBoard.groups[groupIdx].stories.unshift(newStory)
         addNewActivity('Story duplicated')

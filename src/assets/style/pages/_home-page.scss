@@ -1,73 +1,74 @@
-
-
-.home-name img{
-    height: 150px;
-    width: 100px;
-    margin-right: 5px;
-}
-.home-name{
-    display: flex;
-    justify-content: center;
-
-}
-.home-name>*{
-    margin: 0;
-    padding: 0;
-
-}
-.home-name h1{
-    font-size: 70px;
-    line-height: 150px;
-    letter-spacing: 10px;
-    color: white;
-}
-
-.home-container{
+.home-page {
     background-color: #fff;
     height: 80vh;
-}
+    font-family: Roboto, sans-serif;
 
-.login-link,.demo-link{
-    background-color: rgb(127, 210, 238);
-    padding: 10px;
-    border-radius: 6px;
-    margin: 10px;
+    .home-name img {
+        height: 150px;
+        width: 100px;
+        margin-right: 5px;
+    }
+    .home-name {
+        display: flex;
+        justify-content: center;
+    }
+    .home-name > * {
+        margin: 0;
+        padding: 0;
+    }
+    .home-name h1 {
+        font-size: 70px;
+        line-height: 150px;
+        letter-spacing: 10px;
+        color: white;
+    }
 
-}
-.login-link:hover,.demo-link:hover{
-    color: white;
-}
+    .login-link,
+    .demo-link {
+        // background-color: rgb(127, 210, 238);
+        background-color: #f5f6f8;
+        color: #636464;
+        padding: 10px;
+        border-radius: 4px;
+        margin: 10px;
+        &:hover {
+            color: #0073ea;
+        }
+    }
 
-.links-container{
-    display: flex;
-    justify-content: center;
-}
-.group-img-container{
-    display: flex;
-    height: 18.75rem;
-    margin-top: 2rem;
-}
-.group-img{
-    width: 70%;
-}
-.dashboard-img-container{
-    display: flex;
-    height: 18.75rem;
-}
-.dashboard-img{
-    width: 70%;
-}
-.dashboard-txt,.group-txt{
-    padding: 2rem;
-    width: 30%;
-    font-size: 2rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-.connections-img-container{
-    position: relative;
-    .name-links-container{
-        position: absolute;
-        top: 20%;
-        left: 7%;
+    .links-container {
+        display: flex;
+        justify-content: center;
+    }
+    .group-img-container {
+        display: flex;
+        height: 18.75rem;
+        margin-top: 2rem;
+    }
+    .group-img {
+        width: 70%;
+    }
+    .dashboard-img-container {
+        display: flex;
+        height: 18.75rem;
+    }
+    .dashboard-img {
+        width: 70%;
+    }
+    .dashboard-txt,
+    .group-txt {
+        padding: 2rem;
+        width: 30%;
+        font-size: 2rem;
+        font-weight: 600;
+        // font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    }
+    .connections-img-container {
+        position: relative;
+        .name-links-container {
+            position: absolute;
+            top: 20%;
+            left: 7%;
+        }
     }
 }

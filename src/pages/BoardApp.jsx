@@ -20,16 +20,18 @@ import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory } fro
 
 function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds }) {
 
+    const { boardId } = match.params
+
     useEffect(async () => {
         await loadBoards()
-        const { boardId } = match.params
         await getById(boardId)
     }, [])
 
     useEffect(async () => {
-        const { boardId } = match.params
+
         await getById(boardId)
     }, [match.params])
+
 
     const onRemoveStory = async () => {
         const story = {
@@ -61,7 +63,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
                 <section className="main-header">
                     <BoardHeader board={selectedBoard} updateBoard={updateBoard} />
                     <BoardNav board={selectedBoard} />
-                    <BoardActions board={selectedBoard} updateBoard={updateBoard} />
+                    <BoardActions board={selectedBoard} updateBoard={updateBoard} getById={getById} />
                 </section>
                 <div className="board-content">
 

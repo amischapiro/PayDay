@@ -76,12 +76,12 @@ function getLoggedinUser() {
 //                 id: "m101",
 //                 boardId: "m101",
 //                 storyId: "t101"
-//             }
+//             }board
 //         ]
 //     }
 // }
 
-function getMiniLoggedInUser() {
+function getMiniLoggedInUser() {    
     const user = getLoggedinUser()
     delete user.password
     delete user.username

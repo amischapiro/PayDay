@@ -1,5 +1,6 @@
 // import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
+import { utilService } from './util.service'
 
 export const boardService = {
     query,
@@ -33,7 +34,7 @@ async function remove(boardId) {
 
 async function save(boardToUpdate) {
     const boardId = boardToUpdate._id
-     await httpService.put(`board/${boardId}`, boardToUpdate)
+    await httpService.put(`board/${boardId}`, boardToUpdate)
     return boardToUpdate
 }
 
