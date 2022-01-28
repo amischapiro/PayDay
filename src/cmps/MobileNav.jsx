@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
 
-export function MobileNav({selectedBoard}){
+export function MobileNav({selectedBoard,boards}){
     const [isNavOpen,toggleNav]=useState(null)
 
     const onToggleNav=()=>{
@@ -21,9 +21,13 @@ export function MobileNav({selectedBoard}){
         </div>
         <ul className={`nav-links ${isNavOpen?'open':''}`}>
             <li><NavLink className='mobile-link' exact to={'/board'}>Home</NavLink></li>
-            <li><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/board`}>Current Board</NavLink></li>
             <li><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/kanban`}>Kanban</NavLink></li>
             <li><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/dashboard`}>Dashboard</NavLink></li>
+            <span>boards</span>
+            {/* <li><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/board`}>Current Board</NavLink></li> */}
+            {boards.map(board=>{
+               return  <li><NavLink className='mobile-link' to={`/board/${board._id}/board`}>{board.title}</NavLink></li>
+            })}
         </ul>
         <div className={`burger ${isNavOpen?'toggle':''}`} onClick={onToggleNav}>
             <div className="line1"></div>

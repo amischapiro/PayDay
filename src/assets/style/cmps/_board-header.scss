@@ -5,8 +5,6 @@
         display: none;
         min-height: 8vh;
         background-color: #0073ea;
-
-
     }
 
     .fa,
@@ -165,13 +163,12 @@
             justify-content: space-between;
             align-items: center;
             .nav-links{
-                z-index:10;
                 position: absolute;
                 margin: 0;
                 right: 0;
                 height: 92vh;
                 top: 8vh;
-                background-color: #0073ea;
+                background-image: linear-gradient(to left bottom, #3840d8, #116aea, #2a8df2, #5eadf3, #95caf2);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -226,5 +223,15 @@
 
         }
         
+    }
+    .title-and-action{
+        .invite,.add-to-board,.options{
+            display: none;
+        }
+        .title-section{
+            .info-circle,.fa.star{
+                display: none;
+            }
+        }
     }
 }

@@ -130,3 +130,11 @@
         width: 12rem;
     }
 }
+
+@media screen and(max-width:500px) {
+    .main-actions:first-child{
+        :nth-child(3){
+            display: none;
+        }
+    }
+}

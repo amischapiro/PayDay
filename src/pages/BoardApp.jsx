@@ -121,7 +121,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
             <section className="main-content">
                 <section className="main-header">
-                    <MobileNav selectedBoard={selectedBoard} />
+                    <MobileNav selectedBoard={selectedBoard} boards={boards} />
                     <BoardHeader board={selectedBoard} updateBoard={onUpdateBoard} />
                     <BoardNav board={selectedBoard} />
                     <BoardActions board={selectedBoard} updateBoard={onUpdateBoard} getById={getById} setFilterBy={setFilterBy} />
