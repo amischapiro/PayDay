@@ -1,7 +1,7 @@
 import { useState } from "react"
+import { NavLink } from "react-router-dom"
 
-
-export function MobileNav(){
+export function MobileNav({selectedBoard}){
     const [isNavOpen,toggleNav]=useState(null)
 
     const onToggleNav=()=>{
@@ -20,9 +20,10 @@ export function MobileNav(){
             <h4>Payday</h4>
         </div>
         <ul className={`nav-links ${isNavOpen?'open':''}`}>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Kanban</a></li>
-            <li><a href="#">dashboard</a></li>
+            <li><NavLink className='mobile-link' exact to={'/board'}>Home</NavLink></li>
+            <li><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/board`}>Current Board</NavLink></li>
+            <li><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/kanban`}>Kanban</NavLink></li>
+            <li><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/dashboard`}>Dashboard</NavLink></li>
         </ul>
         <div className={`burger ${isNavOpen?'toggle':''}`} onClick={onToggleNav}>
             <div className="line1"></div>
