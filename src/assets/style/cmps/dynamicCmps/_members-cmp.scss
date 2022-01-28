@@ -17,8 +17,11 @@
 		background-color: hotpink;
 		text-align: center;
 		line-height: 2rem;
+		color: white;
+		text-transform: uppercase;
 
 	}
+
 
 	.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root.no-members {
 		width: 1.875rem;
@@ -64,16 +67,44 @@
 		cursor: pointer;
 		border-radius: 0.25rem;
 
-		&:hover {
-			background-color: #0085ff;
-			color: #fff;
-		}
+		
 
 		img {
 			width: 1.563rem;
 			height: 1.563rem;
 			border-radius: 50%;
 			margin-inline-end: 0.7rem;
+		}
+	}
+}
+.picker-container{
+	&:hover {
+		background-color: #0085ff;
+		color: #fff;
+	}
+	.member-img-container{
+		display: flex;
+		flex-direction: row;
+		>*:not(:first-child){
+			margin-left: 5px;
+			line-height: 2rem;
+			text-transform: capitalize;
+		}
+	}
+	.member-img {
+		border-radius: 50%;
+		height: 2rem;
+		width: 2rem;
+		color: white;
+		line-height: 2rem;
+		background-color: hotpink;
+		text-align: center;
+		text-transform: uppercase;
+
+		img{
+			height: 2rem;
+			width: 2rem;
+			border-radius: 50%;
 		}
 	}
 }

@@ -10,12 +10,12 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { cloudinaryService } from '../services/cloudinary.service'
 
 export function _ActivityModal(props) {
-    
-        const [isActivityShown, setActivityToggle] = useState(null)
-        const [comment, setComment] = useState('')
-        const [isUpdateFocused, setUpdateFocus] = useState(false)
-    
-        const { selectedStoryIds, selectedBoard } = props
+
+    const [isActivityShown, setActivityToggle] = useState(null)
+    const [comment, setComment] = useState('')
+    const [isUpdateFocused, setUpdateFocus] = useState(false)
+
+    const { selectedStoryIds, selectedBoard } = props
 
     const onRemoveStory = async () => {
 
@@ -50,7 +50,7 @@ export function _ActivityModal(props) {
         const groupIdx = selectedBoard.groups.findIndex((group) => group.id === groupId)
         const storyIdx = selectedBoard.groups[groupIdx].stories.findIndex((story) => story.id === storyId)
         const story = selectedBoard.groups[groupIdx].stories[storyIdx]
-        
+
         return story
 
     }

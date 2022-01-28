@@ -11,7 +11,7 @@ import { userService } from '../services/user.service'
 
 export function HomePage() {
 
-    const demoBoardId = '61f279052924b85c48f369f4'
+    const demoBoardId = '61f286b7f9f9d779fe76fc14'
     
 
     const loginDemoUser = () => {

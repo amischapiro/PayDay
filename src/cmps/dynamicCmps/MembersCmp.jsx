@@ -12,7 +12,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
-	
+
 
 	const handleClose = () => {
 		setAnchorEl(null);
@@ -47,7 +47,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 							const initials = fName[0] + lName[0];
 
 							return (member.imgUrl ? <Avatar key={member._id} alt={initials} src={member.imgUrl}
-								style={{ width: '30px', height: '30px' }} /> : <span className='members-cmp-initials' key={member._id} >{initials}</span> )
+								style={{ width: '30px', height: '30px' }} /> : <span className='members-cmp-initials' key={member._id} >{initials}</span>)
 						})
 
 						}
@@ -78,11 +78,15 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 									handleClose()
 								}
 								}>
-								{member.imgUrl ? (<img
-									src={member.imgUrl}
-									alt={fName[0] + lName[0]}
-								/>) : (<div className='members-cmp-initials' key={member._id} >{initials.toUpperCase()}</div>)} {' '}
-								{member.fullname} 
+									<div className='member-img-container'>
+								<div className='member-img' key={member._id}>{member.imgUrl ? <img src={member.imgUrl} /> : initials }</div><div>{member.fullname}</div>
+								</div>
+
+									{/* {member.imgUrl ? (<img
+										src={member.imgUrl}
+										alt={fName[0] + lName[0]}
+									/>) : (<div className='members-cmp-initials' key={member._id} >{initials.toUpperCase()}</div>)} {' '}
+									{member.fullname} */}
 							</Typography>
 						</div>
 					);

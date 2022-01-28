@@ -8,6 +8,7 @@ import { BoardActions } from '../cmps/BoardActions'
 import { GroupList } from '../cmps/GroupList'
 import { Kanban } from '../cmps/kanban/Kanban'
 import { Dashboard } from '../cmps/Dashboard'
+import { MobileNav } from '../cmps/MobileNav';
 
 import { ActivityModal } from '../cmps/ActivityModal'
 
@@ -120,6 +121,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
             <section className="main-content">
                 <section className="main-header">
+                    <MobileNav />
                     <BoardHeader board={selectedBoard} updateBoard={onUpdateBoard} />
                     <BoardNav board={selectedBoard} />
                     <BoardActions board={selectedBoard} updateBoard={onUpdateBoard} getById={getById} setFilterBy={setFilterBy} />

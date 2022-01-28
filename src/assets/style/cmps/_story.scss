@@ -197,7 +197,7 @@
 		border-radius: 50%;
 		text-align: center;
 		font-size: 0.55rem;
-		line-height: 0.8rem;
+		line-height: 0.85rem;
 		top: 0.8125rem;
 		left: 0.9375rem;
 	}
@@ -280,6 +280,17 @@
 			&.hover {
 				visibility: visible;
 			}
+		}
+	}
+}
+
+
+@media screen and (max-width:500px){
+	.story{
+
+		.story-txt-area{
+			width: 12rem;
+			
 		}
 	}
 }
