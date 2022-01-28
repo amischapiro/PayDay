@@ -209,3 +209,9 @@
         right: 0
     }
 }
+
+@media screen and (max-width:500px){
+    .activity-modal{
+        width: 25rem;
+    }
+}
