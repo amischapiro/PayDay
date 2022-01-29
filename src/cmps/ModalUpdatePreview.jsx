@@ -25,7 +25,7 @@ export const ModalUpdatePreview = ({comment, onRemoveComment,getInitials,imgUrl 
             {imgUrl && <img className="uploaded-img" src={imgUrl} alt='img'></img> }
             <div className="update-like-container" >
                 <div className="like-update"><span className="fa-solid thumbs-up"></span><span>Like</span></div>
-                <div className="comment-update"><span className="fa-solid reply"></span><span>Comment</span></div>
+                <div className="comment-update"><span className="fa-solid reply"></span><span>Reply</span></div>
 
             </div>
         </div>
