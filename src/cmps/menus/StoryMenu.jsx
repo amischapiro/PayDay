@@ -47,7 +47,8 @@ export function StoryMenu(props) {
 
     const onDuplicateStory = async () => {
         handleClose()
-        const newStory = { ...story, id: utilService.makeId() }
+        const newStory = JSON.parse(JSON.stringify(story))
+        newStory.id = utilService.makeId(); 
         newBoard.groups[groupIdx].stories.unshift(newStory)
         addNewActivity('Story duplicated')
         await updateBoard(newBoard)

@@ -4,17 +4,15 @@ import { utilService } from '../services/util.service';
 
 import { NewStoryMenu } from './menus/NewStoryMenu';
 import { SortMenu } from './menus/SortMenu';
-import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 
 
 import { userService } from '../services/user.service'
 import { BoardSearch } from './BoardSearch';
 
-function _BoardActions({ board, updateBoard, getById }) {
+function _BoardActions({ board, updateBoard, getById, setFilterBy, filterBy }) {
 
 	const newBoard = { ...board };
 
-	const [isSearchOpen, setSearchOpen] = useState(false);
 
 	const onAddStory = async () => {
 		const newStory = utilService.createStory();
@@ -132,7 +130,7 @@ function _BoardActions({ board, updateBoard, getById }) {
 						/>
 					)}
 				</div> */}
-				<BoardSearch board={board} updateBoard={updateBoard} getById={getById} />
+				<BoardSearch setFilterBy={setFilterBy} filterBy={filterBy}/>
 				<div>
 					<span className="fa user"></span>
 					<span>Person</span>

@@ -3,6 +3,12 @@
 const initialState = {
     boards: [],
     selectedBoard: null,
+    filterBy: {
+        name: null,
+        priority: null,
+        status: null,
+        members: null
+    },
     activityModalStory: {
         boardId: null,
         groupId: null,
@@ -38,18 +44,6 @@ export function boardReducer(state = initialState, action) {
             break
         case 'SET_FILTER':
             newState = { ...state, filterBy: { ...action.filterBy } }
-            break
-        case 'SET_SORT':
-            if (action.sortBy === 'name') {
-                newState = { ...state, sortBy: { name: -1 } }
-            } else if (action.sortBy === 'price') {
-                newState = { ...state, sortBy: { price: 1 } }
-            }
-            if (action.sortBy === 'name' && state.sortBy && state.sortBy.order === -1) {
-                newState = { ...state, sortBy: { name: 1 } }
-            } else if (action.sortBy === 'price' && state.sortBy && state.sortBy.price === -1) {
-                newState = { ...state, sortBy: { price: 1 } }
-            }
             break;
         case 'SET_STORY':
             newState = {...state, activityModalStory: { boardId: action.story.boardId, groupId: action.story.groupId, storyId: action.story.storyId } }

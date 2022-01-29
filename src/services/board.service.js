@@ -1,6 +1,5 @@
 // import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
-import { utilService } from './util.service'
 
 export const boardService = {
     query,
@@ -48,36 +47,6 @@ async function addBoard(boardToAdd) {
 // ADD FIRST NEW BOARD IF EMPTY
 
 // utilService.createFirstBoard()
-
-
-async function sortBoard(boardId) {
-    const board = await httpService.get(`board/${boardId}`)
-    let sortedBoard = { ...board };
-    let sortBy = board.sortBy;
-    switch (sortBy.type) {
-        case 'name':
-            sortedBoard.groups = board.groups.map(group => {
-                return group.stories.sort(function (a, b) {
-                    if (a.title < b.title) return group.order;
-                    else if (a.title > b.title) return (group.order * -1);
-                    else return 0;
-                });
-            })
-            break;
-        case 'date':
-            sortedBoard.groups = board.groups.map(group => {
-                return group.stories.sort(function (a, b) {
-                    if (a.createdAt < b.createdAt) return group.order;
-                    else if (a.createdAt > b.createdAt) return (group.order * -1);
-                    else return 0;
-                });
-            })
-            break;
-        default:
-            break;
-    }
-    return sortedBoard;
-}
 
 async function getStatusById(boardId, statusId) {
     const board = await getById(boardId)

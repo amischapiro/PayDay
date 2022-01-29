@@ -32,8 +32,8 @@
     color: white;
     font-size: 18px;
     border-radius: 8px;
-    cursor: not-allowed;
     height: 36px;
+    cursor: not-allowed;
     width: 36px;
     border: none;
     padding-top: 5px;
@@ -42,6 +42,10 @@
         background-color: #121529;
     }
 }
+.logout-icon{
+    cursor: pointer;
+}
+
 
 .actions-top .workspace {
     background-color: #6a6e82;
@@ -111,3 +115,4 @@
         padding: 4px;
     }
 }
+

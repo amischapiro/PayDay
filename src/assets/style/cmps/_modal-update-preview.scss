@@ -21,6 +21,28 @@
         height: 100px;
         width: 100px;
     }
+    .update-like-container{
+        display: flex;
+        .like-update{
+            :first-child{
+                font-size: 1.4rem;
+                margin-right: 0.3rem;
+            }
+            width: 50%;
+            border-top:1px grey solid ;
+            text-align: center;
+        }
+        .comment-update{
+            :first-child{
+                font-size: 1.4rem;
+                margin-right: 0.3rem;
+            }
+            width: 50%;
+            border-top:1px grey solid ;
+            border-left: 1px grey solid;
+            text-align: center;
+        }
+    }
       
 }
 

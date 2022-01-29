@@ -1,6 +1,11 @@
 .main-header {
     position: sticky;
     left: 0;
+    .mobile-nav{
+        display: none;
+        min-height: 8vh;
+        background-color: #0073ea;
+    }
 
     .fa,
     .fa-solid {
@@ -141,6 +146,92 @@
 
         &:focus-visible {
             outline: none;
+        }
+    }
+}
+
+
+@media screen and (max-width:500px){
+    body{
+        // overflow: hidden;
+    }
+    .main-header{
+        padding: 0;
+        .mobile-nav{
+            display: block;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .nav-links{
+                position: absolute;
+                margin: 0;
+                right: 0;
+                height: 92vh;
+                top: 8vh;
+                background-image: linear-gradient(to left bottom, #3840d8, #116aea, #2a8df2, #5eadf3, #95caf2);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 50%;
+                transform: translateX(100%);
+                transition: 0.3s ease-in;
+                li{
+                    list-style: none;
+                    margin-bottom: 10px;
+                }
+                .mobile-link{
+                    color: white;
+                    text-decoration: none;
+                    letter-spacing: 3px;
+                    font-weight: bold;
+                    font-size: 14px;
+                }
+                &.open{
+                    transform: translateX(0%)
+                    
+                }
+            }
+            .nav-logo{
+                color: white;
+                text-transform: uppercase;
+                letter-spacing: 5px;
+                font-size: 20px;
+                margin-left: 10px;
+            }
+            .burger{
+                cursor: pointer;
+            }
+            .burger div{
+                width: 25px;
+                height: 3px;
+                background-color: #fff;
+                margin: 5px;
+                transition: all 0.3s ease;
+            }
+            .toggle .line1{
+                transform: rotate(-45deg) translate(-5px,6px);
+
+            }
+            .toggle .line2{
+                opacity: 0;
+            }
+            .toggle .line3{
+                transform: rotate(45deg) translate(-5px,-6px);
+
+            }
+            
+
+        }
+        
+    }
+    .title-and-action{
+        .invite,.add-to-board,.options{
+            display: none;
+        }
+        .title-section{
+            .info-circle,.fa.star{
+                display: none;
+            }
         }
     }
 }

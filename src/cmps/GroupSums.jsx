@@ -9,33 +9,40 @@ export class GroupSum extends Component {
 		switch (cmp) {
 			case 'member-picker':
 				let allMems = [];
+
 				group.stories.map((story) => {
 					const members = story.storyData.members;
 					if (members.length)
 						members.forEach((member) => allMems.push(member));
 					return story;
 				});
+
 				allMems.sort(function (a, b) {
 					if (a._id > b._id) return -1;
 					else if (a._id < b._id) return 1;
 					else return 0;
 				});
+
 				const filteredMems = allMems.filter((mem, idx) => {
 					if (idx + 1 < allMems.length)
 						return mem._id !== allMems[idx + 1]._id;
 					else return mem;
 				});
+
 				return (
 					<div key={'s' + index} className="members-sum">
 						{!filteredMems.length ? (
 							<AccountCircleOutlinedIcon className="no-members" />
 						) : filteredMems.length > 2 ? (
 							<div className="active-member-list">
-								<img
+								{filteredMems[0].imgUrl ? <img
 									key={filteredMems[0]._id}
 									src={filteredMems[0].imgUrl}
 									alt=""
-								/>{' '}
+								/> : <span className="members-cmp-initials sum-initials">
+									{filteredMems[0].fullname.split('')[0].split('')[0] + 
+									filteredMems[1].fullname.split('')[0].split('')[0]}
+								</span>}{' '}
 								<span className="plus-members sum">
 									+{filteredMems.length - 1}
 								</span>{' '}
@@ -59,9 +66,9 @@ export class GroupSum extends Component {
 											}}
 										/>
 									) : (
-										<div className="members-cmp-initials" key={member._id}>
-											{initials.toUpperCase()}
-										</div>
+										<span className="members-cmp-initials sum-initials" key={member._id}>
+											{initials}
+										</span>
 									);
 								})}
 							</AvatarGroup>

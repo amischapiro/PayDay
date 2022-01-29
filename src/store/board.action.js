@@ -17,8 +17,7 @@ export function loadBoards() {
 export function getById(boardId) {
     return async (dispatch) => {
         try {
-            let board = await boardService.getById(boardId)            
-            board = _filterBoard(board);
+            const board = await boardService.getById(boardId)            
             dispatch({ type: 'SET_BOARD', board })
             return board
         } catch (error) {
@@ -41,9 +40,13 @@ export function removeBoard(boardId) {
 }
 
 export function updateBoard(boardToUpdate) {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         try {
-            if(boardToUpdate.filterBy !== {}) console.log('cant update with filter')
+            // const { filterBy } = getState()
+            // if (filterBy !== {} || filterBy) {
+            //     filterBy = null;
+            //     dispatch({ type: 'SET_FILTER', filterBy })
+            // }
             const savedBoard = await boardService.save(boardToUpdate)
             dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
             return savedBoard
@@ -68,44 +71,11 @@ export function addBoard(boardToSave) {
 export function setStory(story) {
     return async (dispatch) => {
         dispatch({ type: 'SET_STORY', story })
-
     }
 }
 
-function _filterBoard(board) {
-    if(!board?.filterBy || board.filterBy === {}) return board;
-    const { filterBy } = board;
-
-    if (filterBy?.name) board.groups.forEach((group, idx) => {
-        const stories = group.stories.filter(story => {
-            return story.title.toLowerCase().includes(filterBy.name)
-        })
-        board.groups[idx].stories = stories;
-    });
-
-    if (filterBy?.priority) board.groups.forEach((group, idx) => {
-        const stories = group.stories.filter(story => {
-            return story.storyData.priority.title === filterBy.priority;
-        })
-        board.groups[idx].stories = stories;
-    });
-
-    if (filterBy?.status) board.groups.forEach((group, idx) => {
-        const stories = group.stories.filter(story => {
-            return story.storyData.status.title === filterBy.status;
-        })
-        board.groups[idx].stories = stories;
-    });
-
-    if (filterBy?.members) board.groups.forEach((group, idx) => {
-        const stories = group.stories.filter(story => {
-            return story.storyData.status.members.some(member => {
-                return filterBy.members.some(filterMem => {
-                    return filterMem.id === member._id;
-                });
-            })
-        })
-        board.groups[idx].stories = stories;
-    });
-    return board;
+export function setFilterBy(filterBy) {
+    return async (dispatch) => {
+        dispatch({ type: 'SET_FILTER', filterBy })
+    }
 }
