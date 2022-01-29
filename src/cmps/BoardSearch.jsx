@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+// import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 // import { Input } from '@material-ui/core'
 // import SearchIcon from '@material-ui/icons/Search';
 
@@ -18,9 +18,6 @@ export const BoardSearch = ({ filterBy, setFilterBy }) => {
         setTxt(value)
     }
 
-    // const onClickAway = () => {
-    //     props.setIsSearching(false)
-    // }
 
     return (
         <div
@@ -40,20 +37,4 @@ export const BoardSearch = ({ filterBy, setFilterBy }) => {
             )}
         </div>
     )
-
-    // return (
-    //     <form className="board-search fade-in">
-    //         <label htmlFor="txt" ></label>
-    //         <ClickAwayListener onClickAway={onClickAway}>
-    //             <div className="flex align-center">
-    //                 <SearchIcon ></SearchIcon>
-    //                 <Input
-    //                     className="board-search" autoComplete="off" type="text" name="txt" id="txt"
-    //                     value={txt} placeholder="Enter here" onChange={handleChange}
-    //                     autoFocus />
-    //             </div>
-    //         </ClickAwayListener>
-    //     </form>
-
-    // )
 }

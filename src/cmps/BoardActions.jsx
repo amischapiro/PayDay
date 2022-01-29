@@ -4,19 +4,23 @@ import { utilService } from '../services/util.service';
 
 import { NewStoryMenu } from './menus/NewStoryMenu';
 import { SortMenu } from './menus/SortMenu';
-import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
+// import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 
 
 import { userService } from '../services/user.service'
 import { BoardSearch } from './BoardSearch';
 
-function _BoardActions({ board, updateBoard, getById, setFilterBy, filterBy }) {
+function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileFilter }) {
 
 	const newBoard = { ...board };
 
-	const [isSearchOpen, setSearchOpen] = useState(false);
+	// const [isSearchOpen, setSearchOpen] = useState(false);
 
 	const onAddStory = async () => {
+		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+			updateWhileFilter();
+			return;
+		}
 		const newStory = utilService.createStory();
 		const newGroup = newBoard.groups[0]
 		if (!newBoard.groups[0].stories || !newBoard.groups[0].stories.length)
@@ -28,6 +32,10 @@ function _BoardActions({ board, updateBoard, getById, setFilterBy, filterBy }) {
 	};
 
 	const onAddGroup = async () => {
+		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+			updateWhileFilter();
+			return;
+		}
 		const newGroup = utilService.createEmptyGroup();
 
 		if (!newBoard.groups || !newBoard.groups.length)
@@ -38,6 +46,10 @@ function _BoardActions({ board, updateBoard, getById, setFilterBy, filterBy }) {
 	};
 
 	const onSetSort = async (type) => {
+		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+			updateWhileFilter();
+			return;
+		}
 		const sortBy = newBoard.sortBy;
 		if (type === sortBy.name) sortBy.order *= -1;
 		else {
