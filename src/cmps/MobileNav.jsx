@@ -20,13 +20,13 @@ export function MobileNav({selectedBoard,boards}){
             <h4>Payday</h4>
         </div>
         <ul className={`nav-links ${isNavOpen?'open':''}`}>
-            <li key="mnav-1"><NavLink className='mobile-link' exact to={'/board'}>Home</NavLink></li>
-            <li key="mnav-2"><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/kanban`}>Kanban</NavLink></li>
-            <li key="mnav-3"><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/dashboard`}>Dashboard</NavLink></li>
-            <span>boards</span>
+            <li onClick={onToggleNav} key="mnav-1"><NavLink className='mobile-link' exact to={'/board'}>Home</NavLink></li>
+            <li onClick={onToggleNav} key="mnav-2"><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/kanban`}>Kanban</NavLink></li>
+            <li onClick={onToggleNav} key="mnav-3"><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/dashboard`}>Dashboard</NavLink></li>
+            <span>boards:</span>
             {/* <li><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/board`}>Current Board</NavLink></li> */}
             {boards.map((board, idx)=>{
-               return  <li key={idx}><NavLink className='mobile-link' to={`/board/${board._id}/board`}>{board.title}</NavLink></li>
+               return  <li onClick={onToggleNav} key={idx}><NavLink className='mobile-link' to={`/board/${board._id}/board`}>{board.title}</NavLink></li>
             })}
         </ul>
         <div className={`burger ${isNavOpen?'toggle':''}`} onClick={onToggleNav}>
