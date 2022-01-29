@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+// import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 // import { Input } from '@material-ui/core'
 // import SearchIcon from '@material-ui/icons/Search';
 
@@ -37,5 +37,4 @@ export const BoardSearch = ({ filterBy, setFilterBy }) => {
             )}
         </div>
     )
-
 }

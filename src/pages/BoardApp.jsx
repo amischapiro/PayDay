@@ -30,6 +30,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 			socketService.setup();
 
 			socketService.on('board has updated', async (updatedBoardId) => {
+				console.log('BoardApp.jsx 💤 40: ', updatedBoardId);
 				await getById(updatedBoardId);
 			});
 			return () => {
@@ -183,7 +184,8 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 						updateBoard={onUpdateBoard}
 						getById={getById}
 						setFilterBy={setFilterBy}
-						filterBy={filterBy}
+                        filterBy={filterBy}
+						updateWhileFilter={updateWhileFilter}
 					/>
 				</section>
 				<div className="board-content">
