@@ -20,29 +20,35 @@ import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setF
 
 
 function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy, }) {
+
 	const { boardId } = match.params;
 	const [filteredBoard, setFilteredBoard] = useState(null);
 
 	useEffect(() => {
-		async function init() {
+		async function fetchData() {
 			await loadBoards();
 			await getById(boardId);
-			socketService.setup();
-
-			socketService.on('board has updated', async (updatedBoardId) => {
-				console.log('BoardApp.jsx 💤 40: ', updatedBoardId);
-				await getById(updatedBoardId);
-			});
-			return () => {
-				socketService.terminate();
-			};
 		}
-		init();
+		fetchData()
+		socketService.setup();
+		socketService.on('board has updated', async (updatedBoardId) => {
+			console.log('BoardApp.jsx 💤 40: ', updatedBoardId);
+			await getById(updatedBoardId);
+		});
+		return () => {
+			socketService.terminate();
+		};
 	}, []);
 
-	useEffect(() => {
 
-		async function updateState() {
+	// useEffect(async () => {
+	// 	await getById(boardId)
+	// 	socketService.emit('enter board', boardId)
+	// }, [match.params])
+
+
+	useEffect(() => {
+		async function fetchData() {
 			await getById(boardId);
 			setFilterBy({
 				name: null,
@@ -50,10 +56,11 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 				status: null,
 				members: null,
 			});
-			socketService.emit('enter board', boardId);
 		}
-		updateState();
+		fetchData()
+		socketService.emit('enter board', boardId);
 	}, [match.params]);
+
 
 	useEffect(() => {
 		filterBoard(filterBy);
@@ -184,7 +191,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 						updateBoard={onUpdateBoard}
 						getById={getById}
 						setFilterBy={setFilterBy}
-                        filterBy={filterBy}
+						filterBy={filterBy}
 						updateWhileFilter={updateWhileFilter}
 					/>
 				</section>
@@ -202,7 +209,8 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 						</Route>
 						<Route path="/board/:boardId/board">
 							<GroupList
-								board={filteredBoard || selectedBoard}
+								board={selectedBoard}
+								// board={filteredBoard || selectedBoard}
 								filterBy={filterBy}
 								updateBoard={onUpdateBoard}
 								updateWhileFilter={updateWhileFilter}
