@@ -4,17 +4,17 @@ import { utilService } from '../services/util.service';
 
 import { NewStoryMenu } from './menus/NewStoryMenu';
 import { SortMenu } from './menus/SortMenu';
-import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
+// import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 
 
 import { userService } from '../services/user.service'
 import { BoardSearch } from './BoardSearch';
 
-function _BoardActions({ board, updateBoard, getById, setFilterBy, filterBy, updateWhileFilter }) {
+function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileFilter }) {
 
 	const newBoard = { ...board };
 
-	const [isSearchOpen, setSearchOpen] = useState(false);
+	// const [isSearchOpen, setSearchOpen] = useState(false);
 
 	const onAddStory = async () => {
 		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {

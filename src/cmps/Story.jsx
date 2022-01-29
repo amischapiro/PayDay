@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { DynamicCmp } from './dynamicCmps/DynamicCmp';
 import { connect } from 'react-redux';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
