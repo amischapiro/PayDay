@@ -9,7 +9,7 @@ import { utilService } from '../services/util.service';
 import { userService } from '../services/user.service'
 
 export function _Story(props) {
-	const { board, group, story, updateBoard } = props;
+	const { board, group, story, updateBoard, filterBy, updateWhileFilter } = props;
 
 	const currUser = userService.getMiniLoggedInUser()
 	const { cmpsOrder } = board;
@@ -28,6 +28,10 @@ export function _Story(props) {
 	};
 
 	const onSubmitTitle = async (ev) => {
+		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+			updateWhileFilter();
+			return;
+		}
 		ev.preventDefault();
 		toggleTitleEdit(false);
 		const storyToUpdate = { ...story, title: newStoryTitle.title };
@@ -40,6 +44,10 @@ export function _Story(props) {
 	};
 
 	const onUpdateStory = async (dataType, data) => {
+		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+			updateWhileFilter();
+			return;
+		}
 		const newStory = { ...story };
 		let newData;
 

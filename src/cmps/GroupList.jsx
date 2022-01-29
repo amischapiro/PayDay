@@ -60,7 +60,7 @@ export class _GroupList extends Component {
 	};
 
 	render() {
-		const { board, updateBoard } = this.props;
+		const { board, updateBoard, filterBy, updateWhileFilter } = this.props;
 
 		return (
 			<DragDropContext
@@ -111,6 +111,8 @@ export class _GroupList extends Component {
 												group={group}
 												board={board}
 												updateBoard={updateBoard}
+												filterBy={filterBy}
+												updateWhileFilter={updateWhileFilter}
 											/>
 										</div>
 									)}

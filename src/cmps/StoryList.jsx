@@ -7,7 +7,7 @@ import { GroupSum } from './GroupSums';
 import { StoryMenu } from './menus/StoryMenu';
 
 function _StoryList(props) {
-	const { group, groupNum, board, updateBoard } = props;
+	const { group, groupNum, board, updateBoard, filterBy, updateWhileFilter } = props;
 
 	// const [isTitleEditOn, toggleTitleEdit] = useState(false)
 	// const [titleInput, setTitleInput] = useState(group.title)
@@ -43,6 +43,8 @@ function _StoryList(props) {
 															board={board}
 															group={group}
 															story={story}
+															filterBy={filterBy}
+															updateWhileFilter={updateWhileFilter}
 														/>
 													</div>
 												</span>
