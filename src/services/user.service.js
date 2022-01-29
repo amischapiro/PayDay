@@ -86,7 +86,6 @@ function getLoggedinUser() {
 // delete passwords in back
 function getMiniLoggedInUser() {
     const user = getLoggedinUser()
-    delete user.password
     delete user.username
     delete user.mentions
     delete user.createdAt
@@ -97,7 +96,6 @@ function getMiniLoggedInUser() {
 async function getMiniUsers() {
     let users = await getUsers();
     users = users.map(user => {
-        delete user.password
         delete user.username
         delete user.mentions
         delete user.createdAt

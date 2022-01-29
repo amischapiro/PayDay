@@ -1,6 +1,5 @@
 // import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
-import { utilService } from './util.service'
 
 export const boardService = {
     query,

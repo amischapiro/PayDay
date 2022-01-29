@@ -14,6 +14,11 @@ import { GroupTitle } from './GroupTitle';
 export class _GroupList extends Component {
 	
 	onDragEnd = async (result) => {
+		const {filterBy} = this.props
+		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+			this.props.updateWhileFilter();
+			return;
+		}
 		const { board } = this.props;
 		const { destination, source, draggableId, type } = result;
 		if (!destination) return;

@@ -1,6 +1,5 @@
 .members-sum, 
 .members-cmp {
-
     .active-member-list {
         display: flex;
     }
@@ -10,18 +9,23 @@
 		height: 1.875rem;
 		border-radius: 50%;
 	}
+
 	.members-cmp-initials{
 		border-radius: 50%;
 		height: 2rem;
 		width: 2rem;
 		background-color: hotpink;
 		text-align: center;
-		line-height: 2rem;
+		// line-height: 2rem;
 		color: white;
 		text-transform: uppercase;
+		padding: 3px;
+		font-size: 0.875rem;
 
+		&.sum-initials {
+			padding: 1px;
+		}
 	}
-
 
 	.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root.no-members {
 		width: 1.875rem;
@@ -55,7 +59,14 @@
 	}
 }
 
-.picker-container {
+.member-picker-container {
+	padding: 0.5rem;
+
+	&:hover {
+		background-color: #0085ff;
+		color: #fff;
+	}
+
 	.MuiTypography-root.MuiTypography-body1.member-picker {
 		display: flex;
 		width: 17.75rem;
@@ -66,9 +77,7 @@
 		text-align: center;
 		cursor: pointer;
 		border-radius: 0.25rem;
-
 		
-
 		img {
 			width: 1.563rem;
 			height: 1.563rem;
@@ -76,12 +85,7 @@
 			margin-inline-end: 0.7rem;
 		}
 	}
-}
-.picker-container{
-	&:hover {
-		background-color: #0085ff;
-		color: #fff;
-	}
+
 	.member-img-container{
 		display: flex;
 		flex-direction: row;
@@ -91,6 +95,7 @@
 			text-transform: capitalize;
 		}
 	}
+
 	.member-img {
 		border-radius: 50%;
 		height: 2rem;
@@ -100,7 +105,7 @@
 		background-color: hotpink;
 		text-align: center;
 		text-transform: uppercase;
-
+	
 		img{
 			height: 2rem;
 			width: 2rem;

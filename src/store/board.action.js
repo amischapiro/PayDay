@@ -17,7 +17,7 @@ export function loadBoards() {
 export function getById(boardId) {
     return async (dispatch) => {
         try {
-            let board = await boardService.getById(boardId)            
+            const board = await boardService.getById(boardId)            
             dispatch({ type: 'SET_BOARD', board })
             return board
         } catch (error) {
@@ -40,10 +40,12 @@ export function removeBoard(boardId) {
 }
 
 export function updateBoard(boardToUpdate) {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         try {
-            // if(boardToUpdate.filterBy !== {} || !boardToUpdate.filterBy) {
-            //     console.log('cant update with filter')
+            // const { filterBy } = getState()
+            // if (filterBy !== {} || filterBy) {
+            //     filterBy = null;
+            //     dispatch({ type: 'SET_FILTER', filterBy })
             // }
             const savedBoard = await boardService.save(boardToUpdate)
             dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
@@ -69,7 +71,6 @@ export function addBoard(boardToSave) {
 export function setStory(story) {
     return async (dispatch) => {
         dispatch({ type: 'SET_STORY', story })
-
     }
 }
 

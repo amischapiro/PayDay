@@ -15,7 +15,7 @@ export function GroupTitle({ board, group, updateBoard }) {
 
 
     const handleChange = ({ target }) => {
-        const { name, value } = target
+        const { value } = target
         if (value === ' ' || value === '\n') return
         setTitleInput(value)
     }

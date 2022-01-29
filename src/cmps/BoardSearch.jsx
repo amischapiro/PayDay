@@ -3,19 +3,14 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 // import { Input } from '@material-ui/core'
 // import SearchIcon from '@material-ui/icons/Search';
 
-export const BoardSearch = ({ board, updateBoard, getById, setFilterBy }) => {
+export const BoardSearch = ({ filterBy, setFilterBy }) => {
 
-    const newBoard = { ...board }
-
-    const [txt, setTxt] = useState('')
+    const [txt, setTxt] = useState(filterBy.name || '')
     const [isSearchOpen, setSearchOpen] = useState(false);
 
     useEffect(() => {
-        // props.filterBoard({ txt })
-        //  eslint-disable-next-line
-        if (!txt || txt === '') setFilterBy({})
+        if (!txt || txt === '') setFilterBy(null)
         else setFilterBy({ name: txt }) 
-        
     }, [txt])
 
     const handleChange = async ({ target }) => {

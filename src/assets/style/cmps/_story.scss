@@ -235,7 +235,12 @@
 }
 
 .picker-container {
-	padding: 0.5rem;
+	padding: 0rem 0.5rem 0.5rem;
+
+	&:first-child {
+		padding-top: 0.5rem;
+	}
+
 	.MuiTypography-root.MuiTypography-body1.element-picker {
 		color: #fff;
 		width: 7rem;

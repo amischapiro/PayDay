@@ -10,7 +10,7 @@ import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 import { userService } from '../services/user.service'
 import { BoardSearch } from './BoardSearch';
 
-function _BoardActions({ board, updateBoard, getById, setFilterBy }) {
+function _BoardActions({ board, updateBoard, getById, setFilterBy, filterBy }) {
 
 	const newBoard = { ...board };
 
@@ -132,7 +132,7 @@ function _BoardActions({ board, updateBoard, getById, setFilterBy }) {
 						/>
 					)}
 				</div> */}
-				<BoardSearch board={board} updateBoard={updateBoard} getById={getById} setFilterBy={setFilterBy}/>
+				<BoardSearch setFilterBy={setFilterBy} filterBy={filterBy}/>
 				<div>
 					<span className="fa user"></span>
 					<span>Person</span>
