@@ -111,11 +111,6 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 	}, [filterBy, selectedBoard])
 
 
-
-	// useEffect(() => {
-	// 	filterBoard(filterBy);
-	// }, [filterBy]);
-
 	const onUpdateBoard = async (boardToUpdate) => {
 		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
 			updateWhileFilter();
@@ -138,53 +133,6 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		await setStory(story);
 	};
 
-	// const filterBoard = async (filterBy) => {
-	// 	const board = JSON.parse(JSON.stringify(selectedBoard));
-
-	// 	if (filterBy) {
-	// 		if (filterBy?.name)
-	// 			board.groups.forEach((group, idx) => {
-	// 				const stories = group.stories.filter((story) => {
-	// 					return story.title
-	// 						.toLowerCase()
-	// 						.includes(filterBy.name);
-	// 				});
-	// 				board.groups[idx].stories = stories;
-	// 			});
-
-	// 		if (filterBy?.priority)
-	// 			board.groups.forEach((group, idx) => {
-	// 				const stories = group.stories.filter((story) => {
-	// 					return (
-	// 						story.storyData.priority.title === filterBy.priority
-	// 					);
-	// 				});
-	// 				board.groups[idx].stories = stories;
-	// 			});
-
-	// 		if (filterBy?.status)
-	// 			board.groups.forEach((group, idx) => {
-	// 				const stories = group.stories.filter((story) => {
-	// 					return story.storyData.status.title === filterBy.status;
-	// 				});
-	// 				board.groups[idx].stories = stories;
-	// 			});
-
-	// 		if (filterBy?.members)
-	// 			board.groups.forEach((group, idx) => {
-	// 				const stories = group.stories.filter((story) => {
-	// 					return story.storyData.status.members.some((member) => {
-	// 						return filterBy.members.some((filterMem) => {
-	// 							return filterMem.id === member._id;
-	// 						});
-	// 					});
-	// 				});
-	// 				board.groups[idx].stories = stories;
-	// 			});
-	// 	}
-
-	// 	setFilteredBoard(board);
-	// };
 
 	const updateWhileFilter = () => {
 		// eslint-disable-next-line no-restricted-globals
