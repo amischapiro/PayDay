@@ -1,7 +1,5 @@
 import { connect } from 'react-redux'
 import React from 'react'
-import Box from '@mui/material/Box';
-import Popper from '@mui/material/Popper';
 import { useState, useEffect } from 'react'
 
 import { BoardPreview } from './BoardPreview';
@@ -15,15 +13,18 @@ function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard, loa
     const [anchorEl, setAnchorEl] = useState(null);
     const [isBoardListOpen, toggleBoardList] = useState(true)
 
-    useEffect(async () => {
-        socketService.emit('enter workspace')
-        socketService.on('workspace has updated', async () => {
-            await loadBoards()
-        })
+    useEffect(() => {
+        async function fetchData() {
+            socketService.emit('enter workspace')
+            socketService.on('workspace has updated', async () => {
+                await loadBoards()
+            })
+        }
+        fetchData()
         return () => {
             socketService.terminate()
         }
-    }, [])
+    }, [loadBoards])
 
     const onToggleBoardListShown = () => {
         isBoardListOpen ? toggleBoardList(false) : toggleBoardList(true)

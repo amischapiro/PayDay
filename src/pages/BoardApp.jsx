@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, } from '../store/board.action';
 
 
-function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy, }) {
+function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy }) {
 
 	const { boardId } = match.params;
 	const [filteredBoard, setFilteredBoard] = useState(null);
@@ -38,13 +38,8 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		return () => {
 			socketService.terminate();
 		};
-	}, []);
-
-
-	// useEffect(async () => {
-	// 	await getById(boardId)
-	// 	socketService.emit('enter board', boardId)
-	// }, [match.params])
+	}, [boardId, getById, loadBoards]);
+	// Original dependencies: []
 
 
 	useEffect(() => {
@@ -59,12 +54,67 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		}
 		fetchData()
 		socketService.emit('enter board', boardId);
-	}, [match.params]);
-
+	}, [match.params, boardId, getById, loadBoards, setFilterBy]);
+	// Original dependecies: match.params
 
 	useEffect(() => {
-		filterBoard(filterBy);
-	}, [filterBy]);
+		async function fetchData() {
+
+			const board = JSON.parse(JSON.stringify(selectedBoard));
+
+			if (filterBy) {
+				if (filterBy?.name)
+					board.groups.forEach((group, idx) => {
+						const stories = group.stories.filter((story) => {
+							return story.title
+								.toLowerCase()
+								.includes(filterBy.name);
+						});
+						board.groups[idx].stories = stories;
+					});
+
+				if (filterBy?.priority)
+					board.groups.forEach((group, idx) => {
+						const stories = group.stories.filter((story) => {
+							return (
+								story.storyData.priority.title === filterBy.priority
+							);
+						});
+						board.groups[idx].stories = stories;
+					});
+
+				if (filterBy?.status)
+					board.groups.forEach((group, idx) => {
+						const stories = group.stories.filter((story) => {
+							return story.storyData.status.title === filterBy.status;
+						});
+						board.groups[idx].stories = stories;
+					});
+
+				if (filterBy?.members)
+					board.groups.forEach((group, idx) => {
+						const stories = group.stories.filter((story) => {
+							return story.storyData.status.members.some((member) => {
+								return filterBy.members.some((filterMem) => {
+									return filterMem.id === member._id;
+								});
+							});
+						});
+						board.groups[idx].stories = stories;
+					});
+			}
+
+			setFilteredBoard(board);
+
+		}
+		fetchData()
+	}, [filterBy, selectedBoard])
+
+
+
+	// useEffect(() => {
+	// 	filterBoard(filterBy);
+	// }, [filterBy]);
 
 	const onUpdateBoard = async (boardToUpdate) => {
 		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
@@ -88,53 +138,53 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		await setStory(story);
 	};
 
-	const filterBoard = async (filterBy) => {
-		const board = JSON.parse(JSON.stringify(selectedBoard));
+	// const filterBoard = async (filterBy) => {
+	// 	const board = JSON.parse(JSON.stringify(selectedBoard));
 
-		if (filterBy) {
-			if (filterBy?.name)
-				board.groups.forEach((group, idx) => {
-					const stories = group.stories.filter((story) => {
-						return story.title
-							.toLowerCase()
-							.includes(filterBy.name);
-					});
-					board.groups[idx].stories = stories;
-				});
+	// 	if (filterBy) {
+	// 		if (filterBy?.name)
+	// 			board.groups.forEach((group, idx) => {
+	// 				const stories = group.stories.filter((story) => {
+	// 					return story.title
+	// 						.toLowerCase()
+	// 						.includes(filterBy.name);
+	// 				});
+	// 				board.groups[idx].stories = stories;
+	// 			});
 
-			if (filterBy?.priority)
-				board.groups.forEach((group, idx) => {
-					const stories = group.stories.filter((story) => {
-						return (
-							story.storyData.priority.title === filterBy.priority
-						);
-					});
-					board.groups[idx].stories = stories;
-				});
+	// 		if (filterBy?.priority)
+	// 			board.groups.forEach((group, idx) => {
+	// 				const stories = group.stories.filter((story) => {
+	// 					return (
+	// 						story.storyData.priority.title === filterBy.priority
+	// 					);
+	// 				});
+	// 				board.groups[idx].stories = stories;
+	// 			});
 
-			if (filterBy?.status)
-				board.groups.forEach((group, idx) => {
-					const stories = group.stories.filter((story) => {
-						return story.storyData.status.title === filterBy.status;
-					});
-					board.groups[idx].stories = stories;
-				});
+	// 		if (filterBy?.status)
+	// 			board.groups.forEach((group, idx) => {
+	// 				const stories = group.stories.filter((story) => {
+	// 					return story.storyData.status.title === filterBy.status;
+	// 				});
+	// 				board.groups[idx].stories = stories;
+	// 			});
 
-			if (filterBy?.members)
-				board.groups.forEach((group, idx) => {
-					const stories = group.stories.filter((story) => {
-						return story.storyData.status.members.some((member) => {
-							return filterBy.members.some((filterMem) => {
-								return filterMem.id === member._id;
-							});
-						});
-					});
-					board.groups[idx].stories = stories;
-				});
-		}
+	// 		if (filterBy?.members)
+	// 			board.groups.forEach((group, idx) => {
+	// 				const stories = group.stories.filter((story) => {
+	// 					return story.storyData.status.members.some((member) => {
+	// 						return filterBy.members.some((filterMem) => {
+	// 							return filterMem.id === member._id;
+	// 						});
+	// 					});
+	// 				});
+	// 				board.groups[idx].stories = stories;
+	// 			});
+	// 	}
 
-		setFilteredBoard(board);
-	};
+	// 	setFilteredBoard(board);
+	// };
 
 	const updateWhileFilter = () => {
 		// eslint-disable-next-line no-restricted-globals
@@ -209,8 +259,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 						</Route>
 						<Route path="/board/:boardId/board">
 							<GroupList
-								board={selectedBoard}
-								// board={filteredBoard || selectedBoard}
+								board={filteredBoard || selectedBoard}
 								filterBy={filterBy}
 								updateBoard={onUpdateBoard}
 								updateWhileFilter={updateWhileFilter}
