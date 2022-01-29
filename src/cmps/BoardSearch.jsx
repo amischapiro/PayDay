@@ -18,9 +18,6 @@ export const BoardSearch = ({ filterBy, setFilterBy }) => {
         setTxt(value)
     }
 
-    // const onClickAway = () => {
-    //     props.setIsSearching(false)
-    // }
 
     return (
         <div

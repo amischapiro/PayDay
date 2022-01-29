@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { setStory } from '../store/board.action';
 
-
+import { socketService } from '../services/socket.service';
 
 export function _BoardHeader({ board, updateBoard, setStory }) {
 
     const { title, desc, members } = board
+    const boardId = board._id
 
     const [isTitleEditOn, toggleTitleEdit] = useState(false)
     const [isDescEditOn, toggleDescEdit] = useState(false)
@@ -40,6 +41,7 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
         toggleTitleEdit(false)
         const boardToUpdate = { ...board, title: editBoard.title }
         await updateBoard(boardToUpdate)
+       socketService.emit('update workspace')
     }
 
     const onSubmitDesc = async (ev) => {
@@ -47,6 +49,7 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
         toggleDescEdit(false)
         const boardToUpdate = { ...board, desc: editBoard.desc }
         await updateBoard(boardToUpdate)
+       socketService.emit('update workspace')
     }
 
     const onSetStory = async () => {

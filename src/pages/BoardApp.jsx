@@ -16,39 +16,39 @@ import { socketService } from '../services/socket.service';
 import { SideBar } from '../cmps/SideBar.jsx';
 import { BoardList } from '../cmps/BoardList.jsx';
 import { connect } from 'react-redux';
-import {
-	loadBoards,
-	getById,
-	removeBoard,
-	updateBoard,
-	addBoard,
-	setStory,
-	setFilterBy,
-} from '../store/board.action';
+import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, } from '../store/board.action';
 
-function _BoardApp({match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy,}) {
+
+function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy, }) {
+
 	const { boardId } = match.params;
 	const [filteredBoard, setFilteredBoard] = useState(null);
 
 	useEffect(() => {
-		async function init() {
+		async function fetchData() {
 			await loadBoards();
 			await getById(boardId);
-			socketService.setup();
-
-			socketService.on('board has updated', async (updatedBoardId) => {
-				console.log('BoardApp.jsx 💤 40: ', updatedBoardId);
-				await getById(updatedBoardId);
-			});
-			return () => {
-				socketService.terminate();
-			};
 		}
-		init();
+		fetchData()
+		socketService.setup();
+		socketService.on('board has updated', async (updatedBoardId) => {
+			console.log('BoardApp.jsx 💤 40: ', updatedBoardId);
+			await getById(updatedBoardId);
+		});
+		return () => {
+			socketService.terminate();
+		};
 	}, []);
 
+
+	// useEffect(async () => {
+	// 	await getById(boardId)
+	// 	socketService.emit('enter board', boardId)
+	// }, [match.params])
+
+
 	useEffect(() => {
-		async function updateState() {
+		async function fetchData() {
 			await getById(boardId);
 			setFilterBy({
 				name: null,
@@ -56,29 +56,30 @@ function _BoardApp({match, loadBoards, getById, boards, selectedBoard, updateBoa
 				status: null,
 				members: null,
 			});
-			socketService.emit('enter board', boardId);
 		}
-		updateState();
+		fetchData()
+		socketService.emit('enter board', boardId);
 	}, [match.params]);
+
 
 	useEffect(() => {
 		filterBoard(filterBy);
 	}, [filterBy]);
 
 	const onUpdateBoard = async (boardToUpdate) => {
-        if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-            updateWhileFilter();
-            return;
-        }
+		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+			updateWhileFilter();
+			return;
+		}
 		await updateBoard(boardToUpdate);
 		socketService.emit('update board', boardId);
 	};
 
 	const onRemoveStory = async () => {
-        if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-            updateWhileFilter();
-            return;
-        }
+		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+			updateWhileFilter();
+			return;
+		}
 		const story = {
 			boardId: null,
 			groupId: null,
@@ -190,7 +191,7 @@ function _BoardApp({match, loadBoards, getById, boards, selectedBoard, updateBoa
 						updateBoard={onUpdateBoard}
 						getById={getById}
 						setFilterBy={setFilterBy}
-                        filterBy={filterBy}
+						filterBy={filterBy}
 						updateWhileFilter={updateWhileFilter}
 					/>
 				</section>
@@ -200,18 +201,19 @@ function _BoardApp({match, loadBoards, getById, boards, selectedBoard, updateBoa
 							<Kanban board={filteredBoard || selectedBoard}
 								filterBy={filterBy}
 								updateBoard={onUpdateBoard}
-                                updateWhileFilter={updateWhileFilter}
-                                />
+								updateWhileFilter={updateWhileFilter}
+							/>
 						</Route>
 						<Route path="/board/:boardId/dashboard">
 							<Dashboard />
 						</Route>
 						<Route path="/board/:boardId/board">
 							<GroupList
-								board={filteredBoard || selectedBoard}
+								board={selectedBoard}
+								// board={filteredBoard || selectedBoard}
 								filterBy={filterBy}
 								updateBoard={onUpdateBoard}
-                                updateWhileFilter={updateWhileFilter}
+								updateWhileFilter={updateWhileFilter}
 							/>
 						</Route>
 					</Switch>
@@ -225,9 +227,8 @@ function _BoardApp({match, loadBoards, getById, boards, selectedBoard, updateBoa
 
 			<div
 				onClick={() => onRemoveStory()}
-				className={`darken-screen ${
-					selectedStoryIds.storyId ? 'open' : ''
-				}`}></div>
+				className={`darken-screen ${selectedStoryIds.storyId ? 'open' : ''
+					}`}></div>
 		</main>
 	);
 }

@@ -42,11 +42,6 @@ export function removeBoard(boardId) {
 export function updateBoard(boardToUpdate) {
     return async (dispatch, getState) => {
         try {
-            // const { filterBy } = getState()
-            // if (filterBy !== {} || filterBy) {
-            //     filterBy = null;
-            //     dispatch({ type: 'SET_FILTER', filterBy })
-            // }
             const savedBoard = await boardService.save(boardToUpdate)
             dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
             return savedBoard
