@@ -62,8 +62,8 @@ export function LinkCmp({ story, onUpdate }) {
 				<a
 					href={!url ? '#' : (url.slice(0,8) === 'https://' || url.slice(0,7) === 'http://') ? url : 'https://' + url}
 					onClick={(ev) => handleLink(ev)}
-					// target="_blank"
-                    // rel="noreferrer"
+					target="_blank"
+                    rel="noreferrer"
                     // rel="noopener"
                     // aria-label={name}
                     >
