@@ -136,12 +136,11 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 				</div>
 				<div className="filter">
 					<span className="fa-solid filter"></span>
-					<span>Filter</span>
-					<span className="fa-solid chevron-down"></span>
+					<span className="btn-txt">Filter</span>
+					<FilterMenu board={board} updateBoard={updateBoard} setFilterBy={setFilterBy} filterBy={filterBy} />
 				</div>
 
 				<SortMenu board={board} updateBoard={updateBoard} />
-				<FilterMenu board={board} updateBoard={updateBoard} setFilterBy={setFilterBy} filterBy={filterBy} />
 
 			</div>
 		</div>
