@@ -5,7 +5,6 @@ import { utilService } from '../services/util.service';
 import { NewStoryMenu } from './menus/NewStoryMenu';
 import { SortMenu } from './menus/SortMenu';
 import { FilterMenu } from './menus/FilterMenu'
-// import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 
 
 import { userService } from '../services/user.service'
