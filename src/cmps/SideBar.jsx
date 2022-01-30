@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { logout } from '../store/user.action';
+import { cloudinaryService } from '../services/cloudinary.service'
 import Logo from '../assets/img/PayDayLogo3.png';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
@@ -14,9 +15,11 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 function __SideBar(props) {
+	const [isProfileModalOpen,toggleProfileModal] =useState(false)
 
+	const currUser = JSON.parse(sessionStorage.loggedinUser)
 	const getInitials = ()=>{
-		const fullname = JSON.parse(sessionStorage.loggedinUser).fullname
+		const fullname = currUser.fullname
 		const nameArr = fullname.split(' ');
         const fName = nameArr[0].split('');
         const lName = nameArr[1].split('');
@@ -29,12 +32,22 @@ function __SideBar(props) {
 		onGoToHome()
 	}
 	
-	 
-	
-
 	const onGoToHome = () => {
 		props.history.push('/')
 	}
+
+	const [img, setImg] = useState({
+        imgUrl: null,
+        height: '40px',
+        width: '100%',
+        isUploading: false
+    })
+
+	const uploadImg = async (ev) => {
+        setImg({ ...img, isUploading: true, height: 500, width: 500 })
+        const { secure_url, height, width } = await cloudinaryService.uploadImg(ev)
+        setImg({ isUploading: false, imgUrl: secure_url, height, width })
+    }
 
 	return (
 		<section className="side-bar">
@@ -53,9 +66,19 @@ function __SideBar(props) {
 				<button><PersonAddAlt1OutlinedIcon className="person-add-icon" /></button>
 				<button><SearchOutlinedIcon className="search-icon" /></button>
 				<button className='logout-btn' onClick={onLogout}><LogoutOutlinedIcon className="logout-icon" /></button>
-				<div className='user-btn-container'><button className='user-btn'>{getInitials()}</button></div>
+				<div className='user-btn-container' onClick={()=>toggleProfileModal(true)}><button className='user-btn'>{img.imgUrl?<img src={img.imgUrl} />:getInitials()}</button></div>
 
 				{/* <button></button> setUser name letters or pic */}
+			</div>
+			<div className={`user-profile-modal ${isProfileModalOpen?'open':''}`}>
+				<span className='fa-solid times' onClick={()=>toggleProfileModal(false)}></span>
+				<div>Username: {currUser.fullname}</div>
+				<hr /> 
+				<span>Add a photo of you:</span>
+				<div><input type="file" accept='img/*' onChange={uploadImg} /></div>
+				<div className='profile-img-container'>
+					{img.imgUrl?<img src={img.imgUrl} />:''}
+				</div>
 			</div>
 		</section>
 	);

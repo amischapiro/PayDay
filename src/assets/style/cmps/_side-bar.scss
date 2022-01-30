@@ -1,4 +1,5 @@
 .side-bar {
+    z-index: 30;
     background-color: #292f4c;
     position: sticky;
     top: 0;
@@ -24,6 +25,40 @@
         flex-direction: column;
         gap: 8px;
         align-items: center;
+    }
+    .user-profile-modal{
+        position: fixed;
+        display: none;
+        top: 50%;
+        left: 50%;
+        border-radius: 6px;
+        transform: translate(-50%,-50%);
+        background-color: rgb(99, 218, 218);
+        padding: 2rem;
+        &.open{
+            display: block;
+        }
+        >*{
+            text-align: center;
+        }
+        .fa-solid.times{
+            position: absolute;
+            right: 4%;
+            top: 0;
+            cursor: pointer;
+        }
+        .profile-img-container{
+            // height: 6rem;
+            // width: rem;
+            img{
+                height: 6rem;
+                width: 6rem;
+                border-radius: 50%;
+            }
+            
+        }
+
+
     }
 }
 
@@ -95,6 +130,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .actions-bottom .user-btn {
     border-radius: 50%;
@@ -106,6 +142,15 @@
     width: inherit;
     height: inherit;
     border: 2px solid #fff;
+    img{
+    position: absolute;
+    bottom: 2%;
+    left: 17%;
+    height: inherit;
+    width: inherit;
+    border-radius: 50%;
+    }
+    
 
     &:hover {
         transition: 0.1s ease-in;
