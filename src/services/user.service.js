@@ -102,7 +102,6 @@ async function getMiniUsers() {
         return user
     })
 
-    console.log('user.service.js 💤 104: ', users);
     return users;
 }
 
