@@ -39,8 +39,7 @@ export function FilterMenu({ board, filterBy, setFilterBy }) {
                 onClick={handleClick}
                 className="filter-menu-btn"
             >
-                <span className='fa-solid filter' style={{paddingRight: '7px'}}></span>
-                <span>Filter</span>
+                <span className="fa-solid chevron-down"></span>
             </Button>
             <Popover
                 id={id}
@@ -51,32 +50,38 @@ export function FilterMenu({ board, filterBy, setFilterBy }) {
                     vertical: 'bottom',
                     horizontal: 'left',
                 }}>
-                <Typography className="drop-down sort-drop-down">
-                    <span>
-                        {statuses.map(status => {
-                            const { id, title, color } = status
-                            return <span key={id}
-                                onClick={() => { onSetFilter('status', id) }}>
-                                <span className="status-color-indicator" style={{ backgroundColor: color }}></span>
-                                <span style={{ color }}>{title}</span>
+                <Typography className="filter-drop-down">
+                    <span >
+                        <span>
+                            <span className="type-header">Statuses</span>
+                            {statuses.map(status => {
+                                const { id, title, color } = status
+                                return <span key={id}
+                                    onClick={() => { onSetFilter('status', id) }}>
+                                    <span className="color-indicator" style={{ backgroundColor: color }}></span>
+                                    <span style={{ color }}>{title}</span>
 
-                            </span>
-                        })}
-                    </span>
-                    <span>
-                        {priorities.map(priority => {
-                            const { id, title, color } = priority
-                            return <span key={id}
-                                onClick={() => { onSetFilter('priority', id) }}>
-                                <span className="priority-color-indicator" style={{ backgroundColor: color }}></span>
-                                <span style={{ color }}>{title}</span>
+                                </span>
+                            })}
+                        </span>
+                        <span>
+                            <span className="type-header">Priorities</span>
+                            {priorities.map(priority => {
+                                const { id, title, color } = priority
+                                return <span key={id}
+                                    onClick={() => { onSetFilter('priority', id) }}>
+                                    <span className="color-indicator" style={{ backgroundColor: color }}></span>
+                                    <span style={{ color }}>{title}</span>
 
-                            </span>
-                        })}
+                                </span>
+                            })}
+                        </span>
                     </span>
                     <span onClick={() => onSetFilter('reset')}>
-                        <span className="fa-solid undo"></span>
-                        <span>Reset defualt</span>
+                        <span>
+                            <span className="fa-solid undo"></span>
+                            <span>Reset defualt</span>
+                        </span>
                     </span>
                 </Typography>
 
