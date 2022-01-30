@@ -140,24 +140,27 @@ export function _ActivityModal(props) {
     if (!story) return <React.Fragment></React.Fragment>
     return (
         <div className={`activity-modal ${props.selectedStoryIds.storyId ? 'open' : ''}`}>
-            <button onClick={() => { onRemoveStory() }} className="btn-close-modal fa-solid times" ></button>
-            {story !== 'none' ? <div className="modal-story-name">
-                <h3>{story ? story.title : ' '}</h3>
-            </div> : ''}
-            <div className="update-activity-container">
-                {story !== 'none' ? <div>
-                    <div onClick={() => setActivityToggle(false)} className='modal-updates'>Updates</div>
-                    <div className={`modal-border-bottom ${!isActivityShown ? 'active' : ''}`} ></div>
+            <div className="top-section">
+                <button onClick={() => { onRemoveStory() }} className="btn-close-modal fa-solid times" ></button>
+                {story !== 'none' ? <div className="modal-story-name">
+                    <h3>{story ? story.title : ' '}</h3>
                 </div> : ''}
-                {story !== 'none' ? <div className="horiz-break-line"></div> : ''}
-                <div>
-                    <div onClick={() => setActivityToggle(true)} className='modal-activity'>Activity Log</div>
-                    <div className={`modal-border-bottom ${isActivityShown ? 'active' : ''}`} ></div>
+                <div className="update-activity-container">
+                    {story !== 'none' ? <div >
+                        <div onClick={() => setActivityToggle(false)} className='modal-updates'>Updates</div>
+                        <div className={`modal-border-bottom ${!isActivityShown ? 'active' : ''}`} ></div>
+                    </div>
+                        : ''}
+                    {story !== 'none' ? <div className="horiz-break-line"></div> : ''}
+                    <div>
+                        <div onClick={() => setActivityToggle(true)} className='modal-activity'>Activity Log</div>
+                        <div className={`modal-border-bottom ${isActivityShown ? 'active' : ''}`} ></div>
+                    </div>
                 </div>
             </div>
             <div className="modal-break-line"></div>
 
-            {!isActivityShown && story !== 'none' &&
+            {/* {!isActivityShown && story !== 'none' &&
                 <React.Fragment>
                     <div className="update-input">
                         <textarea onClick={() => setUpdateFocus(true)} className={isUpdateFocused ? 'open' : ''} name="update" id="" cols="30" rows="2" placeholder='Write an update...' value={comment} onChange={handleChange}></textarea>
@@ -170,16 +173,40 @@ export function _ActivityModal(props) {
                     <div className='updates-list' >
                         {story.comments.map(comment => <ModalUpdatePreview key={comment.id} comment={comment} onRemoveComment={onRemoveComment} getInitials={getInitials} imgUrl={comment.imgUrl} />)}
                     </div>
-                </React.Fragment>}
-            {(story === 'none' || isActivityShown) && <ul>
-                {getActivities()?.map((activity) => {
+                </React.Fragment>} */}
+            <div className="bottom-section">
 
-                    return <div key={activity.id} className='activity-preview' >
-                        <div className='activity-time' ><AccessTimeIcon className='activity-clock' /><span>{moment(activity.createdAt).fromNow()}</span></div>
-                        <div className='activity-member' ><div className='member-img'>{activity.byMember.imgUrl ? <img src={activity.byMember.imgUrl} /> : getInitials(activity.byMember.fullname)}</div>
-                            {activity.byMember.fullname}</div> <div>{activity.type}</div></div>
-                })}
-            </ul>}
+                {!isActivityShown && story !== 'none' &&
+                    <React.Fragment>
+                        <div className="update-input">
+                            {!isUpdateFocused ? (
+                                <input type="text"  placeholder='Write an update...' onClick={() => setUpdateFocus(true)} />
+                            ) : (
+                                <textarea name="update" id="" placeholder='Write an update...' value={comment} onChange={handleChange}>
+                                </textarea>
+                            )}
+
+
+                            {img.imgUrl && <img src={img.imgUrl} />}
+                            <div className='modal-update-btns' ><div className='file-input-container'>
+                                <AttachFileIcon className='file-icon' /><input className='file-input' type="file" accept='img/*' onChange={uploadImg} />Add file</div>
+                                <button onClick={onAddComment} >Update</button>
+                            </div>
+                        </div>
+                        <div className='updates-list' >
+                            {story.comments.map(comment => <ModalUpdatePreview key={comment.id} comment={comment} onRemoveComment={onRemoveComment} getInitials={getInitials} imgUrl={comment.imgUrl} />)}
+                        </div>
+                    </React.Fragment>}
+                {(story === 'none' || isActivityShown) && <ul>
+                    {getActivities()?.map((activity) => {
+
+                        return <div key={activity.id} className='activity-preview' >
+                            <div className='activity-time' ><AccessTimeIcon className='activity-clock' /><span>{moment(activity.createdAt).fromNow()}</span></div>
+                            <div className='activity-member' ><div className='member-img'>{activity.byMember.imgUrl ? <img src={activity.byMember.imgUrl} /> : getInitials(activity.byMember.fullname)}</div>
+                                {activity.byMember.fullname}</div> <div>{activity.type}</div></div>
+                    })}
+                </ul>}
+            </div>
         </div>
     )
 }
