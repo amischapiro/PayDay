@@ -1,3 +1,5 @@
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { KanbanGroup } from './KanbanGroup';
 
 
 export function Kanban({ board, filterBy, updateBoard, updateWhileFilter }){
@@ -39,5 +41,35 @@ export function Kanban({ board, filterBy, updateBoard, updateWhileFilter }){
 		updateBoard(newBoard);
 	};
 
-    return <h1>Kanban</h1>
+    return (
+		<DragDropContext
+				onDragEnd={onDragEnd}
+			>
+				<Droppable droppableId="all-groups" type="group">
+					{provided => (
+						<div
+							ref={provided.innerRef}
+							className="kanban-groups-container"
+							key={board._id}>
+							{board.groups.map((group, index) => (
+								<Draggable
+									key={group.id}
+									draggableId={group.id}
+									index={index}
+									type="group">
+									{provided => (
+										<div
+											ref={provided.innerRef}
+											{...provided.draggableProps}>
+											<KanbanGroup provided={provided.dragHandleProps} group={group} key={group._id} />
+										</div>
+									)}
+								</Draggable>
+							))}
+							{provided.placeholder}
+						</div>
+					)}
+				</Droppable>
+			</DragDropContext>
+	)
 }

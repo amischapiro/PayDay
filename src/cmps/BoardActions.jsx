@@ -141,7 +141,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 				</div>
 
 				<SortMenu board={board} updateBoard={updateBoard} />
-				<FilterMenu board={board} updateBoard={updateBoard} setFilterBy={setFilterBy} filterBy={filterBy} />
+				{/* <FilterMenu board={board} updateBoard={updateBoard} setFilterBy={setFilterBy} filterBy={filterBy} /> */}
 
 			</div>
 		</div>
