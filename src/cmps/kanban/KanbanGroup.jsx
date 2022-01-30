@@ -2,8 +2,14 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { KanbanStory } from './KanbanStory';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
-
-export function KanbanGroup({ drag, group, board, updateBoard, filterBy, updateWhileFilter }) {
+export function KanbanGroup({
+	drag,
+	group,
+	board,
+	updateBoard,
+	filterBy,
+	updateWhileFilter,
+}) {
 	return (
 		<div className="kanban-group">
 			<div className="kanban-group-header">
@@ -11,8 +17,9 @@ export function KanbanGroup({ drag, group, board, updateBoard, filterBy, updateW
 					<DragIndicatorIcon className="kanban-group-dragger" />
 				</span>
 				<h5 className="kanban-group-title">{group.title}</h5>
-                <Droppable droppableId={group.id} type="story" direction="vertical">
-				{provided => (
+			</div>
+			<Droppable droppableId={group.id} type="story" direction="vertical">
+				{(provided) => (
 					<div ref={provided.innerRef}>
 						{group.stories.length ? (
 							group.stories.map((story, index) => {
@@ -22,22 +29,24 @@ export function KanbanGroup({ drag, group, board, updateBoard, filterBy, updateW
 										draggableId={story.id}
 										index={index}
 										type="story">
-										{provided => (
+										{(provided) => (
 											<div
 												ref={provided.innerRef}
 												{...provided.draggableProps}>
 												<span
 													{...provided.dragHandleProps}>
-													<div className="kanban-story-main-wrapper">
-														<KanbanStory
-															updateBoard={updateBoard}
-															board={board}
-															group={group}
-															story={story}
-															filterBy={filterBy}
-															updateWhileFilter={updateWhileFilter}
-														/>
-													</div>
+													<KanbanStory
+														updateBoard={
+															updateBoard
+														}
+														board={board}
+														group={group}
+														story={story}
+														filterBy={filterBy}
+														updateWhileFilter={
+															updateWhileFilter
+														}
+													/>
 												</span>
 											</div>
 										)}
@@ -65,7 +74,6 @@ export function KanbanGroup({ drag, group, board, updateBoard, filterBy, updateW
 					</div>
 				)}
 			</Droppable>
-			</div>
 		</div>
 	);
 }

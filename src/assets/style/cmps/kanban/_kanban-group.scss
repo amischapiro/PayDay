@@ -1,0 +1,22 @@
+.kanban-group {
+	width: 250px;
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #ebecf0;
+
+	.kanban-group-header {
+		margin-block: 10px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		position: relative;
+		width: 100%;
+	}
+
+	.kanban-placement-empty-group {
+		height: 0.001rem;
+	}
+}
