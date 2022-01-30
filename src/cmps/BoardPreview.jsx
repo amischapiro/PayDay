@@ -1,6 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min'
 
@@ -13,7 +12,7 @@ import { socketService } from '../services/socket.service';
 
 export function _BoardPreview(props) {
 
-    const { boards, board, removeBoard, updateBoard, addBoard, currBoard } = props
+    const { boards, board, removeBoard, addBoard, currBoard } = props
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [isHover, toggleOnHover] = useState(false)

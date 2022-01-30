@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-// import { Input } from '@material-ui/core'
-// import SearchIcon from '@material-ui/icons/Search';
 
 export const BoardSearch = ({ filterBy, setFilterBy }) => {
 
@@ -10,14 +7,13 @@ export const BoardSearch = ({ filterBy, setFilterBy }) => {
 
     useEffect(() => {
         if (!txt || txt === '') setFilterBy(null)
-        else setFilterBy({ name: txt }) 
-    }, [txt])
+        else setFilterBy({ name: txt })
+    }, [txt, setFilterBy])
 
     const handleChange = async ({ target }) => {
         const { value } = target
         setTxt(value)
     }
-
 
     return (
         <div
@@ -31,7 +27,7 @@ export const BoardSearch = ({ filterBy, setFilterBy }) => {
                     value={txt}
                     onChange={handleChange}
                     placeholder="Search"
-                    onBlur={() => setSearchOpen(false)}
+                    onBlur={() => { setSearchOpen(false) }}
                     autoFocus={true}
                 />
             )}
