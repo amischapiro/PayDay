@@ -151,13 +151,8 @@
 }
 
 
-@media screen and (max-width:500px){
-    body{
-        // overflow: hidden;
-    }
-    .main-content{
-        overflow-x: hidden;
-    }
+@media screen and (max-width:762px){
+    
     .main-header{
         padding: 0;
         z-index: 20;
@@ -179,6 +174,7 @@
                 width: 50%;
                 transform: translateX(100%);
                 transition: 0.3s ease-in;
+                z-index: 20;
                
                 li{
                     list-style: none;
@@ -195,7 +191,7 @@
                 }
                 &.open{
                     transform: translateX(0%);
-                    z-index: 20;
+                    
                 }
             }
             .nav-logo{
