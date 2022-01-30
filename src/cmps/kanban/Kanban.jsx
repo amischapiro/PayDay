@@ -45,7 +45,7 @@ export function Kanban({ board, filterBy, updateBoard, updateWhileFilter }){
 		<DragDropContext
 				onDragEnd={onDragEnd}
 			>
-				<Droppable droppableId="all-groups" type="group">
+				<Droppable droppableId="all-groups" type="group" direction="horizontal">
 					{provided => (
 						<div
 							ref={provided.innerRef}
@@ -61,7 +61,7 @@ export function Kanban({ board, filterBy, updateBoard, updateWhileFilter }){
 										<div
 											ref={provided.innerRef}
 											{...provided.draggableProps}>
-											<KanbanGroup provided={provided.dragHandleProps} group={group} key={group._id} />
+											<KanbanGroup drag={provided.dragHandleProps} group={group} key={group._id} />
 										</div>
 									)}
 								</Draggable>
