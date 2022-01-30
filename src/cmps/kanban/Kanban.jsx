@@ -61,7 +61,8 @@ export function Kanban({ board, filterBy, updateBoard, updateWhileFilter }){
 										<div
 											ref={provided.innerRef}
 											{...provided.draggableProps}>
-											<KanbanGroup drag={provided.dragHandleProps} group={group} key={group._id} />
+											<KanbanGroup drag={provided.dragHandleProps} group={group} key={group._id} filterBy={filterBy}
+											updateWhileFilter={updateWhileFilter}/>
 										</div>
 									)}
 								</Draggable>

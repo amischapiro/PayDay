@@ -46,3 +46,11 @@
 @import "./cmps/dynamicCmps/status-cmp.scss";
 @import "./cmps/dynamicCmps/priority-cmp.scss";
 @import "./cmps/dynamicCmps/link-cmp.scss";
+
+
+// Kanban 
+@import "./cmps/kanban/kanban.scss";
+@import "./cmps/kanban/kanban-story.scss";
+@import "./cmps/kanban/kanban-group.scss";
+@import "./cmps/kanban/kanban-members.scss";
+@import "./cmps/kanban/kanban-due-date.scss";
