@@ -38,8 +38,8 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 							src={members[0].imgUrl}
 							alt=""
 						/> : <span className="members-cmp-initials">
-							{members[0].fullname.split('')[0].split('')[0] + 
-							members[0].fullname.split('')[1].split('')[0]}
+							{members[0].fullname.split(' ')[0].split('')[0] + 
+							members[0].fullname.split(' ')[1].split('')[0]}
 						</span>}{' '}
 						<span className="plus-members">
 							+{members.length - 1}
