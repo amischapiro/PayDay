@@ -70,7 +70,7 @@ export function SortMenu({ board, updateBoard }) {
             <Button
                 variant="contained"
                 onClick={handleClick}
-                className="filter-menu-btn"
+                className="sort-menu-btn"
             >
                 <SyncAltRoundedIcon className="sort-icon" />
                 <span>Sort</span>

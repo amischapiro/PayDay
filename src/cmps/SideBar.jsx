@@ -25,7 +25,7 @@ function __SideBar(props) {
 	}
 	
 	const onLogout =()=>{
-		logout()
+		props.logout()
 		onGoToHome()
 	}
 	

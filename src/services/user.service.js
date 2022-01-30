@@ -106,6 +106,8 @@ async function getMiniUsers() {
 }
 
 function _setLoggedinUser(user) {
+ 
+    
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
     return user
 }
