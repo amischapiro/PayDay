@@ -21,7 +21,7 @@ export function logout() {
             dispatch({ type: 'LOGOUT' })
             return Promise.resolve()
         } catch (err) {
-            console.log('Cannot logout', err);
+            Promise.reject('Cannot logout', err);
         }
     }
 }

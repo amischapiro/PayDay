@@ -136,7 +136,7 @@ export function _ActivityModal(props) {
     }
 
 
-    // activites to new cmp
+
     if (!story) return <React.Fragment></React.Fragment>
     return (
         <div className={`activity-modal ${props.selectedStoryIds.storyId ? 'open' : ''}`}>

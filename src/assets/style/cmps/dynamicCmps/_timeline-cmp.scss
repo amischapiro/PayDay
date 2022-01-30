@@ -44,6 +44,7 @@
 		flex-basis: 180px;
 		min-width: 180px;
 		// height: fit-content;
+		font-size: 0.8125rem;
 
 		.date-pick-wrapper {
 			display: flex;
@@ -79,6 +80,8 @@
 			height: 22px;
 			border-radius: 25px;
 			text-align: center;
+			padding: 1.7px 5px 0 0;
+
             &::placeholder {
                 color: #fff;
             }

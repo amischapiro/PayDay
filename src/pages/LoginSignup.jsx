@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-
+import GoogleLogin from 'react-google-login'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -22,7 +22,6 @@ const theme = createTheme();
 function _LoginSignup({ login, signup }) {
 
     let history = useHistory();
-    console.log(history);
     const location = useLocation();
     const isSignUp = location.pathname !== '/login';
 
@@ -52,6 +51,26 @@ function _LoginSignup({ login, signup }) {
             }, 1000);
         }
     };
+
+    const responseGoogle = (response) => {
+        const  userObj = response.profileObj
+        const googleUser = {
+            fullname: userObj.name,
+            username:userObj.email,
+            imgUrl:userObj.imageUrl,
+            mentions:[],
+            createsAt: Date.now(),
+            password: response.tokenId
+        }
+        try {
+            login({username:googleUser.username,password:googleUser.password})
+            console.log('from signin');
+        } catch (error) {
+            signup(googleUser)
+            console.log('from signup');
+            
+        }
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -142,6 +161,11 @@ function _LoginSignup({ login, signup }) {
                     </Box>
                 </Box>
             </Container>
+            <GoogleLogin
+                className='google-signin-btn'
+                clientId='586771329018-j784f66o5gjvidjg8a7siqq7ffhr50v1.apps.googleusercontent.com'
+                onSuccess={responseGoogle}
+                cookiePolicy={'single_host_origin'} />
         </ThemeProvider>
     );
 }

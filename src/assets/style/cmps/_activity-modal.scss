@@ -59,10 +59,8 @@
             resize: none;
             transition: 0.3s;
             outline: none;
-            // &:focus{
-            //     height: 5rem;
-            //     outline: none;
-            // }
+            padding: 0.5rem;
+     
             &.open {
                 height: 5rem;
                 outline: none;
