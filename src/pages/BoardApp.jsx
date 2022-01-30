@@ -32,7 +32,6 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		fetchData()
 		socketService.setup();
 		socketService.on('board has updated', async (updatedBoardId) => {
-			console.log('BoardApp.jsx 💤 40: ', updatedBoardId);
 			await getById(updatedBoardId);
 		});
 		return () => {
@@ -77,7 +76,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 					board.groups.forEach((group, idx) => {
 						const stories = group.stories.filter((story) => {
 							return (
-								story.storyData.priority.title === filterBy.priority
+								story.storyData.priority.id === filterBy.priority
 							);
 						});
 						board.groups[idx].stories = stories;
@@ -86,7 +85,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 				if (filterBy?.status)
 					board.groups.forEach((group, idx) => {
 						const stories = group.stories.filter((story) => {
-							return story.storyData.status.title === filterBy.status;
+							return story.storyData.status.id === filterBy.status;
 						});
 						board.groups[idx].stories = stories;
 					});
@@ -148,20 +147,21 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		}
 	};
 
-	if (!boards?.length)
-		return (
-			<main className="main-container">
-				<SideBar />
-				<BoardList
-					boards={boards}
-					currBoard={selectedBoard}
-					removeBoard={removeBoard}
-					addBoard={addBoard}
-					loadBoards={loadBoards}
-				/>
-				<div className="loader"></div>
-			</main>
-		);
+
+	if (!boards?.length) return (
+		<main className="main-container">
+			<SideBar />
+			<BoardList
+				boards={boards}
+				currBoard={selectedBoard}
+				removeBoard={removeBoard}
+				addBoard={addBoard}
+				loadBoards={loadBoards}
+			/>
+			<div className="loader"></div>
+		</main>
+	);
+
 
 	if (!selectedBoard) return <div className="loader"></div>;
 

@@ -4,6 +4,7 @@ import { utilService } from '../services/util.service';
 
 import { NewStoryMenu } from './menus/NewStoryMenu';
 import { SortMenu } from './menus/SortMenu';
+import { FilterMenu } from './menus/FilterMenu'
 // import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 
 
@@ -14,10 +15,9 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 
 	const newBoard = { ...board };
 
-	// const [isSearchOpen, setSearchOpen] = useState(false);
 
 	const onAddStory = async () => {
-		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
 			updateWhileFilter();
 			return;
 		}
@@ -32,7 +32,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 	};
 
 	const onAddGroup = async () => {
-		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
 			updateWhileFilter();
 			return;
 		}
@@ -46,7 +46,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 	};
 
 	const onSetSort = async (type) => {
-		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
 			updateWhileFilter();
 			return;
 		}
@@ -129,22 +129,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 						onAddStory={onAddStory}
 					/>
 				</div>
-
-				{/* <div
-					onClick={() => setSearchOpen(true)}
-					className={isSearchOpen ? 'search-bar open' : 'search-bar'}>
-					<span className="fa-solid search"></span>
-					{!isSearchOpen && <span>Search</span>}
-					{isSearchOpen && (
-						<input
-							type="text"
-							placeholder="Search"
-							onBlur={() => setSearchOpen(false)}
-							autoFocus={true}
-						/>
-					)}
-				</div> */}
-				<BoardSearch setFilterBy={setFilterBy} filterBy={filterBy}/>
+				<BoardSearch setFilterBy={setFilterBy} filterBy={filterBy} />
 				<div>
 					<span className="fa user"></span>
 					<span>Person</span>
@@ -156,6 +141,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 				</div>
 
 				<SortMenu board={board} updateBoard={updateBoard} />
+				<FilterMenu board={board} updateBoard={updateBoard} setFilterBy={setFilterBy} filterBy={filterBy} />
 
 			</div>
 		</div>
