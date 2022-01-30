@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
-import { logout } from '../store/user.action';
+import { logout,updateUser } from '../store/user.action';
 import { cloudinaryService } from '../services/cloudinary.service'
 import Logo from '../assets/img/PayDayLogo3.png';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
@@ -15,9 +15,10 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 function __SideBar(props) {
-	const [isProfileModalOpen,toggleProfileModal] =useState(false)
-
+	const [isProfileModalOpen,toggleProfileModal] = useState(false)
 	const currUser = JSON.parse(sessionStorage.loggedinUser)
+
+
 	const getInitials = ()=>{
 		const fullname = currUser.fullname
 		const nameArr = fullname.split(' ');
@@ -47,6 +48,10 @@ function __SideBar(props) {
         setImg({ ...img, isUploading: true, height: 500, width: 500 })
         const { secure_url, height, width } = await cloudinaryService.uploadImg(ev)
         setImg({ isUploading: false, imgUrl: secure_url, height, width })
+		if(currUser.fullname !== 'Demo User'){
+			const userToUpdate = {...currUser,imgUrl:img.imgUrl}
+			props.updateUser(userToUpdate)
+		}
     }
 
 	return (
@@ -92,6 +97,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
 	logout,
+	updateUser
 };
 
 const _SideBar = withRouter(__SideBar)
