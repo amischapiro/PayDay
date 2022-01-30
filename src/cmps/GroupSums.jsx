@@ -41,7 +41,7 @@ export class GroupSum extends Component {
 									alt=""
 								/> : <span className="members-cmp-initials sum-initials">
 									{filteredMems[0].fullname.split('')[0].split('')[0] + 
-									filteredMems[1].fullname.split('')[0].split('')[0]}
+									filteredMems[0].fullname.split('')[1].split('')[0]}
 								</span>}{' '}
 								<span className="plus-members sum">
 									+{filteredMems.length - 1}
