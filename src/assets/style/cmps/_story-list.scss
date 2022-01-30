@@ -24,12 +24,11 @@
 	line-height: 1.5rem;
 	font-weight: 400;
 	// width: 100%;
-	
+
 	.story-closer {
 		width: 7px;
 		background-color: #e6e9ef;
 	}
-
 
 	&:hover {
 		.story-selector {
@@ -182,5 +181,11 @@
 	}
 	.timeline-sum {
 		width: 180px;
+	}
+}
+
+@media screen and (max-width: 762px) {
+	.group-sums .empty-txt-area {
+		width: 16.0625rem;
 	}
 }
