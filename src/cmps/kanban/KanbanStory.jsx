@@ -9,8 +9,8 @@ export function KanbanStory({story}) {
         </div>
         <h5>{story.title}</h5>
         <div className="kanban-story-footer">
-            {story.dueDate && <KanbanDueDate story={story} />}
-            {story.members && <KanbanMembers story={story} />}
+            {story.storyData.dueDate ? <KanbanDueDate story={story} /> : <div></div>}
+            {story.storyData.members && <KanbanMembers story={story} />}
         </div>
     </div>
 }

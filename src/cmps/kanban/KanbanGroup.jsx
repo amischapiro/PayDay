@@ -11,10 +11,10 @@ export function KanbanGroup({
 	updateWhileFilter,
 }) {
 	return (
-		<div className="kanban-group">
+		<div className="kanban-group" style={{backgroundColor: group.style.backgroundColor}}>
 			<div className="kanban-group-header">
-				<span {...drag}>
-					<DragIndicatorIcon className="kanban-group-dragger" />
+				<span {...drag} className="kanban-group-dragger">
+					<DragIndicatorIcon />
 				</span>
 				<h5 className="kanban-group-title">{group.title}</h5>
 			</div>

@@ -1,4 +1,3 @@
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
@@ -6,11 +5,11 @@ export function KanbanMembers({ story }) {
     const storyMems = story.storyData.members || [];
 
 	return (
-		<div className="members-sum">
+		<div className="kanban-members-cmp">
 			{!storyMems.length ? (
-				<AccountCircleOutlinedIcon className="no-members" />
+				<div></div>
 			) : storyMems.length > 2 ? (
-				<div className="active-member-list">
+				<div className="kanban-active-member-list">
 					{storyMems[0].imgUrl ? (
 						<img
 							key={storyMems[0]._id}
@@ -18,7 +17,7 @@ export function KanbanMembers({ story }) {
 							alt=""
 						/>
 					) : (
-						<span className="members-cmp-initials sum-initials">
+						<span className="kanban-members-cmp-initials">
 							{storyMems[0].fullname
 								.split(' ')[0]
 								.split('')[0] +
@@ -27,7 +26,7 @@ export function KanbanMembers({ story }) {
 									.split('')[0]}
 						</span>
 					)}{' '}
-					<span className="plus-members sum">
+					<span className="kanban-plus-members">
 						+{storyMems.length - 1}
 					</span>{' '}
 				</div>
@@ -45,13 +44,13 @@ export function KanbanMembers({ story }) {
 								alt={initials}
 								src={member.imgUrl}
 								style={{
-									width: '30px',
-									height: '30px',
+									width: '28px',
+									height: '28px',
 								}}
 							/>
 						) : (
 							<span
-								className="members-cmp-initials sum-initials"
+								className="kanban-members-cmp-initials"
 								key={member._id}>
 								{initials}
 							</span>
