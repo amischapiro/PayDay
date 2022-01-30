@@ -54,6 +54,7 @@
 			line-height: 0.9375rem;
 			padding: 4px 8px;
 			border: 1px solid transparent;
+			cursor: grab;
 		}
 
 		&:hover {
@@ -68,12 +69,13 @@
 			justify-content: space-between;
 			margin: none;
 			padding: 0.3rem;
-
+			cursor: grab;
 			&:hover {
 				// background-color: #cce5ff; this needs to be onclick
 
 				.story-editor button {
 					opacity: 1;
+					cursor: pointer;
 				}
 			}
 
@@ -289,13 +291,15 @@
 	}
 }
 
-
-@media screen and (max-width:762px){
-	.story{
-
-		.story-txt-area{
+@media screen and (max-width: 762px) {
+	.story {
+		.story-txt-area {
 			width: 18em;
-			
 		}
 	}
+	.story-title {
+		// line-height: 0.9375rem;
+		// padding: 4px 10px;
+	}
+
 }
