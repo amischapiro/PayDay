@@ -1,4 +1,3 @@
-import { FormControlUnstyledContext } from '@mui/material'
 import io from 'socket.io-client'
 
 export const SOCKET_EMIT_JOIN_BOARD_ROOM = 'join board-room'
