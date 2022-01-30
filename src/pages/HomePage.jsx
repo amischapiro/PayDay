@@ -18,7 +18,7 @@ export function HomePage() {
         const demoUser = {
             _id: '1f23sd1f5w5',
             fullname: 'Demo User',
-            imgUrl: 'NAVI AHAREI ZE',
+            imgUrl: 'https://res.cloudinary.com/diu2bzkko/image/upload/v1643564133/myeq5pzgizfqewmk6xn1.png',
             createdAt: 1000204217
         }
         sessionStorage.setItem('loggedinUser', JSON.stringify(demoUser))
