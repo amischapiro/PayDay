@@ -66,8 +66,6 @@
                     border-radius: 4px;
                 }
             }
-
-          
         }
 
         .search-bar {
@@ -137,5 +135,9 @@
         :nth-child(3){
             display: none;
         }
+    }
+    
+    .new-story {
+        margin-inline-start: 0.3rem;
     }
 }

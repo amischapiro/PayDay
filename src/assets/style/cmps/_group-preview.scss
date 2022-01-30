@@ -29,3 +29,10 @@
         outline: none;
     }
 }
+
+
+@media screen and (max-width:762px) {
+    .group-header .group-name-container {
+        width: 16.0625rem;
+    }
+}

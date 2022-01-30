@@ -23,6 +23,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
 	const { boardId } = match.params;
 	const [filteredBoard, setFilteredBoard] = useState(null);
+	const [isDashboard, toggleIsDashboard] = useState(false)
 
 	useEffect(() => {
 		async function fetchData() {

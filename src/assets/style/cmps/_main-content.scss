@@ -7,12 +7,16 @@
 }
 
 .board-content {
-    padding: 0 1rem 1rem 2rem;
+    padding: 0 1rem 0 2rem;
  
 }
 
 @media screen and(max-width:762px) {
-    .main-content{
-        overflow-x: hidden;
+    // .main-content{
+    //     overflow-x: hidden;
+    // }
+
+    .board-content {
+        padding: 0 1rem 0 .3rem;
     }
 }
