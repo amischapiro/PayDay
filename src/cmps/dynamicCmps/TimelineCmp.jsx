@@ -52,22 +52,6 @@ export function TimelineCmp({ story, group, onUpdate }) {
 	const onSetTimeline = async () => {
 		const timeline = [startDate, endDate];
 		story.timeline = timeline;
-		// const newActivity = {
-		//     id: utilService.makeId(),
-		//     type: 'Timeline changed',
-		//     createdAt: Date.now(),
-		//     byMember: userService.getLoggedinUser(),
-		//     story: {
-		//         id: story.id,
-		//         title: story.title,
-		//         changedItem: `${`${startDate}`.substring(4, 10)}-${`${endDate}`.substring(4, 10)}`
-		//     },
-		//     group: {
-		//         id: group.id,
-		//         title: group.title
-		//     }
-		// }
-		// newBoard.activities.unshift(newActivity)
 		setIsDateSet(true);
 		setIsSettingDate(false);
 		onUpdate('CHANGE_TIMELINE', timeline);
@@ -94,6 +78,7 @@ export function TimelineCmp({ story, group, onUpdate }) {
 		const totalDays = (endDate - startDate) / 1000 / 60 / 60 / 24;
 		return totalDays;
 	};
+
 	const getPercent = () => {
 		const now = Date.now();
 		const totalDays = getNumOfDays();
@@ -129,7 +114,7 @@ export function TimelineCmp({ story, group, onUpdate }) {
 					onChange={(update) => {
 						setDateRange(update);
 					}}
-					// dateFormat="MMMM"
+					dateFormat="MMM dd"
 				/>
 				</div>
 			) : !isSettingDate && isHover ? (
@@ -151,6 +136,7 @@ export function TimelineCmp({ story, group, onUpdate }) {
 						popperClassName="date-picker-pos"
 						// dateFormat="us"
 						// locale="uk"
+						dateFormat="MMM d"
 						selectsRange={true}
 						startDate={startDate}
 						endDate={endDate}

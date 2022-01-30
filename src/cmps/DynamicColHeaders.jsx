@@ -142,7 +142,7 @@ export class DynamicColHeaders extends Component {
 									{...provided.dragHandleProps}>
 									<DragIndicatorIcon className="col-dragger" />
 								</span>
-								<span>Estimated SP</span>
+								<span>Calc.</span>
 								<span className="right-border"></span>
 							</div>
 						)}
@@ -171,6 +171,34 @@ export class DynamicColHeaders extends Component {
 									<DragIndicatorIcon className="col-dragger" />
 								</span>
 								<span>Link to Design</span>
+								<span className="right-border"></span>
+							</div>
+						)}
+					</Draggable>
+				);
+			case 'due-date-picker':
+				return (
+					<Draggable
+						draggableId={`due-date-picker_${id}`}
+						index={index}
+						type="column"
+						key={`due-date-picker_${id}`}>
+						{(provided, snapshot) => (
+							<div
+								className={
+									snapshot.isDragging
+										? 'cell link isDragging'
+										: 'cell link'
+								}
+								ref={provided.innerRef}
+								{...provided.draggableProps}
+								>
+								<span
+									className="left-border"
+									{...provided.dragHandleProps}>
+									<DragIndicatorIcon className="col-dragger" />
+								</span>
+								<span>Due Date</span>
 								<span className="right-border"></span>
 							</div>
 						)}

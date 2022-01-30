@@ -8,7 +8,7 @@ export function KanbanMembers({ story }) {
 		<div className="kanban-members-cmp">
 			{!storyMems.length ? (
 				<div></div>
-			) : storyMems.length > 2 ? (
+			) : storyMems.length > 5 ? (
 				<div className="kanban-active-member-list">
 					{storyMems[0].imgUrl ? (
 						<img
@@ -31,7 +31,7 @@ export function KanbanMembers({ story }) {
 					</span>{' '}
 				</div>
 			) : (
-				<AvatarGroup max={2}>
+				<AvatarGroup max={5}>
 					{storyMems.map((member) => {
 						const nameArr = member.fullname.split(' ');
 						const fName = nameArr[0].split('');

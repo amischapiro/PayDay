@@ -191,7 +191,8 @@ async function createEmptyBoard(title = 'New Board') {
             "priority-picker",
             'timeline-picker',
             'number-picker',
-            'link-picker'
+            'link-picker',
+            'due-date-picker'
         ]
     }
     return board
