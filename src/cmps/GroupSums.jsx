@@ -141,6 +141,8 @@ export class GroupSum extends Component {
 				return <div key={'s' + index} className="link-sum"></div>;
 			case 'timeline-picker':
 				return <div key={'s' + index} className="timeline-sum"></div>;
+			case 'due-date-picker':
+				return <div key={'s' + index} className="due-date-sum"></div>;
 			default:
 				return;
 		}

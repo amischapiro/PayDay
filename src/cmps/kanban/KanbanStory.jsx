@@ -4,13 +4,13 @@ import { KanbanDueDate } from './KanbanDueDate'
 export function KanbanStory({story}) {
     return <div className="kanban-story-wrapper">
         <div className="kanban-story-header">
-            {story.status && <div backgroundColor={story.status.color}></div>}
-            {story.priority && <div backgroundColor={story.priority.color}></div>}
+            {story.storyData.status && <div style={{backgroundColor: story.storyData.status.color}}></div>}
+            {story.storyData.priority && <div style={{backgroundColor: story.storyData.priority.color}}></div>}
         </div>
         <h5>{story.title}</h5>
         <div className="kanban-story-footer">
-            {story.dueDate && <KanbanDueDate story={story} />}
-            {story.members && <KanbanMembers story={story} />}
+            {story.storyData.dueDate ? <KanbanDueDate story={story} /> : <div></div>}
+            {story.storyData.members && <KanbanMembers story={story} />}
         </div>
     </div>
 }

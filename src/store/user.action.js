@@ -4,6 +4,7 @@ import { userService } from "../services/user.service.js";
 export function login(credentials) {
     return async (dispatch) => {
         try {
+            
             const user = await userService.login(credentials)
             dispatch({ type: 'SET_USER', user })
             return Promise.resolve()
@@ -21,7 +22,7 @@ export function logout() {
             dispatch({ type: 'LOGOUT' })
             return Promise.resolve()
         } catch (err) {
-            Promise.reject('Cannot logout', err);
+            console.log('Cannot logout', err);
         }
     }
 }
