@@ -51,6 +51,8 @@ export function SortMenu({ board, updateBoard }) {
                         if (a.createdAt < b.createdAt) return sortBy.order;
                         else if (a.createdAt > b.createdAt) return sortBy.order * -1;
                         else return 0;
+                    default:
+                        break;
                 }
             });
 
