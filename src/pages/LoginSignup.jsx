@@ -22,6 +22,7 @@ const theme = createTheme();
 function _LoginSignup({ login, signup }) {
 
     let history = useHistory();
+    console.log(history);
     const location = useLocation();
     const isSignUp = location.pathname !== '/login';
 

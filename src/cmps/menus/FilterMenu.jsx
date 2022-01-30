@@ -39,7 +39,7 @@ export function FilterMenu({ board, filterBy, setFilterBy }) {
                 onClick={handleClick}
                 className="filter-menu-btn"
             >
-                <span className='fa-solid filter'></span>
+                <span className='fa-solid filter' style={{paddingRight: '7px'}}></span>
                 <span>Filter</span>
             </Button>
             <Popover
