@@ -1,8 +1,8 @@
 import React from "react"
 import moment from "moment"
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ReplyIcon from '@mui/icons-material/Reply';
+
+
 
 
 
@@ -21,7 +21,8 @@ export const ModalUpdatePreview = ({comment, onRemoveComment,getInitials,imgUrl 
                 </div>
             </div>
             <span className="fa-solid times" onClick={() => onRemoveComment(comment)}></span>  
-            <span className="comment-txt" >{comment.txt}</span>
+            {/* <span className="comment-txt" >{comment.txt}</span> */}
+            <p className="comment-txt" >{comment.txt}</p>
             {imgUrl && <img className="uploaded-img" src={imgUrl} alt='img'></img> }
             <div className="update-like-container" >
                 <div className="like-update"><span className="fa-solid thumbs-up"></span><span>Like</span></div>
