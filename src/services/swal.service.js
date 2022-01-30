@@ -18,12 +18,6 @@ async function onDeleteSwal() {
         .then((result) => {
 
             if (result.isConfirmed) {
-
-                Swal.fire(
-                    'Deleted!',
-                    'Board successfully deleted.',
-                    'success'
-                )
                 return Promise.resolve()
             } else {
                 return Promise.reject()
