@@ -81,6 +81,7 @@ export function GroupMenu({ board, group, updateBoard, groupColor }) {
         newBoard.activities.unshift(newActivity)
     }
 
+
     return (
         <div>
 

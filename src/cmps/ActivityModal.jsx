@@ -198,7 +198,7 @@ export function _ActivityModal(props) {
                             )}
 
 
-                            {img.imgUrl && <img src={img.imgUrl} alt=""/>}
+                            {img.imgUrl && <img src={img.imgUrl} alt="" />}
                             <div className='modal-update-btns' >
                                 <div className='file-input-container'>
                                     <span className="fa-solid plus"></span>
@@ -231,7 +231,8 @@ export function _ActivityModal(props) {
                     {getActivities()?.map((activity) => {
                         const icon = getIconPerActions(activity.type)
                         const groupColor = getGroupColor(activity.group.id)
-
+                        const { imgUrl } = activity.byMember
+                        console.log(imgUrl);
                         return (
                             <div key={activity.id} className='activity-preview' >
                                 <div className='activity-time' >
@@ -239,12 +240,10 @@ export function _ActivityModal(props) {
                                     <span>{moment(activity.createdAt).fromNow()}</span>
                                 </div>
                                 <div className='activity-member' >
-                                    {/* <div className='member-img'> */}
-                                        {/* <div className="img-container"> */}
-                                            {activity.byMember.imgUrl ? <img src={activity.byMember.imgUrl} alt=""/>
-                                                : getInitials(activity.byMember.fullname)}
-                                        {/* </div> */}
-                                    {/* </div> */}
+                                    <div className='member-img'>
+                                        {activity.byMember.imgUrl ? <img src={activity.byMember.imgUrl} alt="" />
+                                            : getInitials(activity.byMember.fullname)}
+                                    </div>
                                     <div className='story-title'>{activity.story?.title}</div>
                                 </div>
                                 <div className="flex align-center">

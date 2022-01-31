@@ -19,7 +19,7 @@ export const userService = {
 // AUTH
 async function login(credentials) {
     const user = await httpService.post('auth/login', credentials)
-    _setLoggedinUser(user)
+    await _setLoggedinUser(user)
     return user
 }
 

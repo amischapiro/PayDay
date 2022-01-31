@@ -37,17 +37,17 @@ function _LoginSignup({ login, signup }) {
 				username: data.get('username'),
 				password: data.get('password'),
 			};
-			signup(user);
+			 signup(user);
 			history.push('/board/61f648461d78c2b683f3104e/board');
 		} else {
 			const user = {
 				username: data.get('username'),
 				password: data.get('password'),
 			};
-			login(user);
-			setTimeout(() => {
-				history.push('/board/61f648461d78c2b683f3104e/board');
-			}, 1000);
+			 login(user);
+			history.push('/board/61f648461d78c2b683f3104e/board');
+			// setTimeout(() => {
+			// }, 1000);
 		}
 	};
 
