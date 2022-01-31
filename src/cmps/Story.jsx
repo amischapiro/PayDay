@@ -156,7 +156,7 @@ export function _Story(props) {
 									/>
 								</form>
 							) : (
-								<div className="story-title">{story.title}</div>
+								<div className="story-title" onClick={() =>toggleTitleEdit(!isTitleEditOn)} >{story.title}</div>
 							)}
 							{!isTitleEditOn && (
 								<button
