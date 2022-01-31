@@ -216,7 +216,7 @@ export function _ActivityModal(props) {
                             {story.comments.map(comment => {
                                 return <ModalUpdatePreview key={comment.id} comment={comment}
                                     onRemoveComment={onRemoveComment} getInitials={getInitials}
-                                    imgUrl={comment.imgUrl} />
+                                    imgUrl={comment.byMember.imgUrl} />
                             }
                             )}
                             {!story.comments.length && (
@@ -232,7 +232,6 @@ export function _ActivityModal(props) {
                         const icon = getIconPerActions(activity.type)
                         const groupColor = getGroupColor(activity.group.id)
                         const { imgUrl } = activity.byMember
-                        console.log(imgUrl);
                         return (
                             <div key={activity.id} className='activity-preview' >
                                 <div className='activity-time' >
@@ -241,7 +240,7 @@ export function _ActivityModal(props) {
                                 </div>
                                 <div className='activity-member' >
                                     <div className='member-img'>
-                                        {activity.byMember.imgUrl ? <img src={activity.byMember.imgUrl} alt="" />
+                                        {imgUrl ? <img src={imgUrl} alt="" />
                                             : getInitials(activity.byMember.fullname)}
                                     </div>
                                     <div className='story-title'>{activity.story?.title}</div>
