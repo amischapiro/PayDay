@@ -92,7 +92,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 					<div className="full-members-container">
 						{boardMembers.map((member, idx) => {
 							return (
-								<span className="member-details" onClick={() => {
+								<span className="member-details" key={member._id} onClick={() => {
 									onUpdate('ADD_MEMBER', member._id);
 									handleClose();
 								}}>
