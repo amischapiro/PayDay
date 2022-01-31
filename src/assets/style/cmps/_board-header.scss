@@ -173,7 +173,6 @@
                 right: 0;
                 height: 92vh;
                 top: 8vh;
-                // background-image: linear-gradient(to left bottom, #3840d8, #116aea, #2a8df2, #5eadf3, #95caf2);
                 background-color: #292f4c;
                 display: flex;
                 flex-direction: column;
@@ -183,6 +182,7 @@
                 transition: 0.3s ease-in;
                 z-index: 20;
                 padding: 0;
+                border-top: 1px solid gray;
                
                 li{
                     list-style: none;
