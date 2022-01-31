@@ -79,10 +79,14 @@ function __SideBar(props) {
 				<button><PersonAddAlt1OutlinedIcon className="person-add-icon" /></button>
 				<button><SearchOutlinedIcon className="search-icon" /></button>
 				<button className='logout-btn' onClick={onLogout}><LogoutOutlinedIcon className="logout-icon" /></button>
-				<div className='user-btn' onClick={() => toggleProfileModal(!isProfileModalOpen)}>
-					{currUser.imgUrl ? <img src={currUser.imgUrl} alt="" />
-						: getInitials().toUpperCase()}
-				</div>
+					{currUser.imgUrl ?
+						<img src={currUser.imgUrl} alt=""
+							onClick={() => toggleProfileModal(!isProfileModalOpen)} />
+						:
+						<div className="user-initials"
+							onClick={() => toggleProfileModal(!isProfileModalOpen)}>
+							{getInitials().toUpperCase()}
+						</div>}
 			</div>
 			<div className={`user-profile-modal ${isProfileModalOpen ? 'open' : ''}`}>
 				<span className='fa-solid times' onClick={() => toggleProfileModal(false)}></span>

@@ -100,6 +100,11 @@ function createStory(title = 'New Story') {
                 title: "To do",
                 color: "#c4c4c4"
             },
+            type: {
+                id: "t105",
+                title: "",
+                color: "#c4c4c4"
+            },
             timeline: [null, null],
             link: { name: null, url: null },
             dueDate: null,
@@ -179,6 +184,33 @@ async function createEmptyBoard(title = 'New Board') {
             },
 
         ],
+        types: [
+            {
+                id: "t101",
+                title: "Production",
+                color: "#61bd4f"
+            },
+            {
+                id: "t102",
+                title: "Development",
+                color: "#eb5a46"
+            },
+            {
+                id: "t103",
+                title: "UI/UX",
+                color: "#c377e0"
+            },
+            {
+                id: "t104",
+                title: "Functionality",
+                color: "#047cbc"
+            },
+            {
+                id: "t105",
+                title: "",
+                color: "#c4c4c4"
+            },
+        ],
         members: await userService.getMiniUsers(),
         groups: [
             createEmptyGroup(),
@@ -192,7 +224,8 @@ async function createEmptyBoard(title = 'New Board') {
             'timeline-picker',
             'number-picker',
             'link-picker',
-            'due-date-picker'
+            'due-date-picker',
+            'type-picker'
         ]
     }
     return board
