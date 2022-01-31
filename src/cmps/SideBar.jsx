@@ -81,7 +81,16 @@ function __SideBar(props) {
 				<button><PersonAddAlt1OutlinedIcon className="person-add-icon" /></button>
 				<button><SearchOutlinedIcon className="search-icon" /></button>
 				<button className='logout-btn' onClick={onLogout}><LogoutOutlinedIcon className="logout-icon" /></button>
-				<div className='user-btn-container' onClick={() => toggleProfileModal(!isProfileModalOpen)}><button className='user-btn'>{currUser.imgUrl ? <img src={currUser.imgUrl} /> : getInitials().toUpperCase()}</button></div>
+				<div className='user-btn' onClick={() => toggleProfileModal(true)}>
+					{currUser.imgUrl ? <img src={currUser.imgUrl} alt="" />
+						: getInitials().toUpperCase()}
+
+				</div>
+
+				{/* <div className='member-img'>
+					{imgUrl ? <img src={imgUrl} alt="" />
+						: getInitials(activity.byMember.fullname)}
+				</div> */}
 
 				{/* <button></button> setUser name letters or pic */}
 			</div>
@@ -92,7 +101,7 @@ function __SideBar(props) {
 				<span>Add a photo of you:</span>
 				<div><input type="file" accept='img/*' onChange={uploadImg} /></div>
 				<div className='profile-img-container'>
-					{img.imgUrl ? <img src={img.imgUrl} /> : ''}
+					{img.imgUrl ? <img src={img.imgUrl} alt="" /> : ''}
 				</div>
 			</div>
 		</section>
