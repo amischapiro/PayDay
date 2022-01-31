@@ -18,8 +18,6 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 function __SideBar(props) {
 	const [isProfileModalOpen,toggleProfileModal] = useState(false)
 	const currUser = userService.getLoggedinUser()
-	const backUser = userService.getUserById(currUser._id)
-	console.log('backUser:', backUser);
 	
 	
 
@@ -58,6 +56,7 @@ function __SideBar(props) {
 			const userToUpdate = {...currUser,imgUrl:secure_url}
 			console.log('userToUpdate:', userToUpdate);
 			props.updateUser(userToUpdate)
+			sessionStorage.setItem('loggedinUser', JSON.stringify(userToUpdate))
 		}
     }
 
@@ -80,7 +79,7 @@ function __SideBar(props) {
 				<button><PersonAddAlt1OutlinedIcon className="person-add-icon" /></button>
 				<button><SearchOutlinedIcon className="search-icon" /></button>
 				<button className='logout-btn' onClick={onLogout}><LogoutOutlinedIcon className="logout-icon" /></button>
-				<div className='user-btn-container' onClick={()=>toggleProfileModal(true)}><button className='user-btn'>{currUser.imgUrl?<img src={currUser.imgUrl} />:getInitials()}</button></div>
+				<div className='user-btn-container' onClick={()=>toggleProfileModal(true)}><button className='user-btn'>{currUser.imgUrl?<img src={currUser.imgUrl} />:getInitials().toUpperCase()}</button></div>
 
 				{/* <button></button> setUser name letters or pic */}
 			</div>
