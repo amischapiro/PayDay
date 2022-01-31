@@ -36,7 +36,7 @@
     }
 
     .top-section {
-        padding: 1rem 1rem 0 1rem;
+        padding: 1rem 1.5rem 0 1.5rem;
 
         .btn-close-modal {
             background-color: inherit;
@@ -55,7 +55,7 @@
             font-size: 1.125rem;
             line-height: 1.5rem;
             padding: 0 4px;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
         }
 
         .update-activity-container {
@@ -90,6 +90,27 @@
         }
     }
 
+    .logo-container {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        width: 50%;
+        img {
+            margin-bottom: 1rem;
+        }
+        span {
+            display: block;
+            text-align: center;
+            font-size: 1.5rem;
+            line-height: 1.65rem;
+            font-family: Roboto,sans-serif;
+            font-weight: 600;
+        }
+    }
+
     .modal-break-line {
         height: 1px;
         background-color: #e6e9ef;
@@ -100,7 +121,7 @@
     // }
 
     .bottom-section {
-        padding: 1rem;
+        padding: 1rem 1.5rem;
     }
 
     .update-input {
@@ -108,45 +129,48 @@
 
         input {
             width: 100%;
-            font-family: Roboto-Light, sans-serif;
+            font-family: Roboto Light, sans-serif;
             font-size: 1rem;
             line-height: 1.5em;
             border-radius: 8px;
             border: 1px solid #0073ea;
             padding: 10px 20px;
+            margin-bottom: 0.5rem;
 
             &:focus-visible {
                 outline: none;
             }
 
-            &:hover{
+            &:hover {
                 background-color: #e6e9ef;
             }
-            
-            ::placeholder {
-                font-family: Roboto-Light, sans-serif;
-                font-size: 1rem;
-                line-height: 1.5em;
-            }
         }
+
+        input::placeholder {
+            font-family: Roboto Light, sans-serif;
+            color: #27282b;
+            font-size: 1rem;
+            line-height: 1.5em;
+        }
+
         textarea {
             width: 100%;
-            font-family: Roboto-Light, sans-serif;
+            font-family: Roboto Light, sans-serif;
             font-size: 1rem;
             line-height: 1.5em;
             border-radius: 8px;
             border: 1px solid #0073ea;
-            padding: 10px 20px;
-            // transition: 0.3s;
-            vertical-align: middle;
             outline: none;
-            padding: 0.5rem;
-
+            padding: 0.5rem 1rem;
+            height: 2.875rem;
+            resize: none;
             &.open {
-                height: 5rem;
+                animation: open-textarea 0.2s;
+                height: 7rem;
                 outline: none;
             }
         }
+
         img {
             height: 40px;
             width: 40px;
@@ -155,32 +179,54 @@
     }
 }
 .modal-update-btns {
+    width: 100%;
     display: flex;
-    width: 80%;
-    margin-left: 10%;
     justify-content: space-between;
+    align-items: center;
+
     .file-input-container {
         position: relative;
-        width: 6rem;
-        height: 2rem;
+        font-size: 0.8125rem;
+        line-height: 1.5em;
+        padding: 0.4rem 0.6rem;
+        // width: 6rem;
+        // height: 2rem;
         color: #0073ea;
-        // cursor: pointer;
+        :first-child {
+            margin-inline-end: 0.3rem;
+        }
+        .file-input {
+            // cursor: pointer;
+            position: absolute;
+            opacity: 0;
+            top: 0.25rem;
+            left: 0;
+            width: 5rem;
+        }
     }
-    .file-input {
-        // cursor: pointer;
-        position: absolute;
-        opacity: 0;
-        top: 0.25rem;
-        left: 0;
-        width: 5rem;
-    }
+
     button {
-        background-color: #0073ea;
+        font-size: 0.8125rem;
+        line-height: 1.5em;
+        padding: 0.4rem 0.6rem;
         border: none;
-        border-radius: 6px;
-        color: white;
-        height: 2rem;
+        border-radius: 4px;
         cursor: pointer;
+    }
+
+    .btn-cancel {
+        color: #676879;
+        border: 1px solid #e6e9ef;
+        background-color: white;
+        &:hover {
+            background-color: #e6e9ef;
+        }
+    }
+
+    .btn-update {
+        margin-inline-start: 0.5rem;
+        background-color: #0073ea;
+        color: white;
     }
 }
 .MuiSvgIcon-fontSizeMedium.file-icon {
@@ -209,30 +255,59 @@
 }
 
 .activity-preview {
-    border-bottom: 1px grey solid;
-    width: 90%;
+    font-family: Roboto Light, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.5em;
+    border-bottom: 1px solid #d3d3d3;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 33%);
+    grid-template-columns: 1fr 2fr 1fr;
     padding: 0.5rem;
+
+    .fa,
+    .fa-solid {
+        margin-inline-end: 0.3rem;
+
+        &.clock {
+            font-size: 0.8125rem;
+        }
+    }
 }
+
 .activity-member {
     display: flex;
+    align-items: center;
+    .story-title {
+        margin-inline-start: 0.4rem;
+    }
 }
+
 .member-img {
     border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
+    padding: 2.5px 8px;
     background-color: hotpink;
     text-align: center;
     text-transform: uppercase;
+    font-weight: 600;
+    color: white;
+    vertical-align: middle;
+    letter-spacing: 1px;
+    .img-container {
+        width: 1rem;
+        height: 1.5rem;
+        display: grid;
+        place-items: center;
+    }
     img {
-        height: 2rem;
-        width: 2rem;
-        border-radius: 50%;
+        width: 100%;
     }
 }
 .activity-time {
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.875rem;
+    line-height: 1.5em;
     span {
         max-width: 15ch;
         overflow: hidden;
@@ -251,6 +326,16 @@
 
     100% {
         right: 0;
+    }
+}
+
+@keyframes open-textarea {
+    0% {
+        height: 2.875rem;
+    }
+
+    100% {
+        height: 7rem;
     }
 }
 

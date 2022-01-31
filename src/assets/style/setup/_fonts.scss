@@ -113,6 +113,10 @@
 
 /* Solid Style */
 
+.fa-solid.exchange-alt::before {
+	content: '\f362';
+}
+
 .fa-solid.undo::before {
 	content: '\f0e2';
 }

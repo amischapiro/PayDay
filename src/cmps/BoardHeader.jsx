@@ -41,7 +41,7 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
         toggleTitleEdit(false)
         const boardToUpdate = { ...board, title: editBoard.title }
         await updateBoard(boardToUpdate)
-       socketService.emit('update workspace')
+        socketService.emit('update workspace')
     }
 
     const onSubmitDesc = async (ev) => {
@@ -49,7 +49,7 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
         toggleDescEdit(false)
         const boardToUpdate = { ...board, desc: editBoard.desc }
         await updateBoard(boardToUpdate)
-       socketService.emit('update workspace')
+        socketService.emit('update workspace')
     }
 
     const onSetStory = async () => {
