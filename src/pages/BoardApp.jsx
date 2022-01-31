@@ -162,7 +162,6 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		const newBoard = JSON.parse(JSON.stringify(selectedBoard));
 		if(newBoard.cmpsOrder.some(cmp => {return cmp === col})) {
 			const filteredCmps = newBoard.cmpsOrder.filter(cmp => {
-				console.log(cmp)
 				return cmp !== col
 			})
 			newBoard.cmpsOrder = filteredCmps;
