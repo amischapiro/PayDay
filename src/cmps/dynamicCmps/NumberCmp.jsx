@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect } from 'react';
 export function NumberCmp({ story, onUpdate }) {
 	const newStory = { ...story }
 	const { number } = newStory.storyData;
-	// console.log('NumberCmp.jsx 💤 5: ', number);
 	const [txt, setTxt] = useState(number || '');
 	const inputEl = useRef();
 
@@ -12,7 +11,6 @@ export function NumberCmp({ story, onUpdate }) {
 		if (!value) return;
 
 		await onUpdate('CHANGE_NUMBER', value);
-		// setTxt(value || '');
 	};
 
 	const handleUpdate = (ev) => {
@@ -41,7 +39,6 @@ export function NumberCmp({ story, onUpdate }) {
 				autoComplete="off"
 				name="txt"
 				type="text"
-				// placeholder="+ Add Story"
 				onBlur={handleUpdate}
 				onKeyUp={handleUpdate}
 				value={txt}

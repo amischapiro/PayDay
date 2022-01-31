@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
@@ -48,7 +48,7 @@ export function StoryMenu(props) {
     const onDuplicateStory = async () => {
         handleClose()
         const newStory = JSON.parse(JSON.stringify(story))
-        newStory.id = utilService.makeId(); 
+        newStory.id = utilService.makeId();
         newBoard.groups[groupIdx].stories.unshift(newStory)
         addNewActivity('Story duplicated')
         await updateBoard(newBoard)

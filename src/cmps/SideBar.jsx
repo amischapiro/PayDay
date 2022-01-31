@@ -52,10 +52,8 @@ function __SideBar(props) {
 		setImg({ ...img, isUploading: true, height: 500, width: 500 })
 		const { secure_url, height, width } = await cloudinaryService.uploadImg(ev)
 		setImg({ imgUrl: secure_url, isUploading: false, height, width })
-		// console.log('img:', img);
 		if (currUser.fullname !== 'Demo User') {
 			const userToUpdate = { ...currUser, imgUrl: secure_url }
-			console.log('userToUpdate:', userToUpdate);
 			props.updateUser(userToUpdate)
 			sessionStorage.setItem('loggedinUser', JSON.stringify(userToUpdate))
 		}
@@ -84,24 +82,19 @@ function __SideBar(props) {
 				<div className='user-btn' onClick={() => toggleProfileModal(!isProfileModalOpen)}>
 					{currUser.imgUrl ? <img src={currUser.imgUrl} alt="" />
 						: getInitials().toUpperCase()}
-
 				</div>
-
-				{/* <div className='member-img'>
-					{imgUrl ? <img src={imgUrl} alt="" />
-						: getInitials(activity.byMember.fullname)}
-				</div> */}
-
-				{/* <button></button> setUser name letters or pic */}
 			</div>
 			<div className={`user-profile-modal ${isProfileModalOpen ? 'open' : ''}`}>
 				<span className='fa-solid times' onClick={() => toggleProfileModal(false)}></span>
 				<div>Username: {currUser.fullname}</div>
 				<hr />
 				<span>Add a photo of you:</span>
-				<div><input type="file" accept='img/*' onChange={uploadImg} /></div>
-				<div className='profile-img-container'>
-					{img.imgUrl ? <img src={img.imgUrl} alt="" /> : ''}
+				<div className='profile-flex-container'>
+					<div><input type="file" accept='img/*' onChange={uploadImg} /></div>
+					<div className='profile-img-container'>
+						{img.imgUrl ? <img src={img.imgUrl} alt="" /> : ''}
+					</div>
+					<button onClick={()=>toggleProfileModal(false)}>Done</button>
 				</div>
 			</div>
 		</section>

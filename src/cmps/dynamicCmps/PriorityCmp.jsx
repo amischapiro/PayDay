@@ -16,7 +16,7 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
-	
+
 	const { priority } = story.storyData;
 
 	return (

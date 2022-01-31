@@ -38,8 +38,8 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 							src={members[0].imgUrl}
 							alt=""
 						/> : <span className="members-cmp-initials">
-							{members[0].fullname.split(' ')[0].split('')[0] + 
-							members[0].fullname.split(' ')[1].split('')[0]}
+							{members[0].fullname.split(' ')[0].split('')[0] +
+								members[0].fullname.split(' ')[1].split('')[0]}
 						</span>}{' '}
 						<span className="plus-members">
 							+{members.length - 1}
@@ -106,12 +106,6 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 									</span>
 									<span>{member.fullname}</span>
 								</span>
-
-								{/* {member.imgUrl ? (<img
-										src={member.imgUrl}
-										alt={fName[0] + lName[0]}
-									/>) : (<div className='members-cmp-initials' key={member._id} >{initials.toUpperCase()}</div>)} {' '}
-									{member.fullname} */}
 							</Typography>
 						</div>
 					);

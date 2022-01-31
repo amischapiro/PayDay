@@ -8,9 +8,9 @@ import { LinkCmp } from './LinkCmp.jsx';
 import { DueDateCmp } from './DueDateCmp.jsx';
 
 export function DynamicCmp({ cmp, story, onUpdate, board, group }) {
-	
+
 	const { members, priorities, statuses } = board;
-	
+
 	switch (cmp) {
 		case 'status-picker':
 			return (

@@ -4,7 +4,7 @@ import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
 export function KanbanGroup({ drag, group, }) {
 	return (
-		<div className="kanban-group" style={{backgroundColor: group.style.backgroundColor}}>
+		<div className="kanban-group" style={{ backgroundColor: group.style.backgroundColor }}>
 			<div className="kanban-group-header">
 				<span {...drag} className="kanban-group-dragger">
 					<DragIndicatorIcon />

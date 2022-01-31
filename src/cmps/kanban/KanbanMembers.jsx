@@ -2,7 +2,7 @@ import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
 export function KanbanMembers({ story }) {
-    const storyMems = story.storyData.members || [];
+	const storyMems = story.storyData.members || [];
 
 	return (
 		<div className="kanban-members-cmp">

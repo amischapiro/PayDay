@@ -1,3 +1,3 @@
-export function FileCmp({story}) {
+export function FileCmp({ story }) {
     return <div></div>
 }

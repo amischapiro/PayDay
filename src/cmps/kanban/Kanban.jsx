@@ -2,13 +2,13 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { KanbanGroup } from './KanbanGroup';
 
 
-export function Kanban({ board, filterBy, updateBoard, updateWhileFilterSort }){
+export function Kanban({ board, filterBy, updateBoard, updateWhileFilterSort }) {
 
-    const onDragEnd = async (result) => {
-		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+	const onDragEnd = async (result) => {
+		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
 			updateWhileFilterSort();
 			return;
-		} else if(board.sortBy.name) {
+		} else if (board.sortBy.name) {
 			updateWhileFilterSort();
 			return;
 		}
@@ -44,35 +44,35 @@ export function Kanban({ board, filterBy, updateBoard, updateWhileFilterSort }){
 		updateBoard(newBoard);
 	};
 
-    return (
+	return (
 		<DragDropContext
-				onDragEnd={onDragEnd}
-			>
-				<Droppable droppableId="all-groups" type="group" direction="horizontal">
-					{provided => (
-						<div
-							ref={provided.innerRef}
-							className="kanban-groups-container"
-							key={board._id}>
-							{board.groups.map((group, index) => (
-								<Draggable
-									key={group.id}
-									draggableId={group.id}
-									index={index}
-									type="group">
-									{provided => (
-										<div
-											ref={provided.innerRef}
-											{...provided.draggableProps}>
-											<KanbanGroup drag={provided.dragHandleProps} group={group} key={group._id} />
-										</div>
-									)}
-								</Draggable>
-							))}
-							{provided.placeholder}
-						</div>
-					)}
-				</Droppable>
-			</DragDropContext>
+			onDragEnd={onDragEnd}
+		>
+			<Droppable droppableId="all-groups" type="group" direction="horizontal">
+				{provided => (
+					<div
+						ref={provided.innerRef}
+						className="kanban-groups-container"
+						key={board._id}>
+						{board.groups.map((group, index) => (
+							<Draggable
+								key={group.id}
+								draggableId={group.id}
+								index={index}
+								type="group">
+								{provided => (
+									<div
+										ref={provided.innerRef}
+										{...provided.draggableProps}>
+										<KanbanGroup drag={provided.dragHandleProps} group={group} key={group._id} />
+									</div>
+								)}
+							</Draggable>
+						))}
+						{provided.placeholder}
+					</div>
+				)}
+			</Droppable>
+		</DragDropContext>
 	)
 }

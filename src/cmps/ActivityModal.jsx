@@ -75,7 +75,6 @@ export function _ActivityModal(props) {
             txt: comment,
             imgUrl: img.imgUrl,
             createdAt: Date.now(),
-            //change to logged in user
             byMember: userService.getMiniLoggedInUser(),
             groupId: groupId,
             storyId: story.id
@@ -120,7 +119,6 @@ export function _ActivityModal(props) {
         const storyIdx = group.stories.findIndex(story => story.id === storyId)
         newBoard.groups[groupIdx].stories.splice(storyIdx, 1, updatedStory)
         props.updateBoard(newBoard)
-        //  await socketService.emit('comment was added', newBoard._id);
     }
 
     const handleChange = ({ target }) => {
