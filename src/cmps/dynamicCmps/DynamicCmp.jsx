@@ -9,7 +9,7 @@ import { DueDateCmp } from './DueDateCmp.jsx';
 
 export function DynamicCmp({ cmp, story, onUpdate, board, group }) {
 	
-	const { members, priorities, statuses } = board;
+	const { members, priorities, statuses, types } = board;
 	
 	switch (cmp) {
 		case 'status-picker':
@@ -44,6 +44,8 @@ export function DynamicCmp({ cmp, story, onUpdate, board, group }) {
 			return <LinkCmp story={story} onUpdate={onUpdate} />;
 		case 'due-date-picker':
 			return <DueDateCmp story={story} onUpdate={onUpdate} />;
+		case 'type-picker':
+			return <DueDateCmp story={story} onUpdate={onUpdate} boardTypes={types} />;
 		default:
 			return <React.Fragment></React.Fragment>;
 	}

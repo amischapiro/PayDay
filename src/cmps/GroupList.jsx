@@ -10,6 +10,7 @@ import { StoryList } from './StoryList';
 import { DynamicColHeaders } from './DynamicColHeaders';
 import { GroupMenu } from './menus/GroupMenu';
 import { GroupTitle } from './GroupTitle';
+import {ColumnMenu} from './menus/ColumnMenu'
 
 export class _GroupList extends Component {
 	
@@ -64,7 +65,7 @@ export class _GroupList extends Component {
 	};
 
 	render() {
-		const { board, updateBoard, filterBy, updateWhileFilterSort } = this.props;
+		const { board, updateBoard, filterBy, updateWhileFilterSort, onSetCol } = this.props;
 
 		return (
 			<DragDropContext
@@ -107,7 +108,7 @@ export class _GroupList extends Component {
 													/>
 												</div>
 												<div className="header-add-col">
-													<AddCircleOutlineRoundedIcon className="add-col-but" />
+													<ColumnMenu onSetCol={onSetCol} />
 												</div>
 											</div>
 											<StoryList
