@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded';
 
 
-export function SortMenu({ board, updateBoard }) {
+export function SortMenu({ board, updateBoard, filterBy, updateWhileFilter }) {
 
     const newBoard = { ...board };
 
@@ -25,45 +25,55 @@ export function SortMenu({ board, updateBoard }) {
     const id = open ? 'simple-popover' : undefined;
 
     const onSetSort = async (type) => {
-        console.log(type);
-        const sortBy = newBoard.sortBy;
-        if (type === sortBy.name) sortBy.order *= -1;
-        else {
-            sortBy.name = type;
-            sortBy.order = -1;
-        }
+		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+			updateWhileFilter();
+			return;
+		}
+        
+		const sortBy = newBoard.sortBy;
+		if (type === sortBy.name) sortBy.order *= -1;
+		else {
+			sortBy.name = type;
+			sortBy.order = -1;
+		}
 
-        let newGroups = newBoard.groups.map((group) => {
-            const newStories = group.stories.sort(function (a, b) {
-                switch (sortBy.name) {
-                    case 'name':
-                        if (a.title.toLowerCase() < b.title.toLowerCase()) return sortBy.order;
-                        else if (a.title.toLowerCase() > b.title.toLowerCase()) return sortBy.order * -1;
-                        else return 0;
-                    case 'status':
-                        if (a.storyData.status.id < b.storyData.status.id) return sortBy.order;
-                        else if (a.storyData.status.id > b.storyData.status.id) return sortBy.order * -1;
-                        else return 0;
-                    case 'priority':
-                        if (a.storyData.priority.id < b.storyData.priority.id) return sortBy.order;
-                        else if (a.storyData.priority.id > b.storyData.priority.id) return sortBy.order * -1;
-                        else return 0;
-                    case 'created-at':
-                        if (a.createdAt < b.createdAt) return sortBy.order;
-                        else if (a.createdAt > b.createdAt) return sortBy.order * -1;
-                        else return 0;
-                    default:
-                        break;
-                }
-            });
+		let newGroups = newBoard.groups.map((group) => {
+			const newStories = group.stories.sort(function (a, b) {
+				switch (sortBy.name) {
+					case 'name':
+						if (a.title.toLowerCase() < b.title.toLowerCase()) return sortBy.order;
+						else if (a.title.toLowerCase() > b.title.toLowerCase()) return sortBy.order * -1;
+						else return 0;
+					case 'status':
+						if (a.status.id < b.status.id) return sortBy.order;
+						else if (a.status.id > b.status.id) return sortBy.order * -1;
+						else return 0;
+					case 'priority':
+						if (a.priority.id < b.priority.id) return sortBy.order;
+						else if (a.priority.id > b.priority.id) return sortBy.order * -1;
+						else return 0;
+					case 'people':
+						if (a.members.length < b.members.length) return sortBy.order;
+						else if (a.members.length > b.members.length) return sortBy.order * -1;
+						else return 0;
+					case 'SP':
+						if (a.number < b.number) return sortBy.order;
+						else if (a.number > b.number) return sortBy.order * -1;
+						else return 0;
+					default:
+						if (a.createdAt < b.createdAt) return sortBy.order;
+						else if (a.createdAt > b.createdAt) return sortBy.order * -1;
+						else return 0;
+				}
+			});
 
-            group.stories = newStories;
-            return group;
-        });
+			group.stories = newStories;
+			return group;
+		});
 
-        newBoard.groups = newGroups;
-        await updateBoard(newBoard);
-    };
+		newBoard.groups = newGroups;
+		await updateBoard(newBoard);
+	};
 
 
     return (
