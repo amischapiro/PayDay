@@ -6,21 +6,21 @@ export function DueDateCmp({ story, onUpdate }) {
 	const { dueDate } = story.storyData;
 	const [startDate, setStartDate] = useState(dueDate || null);
 
-    const setDate = (date) => {
-        setStartDate(date)
-        onUpdate('CHANGE_DUE_DATE', date.getTime())
-    }
+	const setDate = (date) => {
+		setStartDate(date);
+		onUpdate('CHANGE_DUE_DATE', date.getTime());
+	};
 
 	return (
-		<DatePicker
-			selected={startDate}
-			onChange={date => setDate(date)}
-			dateFormat="MMM d">
-			{(Date.now() > startDate) &&
-				<div style={{ color: 'red' }}>
-					Past due date!
-				</div>
-			}
-		</DatePicker>
+		<div className="due-date-container">
+			<DatePicker
+				selected={startDate}
+				onChange={(date) => setDate(date)}
+				dateFormat="MMM d">
+				{Date.now() > startDate && (
+					<div style={{ color: 'red' }}>Past due date!</div>
+				)}
+			</DatePicker>
+		</div>
 	);
 }
