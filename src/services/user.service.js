@@ -32,7 +32,7 @@ async function signup(user) {
 
 async function logout() {
     const signupUser = await httpService.post('auth/logout')
-    _setLoggedinUser(null)
+    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(signupUser))
     return signupUser
 }
 
@@ -106,8 +106,6 @@ async function getMiniUsers() {
 }
 
 function _setLoggedinUser(user) {
- 
-    
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
     return user
 }
