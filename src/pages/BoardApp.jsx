@@ -25,6 +25,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 	const [filteredBoard, setFilteredBoard] = useState(null);
 	const [isDashboard, toggleIsDashboard] = useState(false)
 
+
 	useEffect(() => {
 		async function fetchData() {
 			await loadBoards();
@@ -174,14 +175,14 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 				addBoard={addBoard}
 			/>
 
-			<section className="main-content">
+			<section className={`main-content ${isDashboard ? "dashboard" : ""}`}>
 				<section className="main-header">
-					<MobileNav selectedBoard={selectedBoard} boards={boards} />
+					<MobileNav selectedBoard={selectedBoard} boards={boards} toggleIsDashboard={toggleIsDashboard} />
 					<BoardHeader
 						board={selectedBoard}
 						updateBoard={onUpdateBoard}
 					/>
-					<BoardNav board={selectedBoard} />
+					<BoardNav board={selectedBoard} toggleIsDashboard={toggleIsDashboard} />
 					<BoardActions
 						board={selectedBoard}
 						updateBoard={onUpdateBoard}

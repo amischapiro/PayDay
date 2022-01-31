@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import ListIcon from '@mui/icons-material/List';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import SplitscreenIcon from '@mui/icons-material/Splitscreen';
-import ChatIcon from '@mui/icons-material/Chat';
+// import SplitscreenIcon from '@mui/icons-material/Splitscreen';
+// import ChatIcon from '@mui/icons-material/Chat';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
 import { DashboardCharts } from './DashboardCharts';
@@ -23,68 +23,67 @@ export function _Dashboard(props) {
     }
 
     const getStatusCount = () => {
-        let count = {s101:0,s102:0,s103:0,s104:0,s105:0}
-        board.groups.map(group=>{
-            group.stories.map(story=>{
+        let count = { s101: 0, s102: 0, s103: 0, s104: 0, s105: 0 }
+        board.groups.map(group => {
+            return group.stories.map(story => {
                 const status = story.storyData.status.id
-                
-                count[status] ++
+                return count[status]++
             })
         })
-        return [count.s101,count.s102,count.s103,count.s104,count.s105]
-    }
-    
-    const getStoriesPerGroupCount = ()=>{
-        const storyCount = board.groups.map(group=>{
-            return group.stories.length
-        })
-        return storyCount   
+        return [count.s101, count.s102, count.s103, count.s104, count.s105]
     }
 
-    const getGroupNames =()=>{
-        const names = board.groups.map(group=>{
+    const getStoriesPerGroupCount = () => {
+        const storyCount = board.groups.map(group => {
+            return group.stories.length
+        })
+        return storyCount
+    }
+
+    const getGroupNames = () => {
+        const names = board.groups.map(group => {
             return group.title
         })
         return names
     }
-    const getMembersPerStory =()=>{
-        let members =[]
-        const count = board.groups.map(group=>{
-            group.stories.map(story=>{
-                members.push(story.storyData.members.length)
+    const getMembersPerStory = () => {
+        let members = []
+        board.groups.map(group => {
+            return group.stories.map(story => {
+                return members.push(story.storyData.members.length)
             })
         })
         return members
     }
-    
-    
 
-    const getPriorityNames=()=>{
-        const names = board.priorities.map(priority=>{
-            if(priority.title==='')return 'None'
+
+
+    const getPriorityNames = () => {
+        const names = board.priorities.map(priority => {
+            if (priority.title === '') return 'None'
             return priority.title
         })
         return names
     }
-    
-    const getPriorityCount = ()=>{
-        let count = {p101:0,p102:0,p103:0,p104:0,}
-        board.groups.map(group=>{
-            group.stories.map(story=>{
+
+    const getPriorityCount = () => {
+        let count = { p101: 0, p102: 0, p103: 0, p104: 0, }
+        board.groups.map(group => {
+            return group.stories.map(story => {
                 const priority = story.storyData.priority.id
-                count[priority]++ 
+                return count[priority]++
             })
         })
-        return [count.p101,count.p102,count.p103,count.p104]
+        return [count.p101, count.p102, count.p103, count.p104]
     }
 
 
-    
 
-    
-    
-    
-    
+
+
+
+
+
 
 
 
@@ -122,8 +121,8 @@ export function _Dashboard(props) {
                 </div>
             </div>
             <DashboardCharts statusCount={getStatusCount()} storiesPerGroup={getStoriesPerGroupCount()}
-             groupNames={getGroupNames()} priorityNames={getPriorityNames()} priorityCount={getPriorityCount()} membersPerStory ={getMembersPerStory()}/>
-           
+                groupNames={getGroupNames()} priorityNames={getPriorityNames()} priorityCount={getPriorityCount()} membersPerStory={getMembersPerStory()} />
+
 
         </section>
     )

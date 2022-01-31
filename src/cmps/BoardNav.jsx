@@ -13,10 +13,11 @@ import { GroupList } from './GroupList'
 // import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
 
 
-function _BoardNav({board}) {
-    
+function _BoardNav({ board, toggleIsDashboard }) {
+
     const [isAnimationOn, setAnimation] = useState(false)
     const [isInegrateHoverOn, setIntegrateHover] = useState(false)
+
 
     const onSetAnimation = () => {
         setAnimation(true)
@@ -30,14 +31,14 @@ function _BoardNav({board}) {
         <div className='board-nav'>
 
             <div className='navs-container'>
-                <NavLink activeClassName="my-active" exact to={`/board/${board._id}/board`}> <span className='fa-solid home'></span> Main Table</NavLink>
+                <NavLink activeClassName="my-active" exact to={`/board/${board._id}/board`} onClick={() => toggleIsDashboard(false)}> <span className='fa-solid home'></span> Main Table</NavLink>
                 <NavLink activeClassName="my-active" to={`/board/${board._id}/kanban`}> <span className='fa list-alt'></span> Kanban</NavLink>
-                <NavLink activeClassName="my-active" to={`/board/${board._id}/dashboard`}> <span className='fa chart-bar'></span> Dashboard</NavLink>
+                <NavLink activeClassName="my-active" to={`/board/${board._id}/dashboard`} onClick={() => toggleIsDashboard(true)}> <span className='fa chart-bar'></span> Dashboard</NavLink>
             </div>
 
             <div className='actions-container'>
-                <div onMouseEnter={()=>{setIntegrateHover(true)}}
-                    onMouseLeave={()=>{setIntegrateHover(false)}}
+                <div onMouseEnter={() => { setIntegrateHover(true) }}
+                    onMouseLeave={() => { setIntegrateHover(false) }}
                     className={isInegrateHoverOn ? 'integrate hover' : 'integrate'}>
                     <span className='fa-solid plug'></span> <span className='txt'>Integrate</span>
                     <img src={GmailLogo} alt="Gmail Logo" />
@@ -51,9 +52,6 @@ function _BoardNav({board}) {
     )
 
 }
-
-//  <ViewKanbanOutlinedIcon className='btn-kanban' />
-{/* <AnalyticsOutlinedIcon className='btn-dashboard' />  */ }
 
 
 
