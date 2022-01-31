@@ -166,7 +166,8 @@ function _LoginSignup({ login, signup }) {
 						cookiePolicy={'single_host_origin'}
 					/>
 				</Box>
-			</Container>
+			</Container>                  
+                    <Link className='back-home-link' to='/'>⬅Back to home</Link>
 		</ThemeProvider>
 	);
 }
