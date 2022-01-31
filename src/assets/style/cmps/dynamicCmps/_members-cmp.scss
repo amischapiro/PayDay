@@ -16,7 +16,6 @@
 		width: 2rem;
 		background-color: #f65f7d;
 		text-align: center;
-		// line-height: 2rem;
 		color: white;
 		text-transform: uppercase;
 		padding: 3px;
@@ -61,41 +60,57 @@
 }
 
 .MuiTypography-root.MuiTypography-body1.member-picker-container {
-	// display: flex;
-	// justify-content: flex-start;
-	// align-items: center;
-	// width: 17.75rem;
-	// height: 2.125rem;
-	// padding: 0.3rem;
-	// font-size: 0.8125rem;
-	// font-weight: 300;
-	// text-align: center;
-	// cursor: pointer;
-	// border-radius: 0.25rem;
-}
-
-.MuiTypography-root.MuiTypography-body1.member-picker-container {
 	padding: 0.5rem;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	font-family: Roboto Light, sans-serif;
 	font-size: 0.8125rem;
-	width: 12rem;
+	width: 15rem;
 	border-radius: 4px;
 
-	
-	
+	.selected-members {
+		.selected-member-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0.3rem 0.5rem;
+			&:hover {
+				background-color: #0085ff;
+				color: #fff;
+			}
+
+			.btn-remove {
+				color: #676879;
+				background-color: white;
+				border: 1px solid #e6e9ef;
+				border-radius: 4px;
+				padding: 0.3rem;
+
+				*:hover {
+					background-color: #e6e9ef;
+				}
+			}
+		}
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid #e6e9ef;
+	}
+
+	.optional-members-container {
+		.optional-member {
+			display: flex;
+			justify-content: flex-start;
+			padding: 0.3rem 0.5rem;
+			&:hover {
+				background-color: #0085ff;
+				color: #fff;
+			}
+		}
+	}
 
 	.member-details {
 		display: flex;
 		align-items: center;
-		// height: 2.125rem;
-		padding: 0.3rem 0.3rem;
-		&:hover {
-			background-color: #0085ff;
-			color: #fff;
-		}
 		> *:not(:first-child) {
 			margin-inline-start: 8px;
 			line-height: 2rem;
@@ -127,25 +142,24 @@
 	}
 }
 
+// .member-picker-container {
+// 	background-color: red;
+// 	display: flex;
+// 	justify-content: flex-start;
+// 	align-items: center;
+// 	width: 17.75rem;
+// 	height: 2.125rem;
+// 	padding: 0.3rem;
+// 	font-size: 0.8125rem;
+// 	font-weight: 300;
+// 	text-align: center;
+// 	cursor: pointer;
+// 	border-radius: 0.25rem;
 
-	// .member-picker-container {
-	// 	background-color: red;
-	// 	display: flex;
-	// 	justify-content: flex-start;
-	// 	align-items: center;
-	// 	width: 17.75rem;
-	// 	height: 2.125rem;
-	// 	padding: 0.3rem;
-	// 	font-size: 0.8125rem;
-	// 	font-weight: 300;
-	// 	text-align: center;
-	// 	cursor: pointer;
-	// 	border-radius: 0.25rem;
-
-	// 	img {
-	// 		width: 1.563rem;
-	// 		height: 1.563rem;
-	// 		border-radius: 50%;
-	// 		margin-inline-end: 0.7rem;
-	// 	}
-	// }
+// 	img {
+// 		width: 1.563rem;
+// 		height: 1.563rem;
+// 		border-radius: 50%;
+// 		margin-inline-end: 0.7rem;
+// 	}
+// }

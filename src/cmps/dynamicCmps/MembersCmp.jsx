@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -7,7 +7,20 @@ import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
 export function MembersCmp({ story, onUpdate, boardMembers }) {
+
 	const [anchorEl, setAnchorEl] = React.useState(null);
+
+	const { members } = story.storyData;
+	const newMembers = [...boardMembers]
+
+	members.forEach(member => {
+		const selectedMemberIdx = newMembers.findIndex(diffMember => {
+			return diffMember._id === member._id
+		})
+		if (selectedMemberIdx === -1) return
+		newMembers.splice(selectedMemberIdx, 1)
+	})
+
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -25,10 +38,11 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 		return initials
 	}
 
+
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
 
-	const { members } = story.storyData;
+
 
 	return (
 		<div className="members-cmp">
@@ -56,11 +70,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 				) : (
 					<AvatarGroup max={2}>
 						{members.map((member) => {
-							const nameArr = member.fullname.split(' ');
-							const fName = nameArr[0].split('');
-							const lName = nameArr[1].split('');
-							const initials = fName[0] + lName[0];
-
+							const initials = getInitials(member)
 							return member.imgUrl ? (
 								<Avatar
 									key={member._id}
@@ -89,25 +99,47 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 					horizontal: 'left',
 				}}>
 				<Typography className="member-picker-container">
-					<div className="full-members-container">
-						{boardMembers.map((member, idx) => {
+					<span className="selected-members">
+						{members.map(member => {
 							return (
-								<span className="member-details" key={member._id} onClick={() => {
-									onUpdate('ADD_MEMBER', member._id);
-									handleClose();
-								}}>
-									<span className="member-img" key={member._id}>
-										{member.imgUrl ? (
-											<img src={member.imgUrl} alt="" />
-										) : (
-											getInitials(member)
-										)}
+								<span className="selected-member-container">
+									<span className="member-details" key={member._id} >
+										<span className="member-img" key={member._id}>
+											{member.imgUrl ? (
+												<img src={member.imgUrl} alt="" />
+											) : (
+												getInitials(member)
+											)}
+										</span>
+										<span>{member.fullname}</span>
 									</span>
-									<span>{member.fullname}</span>
+									<span className="btn-remove" onClick={() => {
+										onUpdate('ADD_MEMBER', member._id);
+									}}>Unselect</span>
+								</span>
+							)
+						})}
+					</span>
+					<span className="optional-members-container">
+						{newMembers.map(member => {
+							return (
+								<span className='optional-member'>
+									<span className="member-details" key={member._id} onClick={() => {
+										onUpdate('ADD_MEMBER', member._id);
+									}}>
+										<span className="member-img" key={member._id}>
+											{member.imgUrl ? (
+												<img src={member.imgUrl} alt="" />
+											) : (
+												getInitials(member)
+											)}
+										</span>
+										<span>{member.fullname}</span>
+									</span>
 								</span>
 							);
 						})}
-					</div>
+					</span>
 				</Typography>
 			</Popover>
 		</div >
