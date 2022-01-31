@@ -32,7 +32,7 @@ function _LoginSignup({ login, signup }) {
 				password: data.get('password'),
 			};
 			signup(user);
-			history.push('/board/61f648461d78c2b683f3104e/board');
+			history.push('/board/61f8589fd679bec155e348ba/board');
 		} else {
 			const user = {
 				username: data.get('username'),
@@ -41,7 +41,7 @@ function _LoginSignup({ login, signup }) {
 			try {
 				await login(user);
 				setTimeout(() => {
-					history.push('/board/61f648461d78c2b683f3104e/board');
+					history.push('/board/61f8589fd679bec155e348ba/board');
 				}, 1000);
 			} catch {
 				console.log('not allowed');
@@ -63,10 +63,10 @@ function _LoginSignup({ login, signup }) {
 				username: googleUser.username,
 				password: googleUser.password,
 			});
-			history.push('/board/61f648461d78c2b683f3104e/board');
+			history.push('/board/61f8589fd679bec155e348ba/board');
 		} catch {
 			await signup(googleUser);
-			history.push('/board/61f648461d78c2b683f3104e/board');
+			history.push('/board/61f8589fd679bec155e348ba/board');
 		}
 	};
 	return (
