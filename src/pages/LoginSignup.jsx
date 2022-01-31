@@ -44,10 +44,14 @@ function _LoginSignup({ login, signup }) {
 				username: data.get('username'),
 				password: data.get('password'),
 			};
-			login(user);
-			setTimeout(() => {
-				history.push('/board/61f648461d78c2b683f3104e/board');
-			}, 1000);
+			try {
+				await login(user);
+				setTimeout(() => {
+					history.push('/board/61f648461d78c2b683f3104e/board');
+				}, 1000);
+			} catch {
+				console.log('not allowed');
+			}
 		}
 	};
 
@@ -63,7 +67,10 @@ function _LoginSignup({ login, signup }) {
 		};
 
 		try {
-			await login({ username: googleUser.username, password: googleUser.password });
+			await login({
+				username: googleUser.username,
+				password: googleUser.password,
+			});
 			history.push('/board/61f648461d78c2b683f3104e/board');
 		} catch {
 			await signup(googleUser);
