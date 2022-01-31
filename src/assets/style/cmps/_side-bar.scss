@@ -50,9 +50,22 @@
             top: 0;
             cursor: pointer;
         }
+        .profile-flex-container{
+            display: flex;
+            flex-direction: column;
+            // justify-content: center;
+            align-items: center;
+            button{
+                width: fit-content;
+                border-radius: 6px;
+                background-color: #0073ea;
+                border: none;
+                padding: 0.5rem 1rem 0.5rem;
+                color: white;
+                cursor: pointer;
+            }
+        }
         .profile-img-container {
-            // height: 6rem;
-            // width: rem;
             img {
                 height: 6rem;
                 width: 6rem;

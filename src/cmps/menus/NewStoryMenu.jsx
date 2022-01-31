@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 
 export function NewStoryMenu(props) {
 
-    const { board, updateBoard, onAddGroup, onAddStory } = props
+    const { onAddGroup, onAddStory } = props
 
     const [anchorEl, setAnchorEl] = useState(null);
 

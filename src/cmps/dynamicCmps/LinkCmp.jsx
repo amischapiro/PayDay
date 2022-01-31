@@ -12,10 +12,10 @@ export function LinkCmp({ story, onUpdate }) {
 	const [url, setUrl] = useState(link.url || '');
 	const inputEl = useRef();
 
-	const onAddLink = async () => {	
+	const onAddLink = async () => {
 		if (name && !url) return;
-		const data = {name, url}
-		
+		const data = { name, url }
+
 		await onUpdate('CHANGE_LINK', data);
 		setName(name || '');
 		setUrl(url || '');
@@ -60,13 +60,11 @@ export function LinkCmp({ story, onUpdate }) {
 				onClick={handleClick}
 				className="link-button">
 				<a
-					href={!url ? '#' : (url.slice(0,8) === 'https://' || url.slice(0,7) === 'http://') ? url : 'https://' + url}
+					href={!url ? '#' : (url.slice(0, 8) === 'https://' || url.slice(0, 7) === 'http://') ? url : 'https://' + url}
 					onClick={(ev) => handleLink(ev)}
 					target="_blank"
-                    rel="noreferrer"
-                    // rel="noopener"
-                    // aria-label={name}
-                    >
+					rel="noreferrer"
+				>
 					{name}
 				</a>
 			</Button>

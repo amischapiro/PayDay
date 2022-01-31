@@ -3,8 +3,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 export function TimelineCmp({ story, group, onUpdate }) {
-	//try with debounce
-	//dynamic cmp
 
 	const { timeline } = story.storyData;
 	let initData = [];
@@ -90,32 +88,29 @@ export function TimelineCmp({ story, group, onUpdate }) {
 		return percent;
 	};
 
-	// const onFocusInput = () => {
-	// 	inputEl.current.focus();
-	// };
 
 	return (
 		<div className="timeline" >
 			{!isDateSet ? (
 				<div onMouseEnter={onEnter} onMouseLeave={onLeave}>
-				<DatePicker
-					placeholderText={
-						isSettingDate ? '-' : isHover ? 'Set Dates' : '-'
-					}
-					
-					onFocus={onSetDatesFocus}
-					onBlur={onSetDatesBlur}
-					popperPlacement="bottom"
-					className="date-picker-cmp"
-					// locale="uk"
-					selectsRange={true}
-					startDate={startDate}
-					endDate={endDate}
-					onChange={(update) => {
-						setDateRange(update);
-					}}
-					dateFormat="MMM dd"
-				/>
+					<DatePicker
+						placeholderText={
+							isSettingDate ? '-' : isHover ? 'Set Dates' : '-'
+						}
+
+						onFocus={onSetDatesFocus}
+						onBlur={onSetDatesBlur}
+						popperPlacement="bottom"
+						className="date-picker-cmp"
+						// locale="uk"
+						selectsRange={true}
+						startDate={startDate}
+						endDate={endDate}
+						onChange={(update) => {
+							setDateRange(update);
+						}}
+						dateFormat="MMM dd"
+					/>
 				</div>
 			) : !isSettingDate && isHover ? (
 				<div className="num-of-days" onMouseEnter={onEnter} onMouseLeave={onLeave} onClick={onLeave}>

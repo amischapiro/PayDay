@@ -126,6 +126,31 @@ export class GroupSum extends Component {
 						})}
 					</div>
 				);
+			case 'type-picker':
+				let sortedType = group.stories.map((story) => {
+					return story.storyData.type;
+				});
+				sortedType.sort(function (a, b) {
+					if (a.id < b.id) return -1;
+					else if (a.id > b.id) return 1;
+					else return 0;
+				});
+				return (
+					<div key={'s' + index} className="type-sum">
+						{sortedType.map((type, index) => {
+							return (
+								<Tooltip title="add" arrow key={type + index}>
+									<span
+										key={'s2' + index}
+										className="bat-fragment"
+										style={{
+											backgroundColor: type.color,
+										}}></span>
+								</Tooltip>
+							);
+						})}
+					</div>
+				);
 			case 'number-picker':
 				let sum = 0;
 				group.stories.forEach((story) => {

@@ -204,6 +204,34 @@ export class DynamicColHeaders extends Component {
 						)}
 					</Draggable>
 				);
+			case 'type-picker':
+				return (
+					<Draggable
+						draggableId={`type-picker_${id}`}
+						index={index}
+						type="column"
+						key={`type-picker_${id}`}>
+						{(provided, snapshot) => (
+							<div
+								className={
+									snapshot.isDragging
+										? 'cell type isDragging'
+										: 'cell type'
+								}
+								{...provided.draggableProps}
+								ref={provided.innerRef}
+								>
+								<span
+									className="left-border"
+									{...provided.dragHandleProps}>
+									<DragIndicatorIcon className="col-dragger" />
+								</span>
+								<span>Priority</span>
+								<span className="right-border"></span>
+							</div>
+						)}
+					</Draggable>
+				);
 			default:
 				return <div></div>;
 		}

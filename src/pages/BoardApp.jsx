@@ -158,6 +158,18 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		await updateBoard(newBoard);
 	}
 
+	const onSetCol = (col) => {
+		const newBoard = JSON.parse(JSON.stringify(selectedBoard));
+		
+		if(newBoard.cmpsOrder.some(cmp => {return cmp === col})) {
+			newBoard.cmpsOrder.filter(cmp => {return cmp !== col})
+		} else {
+			newBoard.cmpsOrder.push(col);
+		}
+
+		onUpdateBoard(newBoard);
+	}
+
 
 	const onUpdateBoard = async (boardToUpdate) => {
 		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
@@ -262,6 +274,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 								filterBy={filterBy}
 								updateBoard={onUpdateBoard}
 								updateWhileFilterSort={updateWhileFilterSort}
+								onSetCol={onSetCol}
 							/>
 						</Route>
 					</Switch>

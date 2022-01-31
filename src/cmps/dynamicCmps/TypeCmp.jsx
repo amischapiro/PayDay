@@ -3,9 +3,9 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-export function PriorityCmp({ story, onUpdate, boardPriorities }) {
+export function TypesCmp({ story, onUpdate, boardTypes }) {
+	
 	const [anchorEl, setAnchorEl] = React.useState(null);
-
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -16,21 +16,23 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
-
-	const { priority } = story.storyData;
+	
+	const { type } = story.storyData;
 
 	return (
-		<div className="priority-cmp">
+
+		<div className="type-cmp">
 			<Button
 				aria-describedby={id}
 				variant="contained"
 				onClick={handleClick}
 				sx={{
-					background: priority.color,
-					':hover': { background: priority.color },
+					background: type.color,
+					':hover': { background: type.color },
 				}}
-				className="priority-button dog-ear">
-				{priority.title}
+
+				className={`type-button dog-ear`} >
+				{type.title}
 			</Button>
 			<Popover
 				id={id}
@@ -41,19 +43,18 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 					vertical: 'bottom',
 					horizontal: 'left',
 				}}>
-				{boardPriorities.map((priority, idx) => {
+				{boardTypes.map((type, idx) => {
 					return (
-						<div className="picker-container" key={priority.id}>
+						<div className="picker-container" key={type.id}>
 							<Typography
-								sx={{ p: 2, background: priority.color }}
-								key={priority.id}
+								sx={{ p: 2, background: type.color }}
 								className="element-picker"
 								onClick={() => {
-									onUpdate('CHANGE_PRIORITY', priority.id);
-									handleClose();
+									onUpdate('CHANGE_TYPE', type.id)
+									handleClose()
 								}
 								}>
-								{priority.title}
+								{type.title}
 							</Typography>
 						</div>
 					);

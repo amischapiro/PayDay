@@ -13,7 +13,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { login, signup } from '../store/user.action.js';
-import { userService } from '../services/user.service.js';
 
 const theme = createTheme();
 function _LoginSignup({ login, signup }) {

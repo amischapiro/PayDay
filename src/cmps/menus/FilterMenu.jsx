@@ -30,7 +30,6 @@ export function FilterMenu({ board, filterBy, setFilterBy }) {
     }
 
     const { statuses, priorities } = board
-    // console.log(priorities);
 
     return (
         <React.Fragment>
