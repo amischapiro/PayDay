@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { logout,updateUser } from '../store/user.action';
 import { cloudinaryService } from '../services/cloudinary.service'
+import {userService} from '../services/user.service'
 import Logo from '../assets/img/PayDayLogo3.png';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
@@ -16,7 +17,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 function __SideBar(props) {
 	const [isProfileModalOpen,toggleProfileModal] = useState(false)
-	const currUser = JSON.parse(sessionStorage.loggedinUser)
+	const currUser = userService.getLoggedinUser()
 
 
 	const getInitials = ()=>{

@@ -15,6 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { login, signup } from '../store/user.action.js';
+import { userService } from '../services/user.service.js';
 
 const theme = createTheme();
 
@@ -39,7 +40,7 @@ function _LoginSignup({ login, signup }) {
                 password: data.get('password'),
             };
             signup(user);
-            history.push('/board/61f648521d78c2b683f3104f/board');
+            history.push('/board/61f648461d78c2b683f3104e/board');
         } else {
             const user = {
                 username: data.get('username'),
@@ -47,29 +48,28 @@ function _LoginSignup({ login, signup }) {
             };
             login(user);
             setTimeout(() => {
-                history.push('/board/61f648521d78c2b683f3104f/board');
+                history.push('/board/61f648461d78c2b683f3104e/board');
             }, 1000);
         }
     };
 
-    const responseGoogle = (response) => {
-        const  userObj = response.profileObj
+    const responseGoogle = (response) => {        
+        const userObj = response.profileObj
         const googleUser = {
             fullname: userObj.name,
-            username:userObj.email,
-            imgUrl:userObj.imageUrl,
-            mentions:[],
+            username: userObj.email,
+            imgUrl: userObj.imageUrl,
+            mentions: [],
             createsAt: Date.now(),
             password: response.tokenId
         }
-        try {
-            login({username:googleUser.username,password:googleUser.password})
-            console.log('from signin');
-        } catch (error) {
-            // signup(googleUser)
+
+        const currUser = login({ username: googleUser.username, password: googleUser.password })
+        if(!userService.getLoggedinUser()){
+            signup(googleUser)
             console.log('from signup');
-            
         }
+        history.push('/board/61f648461d78c2b683f3104e/board')
     }
 
     return (
@@ -159,13 +159,13 @@ function _LoginSignup({ login, signup }) {
                             </Grid>
                         </Grid>
                     </Box>
-                </Box>
-            </Container>
             <GoogleLogin
                 className='google-signin-btn'
                 clientId='586771329018-j784f66o5gjvidjg8a7siqq7ffhr50v1.apps.googleusercontent.com'
                 onSuccess={responseGoogle}
                 cookiePolicy={'single_host_origin'} />
+                </Box>
+            </Container>
         </ThemeProvider>
     );
 }
