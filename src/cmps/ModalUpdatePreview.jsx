@@ -8,12 +8,17 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 export const ModalUpdatePreview = ({ comment, onRemoveComment, getInitials, imgUrl }) => {
 
+
     return (
         <div className="update-preview">
             <div className="main-section " >
                 <div className="member flex align-center" >
                     {/* <span><Avatar alt={comment.byMember.username} src={comment.byMember.imgUrl} style={{ width:'30px', height:'30px', display:'inline-block' }}/></span> */}
-                    <div className="member-img">{getInitials(comment.byMember.fullname)}</div>
+                    {/* <div className="member-img">{getInitials(comment.byMember.fullname)}</div> */}
+                    <div className='member-img'>
+                        {imgUrl ? <img src={imgUrl} alt="" />
+                            : getInitials(comment.byMember.fullname)}
+                    </div>
                     <span>{comment.byMember.fullname}</span>
                 </div>
                 <div className="info-and-actions">
