@@ -1,7 +1,12 @@
+.due-date-sum,
 .due-date-container {
     width: 140px;
     height: inherit;
     padding: 5.5px;
+    background-color: inherit;
+    border: 1px solid #fff;
+    border-top: #c4c4c4;
+    border-bottom: #c4c4c4;
     
     &:hover {
         input {

@@ -187,8 +187,8 @@ export class DynamicColHeaders extends Component {
 							<div
 								className={
 									snapshot.isDragging
-										? 'cell link isDragging'
-										: 'cell link'
+										? 'cell due-date isDragging'
+										: 'cell due-date'
 								}
 								ref={provided.innerRef}
 								{...provided.draggableProps}
