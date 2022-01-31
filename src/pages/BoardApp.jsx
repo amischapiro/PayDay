@@ -110,10 +110,60 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		fetchData()
 	}, [filterBy, selectedBoard])
 
+	const onSetSort = async (type) => {
+		const newBoard = JSON.parse(JSON.stringify(selectedBoard));
+		const sortBy = newBoard.sortBy;
+		if (type === sortBy.name) sortBy.order *= -1;
+		else {
+			sortBy.name = type;
+			sortBy.order = -1;
+		}
+
+		let newGroups = newBoard.groups.map((group) => {
+			const newStories = group.stories.sort(function (a, b) {
+				switch (sortBy.name) {
+					case 'name':
+						if (a.title.toLowerCase() < b.title.toLowerCase()) return sortBy.order;
+						else if (a.title.toLowerCase() > b.title.toLowerCase()) return sortBy.order * -1;
+						else return 0;
+					case 'status':
+						if (a.storyData.status.id < b.storyData.status.id) return sortBy.order;
+						else if (a.storyData.status.id > b.storyData.status.id) return sortBy.order * -1;
+						else return 0;
+					case 'priority':
+						if (a.storyData.priority.id < b.storyData.priority.id) return sortBy.order;
+						else if (a.storyData.priority.id > b.storyData.priority.id) return sortBy.order * -1;
+						else return 0;
+					case 'people':
+						if (a.storyData.members.length < b.storyData.members.length) return sortBy.order;
+						else if (a.storyData.members.length > b.storyData.members.length) return sortBy.order * -1;
+						else return 0;
+					case 'SP':
+						if (a.storyData.number < b.storyData.number) return sortBy.order;
+						else if (a.storyData.number > b.storyData.number) return sortBy.order * -1;
+						else return 0;
+					default:
+						if (a.createdAt < b.createdAt) return sortBy.order;
+						else if (a.createdAt > b.createdAt) return sortBy.order * -1;
+						else return 0;
+				}
+			});
+
+			group.stories = newStories;
+			return group;
+		});
+
+		newBoard.groups = newGroups;
+		await updateBoard(newBoard);
+	}
+
 
 	const onUpdateBoard = async (boardToUpdate) => {
 		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilter();
+			updateWhileFilterSort();
+			return;
+		} else if(selectedBoard?.sortBy.name) {
+			updateWhileFilterSort();
 			return;
 		}
 		await updateBoard(boardToUpdate);
@@ -122,7 +172,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
 	const onRemoveStory = async () => {
 		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilter();
+			updateWhileFilterSort();
 			return;
 		}
 		const story = {
@@ -134,17 +184,18 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 	};
 
 
-	const updateWhileFilter = () => {
+	const updateWhileFilterSort = () => {
 		// eslint-disable-next-line no-restricted-globals
-		const isNulifyFilter = confirm("You can't make any changes to your board while filter is on, would you like to cancel the filter?");
-		if (isNulifyFilter) {
+		const isNulifyFilterSort = confirm("You can't make any changes to your board while filter or sort are on, would you like to cancel filter and sort?");
+		if (isNulifyFilterSort) {
 			setFilterBy({
 				name: null,
 				priority: null,
 				status: null,
 				members: null,
 			});
-			alert('Filter cleared!');
+			onSetSort(null);
+			alert('Filter and sort cleared!');
 		}
 	};
 
@@ -188,7 +239,8 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 						getById={getById}
 						setFilterBy={setFilterBy}
 						filterBy={filterBy}
-						updateWhileFilter={updateWhileFilter}
+						updateWhileFilterSort={updateWhileFilterSort}
+						onSetSort={onSetSort}
 					/>
 				</section>
 				<div className="board-content">
@@ -197,7 +249,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 							<Kanban board={filteredBoard || selectedBoard}
 								filterBy={filterBy}
 								updateBoard={onUpdateBoard}
-								updateWhileFilter={updateWhileFilter}
+								updateWhileFilterSort={updateWhileFilterSort}
 							/>
 						</Route>
 						<Route path="/board/:boardId/dashboard">
@@ -208,7 +260,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 								board={filteredBoard || selectedBoard}
 								filterBy={filterBy}
 								updateBoard={onUpdateBoard}
-								updateWhileFilter={updateWhileFilter}
+								updateWhileFilterSort={updateWhileFilterSort}
 							/>
 						</Route>
 					</Switch>

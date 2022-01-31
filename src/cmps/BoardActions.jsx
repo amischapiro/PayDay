@@ -10,14 +10,16 @@ import { FilterMenu } from './menus/FilterMenu'
 import { userService } from '../services/user.service'
 import { BoardSearch } from './BoardSearch';
 
-function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileFilter }) {
+function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileFilterSort, onSetSort }) {
 
 	const newBoard = { ...board };
 
-
 	const onAddStory = async () => {
 		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilter();
+			updateWhileFilterSort();
+			return;
+		} else if(board.sortBy.name) {
+			updateWhileFilterSort();
 			return;
 		}
 		const newStory = utilService.createStory();
@@ -32,7 +34,10 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 
 	const onAddGroup = async () => {
 		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilter();
+			updateWhileFilterSort();
+			return;
+		} else if(board.sortBy.name) {
+			updateWhileFilterSort();
 			return;
 		}
 		const newGroup = utilService.createEmptyGroup();
@@ -89,7 +94,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 					<FilterMenu board={board} updateBoard={updateBoard} setFilterBy={setFilterBy} filterBy={filterBy} />
 				</div>
 
-				<SortMenu board={board} updateBoard={updateBoard} filterBy={filterBy} updateWhileFilter={updateWhileFilter} />
+				<SortMenu onSetSort={onSetSort} />
 
 			</div>
 		</div>
