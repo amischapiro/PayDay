@@ -297,9 +297,11 @@
 		.story-txt-area {
 			width: 18em;
 		}
+		.story-editor{
+			button{
+				display: none;
+			}
+		}
 	}
-	.story-title {
-		// line-height: 0.9375rem;
-		// padding: 4px 10px;
-	}
+	
 }
