@@ -37,6 +37,10 @@ export function _BoardPreview(props) {
         ev.stopPropagation()
         handleClose(null)
         const currBoardId = props.match.params.boardId
+        if(currBoardId === 'fdsafdsafdsfasdf') {
+            alert('This is a "core" board and is used to showcase our app, therefore changes to it are not allowed. To see full functionality and CRUD please create a new board!'); 
+            return;
+        }
         if (boardId === currBoardId) goToNextBoard(currBoardId)
         await removeBoard(boardId)
         socketService.emit('update workspace')
