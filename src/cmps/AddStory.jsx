@@ -8,7 +8,8 @@ export function _AddStory(props) {
 	const { board, group, updateBoard } = props;
 	const currUser = userService.getMiniLoggedInUser();
 	const [txt, setTxt] = useState('');
-	
+	const [isFocused, toggleIsFocused] = useState(false)
+
 	const inputEl = useRef();
 
 	const onAddStory = async ({ target }) => {
@@ -52,6 +53,7 @@ export function _AddStory(props) {
 	const handleUpdate = (ev) => {
 		if (ev.key === 'Enter' || ev.type === 'blur') {
 			onAddStory(ev);
+			toggleIsFocused(false)
 		}
 	};
 
@@ -65,7 +67,7 @@ export function _AddStory(props) {
 	};
 
 	return (
-		<div className="add-story" onClick={onFocusInput}>
+		<div className={isFocused ? "add-story focused" : "add-story"} onClick={onFocusInput}>
 			<div
 				className="story-selector"
 				style={{
@@ -79,6 +81,7 @@ export function _AddStory(props) {
 				onBlur={handleUpdate}
 				onKeyUp={handleUpdate}
 				value={txt}
+				onClick={() => toggleIsFocused(true)}
 				onChange={handleChange}
 				ref={inputEl}
 			/>
