@@ -23,7 +23,6 @@ function __SideBar(props) {
 
 
 	const getInitials = () => {
-		console.log('here');
 		const fullname = currUser.fullname
 		const nameArr = fullname.split(' ');
 		const fName = nameArr[0].split('');

@@ -17,6 +17,14 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 		setAnchorEl(null);
 	};
 
+	const getInitials = (member) => {
+		const nameArr = member.fullname.split(' ');
+		const fName = nameArr[0].split('');
+		const lName = nameArr[1].split('');
+		const initials = fName[0] + lName[0];
+		return initials
+	}
+
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
 
@@ -38,8 +46,8 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 							src={members[0].imgUrl}
 							alt=""
 						/> : <span className="members-cmp-initials">
-							{members[0].fullname.split(' ')[0].split('')[0] + 
-							members[0].fullname.split(' ')[1].split('')[0]}
+							{members[0].fullname.split(' ')[0].split('')[0] +
+								members[0].fullname.split(' ')[1].split('')[0]}
 						</span>}{' '}
 						<span className="plus-members">
 							+{members.length - 1}
@@ -80,43 +88,28 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 					vertical: 'bottom',
 					horizontal: 'left',
 				}}>
-				{boardMembers.map((member, idx) => {
-					const nameArr = member.fullname.split(' ');
-					const fName = nameArr[0].split('');
-					const lName = nameArr[1].split('');
-					const initials = fName[0] + lName[0];
-					return (
-						<div className="member-picker-container" key={member._id}>
-							<Typography
-								sx={{ p: 2 }}
-								className="member-picker"
-								onClick={() => {
+				<Typography className="member-picker-container">
+					<div className="full-members-container">
+						{boardMembers.map((member, idx) => {
+							return (
+								<span className="member-details" onClick={() => {
 									onUpdate('ADD_MEMBER', member._id);
 									handleClose();
 								}}>
-								<span className="member-img-container">
-									<span
-										className="member-img"
-										key={member._id}>
+									<span className="member-img" key={member._id}>
 										{member.imgUrl ? (
-											<img src={member.imgUrl} />
+											<img src={member.imgUrl} alt="" />
 										) : (
-											initials
+											getInitials(member)
 										)}
 									</span>
 									<span>{member.fullname}</span>
 								</span>
-
-								{/* {member.imgUrl ? (<img
-										src={member.imgUrl}
-										alt={fName[0] + lName[0]}
-									/>) : (<div className='members-cmp-initials' key={member._id} >{initials.toUpperCase()}</div>)} {' '}
-									{member.fullname} */}
-							</Typography>
-						</div>
-					);
-				})}
+							);
+						})}
+					</div>
+				</Typography>
 			</Popover>
-		</div>
+		</div >
 	);
 }
