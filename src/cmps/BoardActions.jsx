@@ -44,56 +44,6 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 		await updateBoard(newBoard);
 	};
 
-	const onSetSort = async (type) => {
-		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilter();
-			return;
-		}
-		const sortBy = newBoard.sortBy;
-		if (type === sortBy.name) sortBy.order *= -1;
-		else {
-			sortBy.name = type;
-			sortBy.order = -1;
-		}
-
-		let newGroups = newBoard.groups.map((group) => {
-			const newStories = group.stories.sort(function (a, b) {
-				switch (sortBy.name) {
-					case 'name':
-						if (a.title.toLowerCase() < b.title.toLowerCase()) return sortBy.order;
-						else if (a.title.toLowerCase() > b.title.toLowerCase()) return sortBy.order * -1;
-						else return 0;
-					case 'status':
-						if (a.status.id < b.status.id) return sortBy.order;
-						else if (a.status.id > b.status.id) return sortBy.order * -1;
-						else return 0;
-					case 'priority':
-						if (a.priority.id < b.priority.id) return sortBy.order;
-						else if (a.priority.id > b.priority.id) return sortBy.order * -1;
-						else return 0;
-					case 'people':
-						if (a.members.length < b.members.length) return sortBy.order;
-						else if (a.members.length > b.members.length) return sortBy.order * -1;
-						else return 0;
-					case 'SP':
-						if (a.number < b.number) return sortBy.order;
-						else if (a.number > b.number) return sortBy.order * -1;
-						else return 0;
-					default:
-						if (a.createdAt < b.createdAt) return sortBy.order;
-						else if (a.createdAt > b.createdAt) return sortBy.order * -1;
-						else return 0;
-				}
-			});
-
-			group.stories = newStories;
-			return group;
-		});
-
-		newBoard.groups = newGroups;
-		await updateBoard(newBoard);
-	};
-
 	const addNewActivity = (type, group, story) => {
 		const currUser = userService.getMiniLoggedInUser()
 		let newActivity = {
@@ -139,7 +89,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 					<FilterMenu board={board} updateBoard={updateBoard} setFilterBy={setFilterBy} filterBy={filterBy} />
 				</div>
 
-				<SortMenu board={board} updateBoard={updateBoard} />
+				<SortMenu board={board} updateBoard={updateBoard} filterBy={filterBy} updateWhileFilter={updateWhileFilter} />
 
 			</div>
 		</div>
