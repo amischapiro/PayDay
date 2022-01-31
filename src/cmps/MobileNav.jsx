@@ -41,7 +41,7 @@ export function MobileNav({ selectedBoard, boards, toggleIsDashboard }) {
                     </li>)
             })}
         </ul>
-        <div className={`burger ${isNavOpen ? 'toggle' : ''}`} onClick={() => toggleNav(true)}>
+        <div className={`burger ${isNavOpen ? 'toggle' : ''}`} onClick={() => toggleNav(!isNavOpen)}>
             <div className="line1"></div>
             <div className="line2"></div>
             <div className="line3"></div>
