@@ -1,3 +1,3 @@
 export function KanbanDueDate({story}) {
-    return;
+    return <div></div>
 }
