@@ -15,11 +15,15 @@ export class _GroupList extends Component {
 	
 	onDragEnd = async (result) => {
 		const {filterBy} = this.props
+		const { board } = this.props;
+
 		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			this.props.updateWhileFilter();
+			this.props.updateWhileFilterSort();
+			return;
+		} else if(board.sortBy.name) {
+			this.props.updateWhileFilterSort();
 			return;
 		}
-		const { board } = this.props;
 		const { destination, source, draggableId, type } = result;
 		if (!destination) return;
 		if (
@@ -60,7 +64,7 @@ export class _GroupList extends Component {
 	};
 
 	render() {
-		const { board, updateBoard, filterBy, updateWhileFilter } = this.props;
+		const { board, updateBoard, filterBy, updateWhileFilterSort } = this.props;
 
 		return (
 			<DragDropContext
@@ -112,7 +116,7 @@ export class _GroupList extends Component {
 												board={board}
 												updateBoard={updateBoard}
 												filterBy={filterBy}
-												updateWhileFilter={updateWhileFilter}
+												updateWhileFilterSort={updateWhileFilterSort}
 											/>
 										</div>
 									)}

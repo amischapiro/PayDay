@@ -2,14 +2,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { KanbanStory } from './KanbanStory';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
-export function KanbanGroup({
-	drag,
-	group,
-	board,
-	updateBoard,
-	filterBy,
-	updateWhileFilter,
-}) {
+export function KanbanGroup({ drag, group, }) {
 	return (
 		<div className="kanban-group" style={{backgroundColor: group.style.backgroundColor}}>
 			<div className="kanban-group-header">
@@ -35,18 +28,7 @@ export function KanbanGroup({
 												{...provided.draggableProps}>
 												<span
 													{...provided.dragHandleProps}>
-													<KanbanStory
-														updateBoard={
-															updateBoard
-														}
-														board={board}
-														group={group}
-														story={story}
-														filterBy={filterBy}
-														updateWhileFilter={
-															updateWhileFilter
-														}
-													/>
+													<KanbanStory story={story} />
 												</span>
 											</div>
 										)}

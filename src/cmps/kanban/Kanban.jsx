@@ -2,11 +2,14 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { KanbanGroup } from './KanbanGroup';
 
 
-export function Kanban({ board, filterBy, updateBoard, updateWhileFilter }){
+export function Kanban({ board, filterBy, updateBoard, updateWhileFilterSort }){
 
     const onDragEnd = async (result) => {
 		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilter();
+			updateWhileFilterSort();
+			return;
+		} else if(board.sortBy.name) {
+			updateWhileFilterSort();
 			return;
 		}
 		const { destination, source, draggableId, type } = result;
@@ -61,8 +64,7 @@ export function Kanban({ board, filterBy, updateBoard, updateWhileFilter }){
 										<div
 											ref={provided.innerRef}
 											{...provided.draggableProps}>
-											<KanbanGroup drag={provided.dragHandleProps} group={group} key={group._id} filterBy={filterBy}
-											updateWhileFilter={updateWhileFilter}/>
+											<KanbanGroup drag={provided.dragHandleProps} group={group} key={group._id} />
 										</div>
 									)}
 								</Draggable>
