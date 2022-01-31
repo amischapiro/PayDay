@@ -18,6 +18,8 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 function __SideBar(props) {
 	const [isProfileModalOpen,toggleProfileModal] = useState(false)
 	const currUser = userService.getLoggedinUser()
+	
+	
 
 
 	const getInitials = ()=>{
@@ -48,12 +50,17 @@ function __SideBar(props) {
 	const uploadImg = async (ev) => {
         setImg({ ...img, isUploading: true, height: 500, width: 500 })
         const { secure_url, height, width } = await cloudinaryService.uploadImg(ev)
-        setImg({ isUploading: false, imgUrl: secure_url, height, width })
+        setImg({ imgUrl: secure_url, isUploading: false, height, width})
+		// console.log('img:', img);
 		if(currUser.fullname !== 'Demo User'){
-			const userToUpdate = {...currUser,imgUrl:img.imgUrl}
+			const userToUpdate = {...currUser,imgUrl:secure_url}
+			console.log('userToUpdate:', userToUpdate);
 			props.updateUser(userToUpdate)
+			sessionStorage.setItem('loggedinUser', JSON.stringify(userToUpdate))
 		}
     }
+
+	
 
 	return (
 		<section className="side-bar">
@@ -72,7 +79,7 @@ function __SideBar(props) {
 				<button><PersonAddAlt1OutlinedIcon className="person-add-icon" /></button>
 				<button><SearchOutlinedIcon className="search-icon" /></button>
 				<button className='logout-btn' onClick={onLogout}><LogoutOutlinedIcon className="logout-icon" /></button>
-				<div className='user-btn-container' onClick={()=>toggleProfileModal(true)}><button className='user-btn'>{img.imgUrl?<img src={img.imgUrl} />:getInitials()}</button></div>
+				<div className='user-btn-container' onClick={()=>toggleProfileModal(true)}><button className='user-btn'>{currUser.imgUrl?<img src={currUser.imgUrl} />:getInitials().toUpperCase()}</button></div>
 
 				{/* <button></button> setUser name letters or pic */}
 			</div>

@@ -141,8 +141,9 @@
     padding: 7px;
     width: inherit;
     height: inherit;
-    border: 2px solid #fff;
+    border: 1px solid #fff;
     img{
+    background-color:#292f4c ;
     position: absolute;
     bottom: 2%;
     left: 17%;
@@ -152,13 +153,13 @@
     }
     
 
-    &:hover {
-        transition: 0.1s ease-in;
-        background-color: #ff5ac5;
-        height: 40px;
-        width: 40px;
-        font-size: 1rem;
-        padding: 4px;
-    }
+    // &:hover {
+    //     transition: 0.1s ease-in;
+    //     background-color: #ff5ac5;
+    //     height: 40px;
+    //     width: 40px;
+    //     font-size: 1rem;
+    //     padding: 4px;
+    // }
 }
 
