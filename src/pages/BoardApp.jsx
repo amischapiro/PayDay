@@ -153,11 +153,8 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		<main className="main-container">
 			<SideBar />
 			<BoardList
-				boards={boards}
-				currBoard={selectedBoard}
-				removeBoard={removeBoard}
-				addBoard={addBoard}
-				loadBoards={loadBoards}
+				boards={boards} currBoard={selectedBoard} removeBoard={removeBoard}
+				addBoard={addBoard} loadBoards={loadBoards}
 			/>
 			<div className="loader"></div>
 		</main>

@@ -25,6 +25,7 @@ export function SortMenu({ board, updateBoard }) {
     const id = open ? 'simple-popover' : undefined;
 
     const onSetSort = async (type) => {
+        console.log(type);
         const sortBy = newBoard.sortBy;
         if (type === sortBy.name) sortBy.order *= -1;
         else {
