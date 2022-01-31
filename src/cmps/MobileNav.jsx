@@ -31,7 +31,7 @@ export function MobileNav({ selectedBoard, boards, toggleIsDashboard }) {
                 key="mnav-3">
                 <NavLink className='mobile-link' to={`/board/${selectedBoard._id}/dashboard`}>Dashboard</NavLink>
             </li>
-            <span>boards:</span>
+            <span>Your boards:</span>
             {/* <li><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/board`}>Current Board</NavLink></li> */}
             {boards.map((board, idx) => {
                 return (

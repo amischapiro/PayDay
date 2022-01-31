@@ -6,6 +6,7 @@ import { MembersCmp } from './MembersCmp.jsx';
 import { NumberCmp } from './NumberCmp.jsx';
 import { LinkCmp } from './LinkCmp.jsx';
 import { DueDateCmp } from './DueDateCmp.jsx';
+import { TypesCmp } from './TypeCmp.jsx';
 
 export function DynamicCmp({ cmp, story, onUpdate, board, group }) {
 	
@@ -45,7 +46,7 @@ export function DynamicCmp({ cmp, story, onUpdate, board, group }) {
 		case 'due-date-picker':
 			return <DueDateCmp story={story} onUpdate={onUpdate} />;
 		case 'type-picker':
-			return <DueDateCmp story={story} onUpdate={onUpdate} boardTypes={types} />;
+			return <TypesCmp story={story} onUpdate={onUpdate} boardTypes={types} />;
 		default:
 			return <React.Fragment></React.Fragment>;
 	}

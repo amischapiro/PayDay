@@ -40,38 +40,38 @@ export function ColumnMenu({ onSetCol }) {
                     horizontal: 'left',
                 }}>
                 <Typography className="drop-down column-drop-down">
-                    <span onClick={() => onSetCol('status-picker')}>
-                        <span className="fa-solid font"></span>
+                    <div onClick={() => onSetCol('status-picker')}>
+                        <span className="fa-solid battery-three-quarters"></span>
                         <span>Status</span>
-                    </span>
-                    <span onClick={() => onSetCol('priority-picker')}>
-                        <span className="fa-solid traffic-light"></span>
+                    </div>
+                    <div onClick={() => onSetCol('priority-picker')}>
+                        <span className="fa-solid exclamation"></span>
                         <span>Priority</span>
-                    </span>
-                    <span onClick={() => onSetCol('member-picker')}>
-                        <span className="fa-solid align-center"></span>
+                    </div>
+                    <div onClick={() => onSetCol('member-picker')}>
+                        <span className="fa-solid users"></span>
                         <span>People</span>
-                    </span>
-                    <span onClick={() => onSetCol('timeline-picker')}>
-                        <span className="fa-solid undo"></span>
+                    </div>
+                    <div onClick={() => onSetCol('timeline-picker')}>
+                        <span className="fa calendar-alt"></span>
                         <span>Timeline</span>
-                    </span>
-                    <span onClick={() => onSetCol('number-picker')}>
-                        <span className="fa-solid undo"></span>
+                    </div>
+                    <div onClick={() => onSetCol('number-picker')}>
+                        <span className="fa-solid calculator"></span>
                         <span>Calc.</span>
-                    </span>
-                    <span onClick={() => onSetCol('link-picker')}>
-                        <span className="fa-solid undo"></span>
+                    </div>
+                    <div onClick={() => onSetCol('link-picker')}>
+                        <span className="fa-solid link"></span>
                         <span>Link</span>
-                    </span>
-                    <span onClick={() => onSetCol('due-date-picker')}>
-                        <span className="fa-solid undo"></span>
+                    </div>
+                    <div onClick={() => onSetCol('due-date-picker')}>
+                        <span className="fa calendar-times"></span>
                         <span>Due Date</span>
-                    </span>
-                    <span onClick={() => onSetCol('type-picker')}>
-                        <span className="fa-solid undo"></span>
+                    </div>
+                    <div onClick={() => onSetCol('type-picker')}>
+                        <span className="fa-solid align-justify"></span>
                         <span>Type</span>
-                    </span>
+                    </div>
                 </Typography>
             </Popover>
         </React.Fragment>

@@ -69,6 +69,10 @@
 	content: '\f002';
 }
 
+.fa.calendar-alt::before {
+	content: '\f073';
+}
+
 .fa.img::before {
 	content: '\f03e';
 }
@@ -99,6 +103,10 @@
 
 .fa.copy::before {
 	content: '\f0c5';
+}
+
+.fa.calendar-times::before {
+	content: '\f273';
 }
 
 .fa.clock::before {
@@ -140,6 +148,13 @@
 .fa-solid.chevron-up::before {
 	content: '\f077';
 }
+.fa-solid.link::before {
+	content: '\f0c1';
+}
+
+.fa-solid.calculator::before {
+	content: '\f1ec';
+}
 
 .fa-solid.robot::before {
 	content: '\f544';
@@ -151,6 +166,18 @@
 
 .fa-solid.info-circle::before {
 	content: '\f05a';
+}
+
+.fa-solid.battery-three-quarters::before {
+	content: '\f241';
+}
+
+.fa-solid.users::before {
+	content: '\f0c0';
+}
+
+.fa-solid.exclamation::before {
+	content: '\f12a';
 }
 
 .fa-solid.star::before {
@@ -271,4 +298,8 @@
 }
 .fa-solid.reply::before{
 	content: '\f3e5';
+}
+
+.fa-solid.align-justify::before{
+	content: '\f039';
 }

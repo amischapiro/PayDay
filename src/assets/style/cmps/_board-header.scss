@@ -4,7 +4,7 @@
     .mobile-nav{
         display: none;
         min-height: 8vh;
-        background-color: #0073ea;
+        background-color: #292f4c;
     }
 
     .fa,
@@ -156,18 +156,24 @@
     .main-header{
         padding: 0;
         z-index: 20;
+        .title-and-action{
+            margin-top: 8vh;
+        }
         .mobile-nav{
             display: block;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 20;
             .nav-links{
-                position: absolute;
+                position: fixed;
                 margin: 0;
                 right: 0;
                 height: 92vh;
                 top: 8vh;
-                background-image: linear-gradient(to left bottom, #3840d8, #116aea, #2a8df2, #5eadf3, #95caf2);
+                background-color: #292f4c;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -175,6 +181,8 @@
                 transform: translateX(100%);
                 transition: 0.3s ease-in;
                 z-index: 20;
+                padding: 0;
+                border-top: 1px solid gray;
                
                 li{
                     list-style: none;
@@ -188,6 +196,9 @@
                     font-weight: bold;
                     font-size: 14px;
                    
+                }
+                span{
+                    color: #0073ea;
                 }
                 &.open{
                     transform: translateX(0%);

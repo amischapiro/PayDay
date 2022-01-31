@@ -95,6 +95,11 @@ export function _Story(props) {
 				newStory.storyData.dueDate = data;
 				addNewActivity('Due date changed');
 				break;
+			case 'CHANGE_TYPE':
+				newData = await boardService.getTypeById(board._id, data);
+				newStory.storyData.type = newData;
+				addNewActivity('Type changed')
+				break;
 			default:
 				break;
 		}
@@ -151,7 +156,7 @@ export function _Story(props) {
 									/>
 								</form>
 							) : (
-								<div className="story-title">{story.title}</div>
+								<div className="story-title" onClick={() =>toggleTitleEdit(!isTitleEditOn)} >{story.title}</div>
 							)}
 							{!isTitleEditOn && (
 								<button
