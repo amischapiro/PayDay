@@ -55,6 +55,7 @@ function _LoginSignup({ login, signup }) {
 
     const responseGoogle = async (response) => {        
         const userObj = response.profileObj
+        console.log(userObj);
         const googleUser = {
             fullname: userObj.name,
             username: userObj.email,
