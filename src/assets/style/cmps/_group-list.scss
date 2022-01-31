@@ -42,30 +42,24 @@
 		&:hover {
 			background-color: #f5f6f8;
 			transition: 0.1s ease;
-			.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root.col-dragger {
+			.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root.col-dragger {
 				visibility: visible;
 			}
 		}
 
 		&:active {
-			.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root.col-dragger {
+			.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root.col-dragger {
 				visibility: visible;
 			}
 		}
 	}
 
-	.MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root.col-dragger {
+	.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root.col-dragger {
 		color: #323338;
 		font-size: 1rem;
-		// display: none;
 		visibility: hidden;
 		height: 100%;
 		cursor: move;
-		// transition: .1s ease;
-
-		// &:hover {
-		// 	display: block;
-		// }
 	}
 
 	.left-border,
@@ -189,24 +183,5 @@
 				opacity: 0.8;
 			}
 		}
-
-		// .drag-group {
-		// 	color: #c4c4c4;
-		// 	font-size: 1.2rem;
-		// 	display: block;
-		// 	height: 100%;
-		// 	cursor: move;
-		// }
-
-		// .collapse-group {
-		// 	background-color: #e1e1e1;
-		// 	border-radius: 4px;
-		// 	color: #666;
-		// 	font-size: 1.2rem;
-		// 	opacity: 0.8;
-		// 	&:hover {
-		// 		opacity: 1;
-		// 	}
-		// }
 	}
 }

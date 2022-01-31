@@ -239,12 +239,12 @@ export function _ActivityModal(props) {
                                     <span>{moment(activity.createdAt).fromNow()}</span>
                                 </div>
                                 <div className='activity-member' >
-                                    <div className='member-img'>
-                                        <div className="img-container">
+                                    {/* <div className='member-img'> */}
+                                        {/* <div className="img-container"> */}
                                             {activity.byMember.imgUrl ? <img src={activity.byMember.imgUrl} alt=""/>
                                                 : getInitials(activity.byMember.fullname)}
-                                        </div>
-                                    </div>
+                                        {/* </div> */}
+                                    {/* </div> */}
                                     <div className='story-title'>{activity.story?.title}</div>
                                 </div>
                                 <div className="flex align-center">
