@@ -226,7 +226,7 @@ export class DynamicColHeaders extends Component {
 									{...provided.dragHandleProps}>
 									<DragIndicatorIcon className="col-dragger" />
 								</span>
-								<span>Priority</span>
+								<span>Type</span>
 								<span className="right-border"></span>
 							</div>
 						)}

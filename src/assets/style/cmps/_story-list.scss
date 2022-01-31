@@ -50,6 +50,20 @@
 		}
 	}
 
+	.type-sum {
+		background-color: #f5f6f8;
+		padding: 7px;
+		width: 117px;
+		display: grid;
+		grid-auto-flow: column;
+		border-radius: 0 0 4px 4px;
+		transition: 0.1s ease;
+
+		&:hover {
+			padding: 5px 7px;
+		}
+	}
+
 	.priority-sum {
 		padding: 7px;
 		background-color: #f5f6f8;

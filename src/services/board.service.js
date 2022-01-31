@@ -11,6 +11,7 @@ export const boardService = {
     getPriorityById,
     getMemberById,
     updateTimeline,
+    getTypeById
 }
 
 
@@ -56,6 +57,11 @@ async function getStatusById(boardId, statusId) {
 async function getPriorityById(boardId, priorityId) {
     const board = await getById(boardId)
     return board.priorities.find(priority => priority.id === priorityId)
+}
+
+async function getTypeById(boardId, typeId) {
+    const board = await getById(boardId)
+    return board.types.find(type => type.id === typeId)
 }
 
 async function getMemberById(boardId, memberId) {
