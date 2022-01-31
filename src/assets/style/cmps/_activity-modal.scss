@@ -189,8 +189,6 @@
         font-size: 0.8125rem;
         line-height: 1.5em;
         padding: 0.4rem 0.6rem;
-        // width: 6rem;
-        // height: 2rem;
         color: #0073ea;
         :first-child {
             margin-inline-end: 0.3rem;
@@ -226,6 +224,7 @@
     .btn-update {
         margin-inline-start: 0.5rem;
         background-color: #0073ea;
+        border: 1px solid #0073ea;
         color: white;
     }
 }
