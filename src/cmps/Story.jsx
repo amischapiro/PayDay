@@ -85,6 +85,10 @@ export function _Story(props) {
 				newStory.storyData.link = data;
 				addNewActivity('Link changed')
 				break;
+			case 'CHANGE_DUE_DATE':
+				newStory.storyData.dueDate = data;
+				addNewActivity('Due date changed');
+				break;
 			default:
 				break;
 		}

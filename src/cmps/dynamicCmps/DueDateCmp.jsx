@@ -4,16 +4,17 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 export function DueDateCmp({ story, onUpdate }) {
 	const { dueDate } = story.storyData;
-	const [startDate, setStartDate] = useState(dueDate || new Date());
+	const [startDate, setStartDate] = useState(dueDate || null);
 
-    useEffect(() => {
-        console.log(startDate);
-        // onUpdate('CHANGE_DUE_DATE', startDate);
-    }, [startDate])
+    const setDate = (date) => {
+        setStartDate(date)
+        onUpdate('CHANGE_DUE_DATE', date.getTime())
+    }
+
 	return (
 		<DatePicker
 			selected={startDate}
-			onChange={(date) => setStartDate(date)}
+			onChange={date => setDate(date)}
 			dateFormat="MMM d">
 			{(Date.now() > startDate) &&
 				<div style={{ color: 'red' }}>
