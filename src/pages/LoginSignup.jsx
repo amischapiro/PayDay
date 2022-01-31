@@ -53,7 +53,7 @@ function _LoginSignup({ login, signup }) {
         }
     };
 
-    const responseGoogle = (response) => {        
+    const responseGoogle = async (response) => {        
         const userObj = response.profileObj
         const googleUser = {
             fullname: userObj.name,
@@ -64,7 +64,7 @@ function _LoginSignup({ login, signup }) {
             password: response.tokenId
         }
 
-        const currUser = login({ username: googleUser.username, password: googleUser.password })
+        const currUser = await login({ username: googleUser.username, password: googleUser.password })
         if(!userService.getLoggedinUser()){
             signup(googleUser)
             console.log('from signup');
