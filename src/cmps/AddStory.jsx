@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import { userService } from '../services/user.service';
 
 export function _AddStory(props) {
+
 	const { board, group, updateBoard } = props;
 	const currUser = userService.getMiniLoggedInUser();
 	const [txt, setTxt] = useState('');
+	
 	const inputEl = useRef();
 
 	const onAddStory = async ({ target }) => {

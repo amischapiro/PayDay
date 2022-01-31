@@ -64,10 +64,10 @@ function _LoginSignup({ login, signup }) {
 
 		try {
 			await login({ username: googleUser.username, password: googleUser.password });
-            history.push('/board/61f648461d78c2b683f3104e/board');
+			history.push('/board/61f648461d78c2b683f3104e/board');
 		} catch {
 			await signup(googleUser);
-            history.push('/board/61f648461d78c2b683f3104e/board');
+			history.push('/board/61f648461d78c2b683f3104e/board');
 		}
 		// console.log(userService.getLoggedinUser())
 	};
