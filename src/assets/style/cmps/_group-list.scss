@@ -42,19 +42,19 @@
 		&:hover {
 			background-color: #f5f6f8;
 			transition: 0.1s ease;
-			.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root.col-dragger {
+			.col-dragger {
 				visibility: visible;
 			}
 		}
 
 		&:active {
-			.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root.col-dragger {
+			.col-dragger {
 				visibility: visible;
 			}
 		}
 	}
 
-	.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root.col-dragger {
+	.col-dragger {
 		color: #323338;
 		font-size: 1rem;
 		visibility: hidden;
