@@ -6,28 +6,23 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
 import { login, signup } from '../store/user.action.js';
 import { userService } from '../services/user.service.js';
 
 const theme = createTheme();
-
 function _LoginSignup({ login, signup }) {
 	let history = useHistory();
 	const location = useLocation();
 	const isSignUp = location.pathname !== '/login';
-
 	function getPath() {
 		return isSignUp ? '/login' : '/signup';
 	}
-
 	const handleSubmit = async (ev) => {
 		ev.preventDefault();
 		const data = new FormData(ev.currentTarget);
@@ -37,20 +32,19 @@ function _LoginSignup({ login, signup }) {
 				username: data.get('username'),
 				password: data.get('password'),
 			};
-			 signup(user);
+			signup(user);
 			history.push('/board/61f648461d78c2b683f3104e/board');
 		} else {
 			const user = {
 				username: data.get('username'),
 				password: data.get('password'),
 			};
-			 login(user);
-			history.push('/board/61f648461d78c2b683f3104e/board');
-			// setTimeout(() => {
-			// }, 1000);
+			login(user);
+			setTimeout(() => {
+				history.push('/board/61f648461d78c2b683f3104e/board');
+			}, 1000);
 		}
 	};
-
 	const responseGoogle = async (response) => {
 		const userObj = response.profileObj;
 		const googleUser = {
@@ -61,7 +55,6 @@ function _LoginSignup({ login, signup }) {
 			createsAt: Date.now(),
 			password: response.tokenId,
 		};
-
 		try {
 			await login({ username: googleUser.username, password: googleUser.password });
 			history.push('/board/61f648461d78c2b683f3104e/board');
@@ -69,9 +62,7 @@ function _LoginSignup({ login, signup }) {
 			await signup(googleUser);
 			history.push('/board/61f648461d78c2b683f3104e/board');
 		}
-		// console.log(userService.getLoggedinUser())
 	};
-
 	return (
 		<ThemeProvider theme={theme}>
 			<Container component="main" maxWidth="xs">
@@ -166,23 +157,20 @@ function _LoginSignup({ login, signup }) {
 						cookiePolicy={'single_host_origin'}
 					/>
 				</Box>
-			</Container>                  
-                    <Link className='back-home-link' to='/'>⬅Back to home</Link>
+			</Container>
+			<Link className='back-home-link' to='/'>⬅Back to home</Link>
 		</ThemeProvider>
 	);
 }
-
 function mapStateToProps({ userModule }) {
 	return {
 		user: userModule.user,
 	};
 }
-
 const mapDispatchToProps = {
 	login,
 	signup,
 };
-
 export const LoginSignup = connect(
 	mapStateToProps,
 	mapDispatchToProps
