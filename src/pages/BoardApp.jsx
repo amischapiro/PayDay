@@ -40,7 +40,6 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 			socketService.terminate();
 		};
 	}, [boardId, getById, loadBoards]);
-	// Original dependencies: []
 
 
 	useEffect(() => {
@@ -56,7 +55,6 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		fetchData()
 		socketService.emit('enter board', boardId);
 	}, [match.params, boardId, getById, loadBoards, setFilterBy]);
-	// Original dependecies: match.params
 
 	useEffect(() => {
 		async function fetchData() {

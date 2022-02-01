@@ -10,15 +10,15 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
-	const { members } = story.storyData;
-	const newMembers = [...boardMembers]
+	const storyMembers = story.storyData.members;
+	const optionalMembers = [...boardMembers]
 
-	members.forEach(member => {
-		const selectedMemberIdx = newMembers.findIndex(diffMember => {
-			return diffMember._id === member._id
+	storyMembers.forEach(member => {
+		const selectedMemberIdx = optionalMembers.findIndex(optMember => {
+			return optMember._id === member._id
 		})
 		if (selectedMemberIdx === -1) return
-		newMembers.splice(selectedMemberIdx, 1)
+		optionalMembers.splice(selectedMemberIdx, 1)
 	})
 
 
@@ -51,25 +51,25 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 				variant="contained"
 				onClick={handleClick}
 				className="members-button">
-				{!members.length ? (
+				{!storyMembers.length ? (
 					<AccountCircleOutlinedIcon className="no-members" />
-				) : members.length > 2 ? (
+				) : storyMembers.length > 2 ? (
 					<div className="active-member-list">
-						{members[0].imgUrl ? <img
-							key={members[0]._id}
-							src={members[0].imgUrl}
+						{storyMembers[0].imgUrl ? <img
+							key={storyMembers[0]._id}
+							src={storyMembers[0].imgUrl}
 							alt=""
 						/> : <span className="members-cmp-initials">
-							{members[0].fullname.split(' ')[0].split('')[0] +
-								members[0].fullname.split(' ')[1].split('')[0]}
+							{storyMembers[0].fullname.split(' ')[0].split('')[0] +
+								storyMembers[0].fullname.split(' ')[1].split('')[0]}
 						</span>}{' '}
 						<span className="plus-members">
-							+{members.length - 1}
+							+{storyMembers.length - 1}
 						</span>{' '}
 					</div>
 				) : (
 					<AvatarGroup max={2}>
-						{members.map((member) => {
+						{storyMembers.map((member) => {
 							const initials = getInitials(member)
 							return member.imgUrl ? (
 								<Avatar
@@ -100,7 +100,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 				}}>
 				<Typography className="member-picker-container">
 					<span className="selected-members">
-						{members.map(member => {
+						{storyMembers.map(member => {
 							return (
 								<span className="selected-member-container">
 									<span className="member-details" key={member._id} >
@@ -121,7 +121,7 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 						})}
 					</span>
 					<span className="optional-members-container">
-						{newMembers.map(member => {
+						{optionalMembers.map(member => {
 							return (
 								<span className='optional-member'>
 									<span className="member-details" key={member._id} onClick={() => {

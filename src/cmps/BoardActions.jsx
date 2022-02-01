@@ -9,6 +9,7 @@ import { FilterMenu } from './menus/FilterMenu'
 
 import { userService } from '../services/user.service'
 import { BoardSearch } from './BoardSearch';
+import { PersonMenu } from './menus/PersonMenu';
 
 function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileFilterSort, onSetSort }) {
 
@@ -18,7 +19,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
 			updateWhileFilterSort();
 			return;
-		} else if(board.sortBy.name) {
+		} else if (board.sortBy.name) {
 			updateWhileFilterSort();
 			return;
 		}
@@ -36,7 +37,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
 			updateWhileFilterSort();
 			return;
-		} else if(board.sortBy.name) {
+		} else if (board.sortBy.name) {
 			updateWhileFilterSort();
 			return;
 		}
@@ -88,6 +89,8 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 					<span className="fa user"></span>
 					<span>Person</span>
 				</div>
+				<PersonMenu members={board.members} setFilterBy={setFilterBy} filterBy={filterBy} />
+
 				<div className="filter">
 					<span className="fa-solid filter"></span>
 					<span className="btn-txt">Filter</span>
