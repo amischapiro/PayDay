@@ -90,6 +90,14 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 						board.groups[idx].stories = stories;
 					});
 				}
+				if (filterBy?.type) {
+					board.groups.forEach((group, idx) => {
+						const stories = group.stories.filter((story) => {
+							return story.storyData.type.id === filterBy.type;
+						});
+						board.groups[idx].stories = stories;
+					});
+				}
 				if (filterBy?.members) {
 					board.groups.forEach((group, idx) => {
 						const stories = group.stories.filter((story) => {

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import UnfoldLessRoundedIcon from '@mui/icons-material/UnfoldLessRounded';
-import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 
 import { StoryList } from './StoryList';
 import { DynamicColHeaders } from './DynamicColHeaders';
@@ -12,7 +10,7 @@ import { GroupMenu } from './menus/GroupMenu';
 import { GroupTitle } from './GroupTitle';
 import {ColumnMenu} from './menus/ColumnMenu'
 
-export class _GroupList extends Component {
+export class GroupList extends Component {
 	
 	onDragEnd = async (result) => {
 		const {filterBy} = this.props
@@ -107,9 +105,9 @@ export class _GroupList extends Component {
 														group={group}
 													/>
 												</div>
-												<div className="header-add-col">
+												{/* <div className="header-add-col"> */}
 													<ColumnMenu onSetCol={onSetCol} />
-												</div>
+												{/* </div> */}
 											</div>
 											<StoryList
 												groupNum={index}
@@ -132,19 +130,3 @@ export class _GroupList extends Component {
 	}
 }
 
-function mapStateToProps({ boardModule }) {
-	return {
-		// boards: boardModule.boards,
-		// selectedBoard: boardModule.selectedBoard
-	};
-}
-
-const mapDispatchToProps = {
-	// loadBoards,
-	// getById
-};
-
-export const GroupList = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(_GroupList);

@@ -145,6 +145,10 @@ export function _ActivityModal(props) {
                 return 'fa trash'
             case 'removed':
                 return 'fa trash'
+            case 'duplicated':
+                return 'fa copy'
+            case 'color':
+                return 'fa-solid color'
             case 'changed':
                 return 'fa-solid exchange-alt'
             default:

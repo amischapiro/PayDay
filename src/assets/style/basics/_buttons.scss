@@ -177,3 +177,34 @@
 }
 
 
+.MuiButton-containedPrimary.column-menu-btn {
+    background-color: transparent;
+    color: inherit;
+    width: 20px;
+    height: 2.1875rem;
+    padding: 0;
+    font-size: 1.1rem;
+    text-transform: none;
+    min-width: unset;
+    line-height: 1.2rem;
+    font-size: unset;
+    box-shadow: none;
+    transition: none;
+    -webkit-transition: none;
+    display: grid;
+    place-items: center;
+    display: block;
+    position: relative;
+    left: 21px;
+
+    &:hover {
+        background-color: transparent;
+        box-shadow: none;
+    }
+    
+    .add-col-but {
+        color: #c4c4c4;
+        cursor: pointer;
+    }
+
+}

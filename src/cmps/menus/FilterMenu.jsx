@@ -29,7 +29,7 @@ export function FilterMenu({ board, filterBy, setFilterBy }) {
         setFilterBy({ [filterType]: filterValueId })
     }
 
-    const { statuses, priorities } = board
+    const { statuses, priorities, types } = board
 
     return (
         <React.Fragment>
@@ -69,6 +69,18 @@ export function FilterMenu({ board, filterBy, setFilterBy }) {
                                 const { id, title, color } = priority
                                 return <span key={id}
                                     onClick={() => { onSetFilter('priority', id) }}>
+                                    <span className="color-indicator" style={{ backgroundColor: color }}></span>
+                                    <span style={{ color }}>{title}</span>
+
+                                </span>
+                            })}
+                        </span>
+                        <span>
+                            <span className="type-header">Types</span>
+                            {types.map(type => {
+                                const { id, title, color } = type
+                                return <span key={id}
+                                    onClick={() => { onSetFilter('type', id) }}>
                                     <span className="color-indicator" style={{ backgroundColor: color }}></span>
                                     <span style={{ color }}>{title}</span>
 

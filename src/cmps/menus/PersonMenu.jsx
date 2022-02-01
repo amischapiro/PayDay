@@ -31,10 +31,10 @@ export function PersonMenu({ members, setFilterBy }) {
     }
 
     const onSetFilter = (filterType, filterValueId) => {
+        handleClose()
         if (filterType === 'reset') {
             setFilterBy({})
         }
-        // console.log({[filterType]: filterValueId });
         setFilterBy({ [filterType]: filterValueId })
     }
 
