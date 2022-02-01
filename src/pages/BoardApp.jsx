@@ -17,6 +17,7 @@ import { SideBar } from '../cmps/SideBar.jsx';
 import { BoardList } from '../cmps/BoardList.jsx';
 import { connect } from 'react-redux';
 import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, } from '../store/board.action';
+import { swalService } from '../services/swal.service';
 
 
 function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy }) {
@@ -215,7 +216,6 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 				members: null,
 			});
 			onSetSort(null);
-			alert('Filter and sort cleared!');
 		}
 	};
 

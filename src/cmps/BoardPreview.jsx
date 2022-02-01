@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import TableRowsOutlinedIcon from '@mui/icons-material/TableRowsOutlined';
 import { utilService } from '../services/util.service';
 import { socketService } from '../services/socket.service';
+import { swalService } from '../services/swal.service';
 
 export function _BoardPreview(props) {
 
@@ -37,8 +38,8 @@ export function _BoardPreview(props) {
         ev.stopPropagation()
         handleClose(null)
         const currBoardId = props.match.params.boardId
-        if(currBoardId === 'fdsafdsafdsfasdf') {
-            alert('This is a "core" board and is used to showcase our app, therefore changes to it are not allowed. To see full functionality and CRUD please create a new board!'); 
+        if(currBoardId === '61f8ea655053a7b7252cf5e4') {
+            swalService.onDeleteCoreSwal();
             return;
         }
         if (boardId === currBoardId) goToNextBoard(currBoardId)

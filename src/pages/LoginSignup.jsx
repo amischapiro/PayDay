@@ -18,7 +18,7 @@ const theme = createTheme();
 function _LoginSignup({ login, signup }) {
 	let history = useHistory();
 	
-	const demoBoardId = '61f8e2675053a7b7252cf5e3'
+	const demoBoardId = '61f8ea655053a7b7252cf5e4'
 	
 	const location = useLocation();
 	const isSignUp = location.pathname !== '/login';
