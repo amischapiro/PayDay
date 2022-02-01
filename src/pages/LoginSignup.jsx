@@ -17,11 +17,16 @@ import { login, signup } from '../store/user.action.js';
 const theme = createTheme();
 function _LoginSignup({ login, signup }) {
 	let history = useHistory();
+	
+	const demoBoardId = '61f8e2675053a7b7252cf5e3'
+	
 	const location = useLocation();
 	const isSignUp = location.pathname !== '/login';
+	
 	function getPath() {
 		return isSignUp ? '/login' : '/signup';
 	}
+	
 	const handleSubmit = async (ev) => {
 		ev.preventDefault();
 		const data = new FormData(ev.currentTarget);
@@ -32,7 +37,7 @@ function _LoginSignup({ login, signup }) {
 				password: data.get('password'),
 			};
 			signup(user);
-			history.push('/board/61f8589fd679bec155e348ba/board');
+			history.push(`/board/${demoBoardId}/board`);
 		} else {
 			const user = {
 				username: data.get('username'),
@@ -41,13 +46,14 @@ function _LoginSignup({ login, signup }) {
 			try {
 				await login(user);
 				setTimeout(() => {
-					history.push('/board/61f8589fd679bec155e348ba/board');
+					history.push(`/board/${demoBoardId}/board`);
 				}, 1000);
 			} catch {
 				console.log('not allowed');
 			}
 		}
 	};
+	
 	const responseGoogle = async (response) => {
 		const userObj = response.profileObj;
 		const googleUser = {
@@ -63,12 +69,13 @@ function _LoginSignup({ login, signup }) {
 				username: googleUser.username,
 				password: googleUser.password,
 			});
-			history.push('/board/61f8589fd679bec155e348ba/board');
+			history.push(`/board/${demoBoardId}/board`);
 		} catch {
 			await signup(googleUser);
-			history.push('/board/61f8589fd679bec155e348ba/board');
+			history.push(`/board/${demoBoardId}/board`);
 		}
 	};
+	
 	return (
 		<ThemeProvider theme={theme}>
 			<Container component="main" maxWidth="xs">

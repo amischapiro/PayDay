@@ -194,8 +194,9 @@
     display: grid;
     place-items: center;
     display: block;
-    position: relative;
-    left: 21px;
+    // position: relative;
+    // left: 10px;
+    margin-inline-end: 12px;
 
     &:hover {
         background-color: transparent;
