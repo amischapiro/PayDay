@@ -21,18 +21,17 @@ import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setF
 
 function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy }) {
 
-	
 	const { boardId } = match.params;
 	const [filteredBoard, setFilteredBoard] = useState(null);
 	const [isDashboard, toggleIsDashboard] = useState(false)
 
 
+
 	useEffect(() => {
-		async function fetchData() {
+		(async () => {
 			await loadBoards();
 			await getById(boardId);
-		}
-		fetchData()
+		})();
 		socketService.setup();
 		socketService.on('board has updated', async (updatedBoardId) => {
 			await getById(updatedBoardId);
@@ -44,7 +43,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
 
 	useEffect(() => {
-		async function fetchData() {
+		(async () => {
 			await getById(boardId);
 			setFilterBy({
 				name: null,
@@ -52,8 +51,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 				status: null,
 				members: null,
 			});
-		}
-		fetchData()
+		})();
 		socketService.emit('enter board', boardId);
 	}, [match.params, boardId, getById, loadBoards, setFilterBy]);
 
@@ -233,6 +231,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
 
 	if (!selectedBoard) return <div className="loader"></div>;
+
 
 	return (
 		<main className="main-container">
