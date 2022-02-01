@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { utilService } from '../services/util.service';
 
@@ -85,7 +85,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 					/>
 				</div>
 				<BoardSearch setFilterBy={setFilterBy} filterBy={filterBy} />
-				
+
 				<PersonMenu members={board.members} setFilterBy={setFilterBy} filterBy={filterBy} />
 
 				<div className="filter">

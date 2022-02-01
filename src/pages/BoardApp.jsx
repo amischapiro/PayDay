@@ -21,6 +21,7 @@ import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setF
 
 function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy }) {
 
+	
 	const { boardId } = match.params;
 	const [filteredBoard, setFilteredBoard] = useState(null);
 	const [isDashboard, toggleIsDashboard] = useState(false)

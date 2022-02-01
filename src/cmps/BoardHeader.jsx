@@ -7,7 +7,6 @@ import { socketService } from '../services/socket.service';
 export function _BoardHeader({ board, updateBoard, setStory }) {
 
     const { title, desc, members } = board
-    const boardId = board._id
 
     const [isTitleEditOn, toggleTitleEdit] = useState(false)
     const [isDescEditOn, toggleDescEdit] = useState(false)
@@ -15,19 +14,19 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
     const [editBoard, setEditBoard] = useState({ title, desc: desc || '' })
 
     const titleRef = React.createRef()
-    const decsRef = React.createRef()
+    const descRef = React.createRef()
 
 
     useEffect(() => {
         if (isTitleEditOn) titleRef.current.focus()
-        if (isDescEditOn) decsRef.current.focus()
+        if (isDescEditOn) descRef.current.focus()
 
-    }, [isTitleEditOn, isDescEditOn])
+    }, [isTitleEditOn, isDescEditOn, titleRef, descRef])
 
 
     useEffect(() => {
         setEditBoard({ title, desc })
-    }, [board])
+    }, [board, title, desc])
 
 
     const handleChange = ({ target }) => {
@@ -100,7 +99,7 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
                             onClick={() => { toggleDescEdit(true) }}>{desc ? desc : 'Add description here'}</div>
                     ) : (
                         <form onSubmit={onSubmitDesc}>
-                            <textarea ref={decsRef} type="text" onBlur={onSubmitDesc}
+                            <textarea ref={descRef} type="text" onBlur={onSubmitDesc}
                                 value={editBoard.desc} name="desc" onChange={handleChange} />
                         </form>
                     )}
