@@ -85,10 +85,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 					/>
 				</div>
 				<BoardSearch setFilterBy={setFilterBy} filterBy={filterBy} />
-				<div>
-					<span className="fa user"></span>
-					<span>Person</span>
-				</div>
+				
 				<PersonMenu members={board.members} setFilterBy={setFilterBy} filterBy={filterBy} />
 
 				<div className="filter">

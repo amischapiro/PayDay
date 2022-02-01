@@ -103,8 +103,8 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 						{storyMembers.map(member => {
 							return (
 								<span className="selected-member-container">
-									<span className="member-details" key={member._id} >
-										<span className="member-img" key={member._id}>
+									<span className="member-details" key={`${member._id}a`} >
+										<span className="member-img" key={`${member._id}b`}>
 											{member.imgUrl ? (
 												<img src={member.imgUrl} alt="" />
 											) : (
@@ -124,10 +124,10 @@ export function MembersCmp({ story, onUpdate, boardMembers }) {
 						{optionalMembers.map(member => {
 							return (
 								<span className='optional-member'>
-									<span className="member-details" key={member._id} onClick={() => {
+									<span className="member-details" key={`${member._id}c`} onClick={() => {
 										onUpdate('ADD_MEMBER', member._id);
 									}}>
-										<span className="member-img" key={member._id}>
+										<span className="member-img" key={`${member._id}d`}>
 											{member.imgUrl ? (
 												<img src={member.imgUrl} alt="" />
 											) : (

@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 
-export function PersonMenu({ members, setFilterBy, filterBy }) {
+export function PersonMenu({ members, setFilterBy }) {
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -58,6 +58,7 @@ export function PersonMenu({ members, setFilterBy, filterBy }) {
                     horizontal: 'left',
                 }}>
                 <Typography className="drop-down members-menu">
+                    <React.Fragment>
                     {members.map(member => {
                         const { _id, imgUrl, fullname } = member
                         return (
@@ -74,6 +75,13 @@ export function PersonMenu({ members, setFilterBy, filterBy }) {
                             </span>
                         )
                     })}
+                   <span onClick={() => onSetFilter('reset')}>
+                        <span>
+                            <span className="fa-solid undo"></span>
+                            <span>Reset defualt</span>
+                        </span>
+                    </span>
+                    </React.Fragment>
                 </Typography>
 
             </Popover>

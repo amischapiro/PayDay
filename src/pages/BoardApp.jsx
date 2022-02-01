@@ -62,7 +62,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 			const board = JSON.parse(JSON.stringify(selectedBoard));
 
 			if (filterBy) {
-				if (filterBy?.name)
+				if (filterBy?.name) {
 					board.groups.forEach((group, idx) => {
 						const stories = group.stories.filter((story) => {
 							return story.title
@@ -71,8 +71,8 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 						});
 						board.groups[idx].stories = stories;
 					});
-
-				if (filterBy?.priority)
+				}
+				if (filterBy?.priority) {
 					board.groups.forEach((group, idx) => {
 						const stories = group.stories.filter((story) => {
 							return (
@@ -81,26 +81,25 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 						});
 						board.groups[idx].stories = stories;
 					});
-
-				if (filterBy?.status)
+				}
+				if (filterBy?.status) {
 					board.groups.forEach((group, idx) => {
 						const stories = group.stories.filter((story) => {
 							return story.storyData.status.id === filterBy.status;
 						});
 						board.groups[idx].stories = stories;
 					});
-
-				if (filterBy?.members)
+				}
+				if (filterBy?.members) {
 					board.groups.forEach((group, idx) => {
 						const stories = group.stories.filter((story) => {
-							return story.storyData.status.members.some((member) => {
-								return filterBy.members.some((filterMem) => {
-									return filterMem.id === member._id;
-								});
+							return story.storyData.members.some((member) => {
+								return member._id === filterBy.members
 							});
 						});
 						board.groups[idx].stories = stories;
 					});
+				}
 			}
 
 			setFilteredBoard(board);
@@ -158,7 +157,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
 	const onSetCol = (col) => {
 		const newBoard = JSON.parse(JSON.stringify(selectedBoard));
-		if(newBoard.cmpsOrder.some(cmp => {return cmp === col})) {
+		if (newBoard.cmpsOrder.some(cmp => { return cmp === col })) {
 			const filteredCmps = newBoard.cmpsOrder.filter(cmp => {
 				return cmp !== col
 			})
@@ -175,7 +174,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
 			updateWhileFilterSort();
 			return;
-		} else if(selectedBoard?.sortBy.name) {
+		} else if (selectedBoard?.sortBy.name) {
 			updateWhileFilterSort();
 			return;
 		}
