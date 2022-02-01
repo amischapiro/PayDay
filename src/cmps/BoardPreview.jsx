@@ -38,7 +38,7 @@ export function _BoardPreview(props) {
         ev.stopPropagation()
         handleClose(null)
         const currBoardId = props.match.params.boardId
-        if(currBoardId === '61f8ea655053a7b7252cf5e4') {
+        if(currBoardId === '61f8f86b25bd9487389b2907') {
             swalService.onDeleteCoreSwal();
             return;
         }
