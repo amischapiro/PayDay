@@ -9,34 +9,16 @@ import { DueDateCmp } from './DueDateCmp.jsx';
 import { TypesCmp } from './TypeCmp.jsx';
 
 export function DynamicCmp({ cmp, story, onUpdate, board, group }) {
-	
+
 	const { members, priorities, statuses, types } = board;
-	
+
 	switch (cmp) {
 		case 'status-picker':
-			return (
-				<StatusCmp
-					story={story}
-					onUpdate={onUpdate}
-					boardStatuses={statuses}
-				/>
-			);
+			return <StatusCmp story={story} onUpdate={onUpdate} boardStatuses={statuses} />
 		case 'member-picker':
-			return (
-				<MembersCmp
-					story={story}
-					onUpdate={onUpdate}
-					boardMembers={members}
-				/>
-			);
+			return <MembersCmp story={story} onUpdate={onUpdate} boardMembers={members} />
 		case 'priority-picker':
-			return (
-				<PriorityCmp
-					story={story}
-					onUpdate={onUpdate}
-					boardPriorities={priorities}
-				/>
-			);
+			return <PriorityCmp story={story} onUpdate={onUpdate} boardPriorities={priorities} />
 		case 'timeline-picker':
 			return <TimelineCmp story={story} onUpdate={onUpdate} group={group} />;
 		case 'number-picker':

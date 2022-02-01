@@ -45,9 +45,6 @@ async function addBoard(boardToAdd) {
 }
 
 
-// ADD FIRST NEW BOARD IF EMPTY
-
-// utilService.createFirstBoard()
 
 async function getStatusById(boardId, statusId) {
     const board = await getById(boardId)

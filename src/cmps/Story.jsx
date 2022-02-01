@@ -46,7 +46,7 @@ export function _Story(props) {
 		await updateBoard(newBoard);
 	};
 
-	const onUpdateStory = async (dataType, data) => {
+	const onUpdateStory = async (action, data) => {
 		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
 			updateWhileFilterSort();
 			return;
@@ -57,7 +57,7 @@ export function _Story(props) {
 		const newStory = { ...story };
 		let newData;
 
-		switch (dataType) {
+		switch (action) {
 			case 'CHANGE_STATUS':
 				newData = await boardService.getStatusById(board._id, data);
 				newStory.storyData.status = newData;

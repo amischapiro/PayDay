@@ -1,16 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { NavLink, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import GmailLogo from '../assets/img/gmail-icon.png'
 import AbodeLogo from '../assets/img/adobe-icon.png'
 
-import { GroupList } from './GroupList'
 
-// MIU icons
-
-// import ViewKanbanOutlinedIcon from '@mui/icons-material/ViewKanbanOutlined';
-// import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
 
 
 function _BoardNav({ board, toggleIsDashboard }) {
@@ -18,14 +13,23 @@ function _BoardNav({ board, toggleIsDashboard }) {
     const [isAnimationOn, setAnimation] = useState(false)
     const [isInegrateHoverOn, setIntegrateHover] = useState(false)
 
-
+    let timeoutId;
     const onSetAnimation = () => {
         setAnimation(true)
-        let timeoutId = setTimeout(() => {
+        timeoutId = setTimeout(() => {
             clearInterval(timeoutId)
             setAnimation(false)
         }, 1000)
     }
+
+    useEffect(() => {
+
+
+        return () => {
+            clearInterval(timeoutId)
+        }
+    }, [timeoutId]);
+
 
     return (
         <div className='board-nav'>
