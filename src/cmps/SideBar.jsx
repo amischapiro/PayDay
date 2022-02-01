@@ -87,7 +87,7 @@ function __SideBar(props) {
 							{getInitials().toUpperCase()}
 						</div>}
 			</div>
-			<div className={`user-profile-modal ${isProfileModalOpen ? 'open' : ''}`}>
+			{currUser.fullname !== 'Demo User' && <div className={`user-profile-modal ${isProfileModalOpen ? 'open' : ''}`}>
 				<span className='fa-solid times' onClick={() => toggleProfileModal(false)}></span>
 				<div>Username: {currUser.fullname}</div>
 				<hr />
@@ -99,7 +99,7 @@ function __SideBar(props) {
 					</div>
 					<button onClick={()=>toggleProfileModal(false)}>Done</button>
 				</div>
-			</div>
+			</div>}
 		</section>
 	);
 }
