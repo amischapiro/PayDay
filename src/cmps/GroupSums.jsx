@@ -84,11 +84,19 @@ export class GroupSum extends Component {
 					else if (a.id > b.id) return 1;
 					else return 0;
 				});
+				const statusCount = {
+					s101: 0,
+					s102: 0,
+					s103: 0,
+					s104: 0,
+					s105: 0,
+				}
+				sortedStatus.forEach(status => statusCount[status.id]++)
 				return (
 					<div key={'s' + index} className="status-sum">
 						{sortedStatus.map((status, index) => {
 							return (
-								<Tooltip title='Add' arrow key={status + index}>
+								<Tooltip title={`${status.title} ${(statusCount[status.id] / sortedStatus.length) * 100}%`} arrow key={status + index}>
 									<span
 										key={'s2' + index}
 										className="bat-fragment"
@@ -109,12 +117,19 @@ export class GroupSum extends Component {
 					else if (a.id > b.id) return 1;
 					else return 0;
 				});
+				const priorityCount = {
+					p101: 0,
+					p102: 0,
+					p103: 0,
+					p104: 0,
+				}
+				sortedPriority.forEach(priority => priorityCount[priority.id]++)
 				return (
 
 					<div key={'s' + index} className="priority-sum">
 						{sortedPriority.map((priority, index) => {
 							return (
-								<Tooltip title="add" arrow key={priority + index}>
+								<Tooltip title={`${priority.title} ${(priorityCount[priority.id] / sortedPriority.length) * 100}%`} arrow key={priority + index}>
 									<span
 										key={'s2' + index}
 										className="bat-fragment"
@@ -135,11 +150,19 @@ export class GroupSum extends Component {
 					else if (a.id > b.id) return 1;
 					else return 0;
 				});
+				const typeCount = {
+					t101: 0,
+					t102: 0,
+					t103: 0,
+					t104: 0,
+					t105: 0,
+				}
+				sortedType.forEach(type => typeCount[type.id]++)
 				return (
 					<div key={'s' + index} className="type-sum">
 						{sortedType.map((type, index) => {
 							return (
-								<Tooltip title="add" arrow key={type + index}>
+								<Tooltip title={`${type.title} ${(typeCount[type.id] / sortedType.length) * 100}%`} arrow key={type + index}>
 									<span
 										key={'s2' + index}
 										className="bat-fragment"
