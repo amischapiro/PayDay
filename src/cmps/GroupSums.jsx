@@ -96,7 +96,7 @@ export class GroupSum extends Component {
 					<div key={'s' + index} className="status-sum">
 						{sortedStatus.map((status, index) => {
 							return (
-								<Tooltip title={`${status.title} ${(statusCount[status.id] / sortedStatus.length) * 100}%`} arrow key={status + index}>
+								<Tooltip title={`${status.title} ${((statusCount[status.id] / sortedStatus.length) * 100).toFixed(2)}%`} arrow key={status + index}>
 									<span
 										key={'s2' + index}
 										className="bat-fragment"
@@ -129,7 +129,7 @@ export class GroupSum extends Component {
 					<div key={'s' + index} className="priority-sum">
 						{sortedPriority.map((priority, index) => {
 							return (
-								<Tooltip title={`${priority.title} ${(priorityCount[priority.id] / sortedPriority.length) * 100}%`} arrow key={priority + index}>
+								<Tooltip title={`${priority.title} ${((priorityCount[priority.id] / sortedPriority.length) * 100).toFixed(2)}%`} arrow key={priority + index}>
 									<span
 										key={'s2' + index}
 										className="bat-fragment"
@@ -162,7 +162,7 @@ export class GroupSum extends Component {
 					<div key={'s' + index} className="type-sum">
 						{sortedType.map((type, index) => {
 							return (
-								<Tooltip title={`${type.title} ${(typeCount[type.id] / sortedType.length) * 100}%`} arrow key={type + index}>
+								<Tooltip title={`${type.title} ${((typeCount[type.id] / sortedType.length) * 100).toFixed(2)}%`} arrow key={type + index}>
 									<span
 										key={'s2' + index}
 										className="bat-fragment"
