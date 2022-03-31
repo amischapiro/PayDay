@@ -22,8 +22,6 @@ import { useCallback } from 'use-memo-one'
 
 function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy }) {
 
-	console.log('BoardApp.jsx 💤 25: filterBy', filterBy);
-
 	const { boardId } = useParams()
 	const [filteredBoard, setFilteredBoard] = useState(null)
 	const [isDashboard, toggleIsDashboard] = useState(false)
@@ -171,25 +169,13 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 
 
 	const onUpdateBoard = async (boardToUpdate) => {
-		if (filterBy) {
-			updateWhileFilterSort()
-			return
-		} else if (selectedBoard?.sortBy.name) {
-			updateWhileFilterSort()
-			return
-		}
+		if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
 		await updateBoard(boardToUpdate)
 		socketService.emit('update board', boardId)
 	}
 
 	const onRemoveStory = async () => {
-		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilterSort()
-			return
-		} else if (selectedBoard?.sortBy.name) {
-			updateWhileFilterSort()
-			return
-		}
+		if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
 		const story = {
 			boardId: null,
 			groupId: null,
@@ -284,8 +270,7 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 
 			<div
 				onClick={() => onRemoveStory()}
-				className={`darken-screen ${selectedStoryIds.storyId ? 'open' : ''
-					}`}></div>
+				className={`darken-screen ${selectedStoryIds.storyId ? 'open' : ''}`}></div>
 		</main>
 	)
 }
