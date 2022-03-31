@@ -32,9 +32,7 @@ export function PersonMenu({ members, setFilterBy }) {
 
     const onSetFilter = (filterType, filterValueId) => {
         handleClose()
-        if (filterType === 'reset') {
-            setFilterBy({})
-        }
+        if (filterType === 'reset') setFilterBy(null)
         setFilterBy({ [filterType]: filterValueId })
     }
 

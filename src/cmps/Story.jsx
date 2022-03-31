@@ -47,13 +47,7 @@ export function _Story(props) {
 	};
 
 	const onUpdateStory = async (action, data) => {
-		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilterSort();
-			return;
-		} else if(board.sortBy.name) {
-			updateWhileFilterSort();
-			return;
-		}
+		if (filterBy || board.sortBy.name) return updateWhileFilterSort();
 		const newStory = { ...story };
 		let newData;
 

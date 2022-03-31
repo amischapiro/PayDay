@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 
 export const BoardSearch = ({ filterBy, setFilterBy }) => {
 
-    const [txt, setTxt] = useState(filterBy.name || '')
+    const [txt, setTxt] = useState(filterBy?.name || '')
     const [isSearchOpen, setSearchOpen] = useState(false);
 
     useEffect(() => {
         if (!txt || txt === '') setFilterBy(null)
         else setFilterBy({ name: txt })
+        console.log('BoardSearch.jsx 💤 11: filterBy \n', filterBy);
     }, [txt, setFilterBy])
 
     const handleChange = async ({ target }) => {

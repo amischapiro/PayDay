@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-
 import { Switch, Route, useParams } from 'react-router'
+import { useEffectUpdate } from '../hooks/useUpdateEffect'
 
 import { BoardNav } from '../cmps/BoardNav'
 import { BoardHeader } from '../cmps/BoardHeader'
@@ -20,7 +20,9 @@ import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setF
 import { useCallback } from 'use-memo-one'
 
 
-function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy }) {
+function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy }) {
+
+	console.log('BoardApp.jsx 💤 25: filterBy', filterBy);
 
 	const { boardId } = useParams()
 	const [filteredBoard, setFilteredBoard] = useState(null)
@@ -35,7 +37,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		onLoad()
 	}, [onLoad])
 
-	
+
 	useEffect(() => {
 		(async () => {
 			await getById(boardId)
@@ -45,33 +47,17 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 			await getById(updatedBoardId)
 		})
 		return () => {
-			console.log('bye bye');
 			socketService.off('board has updated')
 		}
 	}, [boardId, getById])
 
 
-	useEffect(() => {
-		// console.log('match params useEffect')
-		(async () => {
-			await getById(boardId)
-			// setFilterBy({
-			// 	name: null,
-			// 	priority: null,
-			// 	status: null,
-			// 	members: null,
-			// })
-		})();
-		socketService.emit('enter board', boardId)
-	}, [boardId, getById])
+	useEffectUpdate(() => {
 
-	useEffect(() => {
-		// async function fetchData() {
 		const board = JSON.parse(JSON.stringify(selectedBoard))
 
-
 		if (filterBy) {
-			if (filterBy?.name) {
+			if (filterBy.name) {
 				board.groups.forEach((group, idx) => {
 					const stories = group.stories.filter((story) => {
 						return story.title.toLowerCase()
@@ -80,7 +66,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 					board.groups[idx].stories = stories
 				})
 			}
-			if (filterBy?.priority) {
+			if (filterBy.priority) {
 				board.groups.forEach((group, idx) => {
 					const stories = group.stories.filter((story) => {
 						return (
@@ -90,7 +76,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 					board.groups[idx].stories = stories
 				})
 			}
-			if (filterBy?.status) {
+			if (filterBy.status) {
 				board.groups.forEach((group, idx) => {
 					const stories = group.stories.filter((story) => {
 						return story.storyData.status.id === filterBy.status
@@ -98,7 +84,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 					board.groups[idx].stories = stories
 				})
 			}
-			if (filterBy?.type) {
+			if (filterBy.type) {
 				board.groups.forEach((group, idx) => {
 					const stories = group.stories.filter((story) => {
 						return story.storyData.type.id === filterBy.type
@@ -106,7 +92,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 					board.groups[idx].stories = stories
 				})
 			}
-			if (filterBy?.members) {
+			if (filterBy.members) {
 				board.groups.forEach((group, idx) => {
 					const stories = group.stories.filter((story) => {
 						return story.storyData.members.some((member) => {
@@ -117,10 +103,9 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 				})
 			}
 		}
-		// console.log('filter use effect')
-		// setFilteredBoard(board)
-		// }
-		// fetchData()
+
+		setFilteredBoard(board);
+
 	}, [filterBy, selectedBoard])
 
 	const onSetSort = async (type) => {
@@ -186,7 +171,7 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
 
 	const onUpdateBoard = async (boardToUpdate) => {
-		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+		if (filterBy) {
 			updateWhileFilterSort()
 			return
 		} else if (selectedBoard?.sortBy.name) {
@@ -201,6 +186,9 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
 			updateWhileFilterSort()
 			return
+		} else if (selectedBoard?.sortBy.name) {
+			updateWhileFilterSort()
+			return
 		}
 		const story = {
 			boardId: null,
@@ -212,15 +200,9 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
 
 	const updateWhileFilterSort = () => {
-		// eslint-disable-next-line no-restricted-globals
-		const isNulifyFilterSort = confirm("You can't make any changes to your board while filter or sort are on, would you like to cancel filter and sort?")
+		const isNulifyFilterSort = window.confirm("You can't make any changes to your board while filter or sort are on, would you like to cancel filter and sort?")
 		if (isNulifyFilterSort) {
-			setFilterBy({
-				name: null,
-				priority: null,
-				status: null,
-				members: null,
-			})
+			setFilterBy(null)
 			onSetSort(null)
 		}
 	}
