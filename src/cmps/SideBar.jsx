@@ -14,6 +14,7 @@ import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 function __SideBar(props) {
 	const [isProfileModalOpen, toggleProfileModal] = useState(false)
@@ -58,6 +59,9 @@ function __SideBar(props) {
 		}
 	}
 
+	const handleClickAway = () => {
+		console.log('clicking away');
+	}
 
 	if (!currUser) return <React.Fragment />
 
@@ -67,39 +71,67 @@ function __SideBar(props) {
 				<button className='logo-btn' onClick={onGoToHome}>
 					<img src={Logo} alt="PD" />
 				</button>
-				<button className='workspace'><GridViewOutlinedIcon className="grid-view-icon" /></button>
-				<button><NotificationsNoneOutlinedIcon className="notification-bell-icon" /></button>
-				<button><InboxOutlinedIcon className="inbox-icon" /></button>
-				<button><EventAvailableOutlinedIcon className="calendar-icon" /></button>
+				<button className='workspace'>
+					<GridViewOutlinedIcon className="grid-view-icon" />
+				</button>
+				<button>
+					<NotificationsNoneOutlinedIcon className="notification-bell-icon" />
+				</button>
+				<button>
+					<InboxOutlinedIcon className="inbox-icon" />
+				</button>
+				<button>
+					<EventAvailableOutlinedIcon className="calendar-icon" />
+				</button>
 			</div>
-			<button className="see-plans btn-primary"><AutoAwesomeIcon className="stars-icon" /> See plans</button>
+
+			<button className="see-plans btn-primary">
+				<AutoAwesomeIcon className="stars-icon" />
+				See plans
+			</button>
+
 			<div className="actions-bottom">
-				<button><ExtensionOutlinedIcon className="extension-icon" /></button>
-				<button><PersonAddAlt1OutlinedIcon className="person-add-icon" /></button>
-				<button><SearchOutlinedIcon className="search-icon" /></button>
-				<button className='logout-btn' onClick={onLogout}><LogoutOutlinedIcon className="logout-icon" /></button>
-					{currUser.imgUrl ?
-						<img src={currUser.imgUrl} alt=""
-							onClick={() => toggleProfileModal(!isProfileModalOpen)} />
-						:
-						<div className="user-initials"
-							onClick={() => toggleProfileModal(!isProfileModalOpen)}>
-							{getInitials().toUpperCase()}
-						</div>}
+				<button>
+					<ExtensionOutlinedIcon className="extension-icon" />
+				</button>
+				<button>
+					<PersonAddAlt1OutlinedIcon className="person-add-icon" />
+				</button>
+				<button>
+					<SearchOutlinedIcon className="search-icon" />
+				</button>
+				<button className='logout-btn' onClick={onLogout}>
+					<LogoutOutlinedIcon className="logout-icon" />
+				</button>
+				{currUser.imgUrl ? (
+					<img src={currUser.imgUrl} alt=""
+						onClick={() => toggleProfileModal(!isProfileModalOpen)} />
+				) : (
+					<div className="user-initials"
+						onClick={() => toggleProfileModal(!isProfileModalOpen)}>
+						{getInitials().toUpperCase()}
+
+					</div>)}
 			</div>
-			{currUser.fullname !== 'Demo User' && <div className={`user-profile-modal ${isProfileModalOpen ? 'open' : ''}`}>
-				<span className='fa-solid times' onClick={() => toggleProfileModal(false)}></span>
-				<div>Username: {currUser.fullname}</div>
-				<hr />
-				<span>Add a photo of you:</span>
-				<div className='profile-flex-container'>
-					<div><input type="file" accept='img/*' onChange={uploadImg} /></div>
-					<div className='profile-img-container'>
-						{img.imgUrl ? <img src={img.imgUrl} alt="" /> : ''}
+			{currUser.fullname !== 'Demo User' && isProfileModalOpen && (
+				<ClickAwayListener onClickAway={() => toggleProfileModal(false)} >
+					<div className="user-profile-modal">
+						<span className='fa-solid times' onClick={() => toggleProfileModal(false)}></span>
+						<div>Username: {currUser.fullname}</div>
+						<hr />
+						<span>Add a photo of you:</span>
+						<div className='profile-flex-container'>
+							<input type="file"
+								accept='.jpg,.png,.jpeg'
+								onChange={uploadImg} />
+							<div className='profile-img-container'>
+								{img.imgUrl ? <img src={img.imgUrl} alt="" /> : ''}
+							</div>
+							<button onClick={() => toggleProfileModal(false)}>Done</button>
+						</div>
 					</div>
-					<button onClick={()=>toggleProfileModal(false)}>Done</button>
-				</div>
-			</div>}
+				</ClickAwayListener>
+			)}
 		</section>
 	);
 }
