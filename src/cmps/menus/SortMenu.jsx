@@ -30,7 +30,7 @@ export function SortMenu({ onSetSort }) {
                 className="sort-menu-btn"
             >
                 <SyncAltRoundedIcon className="sort-icon" />
-                <span>Sort</span>
+                <span className="actions-text">Sort</span>
             </Button>
             <Popover
                 id={id}

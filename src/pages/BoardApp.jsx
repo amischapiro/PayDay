@@ -26,8 +26,8 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 	const [isDashboard, toggleIsDashboard] = useState(false)
 
 
-
 	useEffect(() => {
+		// console.log('boardId useEffect');
 		(async () => {
 			await loadBoards();
 			await getById(boardId);
@@ -43,76 +43,75 @@ function _BoardApp({ match, loadBoards, getById, boards, selectedBoard, updateBo
 
 
 	useEffect(() => {
+		// console.log('match params useEffect');
 		(async () => {
 			await getById(boardId);
-			setFilterBy({
-				name: null,
-				priority: null,
-				status: null,
-				members: null,
-			});
+			// setFilterBy({
+			// 	name: null,
+			// 	priority: null,
+			// 	status: null,
+			// 	members: null,
+			// });
 		})();
 		socketService.emit('enter board', boardId);
-	}, [match.params, boardId, getById, loadBoards, setFilterBy]);
+	}, [match.params, boardId, getById]);
 
 	useEffect(() => {
-		async function fetchData() {
+		// async function fetchData() {
+		const board = JSON.parse(JSON.stringify(selectedBoard));
 
-			const board = JSON.parse(JSON.stringify(selectedBoard));
 
-			if (filterBy) {
-				if (filterBy?.name) {
-					board.groups.forEach((group, idx) => {
-						const stories = group.stories.filter((story) => {
-							return story.title
-								.toLowerCase()
-								.includes(filterBy.name);
-						});
-						board.groups[idx].stories = stories;
+		if (filterBy) {
+			if (filterBy?.name) {
+				board.groups.forEach((group, idx) => {
+					const stories = group.stories.filter((story) => {
+						return story.title.toLowerCase()
+							.includes(filterBy.name.toLowerCase());
 					});
-				}
-				if (filterBy?.priority) {
-					board.groups.forEach((group, idx) => {
-						const stories = group.stories.filter((story) => {
-							return (
-								story.storyData.priority.id === filterBy.priority
-							);
-						});
-						board.groups[idx].stories = stories;
-					});
-				}
-				if (filterBy?.status) {
-					board.groups.forEach((group, idx) => {
-						const stories = group.stories.filter((story) => {
-							return story.storyData.status.id === filterBy.status;
-						});
-						board.groups[idx].stories = stories;
-					});
-				}
-				if (filterBy?.type) {
-					board.groups.forEach((group, idx) => {
-						const stories = group.stories.filter((story) => {
-							return story.storyData.type.id === filterBy.type;
-						});
-						board.groups[idx].stories = stories;
-					});
-				}
-				if (filterBy?.members) {
-					board.groups.forEach((group, idx) => {
-						const stories = group.stories.filter((story) => {
-							return story.storyData.members.some((member) => {
-								return member._id === filterBy.members
-							});
-						});
-						board.groups[idx].stories = stories;
-					});
-				}
+					board.groups[idx].stories = stories;
+				});
 			}
-
-			setFilteredBoard(board);
-
+			if (filterBy?.priority) {
+				board.groups.forEach((group, idx) => {
+					const stories = group.stories.filter((story) => {
+						return (
+							story.storyData.priority.id === filterBy.priority
+						);
+					});
+					board.groups[idx].stories = stories;
+				});
+			}
+			if (filterBy?.status) {
+				board.groups.forEach((group, idx) => {
+					const stories = group.stories.filter((story) => {
+						return story.storyData.status.id === filterBy.status;
+					});
+					board.groups[idx].stories = stories;
+				});
+			}
+			if (filterBy?.type) {
+				board.groups.forEach((group, idx) => {
+					const stories = group.stories.filter((story) => {
+						return story.storyData.type.id === filterBy.type;
+					});
+					board.groups[idx].stories = stories;
+				});
+			}
+			if (filterBy?.members) {
+				board.groups.forEach((group, idx) => {
+					const stories = group.stories.filter((story) => {
+						return story.storyData.members.some((member) => {
+							return member._id === filterBy.members
+						});
+					});
+					board.groups[idx].stories = stories;
+				});
+			}
 		}
-		fetchData()
+		// console.log('filter use effect');
+		// setFilteredBoard(board);
+		// }
+		// fetchData()
 	}, [filterBy, selectedBoard])
 
 	const onSetSort = async (type) => {
@@ -306,9 +305,7 @@ function mapStateToProps({ boardModule }) {
 		selectedStoryIds: boardModule.activityModalStory,
 		selectedBoard: boardModule.selectedBoard,
 		filterBy: boardModule.filterBy,
-		// users: state.userModule.users,
-		// loggedInUser: state.userModule.loggedInUser
-	};
+	}
 }
 
 const mapDispatchToProps = {

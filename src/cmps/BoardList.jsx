@@ -27,7 +27,7 @@ function _BoardList({
 		return () => {
 			socketService.terminate();
 		};
-	}, [loadBoards]);
+	}, []);
 
 	const onToggleBoardListShown = () => {
 		isBoardListOpen ? toggleBoardList(false) : toggleBoardList(true);

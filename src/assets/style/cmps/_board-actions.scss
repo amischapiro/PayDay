@@ -92,7 +92,7 @@
         .filter {
             display: flex;
             align-items: center;
-            
+
             > *:first-child {
                 padding-inline-start: 0.4rem;
             }
@@ -133,8 +133,9 @@
 }
 
 @media screen and(max-width:762px) {
-    .main-actions:first-child {
-        :nth-child(3) {
+
+    .main-actions {
+        .actions-text {
             display: none;
         }
     }

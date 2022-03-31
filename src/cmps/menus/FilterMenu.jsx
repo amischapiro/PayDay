@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 
-export function FilterMenu({ board, filterBy, setFilterBy }) {
+export function FilterMenu({ board, setFilterBy }) {
 
 
     const [anchorEl, setAnchorEl] = useState(null);

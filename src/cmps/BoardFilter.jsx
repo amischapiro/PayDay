@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BoardFilterItem } from './BoardFilterItem.jsx'
 
 export const BoardFilter = (props) => {
-
+    console.log('hi');
     const [currFilterBy, setFilterBy] = useState({
         txt: '',
         membersId: [],

@@ -90,8 +90,8 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 
 				<div className="filter">
 					<span className="fa-solid filter"></span>
-					<span className="btn-txt">Filter</span>
-					<FilterMenu board={board} updateBoard={updateBoard} setFilterBy={setFilterBy} filterBy={filterBy} />
+					<span className="btn-txt actions-text">Filter</span>
+					<FilterMenu board={board} updateBoard={updateBoard} setFilterBy={setFilterBy} />
 				</div>
 
 				<SortMenu onSetSort={onSetSort} />

@@ -20,7 +20,7 @@ export const BoardSearch = ({ filterBy, setFilterBy }) => {
             onClick={() => setSearchOpen(true)}
             className={isSearchOpen ? 'search-bar open' : 'search-bar'}>
             <span className="fa-solid search"></span>
-            {!isSearchOpen && <span>Search</span>}
+            {!isSearchOpen && <span className="actions-text">Search</span>}
             {isSearchOpen && (
                 <input
                     type="text"

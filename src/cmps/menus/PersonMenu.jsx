@@ -46,7 +46,7 @@ export function PersonMenu({ members, setFilterBy }) {
                 className="person-menu-btn"
             >
                 <span className="fa user"></span>
-                <span>Person</span>
+                <span className="actions-text">Person</span>
             </Button>
             <Popover
                 id={id}
@@ -59,28 +59,28 @@ export function PersonMenu({ members, setFilterBy }) {
                 }}>
                 <Typography className="drop-down members-menu">
                     <React.Fragment>
-                    {members.map(member => {
-                        const { _id, imgUrl, fullname } = member
-                        return (
-                            <span className="member-details" key={`${_id}details`}
-                                onClick={() => onSetFilter('members', _id)}  >
-                                <span className="member-img" key={`${_id}img`}>
-                                    {member.imgUrl ? (
-                                        <img src={imgUrl} alt="" />
-                                    ) : (
-                                        getInitials(member)
-                                    )}
+                        {members.map(member => {
+                            const { _id, imgUrl, fullname } = member
+                            return (
+                                <span className="member-details" key={`${_id}details`}
+                                    onClick={() => onSetFilter('members', _id)}  >
+                                    <span className="member-img" key={`${_id}img`}>
+                                        {member.imgUrl ? (
+                                            <img src={imgUrl} alt="" />
+                                        ) : (
+                                            getInitials(member)
+                                        )}
+                                    </span>
+                                    <span>{fullname}</span>
                                 </span>
-                                <span>{fullname}</span>
+                            )
+                        })}
+                        <span onClick={() => onSetFilter('reset')}>
+                            <span>
+                                <span className="fa-solid undo"></span>
+                                <span>Reset defualt</span>
                             </span>
-                        )
-                    })}
-                   <span onClick={() => onSetFilter('reset')}>
-                        <span>
-                            <span className="fa-solid undo"></span>
-                            <span>Reset defualt</span>
                         </span>
-                    </span>
                     </React.Fragment>
                 </Typography>
 
