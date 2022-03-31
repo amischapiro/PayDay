@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { logout, updateUser } from '../store/user.action';
 import { cloudinaryService } from '../services/cloudinary.service'
 import { userService } from '../services/user.service'
@@ -16,11 +16,14 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 
-function __SideBar(props) {
+export const SideBar = () => {
+
+
 	const [isProfileModalOpen, toggleProfileModal] = useState(false)
 	const currUser = userService.getLoggedinUser()
 
-
+	const history = useHistory()
+	const dispatch = useDispatch()
 
 
 	const getInitials = () => {
@@ -33,12 +36,12 @@ function __SideBar(props) {
 	}
 
 	const onLogout = () => {
-		props.logout()
+		dispatch(logout())
 		onGoToHome()
 	}
 
 	const onGoToHome = () => {
-		props.history.push('/')
+		history.push('/')
 	}
 
 	const [img, setImg] = useState({
@@ -54,13 +57,9 @@ function __SideBar(props) {
 		setImg({ imgUrl: secure_url, isUploading: false, height, width })
 		if (currUser.fullname !== 'Demo User') {
 			const userToUpdate = { ...currUser, imgUrl: secure_url }
-			props.updateUser(userToUpdate)
+			dispatch(updateUser(userToUpdate))
 			sessionStorage.setItem('loggedinUser', JSON.stringify(userToUpdate))
 		}
-	}
-
-	const handleClickAway = () => {
-		console.log('clicking away');
 	}
 
 	if (!currUser) return <React.Fragment />
@@ -135,18 +134,3 @@ function __SideBar(props) {
 		</section>
 	);
 }
-
-function mapStateToProps(state) {
-	return {
-		user: state.userModule.loggedinUser,
-	};
-}
-
-const mapDispatchToProps = {
-	logout,
-	updateUser
-};
-
-const _SideBar = withRouter(__SideBar)
-
-export const SideBar = connect(mapStateToProps, mapDispatchToProps)(_SideBar);
