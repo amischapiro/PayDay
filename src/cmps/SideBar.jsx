@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { logout, updateUser } from '../store/user.action';
 import { cloudinaryService } from '../services/cloudinary.service'
 import { userService } from '../services/user.service'
@@ -16,11 +16,16 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 
-function __SideBar({ history, updateUser, logout }) {
+export const SideBar = () => {
+
 
 	const [isProfileModalOpen, toggleProfileModal] = useState(false)
 	const currUser = userService.getLoggedinUser()
-	
+
+	const history = useHistory()
+	const dispatch = useDispatch()
+
+
 	const getInitials = () => {
 		const fullname = currUser.fullname
 		const nameArr = fullname.split(' ');
@@ -31,7 +36,7 @@ function __SideBar({ history, updateUser, logout }) {
 	}
 
 	const onLogout = () => {
-		logout()
+		dispatch(logout())
 		onGoToHome()
 	}
 
@@ -52,7 +57,7 @@ function __SideBar({ history, updateUser, logout }) {
 		setImg({ imgUrl: secure_url, isUploading: false, height, width })
 		if (currUser.fullname !== 'Demo User') {
 			const userToUpdate = { ...currUser, imgUrl: secure_url }
-			updateUser(userToUpdate)
+			dispatch(updateUser(userToUpdate))
 			sessionStorage.setItem('loggedinUser', JSON.stringify(userToUpdate))
 		}
 	}
@@ -129,18 +134,3 @@ function __SideBar({ history, updateUser, logout }) {
 		</section>
 	);
 }
-
-function mapStateToProps(state) {
-	return {
-		user: state.userModule.loggedinUser,
-	};
-}
-
-const mapDispatchToProps = {
-	logout,
-	updateUser
-};
-
-const _SideBar = withRouter(__SideBar)
-
-export const SideBar = connect(mapStateToProps, mapDispatchToProps)(_SideBar);

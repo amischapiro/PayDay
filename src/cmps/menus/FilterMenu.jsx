@@ -23,10 +23,8 @@ export function FilterMenu({ board, setFilterBy }) {
     const id = open ? 'simple-popover' : undefined;
 
     const onSetFilter = (filterType, filterValueId) => {
-        if (filterType === 'reset') {
-            setFilterBy({})
-        }
-        setFilterBy({ [filterType]: filterValueId })
+        if (filterType === 'reset') setFilterBy(null)
+        else setFilterBy({ [filterType]: filterValueId })
     }
 
     const { statuses, priorities, types } = board

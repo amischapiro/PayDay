@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
-import { connect } from 'react-redux'
 import { NavLink } from "react-router-dom";
 
 import GmailLogo from '../assets/img/gmail-icon.png'
 import AbodeLogo from '../assets/img/adobe-icon.png'
 
 
-
-
-function _BoardNav({ board, toggleIsDashboard }) {
+export const BoardNav = ({ board, toggleIsDashboard }) => {
 
     const [isAnimationOn, setAnimation] = useState(false)
     const [isInegrateHoverOn, setIntegrateHover] = useState(false)
@@ -58,16 +55,3 @@ function _BoardNav({ board, toggleIsDashboard }) {
 }
 
 
-
-function mapStateToProps({ boardModule }) {
-    return {
-    }
-}
-
-const mapDispatchToProps = {
-
-}
-
-
-
-export const BoardNav = connect(mapStateToProps, mapDispatchToProps)(_BoardNav)

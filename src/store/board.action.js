@@ -5,7 +5,6 @@ export function loadBoards() {
     return async (dispatch, getState) => {
         try {
             const boards = await boardService.query()
-            // console.log(boards);
             dispatch({ type: 'SET_BOARDS', boards })
             return Promise.resolve(boards)
         } catch (error) {

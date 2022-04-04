@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 export const BoardSearch = ({ filterBy, setFilterBy }) => {
 
-    const [txt, setTxt] = useState(filterBy.name || '')
+    const [txt, setTxt] = useState(filterBy?.name || '')
     const [isSearchOpen, setSearchOpen] = useState(false);
 
     useEffect(() => {
