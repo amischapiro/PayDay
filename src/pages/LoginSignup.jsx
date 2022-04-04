@@ -17,16 +17,16 @@ import { login, signup } from '../store/user.action.js';
 const theme = createTheme();
 function _LoginSignup({ login, signup }) {
 	let history = useHistory();
-	
+
 	const demoBoardId = '620f10c1eebcac01035f55f2'
-	
+
 	const location = useLocation();
 	const isSignUp = location.pathname !== '/login';
-	
+
 	function getPath() {
 		return isSignUp ? '/login' : '/signup';
 	}
-	
+
 	const handleSubmit = async (ev) => {
 		ev.preventDefault();
 		const data = new FormData(ev.currentTarget);
@@ -53,7 +53,7 @@ function _LoginSignup({ login, signup }) {
 			}
 		}
 	};
-	
+
 	const responseGoogle = async (response) => {
 		const userObj = response.profileObj;
 		const googleUser = {
@@ -71,11 +71,15 @@ function _LoginSignup({ login, signup }) {
 			});
 			history.push(`/board/${demoBoardId}/board`);
 		} catch {
-			await signup(googleUser);
+			await signup({
+				username: googleUser.username,
+				password: googleUser.password,
+				fullname: googleUser.fullname
+			});
 			history.push(`/board/${demoBoardId}/board`);
 		}
 	};
-	
+
 	return (
 		<ThemeProvider theme={theme}>
 			<Container component="main" maxWidth="xs">

@@ -1,5 +1,4 @@
 import { httpService } from './http.service'
-import { boardService } from './board.service'
 
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
 
@@ -24,7 +23,7 @@ async function login(credentials) {
 }
 
 async function signup(user) {
-
+    console.log('user.service.js 💤 27: user', user);
     const signupUser = await httpService.post('auth/signup', user)
     _setLoggedinUser(signupUser)
     return signupUser
