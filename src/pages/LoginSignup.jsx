@@ -183,7 +183,6 @@ function _LoginSignup({ login, signup }) {
 						<GoogleLogin
 							className="google-signin-btn"
 							clientId={googleId.id}
-							// clientId="586771329018-j784f66o5gjvidjg8a7siqq7ffhr50v1.apps.googleusercontent.com"
 							onSuccess={responseGoogle}
 							cookiePolicy={'single_host_origin'}
 						/>
