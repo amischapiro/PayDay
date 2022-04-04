@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
@@ -13,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { login, signup } from '../store/user.action.js';
+import { userService } from '../services/user.service.js';
 
 const theme = createTheme();
 function _LoginSignup({ login, signup }) {
@@ -20,12 +22,21 @@ function _LoginSignup({ login, signup }) {
 
 	const demoBoardId = '620f10c1eebcac01035f55f2'
 
+	const [googleId, setGoogleId] = useState('')
 	const location = useLocation();
 	const isSignUp = location.pathname !== '/login';
 
 	function getPath() {
 		return isSignUp ? '/login' : '/signup';
 	}
+
+
+	useEffect(() => {
+		(async () => {
+			const res = await userService.getGoogleId()
+			setGoogleId(res)
+		})();
+	}, [])
 
 	const handleSubmit = async (ev) => {
 		ev.preventDefault();
@@ -69,7 +80,7 @@ function _LoginSignup({ login, signup }) {
 				username: googleUser.username,
 				password: googleUser.password,
 			});
-			history.push(`/board/${demoBoardId}/board`);
+			history.push(`/board/${demoBoardId}/board`)
 		} catch {
 			await signup({
 				username: googleUser.username,
@@ -79,6 +90,7 @@ function _LoginSignup({ login, signup }) {
 			history.push(`/board/${demoBoardId}/board`);
 		}
 	};
+
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -167,12 +179,16 @@ function _LoginSignup({ login, signup }) {
 							</Grid>
 						</Grid>
 					</Box>
-					<GoogleLogin
-						className="google-signin-btn"
-						clientId="586771329018-j784f66o5gjvidjg8a7siqq7ffhr50v1.apps.googleusercontent.com"
-						onSuccess={responseGoogle}
-						cookiePolicy={'single_host_origin'}
-					/>
+					{googleId && (
+						<GoogleLogin
+							className="google-signin-btn"
+							clientId={googleId.id}
+							// clientId="586771329018-j784f66o5gjvidjg8a7siqq7ffhr50v1.apps.googleusercontent.com"
+							onSuccess={responseGoogle}
+							cookiePolicy={'single_host_origin'}
+						/>
+					)}
+
 				</Box>
 			</Container>
 			<Link className='back-home-link' to='/'>⬅Back to home</Link>

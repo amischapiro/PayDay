@@ -12,7 +12,8 @@ export const userService = {
     remove,
     update,
     getMiniLoggedInUser,
-    getMiniUsers
+    getMiniUsers,
+    getGoogleId
 }
 
 // AUTH
@@ -58,6 +59,11 @@ async function update(userToUpdate) {
     return updatedUser
 }
 
+async function getGoogleId() {
+    const id = await httpService.get('auth/googleid')
+    console.log(id);
+    return id
+}
 
 // SESSION STORAGE
 function getLoggedinUser() {
