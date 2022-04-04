@@ -16,13 +16,11 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 
-function __SideBar(props) {
+function __SideBar({ history, updateUser, logout }) {
+
 	const [isProfileModalOpen, toggleProfileModal] = useState(false)
 	const currUser = userService.getLoggedinUser()
-
-
-
-
+	
 	const getInitials = () => {
 		const fullname = currUser.fullname
 		const nameArr = fullname.split(' ');
@@ -33,12 +31,12 @@ function __SideBar(props) {
 	}
 
 	const onLogout = () => {
-		props.logout()
+		logout()
 		onGoToHome()
 	}
 
 	const onGoToHome = () => {
-		props.history.push('/')
+		history.push('/')
 	}
 
 	const [img, setImg] = useState({
@@ -54,13 +52,9 @@ function __SideBar(props) {
 		setImg({ imgUrl: secure_url, isUploading: false, height, width })
 		if (currUser.fullname !== 'Demo User') {
 			const userToUpdate = { ...currUser, imgUrl: secure_url }
-			props.updateUser(userToUpdate)
+			updateUser(userToUpdate)
 			sessionStorage.setItem('loggedinUser', JSON.stringify(userToUpdate))
 		}
-	}
-
-	const handleClickAway = () => {
-		console.log('clicking away');
 	}
 
 	if (!currUser) return <React.Fragment />
