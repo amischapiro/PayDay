@@ -26,6 +26,7 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 	const [filteredBoard, setFilteredBoard] = useState(null)
 	const [isDashboard, toggleIsDashboard] = useState(false)
 
+	console.log('render');
 
 	const onLoad = useCallback(async () => {
 		await loadBoards()
