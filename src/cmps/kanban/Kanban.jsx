@@ -4,13 +4,11 @@ import { KanbanGroup } from './KanbanGroup';
 
 export function Kanban({ board, filterBy, updateBoard, updateWhileFilterSort }) {
 
+	console.log('kanba');
+
 	const onDragEnd = async (result) => {
-		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilterSort();
-			return;
-		} else if (board.sortBy.name) {
-			updateWhileFilterSort();
-			return;
+		if (filterBy || board.sortBy.name) {
+			return updateWhileFilterSort();
 		}
 		const { destination, source, draggableId, type } = result;
 		if (!destination) return;
