@@ -30,10 +30,15 @@
 		height: 75px;
 		border-bottom: 1px solid #e0e0e0;
 		background: #f7f7f7;
-		box-shadow: 0 3px 25px rgba(0, 0, 0, 0.104);
-		padding: 7px 0 0 5px;
+		box-shadow: 0 3px 25px #00000020;
+		display: flex;
+		align-items: center;
 
 		.back-home-link {
+			display: inline-flex;
+			align-items: center;
+			justify-content: flex-start;
+			margin-inline-start: 2.5rem;
 			img {
 				height: 60px;
 				width: auto;
@@ -42,7 +47,6 @@
 				font-family: Roboto Light;
 				color: #333333;
 				font-size: 40px;
-				vertical-align: bottom;
 			}
 		}
 	}
