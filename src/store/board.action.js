@@ -3,8 +3,10 @@ import { swalService } from "../services/swal.service.js";
 
 export function loadBoards() {
     return async (dispatch, getState) => {
+        const state = getState()
+        const { loggedinUser } = state.userModule
         try {
-            const boards = await boardService.query()
+            const boards = await boardService.query(loggedinUser._id)
             dispatch({ type: 'SET_BOARDS', boards })
             return Promise.resolve(boards)
         } catch (error) {

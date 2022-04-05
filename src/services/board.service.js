@@ -16,8 +16,8 @@ export const boardService = {
 
 
 
-async function query() {
-    const boards = await httpService.get('board')
+async function query(userId) {
+    const boards = await httpService.get('board', { userId })
     return boards
 }
 

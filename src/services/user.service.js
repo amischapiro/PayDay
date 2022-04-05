@@ -61,7 +61,6 @@ async function update(userToUpdate) {
 
 async function getGoogleId() {
     const id = await httpService.get('auth/googleid')
-    console.log(id);
     return id
 }
 
@@ -70,25 +69,6 @@ function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
 }
 
-// function getLoggedinUser() {
-//     return {
-//         _id: "u101",
-//         fullname: "Abi Abambi",
-//         username: "abi@ababmi.com",
-//         password: "aBambi123",
-//         imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg",
-//         mentions: [
-//             {
-//                 id: "m101",
-//                 boardId: "m101",
-//                 storyId: "t101"
-//             }board
-//         ]
-//     }
-// }
-
-
-// delete passwords in back
 function getMiniLoggedInUser() {
     const user = getLoggedinUser()
     delete user.username
@@ -97,7 +77,6 @@ function getMiniLoggedInUser() {
     return user
 }
 
-// delete passwords in back
 async function getMiniUsers() {
     let users = await getUsers();
     users = users.map(user => {
