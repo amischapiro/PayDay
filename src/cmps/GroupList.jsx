@@ -8,18 +8,18 @@ import { StoryList } from './StoryList';
 import { DynamicColHeaders } from './DynamicColHeaders';
 import { GroupMenu } from './menus/GroupMenu';
 import { GroupTitle } from './GroupTitle';
-import {ColumnMenu} from './menus/ColumnMenu'
+import { ColumnMenu } from './menus/ColumnMenu'
 
 export class GroupList extends Component {
-	
+
 	onDragEnd = async (result) => {
-		const {filterBy} = this.props
+		const { filterBy } = this.props
 		const { board } = this.props;
 
-		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
+		if (filterBy) {
 			this.props.updateWhileFilterSort();
 			return;
-		} else if(board.sortBy.name) {
+		} else if (board.sortBy.name) {
 			this.props.updateWhileFilterSort();
 			return;
 		}
@@ -106,7 +106,7 @@ export class GroupList extends Component {
 													/>
 												</div>
 												{/* <div className="header-add-col"> */}
-													<ColumnMenu onSetCol={onSetCol} />
+												<ColumnMenu onSetCol={onSetCol} />
 												{/* </div> */}
 											</div>
 											<StoryList
