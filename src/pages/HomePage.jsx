@@ -36,7 +36,7 @@ export function HomePage() {
                             <h1>ayDay</h1>
                         </div>
                         <div className='links-container' >
-                            <Link className='login-link' to={'/signup'} >Sign Up / Sign In </Link>
+                            <Link className='login-link' to={'/login'} >Sign Up / Sign In</Link>
                             <Link className='demo-link' onClick={loginDemoUser} to={`/board/${demoBoardId}/board`}>Demo Mode</Link>
                         </div>
                     </div>
