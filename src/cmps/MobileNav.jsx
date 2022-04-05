@@ -22,24 +22,26 @@ export function MobileNav({ selectedBoard, boards, toggleIsDashboard }) {
                 toggleIsDashboard(false)
             }}
                 key="mnav-2">
-                <NavLink className='mobile-link' to={`/board/${selectedBoard._id}/kanban`}>Kanban</NavLink>
+                <NavLink className='mobile-link' to={`/board/${selectedBoard?._id}/kanban`}>Kanban</NavLink>
             </li>
             <li onClick={() => {
                 toggleNav(false);
                 toggleIsDashboard(true)
             }}
                 key="mnav-3">
-                <NavLink className='mobile-link' to={`/board/${selectedBoard._id}/dashboard`}>Dashboard</NavLink>
+                <NavLink className='mobile-link' to={`/board/${selectedBoard?._id}/dashboard`}>Dashboard</NavLink>
             </li>
             <span>Your boards:</span>
             {/* <li><NavLink className='mobile-link' to={`/board/${selectedBoard._id}/board`}>Current Board</NavLink></li> */}
-            {boards.map((board, idx) => {
-                return (
-                    <li
-                        onClick={() => { toggleNav(false); toggleIsDashboard(false) }} key={idx}>
-                        <NavLink className='mobile-link' to={`/board/${board._id}/board`}>{board.title}</NavLink>
-                    </li>)
-            })}
+            {selectedBoard && (
+                boards.map((board, idx) => {
+                    return (
+                        <li
+                            onClick={() => { toggleNav(false); toggleIsDashboard(false) }} key={idx}>
+                            <NavLink className='mobile-link' to={`/board/${board._id}/board`}>{board.title}</NavLink>
+                        </li>)
+                })
+            )}
         </ul>
         <div className={`burger ${isNavOpen ? 'toggle' : ''}`} onClick={() => toggleNav(!isNavOpen)}>
             <div className="line1"></div>

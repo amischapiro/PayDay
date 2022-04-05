@@ -1,0 +1,90 @@
+.no-boards-page {
+    width: 100%;
+
+    nav {
+        display: block;
+        position: sticky;
+        top: 0;
+        min-height: 8vh;
+        background-color: #292f4c;
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+
+    .container {
+        margin: 2.375rem auto 0;
+        display: grid;
+        width: 70%;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0.5rem;
+        place-items: center;
+    }
+
+    .svg {
+        grid-area: 1 / 1 / 3 / 2;
+        width: 80%;
+        height: 80%;
+        place-self: center;
+    }
+    p {
+        font-family: Roboto light;
+        margin: 0;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .btn-add-board {
+        font-size: 1rem;
+        place-self: center;
+        width: 8rem;
+        height: 2.25rem;
+        border-radius: 4px;
+        color: #0073ea;
+        border: 1px solid #0073ea;
+        transition: 0.2s;
+
+        .fa-solid {
+            margin-inline-end: 0.3rem;
+        }
+
+        &:hover {
+            background-color: #0073ea;
+            color: white;
+            cursor: pointer;
+        }
+    }
+
+    .svg {
+        grid-area: 1 / 1 / 3 / 2;
+        width: 80%;
+        height: 80%;
+        place-self: center;
+    }
+
+    @media (min-width: 800px) {
+        .container {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        nav {
+            display: none;
+        }
+
+        .svg {
+            width: 80%;
+            height: 80%;
+            place-self: center;
+        }
+        p {
+            justify-self: start;
+            align-self: end;
+            text-align: left;
+        }
+        .btn-add-board {
+            place-self: start;
+        }
+    }
+}

@@ -18,6 +18,7 @@ import { BoardList } from '../cmps/BoardList.jsx'
 import { connect } from 'react-redux'
 import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, newUpdateBoard } from '../store/board.action'
 import { useCallback } from 'use-memo-one'
+import { NoBoardsPage } from './NoBoardsPage'
 
 
 function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy, newUpdateBoard }) {
@@ -206,15 +207,8 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 
 
 	if (!boards?.length) return (
-		<main className="main-container">
-			<SideBar />
-			<BoardList
-				boards={boards} currBoard={selectedBoard} removeBoard={removeBoard}
-				addBoard={addBoard} loadBoards={loadBoards}
-			/>
-			{/* <div className="loader"></div> */}
-			<h3>No Boards Yet</h3>
-		</main>
+		<NoBoardsPage boards={boards} currBoard={selectedBoard} removeBoard={removeBoard}
+			addBoard={addBoard} loadBoards={loadBoards} />
 	)
 
 	if (!selectedBoard) return <div className="loader"></div>
