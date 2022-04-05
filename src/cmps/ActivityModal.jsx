@@ -26,6 +26,7 @@ export function _ActivityModal(props) {
         await props.setStory(story)
     }
 
+
     useEffect(() => {
         if (!isUpdateFocused) setComment('')
     }, [isUpdateFocused])

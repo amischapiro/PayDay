@@ -40,7 +40,8 @@ export function boardReducer(state = initialState, action) {
             newState = { ...state, filterBy: action.filterBy }
             break;
         case 'SET_STORY':
-            newState = { ...state, activityModalStory: { boardId: action.story.boardId, groupId: action.story.groupId, storyId: action.story.storyId } }
+            const { story: { boardId, groupId, storyId } } = action
+            newState = { ...state, activityModalStory: { boardId, groupId, storyId } }
             break;
         default:
             return newState;

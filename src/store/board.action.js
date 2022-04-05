@@ -16,7 +16,7 @@ export function loadBoards() {
 export function getById(boardId) {
     return async (dispatch) => {
         try {
-            const board = await boardService.getById(boardId)            
+            const board = await boardService.getById(boardId)
             dispatch({ type: 'SET_BOARD', board })
             return board
         } catch (error) {
@@ -34,6 +34,22 @@ export function removeBoard(boardId) {
             return Promise.resolve()
         } catch (err) {
             throw err
+        }
+    }
+}
+
+export function newUpdateBoard(boardToUpdate) {
+    return async (dispatch, getState) => {
+        const state = getState()
+        const { selectedBoard } = state.boardModule
+        const backupBoard = JSON.parse(JSON.stringify(selectedBoard))
+        try {
+            dispatch({ type: 'UPDATE_BOARD', board: boardToUpdate })
+            await boardService.save(boardToUpdate)
+        } catch (error) {
+            console.log(error);
+            dispatch({ type: 'UPDATE_BOARD', board: backupBoard })
+            throw new Error('Cannot update, retrieving last update')
         }
     }
 }

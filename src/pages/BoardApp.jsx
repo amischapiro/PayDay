@@ -16,17 +16,16 @@ import { socketService } from '../services/socket.service'
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
 import { connect } from 'react-redux'
-import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, } from '../store/board.action'
+import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, newUpdateBoard } from '../store/board.action'
 import { useCallback } from 'use-memo-one'
 
 
-function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy }) {
+function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy, newUpdateBoard }) {
 
 	const { boardId } = useParams()
 	const [filteredBoard, setFilteredBoard] = useState(null)
 	const [isDashboard, toggleIsDashboard] = useState(false)
 
-	console.log('render');
 
 	const onLoad = useCallback(async () => {
 		await loadBoards()
@@ -43,6 +42,7 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 		})();
 		socketService.emit('enter board', boardId);
 		socketService.on('board has updated', async (updatedBoardId) => {
+			console.log('got update');
 			await getById(updatedBoardId)
 		})
 		return () => {
@@ -169,10 +169,20 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 	}
 
 
+	// const onUpdateBoard = async (boardToUpdate) => {
+	// 	if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
+	// 	await updateBoard(boardToUpdate)
+	// 	socketService.emit('update board', boardId)
+	// }
+
 	const onUpdateBoard = async (boardToUpdate) => {
 		if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
-		await updateBoard(boardToUpdate)
-		socketService.emit('update board', boardId)
+		try {
+			await newUpdateBoard(boardToUpdate)
+			socketService.emit('update board', boardId)
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	const onRemoveStory = async () => {
@@ -205,7 +215,6 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 			<div className="loader"></div>
 		</main>
 	)
-
 
 	if (!selectedBoard) return <div className="loader"></div>
 
@@ -293,6 +302,7 @@ const mapDispatchToProps = {
 	addBoard,
 	setStory,
 	setFilterBy,
+	newUpdateBoard
 }
 
 export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp)
