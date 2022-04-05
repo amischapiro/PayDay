@@ -54,8 +54,9 @@
         width: 8rem;
         height: 2.25rem;
         border-radius: 4px;
-        color: #0073ea;
-        border: 1px solid #0073ea;
+        color: #505157;
+        border: 1px solid #c5c7d0;
+        background-color: white;
         transition: 0.2s;
 
         .fa-solid {
@@ -63,8 +64,7 @@
         }
 
         &:hover {
-            background-color: #0073ea;
-            color: white;
+            background-color: #e6e9ef;
             cursor: pointer;
         }
     }
