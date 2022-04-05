@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import Avatar from '@mui/material/Avatar';
@@ -19,9 +19,13 @@ import Logo from '../assets/img/PayDayLogo3.png';
 
 const theme = createTheme();
 function _LoginSignup({ login, signup }) {
-	let history = useHistory();
 
-	const demoBoardId = '620f10c1eebcac01035f55f2'
+
+	const { boards } = useSelector(({ boardModule }) => boardModule)
+
+	const history = useHistory()
+	const boardId = boards[0]?._id
+
 
 	const [googleId, setGoogleId] = useState('')
 	const location = useLocation();
@@ -49,7 +53,7 @@ function _LoginSignup({ login, signup }) {
 				password: data.get('password'),
 			};
 			signup(user);
-			history.push(`/board/${demoBoardId}/board`);
+			history.push(`/board/${boardId}/board`);
 		} else {
 			const user = {
 				username: data.get('username'),
@@ -58,7 +62,7 @@ function _LoginSignup({ login, signup }) {
 			try {
 				await login(user);
 				setTimeout(() => {
-					history.push(`/board/${demoBoardId}/board`);
+					history.push(`/board/${boardId}/board`);
 				}, 1000);
 			} catch {
 				console.log('not allowed');
@@ -81,14 +85,14 @@ function _LoginSignup({ login, signup }) {
 				username: googleUser.username,
 				password: googleUser.password,
 			});
-			history.push(`/board/${demoBoardId}/board`)
+			history.push(`/board/${boardId}/board`)
 		} catch {
 			await signup({
 				username: googleUser.username,
 				password: googleUser.password,
 				fullname: googleUser.fullname
 			});
-			history.push(`/board/${demoBoardId}/board`);
+			history.push(`/board/${boardId}/board`);
 		}
 	};
 

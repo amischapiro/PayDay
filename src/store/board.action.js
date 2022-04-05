@@ -6,6 +6,7 @@ export function loadBoards() {
         const state = getState()
         const { loggedinUser } = state.userModule
         try {
+            dispatch({ type: 'SET_LOADING' })
             const boards = await boardService.query(loggedinUser._id)
             dispatch({ type: 'SET_BOARDS', boards })
             return Promise.resolve(boards)
@@ -18,6 +19,7 @@ export function loadBoards() {
 export function getById(boardId) {
     return async (dispatch) => {
         try {
+            dispatch({ type: 'SET_LOADING' })
             const board = await boardService.getById(boardId)
             dispatch({ type: 'SET_BOARD', board })
             return board

@@ -15,10 +15,10 @@ import { ActivityModal } from '../cmps/ActivityModal'
 import { socketService } from '../services/socket.service'
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, newUpdateBoard } from '../store/board.action'
-import { useCallback } from 'use-memo-one'
 import { NoBoardsPage } from './NoBoardsPage'
+import { Loader } from '../cmps/layout/Loader'
 
 
 function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy, newUpdateBoard }) {
@@ -27,14 +27,7 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 	const [filteredBoard, setFilteredBoard] = useState(null)
 	const [isDashboard, toggleIsDashboard] = useState(false)
 
-
-	const onLoad = useCallback(async () => {
-		await loadBoards()
-	}, [loadBoards])
-
-	useEffect(() => {
-		onLoad()
-	}, [onLoad])
+	const { isLoading } = useSelector(({ boardModule }) => boardModule)
 
 
 	useEffect(() => {
@@ -206,12 +199,13 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 	}
 
 
-	if (!boards?.length) return (
+	if (isLoading) return <Loader />
+
+	if (!boards.length) return (
 		<NoBoardsPage boards={boards} currBoard={selectedBoard} removeBoard={removeBoard}
 			addBoard={addBoard} loadBoards={loadBoards} />
 	)
 
-	if (!selectedBoard) return <div className="loader"></div>
 
 
 	return (

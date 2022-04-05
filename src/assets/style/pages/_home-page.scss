@@ -23,21 +23,21 @@
         color: white;
     }
 
-    .login-link,
-    .demo-link {
-        background-color: #f7a639;
-        color: white;
-        padding: 10px;
-        border-radius: 4px;
-        margin: 10px;
-        &:hover {
-            color: #0f1048;
-        }
-    }
-
     .links-container {
         display: flex;
         justify-content: center;
+
+        > * {
+            background-color: #f7a639;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px;
+            cursor: pointer;
+            &:hover {
+                color: #0f1048;
+            }
+        }
     }
     .group-img-container {
         display: flex;
@@ -72,50 +72,48 @@
 }
 
 @media screen and(max-width:762px) {
-    .home-page{
-
-        .group-img-container{
+    .home-page {
+        .group-img-container {
             flex-direction: column;
             height: fit-content;
-            .dashboard-img,.group-img{
+            .dashboard-img,
+            .group-img {
                 width: 100%;
             }
         }
-        .dashboard-img-container{
-            flex-direction:column-reverse;
+        .dashboard-img-container {
+            flex-direction: column-reverse;
             height: fit-content;
         }
         .dashboard-txt,
-        .group-txt{
+        .group-txt {
             padding: 0.5rem;
             font-size: 1.5rem;
             width: 100%;
         }
-        .connections-img-container{
-
-            .name-links-container{
+        .connections-img-container {
+            .name-links-container {
                 top: 27%;
                 left: 1%;
-                .home-name{
+                .home-name {
                     // height: 6rem;
-                    h1{
+                    h1 {
                         font-size: 1.5rem;
                         line-height: 3rem;
                     }
-                    img{
+                    img {
                         height: 3rem;
                         width: 1.5rem;
-                        
                     }
                 }
-                .links-container{
-                    .login-link,.demo-link{
+                .links-container {
+                    .login-link,
+                    .demo-link {
                         font-size: 0.7rem;
                         padding: 0.2rem;
                     }
                 }
             }
         }
-        
     }
 }

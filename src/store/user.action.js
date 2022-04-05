@@ -1,10 +1,9 @@
 import { userService } from "../services/user.service.js";
 
-
 export function login(credentials) {
     return async (dispatch) => {
         try {
-            
+
             const user = await userService.login(credentials)
             dispatch({ type: 'SET_USER', user })
             return Promise.resolve()
@@ -14,6 +13,14 @@ export function login(credentials) {
     }
 }
 
+
+export function loginDemoUser(demoUser) {
+    return async (dispatch) => {
+        dispatch({ type: 'SET_USER', user: demoUser })
+        sessionStorage.setItem('loggedinUser', JSON.stringify(demoUser))
+        return Promise.resolve()
+    }
+}
 
 export function logout() {
     return async (dispatch) => {
