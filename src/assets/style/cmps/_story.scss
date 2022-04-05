@@ -147,6 +147,8 @@
 		font-weight: 400;
 		border-radius: 0;
 		padding: 0;
+		transition: 0s;
+		transform: translate(0, 0, 0);
 
 		&:hover {
 			box-shadow: none;
@@ -297,11 +299,10 @@
 		.story-txt-area {
 			width: 18em;
 		}
-		.story-editor{
-			button{
+		.story-editor {
+			button {
 				display: none;
 			}
 		}
 	}
-	
 }

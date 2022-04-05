@@ -212,7 +212,8 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 				boards={boards} currBoard={selectedBoard} removeBoard={removeBoard}
 				addBoard={addBoard} loadBoards={loadBoards}
 			/>
-			<div className="loader"></div>
+			{/* <div className="loader"></div> */}
+			<h3>No Boards Yet</h3>
 		</main>
 	)
 
