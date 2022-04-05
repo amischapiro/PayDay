@@ -20,8 +20,6 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
 
-	// const { status } = story.storyData;
-
 	return (
 
 		<div className="status-cmp">

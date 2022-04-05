@@ -5,19 +5,19 @@ import Button from '@mui/material/Button';
 
 export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [priority, setPriority] = React.useState(story.storyData.priority);
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
-	const handleClose = () => {
+	const handleClose = (priority) => {
 		setAnchorEl(null);
+		setPriority(priority);
 	};
 
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
-
-	const { priority } = story.storyData;
 
 	return (
 		<div className="priority-cmp">
@@ -50,7 +50,7 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 								className="element-picker"
 								onClick={() => {
 									onUpdate('CHANGE_PRIORITY', priority.id);
-									handleClose();
+									handleClose(priority);
 								}
 								}>
 								{priority.title}
