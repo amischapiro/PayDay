@@ -3,7 +3,8 @@ import { socketService } from "../services/socket.service"
 import { SideBar } from "../cmps/SideBar"
 import { BoardList } from "../cmps/BoardList"
 import { ReactComponent as NoBoardIcon } from '../assets/img/no-boards.svg'
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
+import Logo from '../assets/img/PayDayLogo3.png';
 
 export const NoBoardsPage = ({ boards, selectedBoard, removeBoard, addBoard, loadBoards }) => {
 
@@ -28,8 +29,10 @@ export const NoBoardsPage = ({ boards, selectedBoard, removeBoard, addBoard, loa
                 addBoard={addBoard} loadBoards={loadBoards}
             />
             <div className="no-boards-page">
-                <nav>
-                    <div onClick={onGoToHome}>PayDay</div>
+                <nav >
+                    <Link className='back-home-link' to='/'>
+                        <img src={Logo} alt="PD" /><span>ayDay</span>
+                    </Link>
                 </nav>
                 <div className="container">
                     <NoBoardIcon className="svg" />
