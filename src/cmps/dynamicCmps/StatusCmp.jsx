@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -7,14 +7,13 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [status, setStatus] = useState(story.storyData.status);
-	
+
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
-	const handleClose = (status) => {
+	const handleClose = () => {
 		setAnchorEl(null);
-		setStatus(status);
 	};
 
 	const open = Boolean(anchorEl);
@@ -52,7 +51,8 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 								className="element-picker"
 								onClick={() => {
 									onUpdate('CHANGE_STATUS', status.id)
-									handleClose(status)
+									handleClose()
+									setStatus(status)
 								}
 								}>
 								{status.title}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Switch, Route, useParams } from 'react-router'
 import { useEffectUpdate } from '../hooks/useUpdateEffect'
+import { AnimatePresence } from 'framer-motion'
 
 import { BoardNav } from '../cmps/BoardNav'
 import { BoardHeader } from '../cmps/BoardHeader'
@@ -21,6 +22,7 @@ import { loginDemoUser, login } from '../store/user.action'
 import { NoBoardsPage } from './NoBoardsPage'
 import { Loader } from '../cmps/layout/Loader'
 import { userService } from '../services/user.service'
+import { Confirm } from '../cmps/layout/Confirm'
 
 
 function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy, loginDemoUser }) {
@@ -29,6 +31,7 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 
 	const [filteredBoard, setFilteredBoard] = useState(null)
 	const [isDashboard, toggleIsDashboard] = useState(false)
+	const [comfirmOpen, setComfirmOpen] = useState(false)
 
 	const { isLoadingBoard, isLoadingBoards, hasAppLoaded } = useSelector(({ boardModule }) => boardModule)
 	const { loggedinUser } = useSelector(({ userModule }) => userModule)
@@ -183,7 +186,7 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 	}
 
 	const onUpdateBoard = async (boardToUpdate) => {
-		if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
+		if (filterBy || selectedBoard?.sortBy.name) return setComfirmOpen(true)
 		try {
 			await updateBoard(boardToUpdate)
 			socketService.emit('update board', boardId)
@@ -191,6 +194,7 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 			console.log(error);
 		}
 	}
+
 
 	const onRemoveStory = async () => {
 		if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
@@ -202,14 +206,27 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 		await setStory(story)
 	}
 
+	const stopUpdate = (res) => {
+		if (!res) return setComfirmOpen(false)
+		setFilterBy(null)
+		onSetSort(null)
+		setComfirmOpen(false)
+	}
+
 
 	const updateWhileFilterSort = () => {
-		const isNulifyFilterSort = window.confirm("You can't make any changes to your board while filter or sort are on, would you like to cancel filter and sort?")
-		if (isNulifyFilterSort) {
-			setFilterBy(null)
-			onSetSort(null)
-		}
+		setComfirmOpen(true)
 	}
+
+	// const updateWhileFilterSort = () => {
+	// 	const isNulifyFilterSort = window.confirm("You can't make any changes to your board while filter or sort are on, would you like to cancel filter and sort?")
+	// 	if (isNulifyFilterSort) {
+	// 		setFilterBy(null)
+	// 		onSetSort(null)
+	// 	}
+	// }
+
+
 
 	if ((isLoadingBoard || isLoadingBoards)) return <Loader />
 
@@ -228,6 +245,18 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 				removeBoard={removeBoard}
 				addBoard={addBoard}
 			/>
+
+			<AnimatePresence>
+				{comfirmOpen && (
+					<Confirm
+						acceptText="Yes"
+						declineText="No"
+						message="You can't make any changes to your board while filter or sort are on"
+						message2="Would you like to cancel filter and sort?"
+						onDecision={stopUpdate}
+					/>
+				)}
+			</AnimatePresence>
 
 			<section className={`main-content ${isDashboard ? "dashboard" : ""}`}>
 				<section className="main-header">
