@@ -6,8 +6,7 @@ import connectionsImg from '../assets/img/connections.jpg'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { loginDemoUser, logout } from '../store/user.action'
-import { loadBoards } from '../store/board.action'
-
+import { loadBoards, setAppLoaded } from '../store/board.action'
 
 export function HomePage() {
 
@@ -18,25 +17,18 @@ export function HomePage() {
     const [isDemoUser, setIsDemoUser] = useState(loggedinUser?._id === '1f23sd1f5w5')
 
     const history = useHistory()
-    const boardId = boards[0]?._id
 
-    const initialLogin = async () => {
-        const demoUser = {
-            _id: '1f23sd1f5w5',
-            fullname: 'Demo User',
-            imgUrl: 'https://res.cloudinary.com/diu2bzkko/image/upload/v1643708386/ow4e6tx6ckciayqgvenb.jpg',
-            createdAt: 1000204217
-        }
-        await dispatch(loginDemoUser(demoUser))
-    }
+    useEffect(() => {
+        dispatch(setAppLoaded())
+    }, [dispatch])
 
     useEffect(() => {
         (async () => {
-            await dispatch(loadBoards())
             if (!loggedinUser) {
-                await initialLogin()
                 setIsDemoUser(true)
+                await dispatch(loginDemoUser())
             }
+            await dispatch(loadBoards())
         })();
         // eslint-disable-next-line
     }, [loggedinUser])
@@ -47,6 +39,7 @@ export function HomePage() {
 
 
     const onEnterBoard = () => {
+        const boardId = boards[0]?._id ?? null
         history.push(`/board/${boardId}/board`)
     }
 

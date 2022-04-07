@@ -9,7 +9,9 @@ const initialState = {
         groupId: null,
         storyId: null
     },
-    isLoading: false
+    isLoadingBoard: true,
+    isLoadingBoards: true,
+    hasAppLoaded: false
 }
 
 export function boardReducer(state = initialState, action) {
@@ -21,11 +23,11 @@ export function boardReducer(state = initialState, action) {
             newState = {
                 ...state, boards:
                     [...action.boards],
-                isLoading: false
+                isLoadingBoards: false
             }
             break
         case 'SET_BOARD':
-            return { ...state, selectedBoard: action.board, isLoading: false }
+            return { ...state, selectedBoard: action.board, isLoadingBoard: false }
         case 'REMOVE_BOARD':
             newState = { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
             break
@@ -48,8 +50,14 @@ export function boardReducer(state = initialState, action) {
             const { story: { boardId, groupId, storyId } } = action
             newState = { ...state, activityModalStory: { boardId, groupId, storyId } }
             break;
-        case 'SET_LOADING':
-            newState = { ...state, isLoading: true }
+        case 'SET_LOADING_BOARD':
+            newState = { ...state, isLoadingBoard: action.payload }
+            break;
+        case 'SET_LOADING_BOARDS':
+            newState = { ...state, isLoadingBoards: action.payload }
+            break;
+        case 'SET_APP_LOADED':
+            newState = { ...state, hasAppLoaded: true }
             break;
         default:
             return newState;

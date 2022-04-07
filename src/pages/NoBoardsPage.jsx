@@ -16,10 +16,7 @@ export const NoBoardsPage = ({ boards, selectedBoard, removeBoard, addBoard, loa
         socketService.emit('update workspace')
     }
 
-    const onGoToHome = () => {
-        history.push('/')
-    }
-
+    console.log('on no board page');
 
     return (
         <div className="main-container">

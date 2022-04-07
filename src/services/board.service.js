@@ -23,8 +23,12 @@ async function query(userId) {
 
 
 async function getById(boardId) {
-    const board = await httpService.get(`board/${boardId}`)
-    return board
+    try {
+        const board = await httpService.get(`board/${boardId}`)
+        return board
+    } catch (error) {
+        throw error
+    }
 }
 
 async function remove(boardId) {

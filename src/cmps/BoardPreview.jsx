@@ -38,11 +38,12 @@ export function _BoardPreview(props) {
         ev.stopPropagation()
         handleClose(null)
         const currBoardId = props.match.params.boardId
-        if(currBoardId === '61f8f86b25bd9487389b2907') {
+        if (currBoardId === '61f8f86b25bd9487389b2907') {
             swalService.onDeleteCoreSwal();
             return;
         }
-        if (boardId === currBoardId) goToNextBoard(currBoardId)
+        await swalService.onDeleteSwal()
+        if (boardId === currBoardId && boards.length > 1) goToNextBoard(currBoardId)
         await removeBoard(boardId)
         socketService.emit('update workspace')
     }

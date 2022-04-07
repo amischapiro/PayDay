@@ -16,19 +16,39 @@ import { socketService } from '../services/socket.service'
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
 import { connect, useSelector } from 'react-redux'
-import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, newUpdateBoard } from '../store/board.action'
+import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, setAppLoaded } from '../store/board.action'
+import { loginDemoUser, login } from '../store/user.action'
 import { NoBoardsPage } from './NoBoardsPage'
 import { Loader } from '../cmps/layout/Loader'
+import { userService } from '../services/user.service'
 
 
-function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy, newUpdateBoard }) {
+function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy, loginDemoUser }) {
 
 	const { boardId } = useParams()
+
 	const [filteredBoard, setFilteredBoard] = useState(null)
 	const [isDashboard, toggleIsDashboard] = useState(false)
 
-	const { isLoading } = useSelector(({ boardModule }) => boardModule)
+	const { isLoadingBoard, isLoadingBoards, hasAppLoaded } = useSelector(({ boardModule }) => boardModule)
+	const { loggedinUser } = useSelector(({ userModule }) => userModule)
 
+	// For use if duplicating tabs or copying link to a new one
+	// Need to change if we switch to local storage
+	useEffect(() => {
+		(async () => {
+			if (!hasAppLoaded) {
+				if (loggedinUser) {
+					const user = userService.getMiniLoggedInUser()
+					login(user)
+				} else await loginDemoUser()
+				await loadBoards()
+				await setAppLoaded()
+			}
+		})();
+		// after transition to dispatch, I will cancel this comment
+		// eslint-disable-next-line
+	}, [hasAppLoaded])
 
 	useEffect(() => {
 		(async () => {
@@ -162,17 +182,10 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 		onUpdateBoard(newBoard)
 	}
 
-
-	// const onUpdateBoard = async (boardToUpdate) => {
-	// 	if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
-	// 	await updateBoard(boardToUpdate)
-	// 	socketService.emit('update board', boardId)
-	// }
-
 	const onUpdateBoard = async (boardToUpdate) => {
 		if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
 		try {
-			await newUpdateBoard(boardToUpdate)
+			await updateBoard(boardToUpdate)
 			socketService.emit('update board', boardId)
 		} catch (error) {
 			console.log(error);
@@ -198,15 +211,12 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 		}
 	}
 
-
-	if (isLoading) return <Loader />
+	if ((isLoadingBoard || isLoadingBoards)) return <Loader />
 
 	if (!boards.length) return (
 		<NoBoardsPage boards={boards} currBoard={selectedBoard} removeBoard={removeBoard}
 			addBoard={addBoard} loadBoards={loadBoards} />
 	)
-
-
 
 	return (
 		<main className="main-container">
@@ -280,6 +290,7 @@ function mapStateToProps({ boardModule }) {
 		selectedStoryIds: boardModule.activityModalStory,
 		selectedBoard: boardModule.selectedBoard,
 		filterBy: boardModule.filterBy,
+
 	}
 }
 
@@ -291,7 +302,7 @@ const mapDispatchToProps = {
 	addBoard,
 	setStory,
 	setFilterBy,
-	newUpdateBoard
+	loginDemoUser
 }
 
 export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp)
