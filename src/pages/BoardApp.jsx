@@ -15,39 +15,48 @@ import { ActivityModal } from '../cmps/ActivityModal'
 import { socketService } from '../services/socket.service'
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
-import { connect } from 'react-redux'
-import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, } from '../store/board.action'
-import { useCallback } from 'use-memo-one'
+import { connect, useDispatch, useSelector } from 'react-redux'
+import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy } from '../store/board.action'
 
 
-function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy }) {
+function _BoardApp({ addBoard, setStory, setFilterBy }) {
+
+	// console.log('render');
+
+	const { boards, selectedBoard, activityModalStory: selectedStoryIds, filterBy } = useSelector(({ boardModule }) => boardModule)
+	const dispatch = useDispatch()
 
 	const { boardId } = useParams()
 	const [filteredBoard, setFilteredBoard] = useState(null)
 	const [isDashboard, toggleIsDashboard] = useState(false)
 
 
-	const onLoad = useCallback(async () => {
-		await loadBoards()
-	}, [loadBoards])
+	// const onLoad = useCallback(async () => {
+	// 	await dispatch(loadBoards())
+	// }, [dispatch])
 
-	useEffect(() => {
-		onLoad()
-	}, [onLoad])
-
+	// useEffect(() => {
+	// 	onLoad()
+	// }, [onLoad])
 
 	useEffect(() => {
 		(async () => {
-			await getById(boardId)
+			dispatch(loadBoards())
+		})();
+	}, [dispatch])
+
+	useEffect(() => {
+		(async () => {
+			await dispatch(getById(boardId))
 		})();
 		socketService.emit('enter board', boardId);
 		socketService.on('board has updated', async (updatedBoardId) => {
-			await getById(updatedBoardId)
+			await dispatch(getById(updatedBoardId))
 		})
 		return () => {
 			socketService.off('board has updated')
 		}
-	}, [boardId, getById])
+	}, [boardId, dispatch])
 
 
 	useEffectUpdate(() => {
@@ -150,7 +159,7 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 		})
 
 		newBoard.groups = newGroups
-		await updateBoard(newBoard)
+		await dispatch(updateBoard(newBoard))
 	}
 
 	const onSetCol = (col) => {
@@ -170,7 +179,7 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 
 	const onUpdateBoard = async (boardToUpdate) => {
 		if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
-		await updateBoard(boardToUpdate)
+		await dispatch(updateBoard(boardToUpdate))
 		socketService.emit('update board', boardId)
 	}
 
@@ -275,12 +284,9 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 	)
 }
 
+
 function mapStateToProps({ boardModule }) {
 	return {
-		boards: boardModule.boards,
-		selectedStoryIds: boardModule.activityModalStory,
-		selectedBoard: boardModule.selectedBoard,
-		filterBy: boardModule.filterBy,
 	}
 }
 
