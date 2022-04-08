@@ -112,11 +112,6 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
 
 function mapStateToProps({ boardModule }) {
     return {
-        // board: boardModule.board,
-        // selectedBoard: boardModule.selectedBoard
-        // users: state.userModule.users,
-        // loggedInUser: state.userModule.loggedInUser
-        // selectedStoryIds: boardModule.activityModalStory,
     };
 }
 

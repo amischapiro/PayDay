@@ -1,5 +1,4 @@
 import { httpService } from './http.service'
-import { boardService } from './board.service'
 
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
 
@@ -13,7 +12,8 @@ export const userService = {
     remove,
     update,
     getMiniLoggedInUser,
-    getMiniUsers
+    getMiniUsers,
+    getGoogleId
 }
 
 // AUTH
@@ -24,7 +24,6 @@ async function login(credentials) {
 }
 
 async function signup(user) {
-
     const signupUser = await httpService.post('auth/signup', user)
     _setLoggedinUser(signupUser)
     return signupUser
@@ -59,31 +58,16 @@ async function update(userToUpdate) {
     return updatedUser
 }
 
+async function getGoogleId() {
+    const id = await httpService.get('auth/googleid')
+    return id
+}
 
 // SESSION STORAGE
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
 }
 
-// function getLoggedinUser() {
-//     return {
-//         _id: "u101",
-//         fullname: "Abi Abambi",
-//         username: "abi@ababmi.com",
-//         password: "aBambi123",
-//         imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg",
-//         mentions: [
-//             {
-//                 id: "m101",
-//                 boardId: "m101",
-//                 storyId: "t101"
-//             }board
-//         ]
-//     }
-// }
-
-
-// delete passwords in back
 function getMiniLoggedInUser() {
     const user = getLoggedinUser()
     delete user.username
@@ -92,7 +76,6 @@ function getMiniLoggedInUser() {
     return user
 }
 
-// delete passwords in back
 async function getMiniUsers() {
     let users = await getUsers();
     users = users.map(user => {

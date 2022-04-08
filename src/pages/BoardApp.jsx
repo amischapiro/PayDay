@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Switch, Route, useParams } from 'react-router'
 import { useEffectUpdate } from '../hooks/useUpdateEffect'
+import { AnimatePresence } from 'framer-motion'
 
 import { BoardNav } from '../cmps/BoardNav'
 import { BoardHeader } from '../cmps/BoardHeader'
@@ -15,48 +16,57 @@ import { ActivityModal } from '../cmps/ActivityModal'
 import { socketService } from '../services/socket.service'
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
-import { connect, useDispatch, useSelector } from 'react-redux'
-import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy } from '../store/board.action'
+import { connect, useSelector } from 'react-redux'
+import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, setAppLoaded } from '../store/board.action'
+import { loginDemoUser, login } from '../store/user.action'
+import { NoBoardsPage } from './NoBoardsPage'
+import { Loader } from '../cmps/layout/Loader'
+import { userService } from '../services/user.service'
+import { Confirm } from '../cmps/layout/Confirm'
 
 
-function _BoardApp({ addBoard, setStory, setFilterBy }) {
-
-	// console.log('render');
-
-	const { boards, selectedBoard, activityModalStory: selectedStoryIds, filterBy } = useSelector(({ boardModule }) => boardModule)
-	const dispatch = useDispatch()
+function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy, loginDemoUser }) {
 
 	const { boardId } = useParams()
+
 	const [filteredBoard, setFilteredBoard] = useState(null)
 	const [isDashboard, toggleIsDashboard] = useState(false)
+	const [comfirmOpen, setComfirmOpen] = useState(false)
 
+	const { isLoadingBoard, isLoadingBoards, hasAppLoaded } = useSelector(({ boardModule }) => boardModule)
+	const { loggedinUser } = useSelector(({ userModule }) => userModule)
 
-	// const onLoad = useCallback(async () => {
-	// 	await dispatch(loadBoards())
-	// }, [dispatch])
-
-	// useEffect(() => {
-	// 	onLoad()
-	// }, [onLoad])
-
+	// For use if duplicating tabs or copying link to a new one
+	// Need to change if we switch to local storage
 	useEffect(() => {
 		(async () => {
-			dispatch(loadBoards())
+			if (!hasAppLoaded) {
+				if (loggedinUser) {
+					const user = userService.getMiniLoggedInUser()
+					login(user)
+				} else await loginDemoUser()
+				await loadBoards()
+				await setAppLoaded()
+			}
 		})();
-	}, [dispatch])
+		// after transition to dispatch, I will cancel this comment
+		// eslint-disable-next-line
+	}, [hasAppLoaded])
+
 
 	useEffect(() => {
 		(async () => {
-			await dispatch(getById(boardId))
+			await getById(boardId)
 		})();
 		socketService.emit('enter board', boardId);
 		socketService.on('board has updated', async (updatedBoardId) => {
-			await dispatch(getById(updatedBoardId))
+			console.log('got update');
+			await getById(updatedBoardId)
 		})
 		return () => {
 			socketService.off('board has updated')
 		}
-	}, [boardId, dispatch])
+	}, [boardId, getById])
 
 
 	useEffectUpdate(() => {
@@ -159,7 +169,7 @@ function _BoardApp({ addBoard, setStory, setFilterBy }) {
 		})
 
 		newBoard.groups = newGroups
-		await dispatch(updateBoard(newBoard))
+		await updateBoard(newBoard)
 	}
 
 	const onSetCol = (col) => {
@@ -176,12 +186,16 @@ function _BoardApp({ addBoard, setStory, setFilterBy }) {
 		onUpdateBoard(newBoard)
 	}
 
-
 	const onUpdateBoard = async (boardToUpdate) => {
-		if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
-		await dispatch(updateBoard(boardToUpdate))
-		socketService.emit('update board', boardId)
+		if (filterBy || selectedBoard?.sortBy.name) return setComfirmOpen(true)
+		try {
+			await updateBoard(boardToUpdate)
+			socketService.emit('update board', boardId)
+		} catch (error) {
+			console.log(error);
+		}
 	}
+
 
 	const onRemoveStory = async () => {
 		if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
@@ -193,30 +207,34 @@ function _BoardApp({ addBoard, setStory, setFilterBy }) {
 		await setStory(story)
 	}
 
-
-	const updateWhileFilterSort = () => {
-		const isNulifyFilterSort = window.confirm("You can't make any changes to your board while filter or sort are on, would you like to cancel filter and sort?")
-		if (isNulifyFilterSort) {
-			setFilterBy(null)
-			onSetSort(null)
-		}
+	const stopUpdate = (res) => {
+		if (!res) return setComfirmOpen(false)
+		setFilterBy(null)
+		onSetSort(null)
+		setComfirmOpen(false)
 	}
 
 
-	if (!boards?.length) return (
-		<main className="main-container">
-			<SideBar />
-			<BoardList
-				boards={boards} currBoard={selectedBoard} removeBoard={removeBoard}
-				addBoard={addBoard} loadBoards={loadBoards}
-			/>
-			<div className="loader"></div>
-		</main>
+	const updateWhileFilterSort = () => {
+		setComfirmOpen(true)
+	}
+
+	// const updateWhileFilterSort = () => {
+	// 	const isNulifyFilterSort = window.confirm("You can't make any changes to your board while filter or sort are on, would you like to cancel filter and sort?")
+	// 	if (isNulifyFilterSort) {
+	// 		setFilterBy(null)
+	// 		onSetSort(null)
+	// 	}
+	// }
+
+
+
+	if ((isLoadingBoard || isLoadingBoards)) return <Loader />
+
+	if (!boards.length) return (
+		<NoBoardsPage boards={boards} currBoard={selectedBoard} removeBoard={removeBoard}
+			addBoard={addBoard} loadBoards={loadBoards} />
 	)
-
-
-	if (!selectedBoard) return <div className="loader"></div>
-
 
 	return (
 		<main className="main-container">
@@ -228,6 +246,18 @@ function _BoardApp({ addBoard, setStory, setFilterBy }) {
 				removeBoard={removeBoard}
 				addBoard={addBoard}
 			/>
+
+			<AnimatePresence>
+				{comfirmOpen && (
+					<Confirm
+						acceptText="Yes"
+						declineText="No"
+						message="You can't make any changes to your board while filter or sort are on"
+						message2="Would you like to cancel filter and sort?"
+						onDecision={stopUpdate}
+					/>
+				)}
+			</AnimatePresence>
 
 			<section className={`main-content ${isDashboard ? "dashboard" : ""}`}>
 				<section className="main-header">
@@ -287,6 +317,11 @@ function _BoardApp({ addBoard, setStory, setFilterBy }) {
 
 function mapStateToProps({ boardModule }) {
 	return {
+		boards: boardModule.boards,
+		selectedStoryIds: boardModule.activityModalStory,
+		selectedBoard: boardModule.selectedBoard,
+		filterBy: boardModule.filterBy,
+
 	}
 }
 
@@ -298,6 +333,7 @@ const mapDispatchToProps = {
 	addBoard,
 	setStory,
 	setFilterBy,
+	loginDemoUser
 }
 
 export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp)

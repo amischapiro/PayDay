@@ -6,6 +6,7 @@ import { BoardPreview } from './BoardPreview'
 import { utilService } from '../services/util.service'
 import { socketService } from '../services/socket.service'
 
+
 function _BoardList({
 	boards,
 	updateBoard,

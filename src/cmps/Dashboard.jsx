@@ -14,11 +14,9 @@ export function _Dashboard(props) {
 
     const getStoriesCount = () => {
         let count = 0
-        board.groups.map(group => {
-            group.stories.map(story => {
-                count++
-            })
-        })
+        board.groups.map(group => (
+            group.stories.map(() => count++)
+        ))
         return count
     }
 
@@ -133,20 +131,11 @@ export function _Dashboard(props) {
 
 function mapStateToProps({ boardModule }) {
     return {
-        // boards: boardModule.boards,
         selectedBoard: boardModule.selectedBoard,
-        // selectedStoryIds: boardModule.activityModalStory
-        // filterBy: state.boardModule.filterBy,
-        // users: state.userModule.users,
-        // loggedInUser: state.userModule.loggedInUser
     }
 }
 
 const mapDispatchToProps = {
-    // setStory,
-    // updateBoard
-    // loadBoards,
-    // getById,
 }
 
 

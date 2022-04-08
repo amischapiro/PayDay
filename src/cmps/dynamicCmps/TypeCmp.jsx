@@ -6,19 +6,20 @@ import Button from '@mui/material/Button';
 export function TypesCmp({ story, onUpdate, boardTypes }) {
 	
 	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [type, setType] = React.useState(story.storyData.type);
+
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
-	const handleClose = () => {
+	const handleClose = (type) => {
 		setAnchorEl(null);
+		setType(type);
 	};
 
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
 	
-	const { type } = story.storyData;
-
 	return (
 
 		<div className="type-cmp">
@@ -51,7 +52,7 @@ export function TypesCmp({ story, onUpdate, boardTypes }) {
 								className="element-picker"
 								onClick={() => {
 									onUpdate('CHANGE_TYPE', type.id)
-									handleClose()
+									handleClose(type)
 								}
 								}>
 								{type.title}

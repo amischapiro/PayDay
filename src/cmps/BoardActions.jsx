@@ -16,13 +16,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 	const newBoard = { ...board };
 
 	const onAddStory = async () => {
-		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilterSort();
-			return;
-		} else if (board.sortBy.name) {
-			updateWhileFilterSort();
-			return;
-		}
+		if (filterBy || board.sortBy.name) return updateWhileFilterSort()
 		const newStory = utilService.createStory();
 		const newGroup = newBoard.groups[0]
 		if (!newBoard.groups[0].stories || !newBoard.groups[0].stories.length)
@@ -34,13 +28,7 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 	};
 
 	const onAddGroup = async () => {
-		if (filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilterSort();
-			return;
-		} else if (board.sortBy.name) {
-			updateWhileFilterSort();
-			return;
-		}
+		if (filterBy || board.sortBy.name) return updateWhileFilterSort()
 		const newGroup = utilService.createEmptyGroup();
 
 		if (!newBoard.groups || !newBoard.groups.length)

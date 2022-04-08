@@ -16,15 +16,19 @@ export const boardService = {
 
 
 
-async function query() {
-    const boards = await httpService.get('board')
+async function query(userId) {
+    const boards = await httpService.get('board', { userId })
     return boards
 }
 
 
 async function getById(boardId) {
-    const board = await httpService.get(`board/${boardId}`)
-    return board
+    try {
+        const board = await httpService.get(`board/${boardId}`)
+        return board
+    } catch (error) {
+        throw error
+    }
 }
 
 async function remove(boardId) {

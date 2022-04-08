@@ -28,14 +28,8 @@ export function _Story(props) {
 	};
 
 	const onSubmitTitle = async (ev) => {
-		if(filterBy.name || filterBy.status || filterBy.priority || filterBy.members) {
-			updateWhileFilterSort();
-			return;
-		} else if(board.sortBy.name) {
-			updateWhileFilterSort();
-			return;
-		}
 		ev.preventDefault();
+		if (filterBy || board.sortBy.name) return updateWhileFilterSort()
 		toggleTitleEdit(false);
 		const storyToUpdate = { ...story, title: newStoryTitle.title };
 		onUpdateBoard(storyToUpdate);
@@ -47,7 +41,7 @@ export function _Story(props) {
 	};
 
 	const onUpdateStory = async (action, data) => {
-		if (filterBy || board.sortBy.name) return updateWhileFilterSort();
+		if (filterBy || board.sortBy.name) return updateWhileFilterSort()
 		const newStory = { ...story };
 		let newData;
 
@@ -150,7 +144,7 @@ export function _Story(props) {
 									/>
 								</form>
 							) : (
-								<div className="story-title" onClick={() =>toggleTitleEdit(!isTitleEditOn)} >{story.title}</div>
+								<div className="story-title" onClick={() => toggleTitleEdit(!isTitleEditOn)} >{story.title}</div>
 							)}
 							{!isTitleEditOn && (
 								<button

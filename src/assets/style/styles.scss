@@ -16,6 +16,7 @@
 @import "./pages/_home-page.scss";
 @import "./pages/_board-app.scss";
 @import "./pages/_login-signup.scss";
+@import "./pages/no-boards-page";
 
 // Cmps
 
@@ -35,10 +36,8 @@
 @import "./cmps/activity-modal.scss";
 @import "./cmps/modal-update-preview.scss";
 @import "./cmps/group-preview.scss";
-@import "./cmps/home-page-header.scss";
 @import "./cmps/add-story.scss";
 @import "./cmps/main-content.scss";
-
 
 // Dynamic cmps - columns
 @import "./cmps/dynamicCmps/number-cmp.scss";
@@ -50,10 +49,13 @@
 @import "./cmps/dynamicCmps/due-date-cmp.scss";
 @import "./cmps/dynamicCmps/type-cmp.scss";
 
-
-// Kanban 
+// Kanban
 @import "./cmps/kanban/kanban.scss";
 @import "./cmps/kanban/kanban-story.scss";
 @import "./cmps/kanban/kanban-group.scss";
 @import "./cmps/kanban/kanban-members.scss";
 @import "./cmps/kanban/kanban-due-date.scss";
+
+// Layout Cmps
+
+@import "./cmps/layout-cmps/confrim";
