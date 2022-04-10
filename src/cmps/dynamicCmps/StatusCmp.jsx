@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 export function StatusCmp({ story, onUpdate, boardStatuses }) {
 
 	const [anchorEl, setAnchorEl] = useState(null);
-	const [status, setStatus] = useState(story.storyData.status);
+	const { status } = story.storyData
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -50,9 +50,8 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 								sx={{ p: 2, background: status.color }}
 								className="element-picker"
 								onClick={() => {
-									onUpdate('CHANGE_STATUS', status.id)
 									handleClose()
-									setStatus(status)
+									onUpdate('CHANGE_STATUS', status.id)
 								}
 								}>
 								{status.title}

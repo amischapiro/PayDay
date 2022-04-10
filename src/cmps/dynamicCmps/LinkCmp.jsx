@@ -15,7 +15,7 @@ export function LinkCmp({ story, onUpdate }) {
 	const onAddLink = async () => {
 		if (name && !url) return;
 		const data = { name, url }
-
+		console.log('update');
 		await onUpdate('CHANGE_LINK', data);
 		setName(name || '');
 		setUrl(url || '');

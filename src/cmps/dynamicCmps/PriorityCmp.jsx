@@ -5,7 +5,8 @@ import Button from '@mui/material/Button';
 
 export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
-	const [priority, setPriority] = React.useState(story.storyData.priority);
+	// const [priority, setPriority] = React.useState(story.storyData.priority);
+	const { priority } = story.storyData
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -50,7 +51,7 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 								onClick={() => {
 									onUpdate('CHANGE_PRIORITY', priority.id);
 									handleClose()
-									setPriority(priority)
+									// setPriority(priority)
 								}
 								}>
 								{priority.title}
