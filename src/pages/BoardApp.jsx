@@ -16,7 +16,7 @@ import { ActivityModal } from '../cmps/ActivityModal'
 import { socketService } from '../services/socket.service'
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
-import { connect, useSelector } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, setAppLoaded } from '../store/board.action'
 import { loginDemoUser, login } from '../store/user.action'
 import { NoBoardsPage } from './NoBoardsPage'
@@ -35,6 +35,12 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 
 	const { isLoadingBoard, isLoadingBoards, hasAppLoaded } = useSelector(({ boardModule }) => boardModule)
 	const { loggedinUser } = useSelector(({ userModule }) => userModule)
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch({ type: 'SET_LOADING_BOARD', payload: true })
+	}, [dispatch])
+
 
 	// For use if duplicating tabs or copying link to a new one
 	// Need to change if we switch to local storage
@@ -45,6 +51,7 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 					const user = userService.getMiniLoggedInUser()
 					login(user)
 				} else await loginDemoUser()
+				dispatch({ type: 'SET_LOADING_BOARDS', payload: true })
 				await loadBoards()
 				await setAppLoaded()
 			}
@@ -60,7 +67,6 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 		})();
 		socketService.emit('enter board', boardId);
 		socketService.on('board has updated', async (updatedBoardId) => {
-			console.log('got update');
 			await getById(updatedBoardId)
 		})
 		return () => {
@@ -231,7 +237,7 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 
 	if ((isLoadingBoard || isLoadingBoards)) return <Loader />
 
-	if (!boards.length) return (
+	if (!boards.length || boardId === 'null') return (
 		<NoBoardsPage boards={boards} currBoard={selectedBoard} removeBoard={removeBoard}
 			addBoard={addBoard} loadBoards={loadBoards} />
 	)

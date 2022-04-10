@@ -5,8 +5,6 @@ import { userService } from '../services/user.service';
 
 export function _AddStory(props) {
 
-	console.log('render');
-
 	const { board, group, updateBoard } = props;
 	const currUser = userService.getMiniLoggedInUser();
 	const [txt, setTxt] = useState('');

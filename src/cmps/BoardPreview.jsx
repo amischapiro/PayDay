@@ -10,13 +10,11 @@ import TableRowsOutlinedIcon from '@mui/icons-material/TableRowsOutlined';
 import { utilService } from '../services/util.service';
 import { socketService } from '../services/socket.service';
 import { swalService } from '../services/swal.service';
-import { useDispatch } from 'react-redux';
 
 export function _BoardPreview(props) {
 
     const { boards, board, removeBoard, addBoard, currBoard } = props
 
-    const dispatch = useDispatch()
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [isHover, toggleOnHover] = useState(false)
@@ -87,7 +85,6 @@ export function _BoardPreview(props) {
             onMouseOver={() => { toggleOnHover(true) }}
             onMouseLeave={() => { toggleOnHover(false) }} >
             <div>
-                {/* <span className='fa-solid window'></span> */}
                 <TableRowsOutlinedIcon className="board-icon" />
                 <span>&nbsp;{board.title}</span>
 

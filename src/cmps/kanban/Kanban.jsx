@@ -4,8 +4,6 @@ import { KanbanGroup } from './KanbanGroup';
 
 export function Kanban({ board, filterBy, updateBoard, updateWhileFilterSort }) {
 
-	console.log('kanba');
-
 	const onDragEnd = async (result) => {
 		if (filterBy || board.sortBy.name) {
 			return updateWhileFilterSort();

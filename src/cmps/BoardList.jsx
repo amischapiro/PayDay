@@ -1,22 +1,19 @@
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import React from 'react'
 import { useState, useEffect } from 'react'
 
 import { BoardPreview } from './BoardPreview'
 import { utilService } from '../services/util.service'
 import { socketService } from '../services/socket.service'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 
-function _BoardList({
-	boards,
-	updateBoard,
-	removeBoard,
-	addBoard,
-	currBoard,
-	loadBoards,
-}) {
+function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard, loadBoards }) {
 	const [anchorEl, setAnchorEl] = useState(null)
 	const [isBoardListOpen, toggleBoardList] = useState(true)
+
+	const dispatch = useDispatch()
+	const history = useHistory()
 
 	useEffect(() => {
 		socketService.emit('enter workspace')
@@ -26,7 +23,7 @@ function _BoardList({
 		return () => {
 			socketService.off('workspace has updated')
 		}
-	}, [])
+	}, [loadBoards])
 
 	const onToggleBoardListShown = () => {
 		isBoardListOpen ? toggleBoardList(false) : toggleBoardList(true)
@@ -39,11 +36,20 @@ function _BoardList({
 	const open = Boolean(anchorEl)
 	const id = open ? 'simple-popper' : undefined
 
+
 	const onAddBoard = async () => {
 		const newBoard = await utilService.createEmptyBoard()
-		await addBoard(newBoard)
+		if (boards.length > 0) await addBoard(newBoard)
+		else onAddFirstBoard(newBoard)
 		socketService.emit('update workspace')
 	}
+
+	const onAddFirstBoard = async (newBoard) => {
+		const addedBoard = await addBoard(newBoard)
+		history.push(`/board/${addedBoard._id}/board`)
+
+	}
+
 
 	return (
 		<section

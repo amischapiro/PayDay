@@ -4,7 +4,6 @@ export function loadBoards() {
     return async (dispatch, getState) => {
         const state = getState()
         const { loggedinUser } = state.userModule
-        dispatch({ type: 'SET_LOADING_BOARDS', payload: true })
         try {
             const boards = await boardService.query(loggedinUser._id)
             dispatch({ type: 'SET_BOARDS', boards })
@@ -18,7 +17,6 @@ export function loadBoards() {
 
 export function getById(boardId) {
     return async (dispatch) => {
-        dispatch({ type: 'SET_LOADING_BOARD', payload: true })
         try {
             const board = await boardService.getById(boardId)
             dispatch({ type: 'SET_BOARD', board })

@@ -3,7 +3,7 @@ import { socketService } from "../services/socket.service"
 import { SideBar } from "../cmps/SideBar"
 import { BoardList } from "../cmps/BoardList"
 import { ReactComponent as NoBoardIcon } from '../assets/img/no-boards.svg'
-import { useHistory, Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import Logo from '../assets/img/PayDayLogo3.png';
 
 export const NoBoardsPage = ({ boards, selectedBoard, removeBoard, addBoard, loadBoards }) => {
@@ -12,11 +12,11 @@ export const NoBoardsPage = ({ boards, selectedBoard, removeBoard, addBoard, loa
 
     const onAddBoard = async () => {
         const newBoard = await utilService.createEmptyBoard()
-        await addBoard(newBoard)
+        const addedBoard = await addBoard(newBoard)
+        history.push(`/board/${addedBoard._id}/board`)
+
         socketService.emit('update workspace')
     }
-
-    console.log('on no board page');
 
     return (
         <div className="main-container">

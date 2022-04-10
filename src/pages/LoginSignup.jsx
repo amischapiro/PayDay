@@ -35,6 +35,9 @@ export function LoginSignup() {
 		return isSignUp ? '/login' : '/signup';
 	}
 
+	const showFail = (ev) => {
+		console.log(ev);
+	}
 
 	useEffect(() => {
 		(async () => {
@@ -212,6 +215,7 @@ export function LoginSignup() {
 					className="google-signin-btn"
 					clientId={googleId.id}
 					onSuccess={responseGoogle}
+					onFailure={showFail}
 					cookiePolicy={'single_host_origin'}
 				/>
 			)}
