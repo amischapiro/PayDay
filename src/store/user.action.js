@@ -13,7 +13,7 @@ export function login(credentials) {
 }
 
 
-export function loginDemoUser(demoUser) {
+export function loginDemoUser() {
     return async (dispatch) => {
         const demoUser = {
             _id: '1f23sd1f5w5',

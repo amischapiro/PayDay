@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import Avatar from '@mui/material/Avatar';
@@ -21,9 +21,7 @@ import { loadBoards } from '../store/board.action.js';
 const theme = createTheme();
 export function LoginSignup() {
 
-
 	const dispatch = useDispatch()
-
 	const history = useHistory()
 
 
@@ -78,34 +76,24 @@ export function LoginSignup() {
 				console.log('Invalid username or password');
 			}
 		}
-	};
+	}
 
 	const responseGoogle = async (response) => {
 
 		const userObj = response.profileObj;
+		console.log(userObj);
 		const googleUser = {
 			fullname: userObj.name,
 			username: userObj.email,
 			imgUrl: userObj.imageUrl,
-			mentions: [],
-			createsAt: Date.now(),
 			password: response.tokenId,
 		};
 		try {
-			const user = {
-				username: googleUser.username,
-				password: googleUser.password,
-			}
-			await onLoginSignup('login', user)
+			await onLoginSignup('login', googleUser)
 		} catch {
-			const user = {
-				username: googleUser.username,
-				password: googleUser.password,
-				fullname: googleUser.fullname
-			}
-			await onLoginSignup('signup', user)
+			await onLoginSignup('signup', googleUser)
 		}
-	};
+	}
 
 
 	return (
@@ -222,16 +210,3 @@ export function LoginSignup() {
 		</section>
 	);
 }
-// function mapStateToProps({ userModule }) {
-// 	return {
-// 		user: userModule.user,
-// 	};
-// }
-// const mapDispatchToProps = {
-// 	login,
-// 	signup,
-// };
-// export const LoginSignup = connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps
-// )(_LoginSignup);

@@ -1,18 +1,15 @@
-import { connect, useDispatch } from 'react-redux'
-import React from 'react'
 import { useState, useEffect } from 'react'
 
 import { BoardPreview } from './BoardPreview'
 import { utilService } from '../services/util.service'
 import { socketService } from '../services/socket.service'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useHistory } from 'react-router-dom'
 
 
-function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard, loadBoards }) {
+export function BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard, loadBoards }) {
 	const [anchorEl, setAnchorEl] = useState(null)
 	const [isBoardListOpen, toggleBoardList] = useState(true)
 
-	const dispatch = useDispatch()
 	const history = useHistory()
 
 	useEffect(() => {
@@ -101,17 +98,3 @@ function _BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard, loa
 	)
 }
 
-function mapStateToProps({ boardModule }) {
-	return {
-		// boards: boardModule.boards
-	}
-}
-
-const mapDispatchToProps = {
-	// loadBoards
-}
-
-export const BoardList = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(_BoardList)
