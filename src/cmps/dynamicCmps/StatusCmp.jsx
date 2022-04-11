@@ -52,8 +52,8 @@ export function StatusCmp({ story, onUpdate, boardStatuses }) {
 								onClick={() => {
 									handleClose()
 									onUpdate('CHANGE_STATUS', status.id)
-								}
-								}>
+								}}
+							>
 								{status.title}
 							</Typography>
 						</div>
