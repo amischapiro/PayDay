@@ -33,10 +33,6 @@ export function LoginSignup() {
 		return isSignUp ? '/login' : '/signup';
 	}
 
-	const showFail = (ev) => {
-		console.log(ev);
-	}
-
 	useEffect(() => {
 		(async () => {
 			const res = await userService.getGoogleId()
@@ -81,13 +77,12 @@ export function LoginSignup() {
 	const responseGoogle = async (response) => {
 
 		const userObj = response.profileObj;
-		console.log(userObj);
 		const googleUser = {
 			fullname: userObj.name,
 			username: userObj.email,
 			imgUrl: userObj.imageUrl,
 			password: response.tokenId,
-		};
+		}
 		try {
 			await onLoginSignup('login', googleUser)
 		} catch {
@@ -203,7 +198,6 @@ export function LoginSignup() {
 					className="google-signin-btn"
 					clientId={googleId.id}
 					onSuccess={responseGoogle}
-					onFailure={showFail}
 					cookiePolicy={'single_host_origin'}
 				/>
 			)}
