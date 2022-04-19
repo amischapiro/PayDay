@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { setStory } from '../store/board.action';
 
 import { socketService } from '../services/socket.service';
@@ -51,14 +51,18 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
         socketService.emit('update workspace')
     }
 
+    const { isOpen, selectedStory } = useSelector(({ activityModule }) => activityModule)
+    const dispatch = useDispatch()
+
     const onSetStory = async () => {
-        const story = {
-            boardId: board._id,
-            groupId: 'none',
-            storyId: 'none',
-        };
-        await setStory(story);
-    };
+        // const story = {
+        //     boardId: board._id,
+        //     groupId: 'none',
+        //     storyId: 'none',
+        // };
+        // await setStory(story);
+        dispatch({ type: 'SET_IS_OPEN', payload: true })
+    }
 
 
 

@@ -28,7 +28,8 @@ export function _ActivityModal(props) {
             groupId: null,
             storyId: null
         }
-        await props.setStory(story)
+        // await props.setStory(story)
+        dispatch({ type: 'SET_IS_OPEN', payload: false })
     }
 
 
@@ -144,7 +145,7 @@ export function _ActivityModal(props) {
 
     ////////////////// NEW SECTION ////////////////////
 
-    const { activities } = useSelector(({ activityModule }) => activityModule)
+    const { activities, isOpen, selectedStoryIds: newStoryId } = useSelector(({ activityModule }) => activityModule)
     const dispatch = useDispatch()
 
 
@@ -193,7 +194,6 @@ export function _ActivityModal(props) {
     }
 
     if (!story) return <React.Fragment></React.Fragment>
-
 
     return (
         <div className={`activity-modal ${props.selectedStoryIds.storyId ? 'open' : ''}`}>

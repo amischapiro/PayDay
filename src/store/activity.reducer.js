@@ -2,6 +2,11 @@
 
 const initialState = {
     activities: [],
+    isOpen: false,
+    selectedStoryIds: {
+        groupId: null,
+        storyId: null
+    }
 }
 
 export function activityReducer(state = initialState, action) {
@@ -29,6 +34,9 @@ export function activityReducer(state = initialState, action) {
                 ...state,
                 activities: [action.activity, ...state.activities],
             }
+            break
+        case 'SET_IS_OPEN':
+            newState = { ...state, isOpen: action.payload }
             break
         default:
             return newState;
