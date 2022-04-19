@@ -1,33 +1,32 @@
-import React from 'react';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import Avatar from '@material-ui/core/Avatar';
-import AvatarGroup from '@material-ui/lab/AvatarGroup';
-import Tooltip from '@mui/material/Tooltip';
+import React from 'react'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
+import Avatar from '@material-ui/core/Avatar'
+import AvatarGroup from '@material-ui/lab/AvatarGroup'
+import Tooltip from '@mui/material/Tooltip'
 
-export function DynamicGroupSum(props) {
-    const { cmp, group, index } = props;
+export function DynamicGroupSum({ cmp, group, index }) {
     switch (cmp) {
         case 'member-picker':
-            let allMems = [];
+            let allMems = []
 
             group.stories.map((story) => {
-                const members = story.storyData.members;
+                const members = story.storyData.members
                 if (members.length)
-                    members.forEach((member) => allMems.push(member));
-                return story;
-            });
+                    members.forEach((member) => allMems.push(member))
+                return story
+            })
 
             allMems.sort(function (a, b) {
-                if (a._id > b._id) return -1;
-                else if (a._id < b._id) return 1;
-                else return 0;
-            });
+                if (a._id > b._id) return -1
+                else if (a._id < b._id) return 1
+                else return 0
+            })
 
             const filteredMems = allMems.filter((mem, idx) => {
                 if (idx + 1 < allMems.length)
-                    return mem._id !== allMems[idx + 1]._id;
-                else return mem;
-            });
+                    return mem._id !== allMems[idx + 1]._id
+                else return mem
+            })
 
             return (
                 <div key={'s' + index} className="members-sum">
@@ -40,8 +39,8 @@ export function DynamicGroupSum(props) {
                                 src={filteredMems[0].imgUrl}
                                 alt=""
                             /> : <span className="members-cmp-initials sum-initials">
-                                {filteredMems[0].fullname.split(' ')[0].split('')[0] + 
-                                filteredMems[0].fullname.split(' ')[1].split('')[0]}
+                                {filteredMems[0].fullname.split(' ')[0].split('')[0] +
+                                    filteredMems[0].fullname.split(' ')[1].split('')[0]}
                             </span>}{' '}
                             <span className="plus-members sum">
                                 +{filteredMems.length - 1}
@@ -50,10 +49,10 @@ export function DynamicGroupSum(props) {
                     ) : (
                         <AvatarGroup max={2}>
                             {filteredMems.map((member) => {
-                                const nameArr = member.fullname.split(' ');
-                                const fName = nameArr[0].split('');
-                                const lName = nameArr[1].split('');
-                                const initials = fName[0] + lName[0];
+                                const nameArr = member.fullname.split(' ')
+                                const fName = nameArr[0].split('')
+                                const lName = nameArr[1].split('')
+                                const initials = fName[0] + lName[0]
 
                                 return member.imgUrl ? (
                                     <Avatar
@@ -69,21 +68,21 @@ export function DynamicGroupSum(props) {
                                     <span className="members-cmp-initials sum-initials" key={member._id}>
                                         {initials}
                                     </span>
-                                );
+                                )
                             })}
                         </AvatarGroup>
                     )}
                 </div>
-            );
+            )
         case 'status-picker':
             let sortedStatus = group.stories.map((story) => {
-                return story.storyData.status;
-            });
+                return story.storyData.status
+            })
             sortedStatus.sort(function (a, b) {
-                if (a.id < b.id) return -1;
-                else if (a.id > b.id) return 1;
-                else return 0;
-            });
+                if (a.id < b.id) return -1
+                else if (a.id > b.id) return 1
+                else return 0
+            })
             const statusCount = {
                 s101: 0,
                 s102: 0,
@@ -104,19 +103,19 @@ export function DynamicGroupSum(props) {
                                         backgroundColor: status.color,
                                     }}></span>
                             </Tooltip>
-                        );
+                        )
                     })}
                 </div>
-            );
+            )
         case 'priority-picker':
             let sortedPriority = group.stories.map((story) => {
-                return story.storyData.priority;
-            });
+                return story.storyData.priority
+            })
             sortedPriority.sort(function (a, b) {
-                if (a.id < b.id) return -1;
-                else if (a.id > b.id) return 1;
-                else return 0;
-            });
+                if (a.id < b.id) return -1
+                else if (a.id > b.id) return 1
+                else return 0
+            })
             const priorityCount = {
                 p101: 0,
                 p102: 0,
@@ -137,19 +136,19 @@ export function DynamicGroupSum(props) {
                                         backgroundColor: priority.color,
                                     }}></span>
                             </Tooltip>
-                        );
+                        )
                     })}
                 </div>
-            );
+            )
         case 'type-picker':
             let sortedType = group.stories.map((story) => {
-                return story.storyData.type;
-            });
+                return story.storyData.type
+            })
             sortedType.sort(function (a, b) {
-                if (a.id < b.id) return -1;
-                else if (a.id > b.id) return 1;
-                else return 0;
-            });
+                if (a.id < b.id) return -1
+                else if (a.id > b.id) return 1
+                else return 0
+            })
             const typeCount = {
                 t101: 0,
                 t102: 0,
@@ -170,30 +169,28 @@ export function DynamicGroupSum(props) {
                                         backgroundColor: type.color,
                                     }}></span>
                             </Tooltip>
-                        );
+                        )
                     })}
                 </div>
-            );
+            )
         case 'number-picker':
-            let sum = 0;
+            let sum = 0
             group.stories.forEach((story) => {
-                sum += story.storyData.number ? +story.storyData.number : 0;
-            });
+                sum += story.storyData.number ? +story.storyData.number : 0
+            })
             return (
                 <div key={'s' + index} className="num-sum">
                     <div className="sum-var">${sum}</div>
                     <div className="sum-txt">sum</div>
                 </div>
-            );
+            )
         case 'link-picker':
-            return <div key={'s' + index} className="link-sum"></div>;
+            return <div key={'s' + index} className="link-sum"></div>
         case 'timeline-picker':
-            return <div key={'s' + index} className="timeline-sum"></div>;
+            return <div key={'s' + index} className="timeline-sum"></div>
         case 'due-date-picker':
-            return <div key={'s' + index} className="due-date-sum"></div>;
+            return <div key={'s' + index} className="due-date-sum"></div>
         default:
-            return;
+            return
     }
 }
-
-// export default DynamicGroupSum;

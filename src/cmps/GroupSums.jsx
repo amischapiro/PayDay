@@ -1,8 +1,8 @@
 import React from 'react';
 import { DynamicGroupSum } from './DynamicGroupSum';
 
-export function GroupSum(props) {
-	const { cmpsOrder, group } = props;
+export function GroupSum({ cmpsOrder, group }) {
+
 	return (
 		<div className="group-sums">
 			<div className="empty-txt-area"></div>
@@ -14,7 +14,7 @@ export function GroupSum(props) {
 						key={index}
 						index={index}
 					/>
-				);
+				)
 			})}
 		</div>
 	);

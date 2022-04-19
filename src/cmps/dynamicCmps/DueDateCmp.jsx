@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { useState } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 export function DueDateCmp({ story, onUpdate }) {
-	const { dueDate } = story.storyData;
-	const [startDate, setStartDate] = useState(dueDate || null);
+
+	const { dueDate } = story.storyData
+	const [startDate, setStartDate] = useState(dueDate || null)
 
 	const setDate = (date) => {
-		setStartDate(date);
-		onUpdate('CHANGE_DUE_DATE', date.getTime());
-	};
+		setStartDate(date)
+		onUpdate('CHANGE_DUE_DATE', date.getTime())
+	}
 
 	return (
 		<div className="due-date-container">
@@ -22,5 +23,5 @@ export function DueDateCmp({ story, onUpdate }) {
 				)}
 			</DatePicker>
 		</div>
-	);
+	)
 }

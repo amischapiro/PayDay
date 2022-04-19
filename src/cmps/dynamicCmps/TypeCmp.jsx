@@ -1,27 +1,27 @@
-import { useState, useEffect } from 'react';
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { useState, useEffect } from 'react'
+import Popover from '@mui/material/Popover'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 
 export function TypesCmp({ story, onUpdate, boardTypes }) {
 
-	const [anchorEl, setAnchorEl] = useState(null);
-	const [type, setType] = useState(story.storyData.type);
+	const [anchorEl, setAnchorEl] = useState(null)
+	const [type, setType] = useState(story.storyData.type)
 
 	useEffect(() => {
 		setType(story.storyData.type)
 	}, [story.storyData.type])
 
 	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
+		setAnchorEl(event.currentTarget)
+	}
 
 	const handleClose = () => {
-		setAnchorEl(null);
-	};
+		setAnchorEl(null)
+	}
 
-	const open = Boolean(anchorEl);
-	const id = open ? 'simple-popover' : undefined;
+	const open = Boolean(anchorEl)
+	const id = open ? 'simple-popover' : undefined
 
 	return (
 
@@ -62,9 +62,9 @@ export function TypesCmp({ story, onUpdate, boardTypes }) {
 								{type.title}
 							</Typography>
 						</div>
-					);
+					)
 				})}
 			</Popover>
 		</div>
-	);
+	)
 }

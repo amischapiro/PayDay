@@ -1,56 +1,56 @@
-import React, { useState, useRef } from 'react';
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import React, { useState, useRef } from 'react'
+import Popover from '@mui/material/Popover'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 
 export function LinkCmp({ story, onUpdate }) {
-	const { link } = story.storyData;
 
-	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [anchorEl, setAnchorEl] = useState(null)
 
-	const [name, setName] = useState(link.name || link.url || '');
-	const [url, setUrl] = useState(link.url || '');
-	const inputEl = useRef();
+	const { link } = story.storyData
+	const [name, setName] = useState(link.name || link.url || '')
+	const [url, setUrl] = useState(link.url || '')
+	const inputEl = useRef()
 
 	const onAddLink = async () => {
-		if (name && !url) return;
+		if (name && !url) return
 		const data = { name, url }
-		console.log('update');
-		await onUpdate('CHANGE_LINK', data);
-		setName(name || '');
-		setUrl(url || '');
-	};
+		console.log('update')
+		await onUpdate('CHANGE_LINK', data)
+		setName(name || '')
+		setUrl(url || '')
+	}
 
 	const handleUpdate = (ev) => {
 		if (ev.key === 'Enter' || ev.type === 'blur') {
-			onAddLink();
+			onAddLink()
 		}
-	};
+	}
 
 	const handleChange = ({ target }) => {
-		const { value } = target;
-		if (target.name === 'name') setName(value);
-		else setUrl(value);
-	};
+		const { value } = target
+		if (target.name === 'name') setName(value)
+		else setUrl(value)
+	}
 
-	const onFocusInput = () => {
-		inputEl.current.focus();
-	};
+	// const onFocusInput = () => {
+	// 	inputEl.current.focus()
+	// }
 
 	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
+		setAnchorEl(event.currentTarget)
+	}
 
 	const handleClose = () => {
-		setAnchorEl(null);
-	};
+		setAnchorEl(null)
+	}
 
 	const handleLink = (ev) => {
-		ev.stopPropagation();
-	};
+		ev.stopPropagation()
+	}
 
-	const open = Boolean(anchorEl);
-	const id = open ? 'simple-popover' : undefined;
+	const open = Boolean(anchorEl)
+	const id = open ? 'simple-popover' : undefined
 
 	return (
 		<div className="link-container">
@@ -115,5 +115,5 @@ export function LinkCmp({ story, onUpdate }) {
 				</div>
 			</Popover>
 		</div>
-	);
+	)
 }

@@ -16,8 +16,8 @@ import { ActivityModal } from '../cmps/ActivityModal'
 import { socketService } from '../services/socket.service'
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
-import { connect, useDispatch, useSelector } from 'react-redux'
-import { loadBoards, getById, removeBoard, updateBoard, addBoard, setFilterBy, setAppLoaded } from '../store/board.action'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadBoards, getById, updateBoard, setFilterBy, setAppLoaded } from '../store/board.action'
 import { loginDemoUser, login } from '../store/user.action'
 import { NoBoardsPage } from './NoBoardsPage'
 import { Loader } from '../cmps/layout/Loader'
@@ -25,7 +25,7 @@ import { userService } from '../services/user.service'
 import { Confirm } from '../cmps/layout/Confirm'
 
 
-function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, loginDemoUser }) {
+export function BoardApp() {
 
 	const { boardId } = useParams()
 
@@ -53,7 +53,7 @@ function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, lo
 					login(user)
 				} else await loginDemoUser()
 				dispatch({ type: 'SET_LOADING_BOARDS', payload: true })
-				await loadBoards()
+				await dispatch(loadBoards())
 				await setAppLoaded()
 			}
 		})();
@@ -64,16 +64,16 @@ function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, lo
 
 	useEffect(() => {
 		(async () => {
-			await getById(boardId)
+			await dispatch(getById(boardId))
 		})();
 		socketService.emit('enter board', boardId);
 		socketService.on('board has updated', async (updatedBoardId) => {
-			await getById(updatedBoardId)
+			await dispatch(getById(updatedBoardId))
 		})
 		return () => {
 			socketService.off('board has updated')
 		}
-	}, [boardId, getById])
+	}, [boardId, dispatch])
 
 
 	useEffectUpdate(() => {
@@ -176,7 +176,7 @@ function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, lo
 		})
 
 		newBoard.groups = newGroups
-		await updateBoard(newBoard)
+		await dispatch(updateBoard(newBoard))
 	}
 
 	const onSetCol = (col) => {
@@ -196,7 +196,7 @@ function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, lo
 	const onUpdateBoard = async (boardToUpdate) => {
 		if (filterBy || selectedBoard?.sortBy.name) return setComfirmOpen(true)
 		try {
-			await updateBoard(boardToUpdate)
+			await dispatch(updateBoard(boardToUpdate))
 			socketService.emit('update board', boardId)
 		} catch (error) {
 			console.log(error);
@@ -235,7 +235,6 @@ function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, lo
 		<main className="main-container">
 			<SideBar />
 			<BoardList />
-
 			<AnimatePresence>
 				{comfirmOpen && (
 					<Confirm
@@ -291,21 +290,3 @@ function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, lo
 		</main>
 	)
 }
-
-
-function mapStateToProps() {
-	return {
-	}
-}
-
-const mapDispatchToProps = {
-	loadBoards,
-	getById,
-	removeBoard,
-	updateBoard,
-	addBoard,
-	// setFilterBy,
-	loginDemoUser
-}
-
-export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp)
