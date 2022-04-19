@@ -11,7 +11,7 @@ import { boardService } from '../../services/board.service'
 import { activityService } from '../../services/activity.service'
 
 import { useDispatch } from 'react-redux'
-import { addActivity } from '../../store/activity.actions'
+import { addActivity } from '../../store/activity.action'
 
 export function StoryMenu({ board, group, story, updateBoard }) {
 
@@ -50,8 +50,6 @@ export function StoryMenu({ board, group, story, updateBoard }) {
         handleClose()
         const newStory = JSON.parse(JSON.stringify(story))
         newStory.id = utilService.makeId();
-        console.log('story id:', story.id);
-        console.log('newStory.id:', newStory.id);
         newBoard.groups[groupIdx].stories.unshift(newStory)
         onAddActivity('Story duplicated')
         await updateBoard(newBoard)

@@ -17,7 +17,7 @@ import { socketService } from '../services/socket.service'
 import { SideBar } from '../cmps/SideBar.jsx'
 import { BoardList } from '../cmps/BoardList.jsx'
 import { connect, useDispatch, useSelector } from 'react-redux'
-import { loadBoards, getById, removeBoard, updateBoard, addBoard, setStory, setFilterBy, setAppLoaded } from '../store/board.action'
+import { loadBoards, getById, removeBoard, updateBoard, addBoard, setFilterBy, setAppLoaded } from '../store/board.action'
 import { loginDemoUser, login } from '../store/user.action'
 import { NoBoardsPage } from './NoBoardsPage'
 import { Loader } from '../cmps/layout/Loader'
@@ -25,7 +25,7 @@ import { userService } from '../services/user.service'
 import { Confirm } from '../cmps/layout/Confirm'
 
 
-function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setFilterBy, filterBy, loginDemoUser }) {
+function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, setFilterBy, loginDemoUser }) {
 
 	const { boardId } = useParams()
 
@@ -33,7 +33,8 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 	const [isDashboard, toggleIsDashboard] = useState(false)
 	const [comfirmOpen, setComfirmOpen] = useState(false)
 
-	const { isLoadingBoard, isLoadingBoards, hasAppLoaded } = useSelector(({ boardModule }) => boardModule)
+
+	const { boards, selectedBoard, filterBy, isLoadingBoard, isLoadingBoards, hasAppLoaded } = useSelector(({ boardModule }) => boardModule)
 	const { loggedinUser } = useSelector(({ userModule }) => userModule)
 	const dispatch = useDispatch()
 
@@ -310,10 +311,9 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 
 function mapStateToProps({ boardModule }) {
 	return {
-		boards: boardModule.boards,
-		selectedStoryIds: boardModule.activityModalStory,
-		selectedBoard: boardModule.selectedBoard,
-		filterBy: boardModule.filterBy,
+		// boards: boardModule.boards,
+		// selectedBoard: boardModule.selectedBoard,
+		// filterBy: boardModule.filterBy,
 
 	}
 }
@@ -324,7 +324,6 @@ const mapDispatchToProps = {
 	removeBoard,
 	updateBoard,
 	addBoard,
-	setStory,
 	setFilterBy,
 	loginDemoUser
 }

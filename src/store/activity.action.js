@@ -56,3 +56,14 @@ export function toggleStoryActivityModal(groupId, storyId) {
         dispatch({ type: 'SET_IS_OPEN', payload: isOpen ? false : true })
     }
 }
+
+export function removeActivities(boardId) {
+    return (dispatch) => {
+        try {
+            activityService.remove(boardId)
+            dispatch({ type: 'REMOVE_ACTIVITIES' })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}

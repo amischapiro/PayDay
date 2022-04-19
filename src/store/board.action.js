@@ -31,7 +31,6 @@ export function getById(boardId) {
 export function removeBoard(boardId) {
     return async (dispatch) => {
         try {
-            // await swalService.onDeleteSwal()
             await boardService.remove(boardId)
             dispatch({ type: 'REMOVE_BOARD', boardId })
             return Promise.resolve()
@@ -66,12 +65,6 @@ export function addBoard(boardToSave) {
         } catch (err) {
             console.log('Cannot Add', boardToSave)
         }
-    }
-}
-
-export function setStory(story) {
-    return async (dispatch) => {
-        dispatch({ type: 'SET_STORY', story })
     }
 }
 

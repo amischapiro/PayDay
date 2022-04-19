@@ -7,7 +7,7 @@ import { ModalUpdatePreview } from './ModalUpdatePreview'
 import { cloudinaryService } from '../services/cloudinary.service'
 
 import ActivitySvg from '../assets/img/activity-log.svg'
-import { loadActivities, fetchLastActivity, toggleBoardActivityModal } from '../store/activity.actions'
+import { loadActivities, fetchLastActivity, toggleBoardActivityModal } from '../store/activity.action'
 import { socketService } from '../services/socket.service'
 import { boardService } from '../services/board.service'
 

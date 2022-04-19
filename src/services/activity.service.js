@@ -21,8 +21,7 @@ async function add(boardId, activity) {
 }
 
 async function remove(boardId) {
-    await httpService.delete(`board/${boardId}`)
-    return boardId
+    await httpService.delete(`board/${boardId}/activity`)
 }
 
 

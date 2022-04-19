@@ -10,7 +10,7 @@ import { PersonMenu } from './menus/PersonMenu'
 
 import { userService } from '../services/user.service'
 import { activityService } from '../services/activity.service'
-import { addActivity } from '../store/activity.actions'
+import { addActivity } from '../store/activity.action'
 
 export function BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileFilterSort, onSetSort }) {
 

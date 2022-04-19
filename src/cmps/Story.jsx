@@ -5,7 +5,7 @@ import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined'
 
 import { boardService } from '../services/board.service'
 import { userService } from '../services/user.service'
-import { addActivity, toggleStoryActivityModal } from '../store/activity.actions'
+import { addActivity, toggleStoryActivityModal } from '../store/activity.action'
 import { activityService } from '../services/activity.service'
 
 

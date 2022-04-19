@@ -27,14 +27,14 @@ export function activityReducer(state = initialState, action) {
                 activities: [],
             }
             break
-        case 'SET_SKIP':
-            newState = { ...state, skip: action.skip }
-            break
         case 'ADD_ACTIVITY':
             newState = {
                 ...state,
                 activities: [action.activity, ...state.activities],
             }
+            break
+        case 'REMOVE_ACTIVITIES':
+            newState = { ...state, activities: [] }
             break
         case 'SET_IS_OPEN':
             newState = { ...state, isOpen: action.payload }
