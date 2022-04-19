@@ -3,12 +3,14 @@ import { NavLink } from "react-router-dom";
 
 import GmailLogo from '../assets/img/gmail-icon.png'
 import AbodeLogo from '../assets/img/adobe-icon.png'
+import { useSelector } from 'react-redux';
 
 
-export const BoardNav = ({ board, toggleIsDashboard }) => {
+export const BoardNav = ({ toggleIsDashboard }) => {
 
     const [isAnimationOn, setAnimation] = useState(false)
     const [isInegrateHoverOn, setIntegrateHover] = useState(false)
+    const { selectedBoard: board } = useSelector(({ boardModule }) => boardModule)
 
     let timeoutId;
     const onSetAnimation = () => {

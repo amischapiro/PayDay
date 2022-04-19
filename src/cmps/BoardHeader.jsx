@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleBoardActivityModal } from '../store/activity.action'
 import { socketService } from '../services/socket.service';
 
-export function BoardHeader({ board, updateBoard }) {
+export function BoardHeader({ updateBoard }) {
 
+    const { selectedBoard: board } = useSelector(({ boardModule }) => boardModule)
     const { title, desc, members } = board
 
     const [isTitleEditOn, toggleTitleEdit] = useState(false)

@@ -4,9 +4,14 @@ import { BoardPreview } from './BoardPreview'
 import { utilService } from '../services/util.service'
 import { socketService } from '../services/socket.service'
 import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadBoards } from '../store/board.action'
 
+export function BoardList({ removeBoard, addBoard }) {
 
-export function BoardList({ boards, updateBoard, removeBoard, addBoard, currBoard, loadBoards }) {
+	const { selectedBoard: currBoard, boards } = useSelector(({ boardModule }) => boardModule)
+	const dispatch = useDispatch()
+
 	const [anchorEl, setAnchorEl] = useState(null)
 	const [isBoardListOpen, toggleBoardList] = useState(true)
 
@@ -15,12 +20,12 @@ export function BoardList({ boards, updateBoard, removeBoard, addBoard, currBoar
 	useEffect(() => {
 		socketService.emit('enter workspace')
 		socketService.on('workspace has updated', async () => {
-			await loadBoards()
+			await dispatch(loadBoards())
 		})
 		return () => {
 			socketService.off('workspace has updated')
 		}
-	}, [loadBoards])
+	}, [dispatch])
 
 	const onToggleBoardListShown = () => {
 		isBoardListOpen ? toggleBoardList(false) : toggleBoardList(true)
@@ -63,9 +68,7 @@ export function BoardList({ boards, updateBoard, removeBoard, addBoard, currBoar
 				onClick={handleClick}>
 				<h2>
 					Main workspace{' '}
-					<span
-						className={`fa-solid ${open ? 'angleup' : 'angledown'
-							} `}></span>{' '}
+					<span className={`fa-solid ${open ? 'angleup' : 'angledown'} `}></span>
 				</h2>
 			</button>
 			<div onClick={onAddBoard} className="add-board">
@@ -87,9 +90,6 @@ export function BoardList({ boards, updateBoard, removeBoard, addBoard, currBoar
 							board={board}
 							currBoard={currBoard}
 							boards={boards}
-							updateBoard={updateBoard}
-							removeBoard={removeBoard}
-							addBoard={addBoard}
 						/>
 					)
 				})}

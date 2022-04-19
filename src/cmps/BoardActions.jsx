@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { utilService } from '../services/util.service'
 
 import { NewStoryMenu } from './menus/NewStoryMenu'
@@ -12,8 +12,9 @@ import { userService } from '../services/user.service'
 import { activityService } from '../services/activity.service'
 import { addActivity } from '../store/activity.action'
 
-export function BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileFilterSort, onSetSort }) {
+export function BoardActions({ updateBoard, updateWhileFilterSort, onSetSort }) {
 
+	const { selectedBoard: board, filterBy } = useSelector(({ boardModule }) => boardModule)
 	const dispatch = useDispatch()
 	const newBoard = { ...board }
 
@@ -54,20 +55,18 @@ export function BoardActions({ board, updateBoard, setFilterBy, filterBy, update
 				<div className="new-story">
 					<span onClick={onAddStory}>New Story</span>
 					<NewStoryMenu
-						board={board}
-						updateBoard={updateBoard}
 						onAddGroup={onAddGroup}
 						onAddStory={onAddStory}
 					/>
 				</div>
-				<BoardSearch setFilterBy={setFilterBy} filterBy={filterBy} />
+				<BoardSearch />
 
-				<PersonMenu members={board.members} setFilterBy={setFilterBy} filterBy={filterBy} />
+				<PersonMenu members={board.members} />
 
 				<div className="filter">
 					<span className="fa-solid filter"></span>
 					<span className="btn-txt actions-text">Filter</span>
-					<FilterMenu board={board} updateBoard={updateBoard} setFilterBy={setFilterBy} />
+					<FilterMenu board={board} updateBoard={updateBoard} />
 				</div>
 
 				<SortMenu onSetSort={onSetSort} />

@@ -6,7 +6,7 @@ import { ReactComponent as NoBoardIcon } from '../assets/img/no-boards.svg'
 import { Link, useHistory } from "react-router-dom"
 import Logo from '../assets/img/PayDayLogo3.png';
 
-export const NoBoardsPage = ({ boards, selectedBoard, removeBoard, addBoard, loadBoards }) => {
+export const NoBoardsPage = ({ removeBoard, addBoard, loadBoards }) => {
 
     const history = useHistory()
 
@@ -22,7 +22,7 @@ export const NoBoardsPage = ({ boards, selectedBoard, removeBoard, addBoard, loa
         <div className="main-container">
             <SideBar />
             <BoardList
-                boards={boards} selectedBoard={selectedBoard} removeBoard={removeBoard}
+                removeBoard={removeBoard}
                 addBoard={addBoard} loadBoards={loadBoards}
             />
             <div className="no-boards-page">

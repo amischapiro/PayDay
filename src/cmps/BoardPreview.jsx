@@ -12,12 +12,16 @@ import { socketService } from '../services/socket.service';
 import { swalService } from '../services/swal.service';
 import { useDispatch } from 'react-redux';
 import { removeActivities } from '../store/activity.action';
+import { removeBoard, addBoard } from '../store/board.action'
+import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-export function _BoardPreview(props) {
+export function BoardPreview({ boards, board, currBoard }) {
 
-    const { boards, board, removeBoard, addBoard, currBoard } = props
 
     const dispatch = useDispatch()
+    const history = useHistory()
+    const params = useParams()
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [isHover, toggleOnHover] = useState(false)
@@ -41,7 +45,7 @@ export function _BoardPreview(props) {
     const onRemove = async (ev, boardId) => {
         ev.stopPropagation()
         handleClose(null)
-        const currBoardId = props.match.params.boardId
+        const currBoardId = params.boardId
         if (currBoardId === '61f8f86b25bd9487389b2907') {
             swalService.onDeleteCoreSwal();
             return;
@@ -55,11 +59,11 @@ export function _BoardPreview(props) {
 
     const goToNextBoard = (currBoardId) => {
         const nextBoard = boards.find(diffBoard => diffBoard._id !== currBoardId)
-        props.history.push(`/board/${nextBoard?._id}/board`)
+        history.push(`/board/${nextBoard?._id}/board`)
     }
 
     const onGoTo = () => {
-        props.history.push(`/board/${board._id}/board`)
+        history.push(`/board/${board._id}/board`)
     }
 
     const onDuplicateBoard = async () => {
@@ -135,7 +139,6 @@ export function _BoardPreview(props) {
 }
 
 
-export const BoardPreview = withRouter(_BoardPreview)
 
 
 

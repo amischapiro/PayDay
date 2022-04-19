@@ -5,9 +5,8 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-export function NewStoryMenu(props) {
+export function NewStoryMenu({ onAddGroup, onAddStory }) {
 
-    const { onAddGroup, onAddStory } = props
 
     const [anchorEl, setAnchorEl] = useState(null);
 

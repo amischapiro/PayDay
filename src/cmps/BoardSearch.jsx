@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilterBy } from '../store/board.action';
 
-export const BoardSearch = ({ filterBy, setFilterBy }) => {
+export const BoardSearch = () => {
+
+    const { filterBy } = useSelector(({ boardModule }) => boardModule)
+    const dispatch = useDispatch()
 
     const [txt, setTxt] = useState(filterBy?.name || '')
     const [isSearchOpen, setSearchOpen] = useState(false);
 
     useEffect(() => {
-        if (!txt || txt === '') setFilterBy(null)
-        else setFilterBy({ name: txt })
-    }, [txt, setFilterBy])
+        if (!txt || txt === '') dispatch(setFilterBy(null))
+        else dispatch(setFilterBy({ name: txt }))
+    }, [txt, dispatch])
 
     const handleChange = async ({ target }) => {
         const { value } = target

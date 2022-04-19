@@ -4,11 +4,13 @@ import { useState } from 'react'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { setFilterBy } from '../../store/board.action';
+import { useDispatch } from 'react-redux';
 
-
-export function PersonMenu({ members, setFilterBy }) {
+export function PersonMenu({ members }) {
 
     const [anchorEl, setAnchorEl] = useState(null);
+    const dispatch = useDispatch()
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -32,8 +34,8 @@ export function PersonMenu({ members, setFilterBy }) {
 
     const onSetFilter = (filterType, filterValueId) => {
         handleClose()
-        if (filterType === 'reset') setFilterBy(null)
-        setFilterBy({ [filterType]: filterValueId })
+        if (filterType === 'reset') dispatch(setFilterBy(null))
+        else dispatch(setFilterBy({ [filterType]: filterValueId }))
     }
 
     return (

@@ -25,7 +25,7 @@ import { userService } from '../services/user.service'
 import { Confirm } from '../cmps/layout/Confirm'
 
 
-function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, setFilterBy, loginDemoUser }) {
+function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, loginDemoUser }) {
 
 	const { boardId } = useParams()
 
@@ -207,7 +207,7 @@ function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, se
 
 	const stopUpdate = (res) => {
 		if (!res) return setComfirmOpen(false)
-		setFilterBy(null)
+		dispatch(setFilterBy(null))
 		onSetSort(null)
 		setComfirmOpen(false)
 	}
@@ -230,7 +230,7 @@ function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, se
 	if ((isLoadingBoard || isLoadingBoards)) return <Loader />
 
 	if (!boards.length || boardId === 'null') return (
-		<NoBoardsPage boards={boards} currBoard={selectedBoard} removeBoard={removeBoard}
+		<NoBoardsPage removeBoard={removeBoard}
 			addBoard={addBoard} loadBoards={loadBoards} />
 	)
 
@@ -259,18 +259,11 @@ function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, se
 
 			<section className={`main-content ${isDashboard ? "dashboard" : ""}`}>
 				<section className="main-header">
-					<MobileNav selectedBoard={selectedBoard} boards={boards} toggleIsDashboard={toggleIsDashboard} />
-					<BoardHeader
-						board={selectedBoard}
-						updateBoard={onUpdateBoard}
-					/>
-					<BoardNav board={selectedBoard} toggleIsDashboard={toggleIsDashboard} />
+					<MobileNav toggleIsDashboard={toggleIsDashboard} />
+					<BoardHeader updateBoard={onUpdateBoard} />
+					<BoardNav toggleIsDashboard={toggleIsDashboard} />
 					<BoardActions
-						board={selectedBoard}
 						updateBoard={onUpdateBoard}
-						getById={getById}
-						setFilterBy={setFilterBy}
-						filterBy={filterBy}
 						updateWhileFilterSort={updateWhileFilterSort}
 						onSetSort={onSetSort}
 					/>
@@ -309,12 +302,8 @@ function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, se
 }
 
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps() {
 	return {
-		// boards: boardModule.boards,
-		// selectedBoard: boardModule.selectedBoard,
-		// filterBy: boardModule.filterBy,
-
 	}
 }
 
@@ -324,7 +313,7 @@ const mapDispatchToProps = {
 	removeBoard,
 	updateBoard,
 	addBoard,
-	setFilterBy,
+	// setFilterBy,
 	loginDemoUser
 }
 

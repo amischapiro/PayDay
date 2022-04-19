@@ -1,10 +1,11 @@
 import { useState } from "react"
+import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 
-export function MobileNav({ selectedBoard, boards, toggleIsDashboard }) {
+export function MobileNav({ toggleIsDashboard }) {
 
     const [isNavOpen, toggleNav] = useState(null)
-
+    const { selectedBoard, boards } = useSelector(({ boardModule }) => boardModule)
 
     return <nav className={`mobile-nav ${isNavOpen ? 'nav-active' : ''}`}>
         <div className="nav-logo">
