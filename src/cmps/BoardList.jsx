@@ -5,9 +5,9 @@ import { utilService } from '../services/util.service'
 import { socketService } from '../services/socket.service'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadBoards } from '../store/board.action'
+import { loadBoards, addBoard } from '../store/board.action'
 
-export function BoardList({ removeBoard, addBoard }) {
+export function BoardList() {
 
 	const { selectedBoard: currBoard, boards } = useSelector(({ boardModule }) => boardModule)
 	const dispatch = useDispatch()
@@ -41,13 +41,13 @@ export function BoardList({ removeBoard, addBoard }) {
 
 	const onAddBoard = async () => {
 		const newBoard = await utilService.createEmptyBoard()
-		if (boards.length > 0) await addBoard(newBoard)
+		if (boards.length > 0) await dispatch(addBoard(newBoard))
 		else onAddFirstBoard(newBoard)
 		socketService.emit('update workspace')
 	}
 
 	const onAddFirstBoard = async (newBoard) => {
-		const addedBoard = await addBoard(newBoard)
+		const addedBoard = await dispatch(addBoard(newBoard))
 		history.push(`/board/${addedBoard._id}/board`)
 
 	}

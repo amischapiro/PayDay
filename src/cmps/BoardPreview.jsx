@@ -46,13 +46,11 @@ export function BoardPreview({ boards, board, currBoard }) {
         ev.stopPropagation()
         handleClose(null)
         const currBoardId = params.boardId
-        if (currBoardId === '61f8f86b25bd9487389b2907') {
-            swalService.onDeleteCoreSwal();
-            return;
-        }
+        if (currBoardId === '61f8f86b25bd9487389b2907') return swalService.onDeleteCoreSwal()
         await swalService.onDeleteSwal()
+
         if (boardId === currBoardId && boards.length > 1) goToNextBoard(currBoardId)
-        await removeBoard(boardId)
+        await dispatch(removeBoard(boardId))
         await dispatch(removeActivities(boardId))
         socketService.emit('update workspace')
     }

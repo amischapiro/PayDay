@@ -229,21 +229,12 @@ function _BoardApp({ loadBoards, getById, updateBoard, removeBoard, addBoard, lo
 
 	if ((isLoadingBoard || isLoadingBoards)) return <Loader />
 
-	if (!boards.length || boardId === 'null') return (
-		<NoBoardsPage removeBoard={removeBoard}
-			addBoard={addBoard} loadBoards={loadBoards} />
-	)
+	if (!boards.length || boardId === 'null') return <NoBoardsPage />
 
 	return (
 		<main className="main-container">
 			<SideBar />
-			<BoardList
-				boards={boards}
-				currBoard={selectedBoard}
-				loadBoards={loadBoards}
-				removeBoard={removeBoard}
-				addBoard={addBoard}
-			/>
+			<BoardList />
 
 			<AnimatePresence>
 				{comfirmOpen && (
