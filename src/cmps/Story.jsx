@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { DynamicCmp } from './dynamicCmps/DynamicCmp';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 
 import { setStory } from '../store/board.action';
 import { boardService } from '../services/board.service';
 import { utilService } from '../services/util.service';
 import { userService } from '../services/user.service'
+
+import { addActivity } from '../store/activity.actions'
 
 export function _Story(props) {
 	const { board, group, story, updateBoard, filterBy, updateWhileFilterSort } = props;
@@ -21,6 +23,8 @@ export function _Story(props) {
 
 	const [isTitleEditOn, toggleTitleEdit] = useState(false);
 	const [newStoryTitle, setStoryTitle] = useState({ title: story.title });
+
+	const dispatch = useDispatch()
 
 	const handleChange = ({ target }) => {
 		const { name, value } = target;
@@ -94,9 +98,10 @@ export function _Story(props) {
 		onUpdateBoard(newStory);
 	};
 
+
 	const addNewActivity = (type) => {
 		const newActivity = {
-			id: utilService.makeId(),
+			// id: utilService.makeId(),
 			type,
 			createdAt: Date.now(),
 			byMember: currUser,
@@ -107,9 +112,14 @@ export function _Story(props) {
 			group: {
 				id: groupId,
 				title: group.title
+			},
+			board: {
+				_id: board._id,
+				title: board.title
 			}
 		}
-		newBoard.activities.unshift(newActivity)
+		dispatch(addActivity(newActivity))
+		// newBoard.activities.unshift(newActivity)
 	}
 
 	const onSetStory = async (boardId, groupId, storyId) => {
@@ -201,7 +211,7 @@ function mapStateToProps({ boardModule }) {
 		// board: boardModule.board,
 		// users: state.userModule.users,
 		// loggedInUser: state.userModule.loggedInUser
-		selectedStoryIds: boardModule.activityModalStory,
+		// selectedStoryIds: boardModule.activityModalStory,
 	};
 }
 

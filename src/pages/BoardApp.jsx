@@ -315,7 +315,8 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 
 			<div
 				onClick={() => onRemoveStory()}
-				className={`darken-screen ${selectedStoryIds.storyId ? 'open' : ''}`}></div>
+				className={`darken-screen ${selectedStoryIds.storyId ? 'open' : ''}`}>
+			</div>
 		</main>
 	)
 }

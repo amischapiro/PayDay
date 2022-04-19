@@ -1,9 +1,6 @@
 import React from "react"
 import moment from "moment"
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-
-
-
+// import AccessTimeIcon from '@mui/icons-material/AccessTime'
 
 
 export const ModalUpdatePreview = ({ comment, onRemoveComment, getInitials, imgUrl }) => {

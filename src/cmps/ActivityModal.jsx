@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { setStory } from '../store/board.action'
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
@@ -8,14 +8,19 @@ import { ModalUpdatePreview } from './ModalUpdatePreview'
 import { cloudinaryService } from '../services/cloudinary.service'
 
 import ActivitySvg from '../assets/img/activity-log.svg'
+import { loadActivities, fetchLastActivity } from '../store/activity.actions'
+import { socketService } from '../services/socket.service'
+
 
 export function _ActivityModal(props) {
+
+    const { selectedStoryIds, selectedBoard } = props
 
     const [isActivityShown, setActivityToggle] = useState(null)
     const [comment, setComment] = useState('')
     const [isUpdateFocused, setUpdateFocus] = useState(false)
 
-    const { selectedStoryIds, selectedBoard } = props
+
 
     const onRemoveStory = async () => {
         const story = {
@@ -128,13 +133,36 @@ export function _ActivityModal(props) {
         setComment(value)
     }
 
-    const getActivities = () => {
-        if (story === 'none') return selectedBoard.activities
-        return selectedBoard.activities.filter(activity => {
-            if (!activity.story) return
-            return activity.story.id === story.id
+    // const getActivities = () => {
+    //     if (story === 'none') return selectedBoard.activities
+    //     return selectedBoard.activities.filter(activity => {
+    //         if (!activity.story) return
+    //         return activity.story.id === story.id
+    //     })
+    // }
+
+
+    ////////////////// NEW SECTION ////////////////////
+
+    const { activities } = useSelector(({ activityModule }) => activityModule)
+    const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        socketService.on('board has updated', () => {
+            dispatch(fetchLastActivity())
         })
-    }
+        return () => {
+            socketService.off('board has updated')
+        }
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch({ type: 'RESET_ACTIVITIES' })
+        console.log(selectedStoryIds.storyId);
+        dispatch(loadActivities())
+    }, [dispatch, selectedBoard._id, selectedStoryIds.storyId])
+
 
 
     const getIconPerActions = (activityType) => {
@@ -165,6 +193,8 @@ export function _ActivityModal(props) {
     }
 
     if (!story) return <React.Fragment></React.Fragment>
+
+
     return (
         <div className={`activity-modal ${props.selectedStoryIds.storyId ? 'open' : ''}`}>
             <div className="top-section">
@@ -231,12 +261,14 @@ export function _ActivityModal(props) {
                         </div>
                     </React.Fragment>}
                 {(story === 'none' || isActivityShown) && <div>
-                    {getActivities()?.map((activity) => {
+                    {/* {getActivities()?.map((activity) => { */}
+                    {activities.map((activity) => {
                         const icon = getIconPerActions(activity.type)
                         const groupColor = getGroupColor(activity.group.id)
                         const { imgUrl } = activity.byMember
                         return (
-                            <div key={activity.id} className='activity-preview' >
+                            // <div key={activity.id} className='activity-preview' >
+                            <div key={activity._id} className='activity-preview' >
                                 <div className='activity-time' >
                                     <span className="fa clock"></span>
                                     <span>{moment(activity.createdAt).fromNow()}</span>
@@ -255,6 +287,7 @@ export function _ActivityModal(props) {
                             </div>
                         )
                     })}
+                    <button onClick={() => dispatch(loadActivities())}>Load More</button>
                 </div>}
             </div>
         </div >
