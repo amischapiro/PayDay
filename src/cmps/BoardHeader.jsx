@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { setStory } from '../store/board.action';
-
+import { toggleBoardActivityModal } from '../store/activity.actions'
 import { socketService } from '../services/socket.service';
 
 export function _BoardHeader({ board, updateBoard, setStory }) {
@@ -16,6 +16,7 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
     const titleRef = React.createRef()
     const descRef = React.createRef()
 
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (isTitleEditOn) titleRef.current.focus()
@@ -51,17 +52,18 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
         socketService.emit('update workspace')
     }
 
-    const { isOpen, selectedStory } = useSelector(({ activityModule }) => activityModule)
-    const dispatch = useDispatch()
+
 
     const onSetStory = async () => {
-        // const story = {
-        //     boardId: board._id,
-        //     groupId: 'none',
-        //     storyId: 'none',
-        // };
-        // await setStory(story);
-        dispatch({ type: 'SET_IS_OPEN', payload: true })
+        const story = {
+            boardId: board._id,
+            groupId: 'none',
+            storyId: 'none',
+        };
+        await setStory(story);
+        dispatch(toggleBoardActivityModal())
+        // dispatch({ type: 'SET_SELECTED_STORY_IDS', payload: { groupId: null, storyId: null } })
+        // dispatch({ type: 'SET_IS_OPEN', payload: true })
     }
 
 

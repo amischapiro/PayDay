@@ -39,3 +39,20 @@ export function addActivity(activity) {
     }
 }
 
+export function toggleBoardActivityModal() {
+    return (dispatch, getState) => {
+        const { isOpen } = getState().activityModule
+        dispatch({ type: 'SET_SELECTED_STORY_IDS', payload: { groupId: null, storyId: null } })
+        dispatch({ type: 'SET_IS_PER_STORY', payload: false })
+        dispatch({ type: 'SET_IS_OPEN', payload: isOpen ? false : true })
+    }
+}
+
+export function toggleStoryActivityModal(groupId, storyId) {
+    return (dispatch, getState) => {
+        const { isOpen } = getState().activityModule
+        dispatch({ type: 'SET_SELECTED_STORY_IDS', payload: { groupId, storyId } })
+        dispatch({ type: 'SET_IS_PER_STORY', payload: true })
+        dispatch({ type: 'SET_IS_OPEN', payload: isOpen ? false : true })
+    }
+}

@@ -116,10 +116,6 @@
         background-color: #e6e9ef;
     }
 
-    // .modal-story-name {
-    //     margin-left: 1rem;
-    // }
-
     .bottom-section {
         padding: 1rem 1.5rem;
     }
@@ -275,7 +271,7 @@
 .activity-member {
     display: flex;
     align-items: center;
-    .story-title {
+    .activity-title {
         margin-inline-start: 0.4rem;
     }
 }
@@ -301,7 +297,6 @@
         border-radius: 50%;
     }
 }
-
 
 .activity-time {
     display: flex;

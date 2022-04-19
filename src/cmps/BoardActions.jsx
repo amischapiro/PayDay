@@ -1,62 +1,50 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { utilService } from '../services/util.service';
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { utilService } from '../services/util.service'
 
-import { NewStoryMenu } from './menus/NewStoryMenu';
-import { SortMenu } from './menus/SortMenu';
+import { NewStoryMenu } from './menus/NewStoryMenu'
+import { SortMenu } from './menus/SortMenu'
 import { FilterMenu } from './menus/FilterMenu'
-
+import { BoardSearch } from './BoardSearch'
+import { PersonMenu } from './menus/PersonMenu'
 
 import { userService } from '../services/user.service'
-import { BoardSearch } from './BoardSearch';
-import { PersonMenu } from './menus/PersonMenu';
+import { activityService } from '../services/activity.service'
+import { addActivity } from '../store/activity.actions'
 
-function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileFilterSort, onSetSort }) {
+export function BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileFilterSort, onSetSort }) {
 
-	const newBoard = { ...board };
+	const dispatch = useDispatch()
+	const newBoard = { ...board }
 
 	const onAddStory = async () => {
 		if (filterBy || board.sortBy.name) return updateWhileFilterSort()
-		const newStory = utilService.createStory();
-		const newGroup = newBoard.groups[0]
-		if (!newBoard.groups[0].stories || !newBoard.groups[0].stories.length)
-			newBoard.groups[0].stories = [newStory];
-		else newBoard.groups[0].stories.unshift(newStory);
+		const newStory = utilService.createStory()
+		const newGroup = newBoard.groups[0] || utilService.createEmptyGroup()
 
-		addNewActivity('Story added', newStory, newGroup)
-		await updateBoard(newBoard);
-	};
+		if (!newBoard.groups || !newBoard.groups.length) {
+			newBoard.groups = [newGroup]
+		} else if (!newBoard.groups[0].stories || !newBoard.groups[0].stories.length) {
+			newBoard.groups[0].stories = [newStory]
+		} else newBoard.groups[0].stories.unshift(newStory)
+
+		onAddActivity('Story added', newGroup, newStory)
+		await updateBoard(newBoard)
+	}
 
 	const onAddGroup = async () => {
 		if (filterBy || board.sortBy.name) return updateWhileFilterSort()
-		const newGroup = utilService.createEmptyGroup();
+		const newGroup = utilService.createEmptyGroup()
+		if (!newBoard.groups || !newBoard.groups.length) newBoard.groups = [newGroup]
+		else newBoard.groups.unshift(newGroup)
+		onAddActivity('Group added', newGroup)
+		await updateBoard(newBoard)
+	}
 
-		if (!newBoard.groups || !newBoard.groups.length)
-			newBoard.groups = [newGroup];
-		else newBoard.groups.unshift(newGroup);
-
-		await updateBoard(newBoard);
-	};
-
-	const addNewActivity = (type, group, story) => {
+	const onAddActivity = (type, group, story) => {
 		const currUser = userService.getMiniLoggedInUser()
-		let newActivity = {
-			id: utilService.makeId(),
-			type,
-			createdAt: Date.now(),
-			byMember: currUser,
-			group: {
-				id: group.id,
-				title: group.title
-			},
-		}
-		if (story) newActivity = {
-			...newActivity, story: {
-				id: story.id,
-				title: story.title
-			}
-		}
-		newBoard.activities.unshift(newActivity)
+		const newActivity = activityService.makeNewActivity(type, currUser, board, group, story)
+		dispatch(addActivity(newActivity))
 	}
 
 
@@ -86,18 +74,6 @@ function _BoardActions({ board, updateBoard, setFilterBy, filterBy, updateWhileF
 
 			</div>
 		</div>
-	);
+	)
 }
 
-function mapStateToProps(state) {
-	return {
-		// filterBy: state.boardModule.filterBy,
-	};
-}
-
-const mapDispatchToProps = {};
-
-export const BoardActions = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(_BoardActions);

@@ -1,9 +1,11 @@
+
 import { httpService } from './http.service'
 
 export const activityService = {
     query,
     remove,
     add,
+    makeNewActivity,
 }
 
 
@@ -23,6 +25,28 @@ async function remove(boardId) {
     return boardId
 }
 
+
+
+function makeNewActivity(type, user, board, group, story) {
+    const newActivity = {
+        type,
+        createdAt: Date.now(),
+        byMember: user,
+        board: {
+            _id: board._id,
+            title: board.title
+        },
+        group: {
+            id: group.id,
+            title: group.title
+        }
+    }
+    if (story) newActivity.story = {
+        id: story.id,
+        title: story.title
+    }
+    return newActivity
+}
 
 
 

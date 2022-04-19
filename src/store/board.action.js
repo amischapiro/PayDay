@@ -57,18 +57,6 @@ export function updateBoard(boardToUpdate) {
     }
 }
 
-// export function updateBoard(boardToUpdate) {
-//     return async (dispatch, getState) => {
-//         try {
-//             const savedBoard = await boardService.save(boardToUpdate)
-//             dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
-//             return savedBoard
-//         } catch (err) {
-//             console.log('Cannot Update', boardToUpdate)
-//         }
-//     }
-// }
-
 export function addBoard(boardToSave) {
     return async (dispatch) => {
         try {

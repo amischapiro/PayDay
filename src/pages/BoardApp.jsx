@@ -25,7 +25,7 @@ import { userService } from '../services/user.service'
 import { Confirm } from '../cmps/layout/Confirm'
 
 
-function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setStory, selectedStoryIds, setFilterBy, filterBy, loginDemoUser }) {
+function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, removeBoard, addBoard, setFilterBy, filterBy, loginDemoUser }) {
 
 	const { boardId } = useParams()
 
@@ -203,15 +203,6 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 	}
 
 
-	const onRemoveStory = async () => {
-		if (filterBy || selectedBoard?.sortBy.name) return updateWhileFilterSort()
-		const story = {
-			boardId: null,
-			groupId: null,
-			storyId: null,
-		}
-		await setStory(story)
-	}
 
 	const stopUpdate = (res) => {
 		if (!res) return setComfirmOpen(false)
@@ -312,11 +303,6 @@ function _BoardApp({ loadBoards, getById, boards, selectedBoard, updateBoard, re
 					/>
 				</div>
 			</section>
-
-			<div
-				onClick={() => onRemoveStory()}
-				className={`darken-screen ${selectedStoryIds.storyId ? 'open' : ''}`}>
-			</div>
 		</main>
 	)
 }
