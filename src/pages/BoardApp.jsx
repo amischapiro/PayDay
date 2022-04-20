@@ -42,7 +42,6 @@ export function BoardApp() {
 		dispatch({ type: 'SET_LOADING_BOARD', payload: true })
 	}, [dispatch])
 
-	console.log(selectedBoard);
 
 	// For use if duplicating tabs or copying link to a new one
 	// Need to change if we switch to local storage
@@ -55,7 +54,7 @@ export function BoardApp() {
 				} else await loginDemoUser()
 				dispatch({ type: 'SET_LOADING_BOARDS', payload: true })
 				await dispatch(loadBoards())
-				await setAppLoaded()
+				await dispatch(setAppLoaded())
 			}
 		})();
 		// after transition to dispatch, I will cancel this comment
