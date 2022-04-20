@@ -10,6 +10,7 @@ import ActivitySvg from '../assets/img/activity-log.svg'
 import { loadActivities, fetchLastActivity, toggleBoardActivityModal } from '../store/activity.action'
 import { socketService } from '../services/socket.service'
 import { boardService } from '../services/board.service'
+import { ActivityList } from './ActivityList'
 
 
 export function ActivityModal({ updateBoard }) {
@@ -34,20 +35,20 @@ export function ActivityModal({ updateBoard }) {
     const { groupIdx } = boardService.getGroupAndIdx(selectedBoard, groupId)
     const { storyIdx, story } = boardService.getStoryAndIdx(selectedBoard, groupIdx, storyId)
 
-    useEffect(() => {
-        dispatch({ type: 'RESET_ACTIVITIES' })
-        dispatch(loadActivities())
-    }, [dispatch, selectedBoard._id, selectedStoryIds.storyId])
+    // useEffect(() => {
+    //     dispatch({ type: 'RESET_ACTIVITIES' })
+    //     dispatch(loadActivities())
+    // }, [dispatch, selectedBoard._id, selectedStoryIds.storyId])
 
 
-    useEffect(() => {
-        socketService.on('board has updated', () => {
-            dispatch(fetchLastActivity())
-        })
-        return () => {
-            socketService.off('board has updated')
-        }
-    }, [dispatch])
+    // useEffect(() => {
+    //     socketService.on('board has updated', () => {
+    //         dispatch(fetchLastActivity())
+    //     })
+    //     return () => {
+    //         socketService.off('board has updated')
+    //     }
+    // }, [dispatch])
 
     useEffect(() => {
         if (!isUpdateFocused) setComment('')
@@ -168,8 +169,8 @@ export function ActivityModal({ updateBoard }) {
                 <div className="modal-break-line"></div>
 
                 <div className="bottom-section">
-                    {!isActivityShown && isPerStory &&
-                        <React.Fragment>
+                    {!isActivityShown && isPerStory && (
+                        <>
                             <div className="update-input">
                                 {!isUpdateFocused ? (
                                     <input type="text" placeholder='Write an update...' onClick={() => setUpdateFocus(true)} />
@@ -192,53 +193,30 @@ export function ActivityModal({ updateBoard }) {
                                     </div>
                                 </div>
                             </div>
-                            {isPerStory && (
-                                <div className='updates-list' >
-                                    {story.comments.map(comment => {
-                                        return <ModalUpdatePreview key={comment.id} comment={comment}
-                                            onRemoveComment={onRemoveComment} getInitials={getInitials}
-                                            imgUrl={comment.byMember.imgUrl} />
-                                    }
-                                    )}
-                                    {!story.comments.length && (
-                                        <div className="logo-container">
-                                            <img src={ActivitySvg} alt="" />
-                                            <span>No updates yet for this item</span>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
-                        </React.Fragment>}
-                    {(!isPerStory || isActivityShown) && (
-                        <div>
-                            {activities.map(activity => {
-                                const icon = getIconPerActions(activity.type)
-                                const groupColor = getGroupColor(activity.group.id)
-                                const { imgUrl } = activity.byMember
-                                return (
-                                    <div key={activity._id} className='activity-preview' >
-                                        <div className='activity-time' >
-                                            <span className="fa clock"></span>
-                                            <span>{moment(activity.createdAt).fromNow()}</span>
-                                        </div>
-                                        <div className='activity-member' >
-                                            <div className='member-img'>
-                                                {imgUrl ? <img src={imgUrl} alt="" />
-                                                    : getInitials(activity.byMember.fullname)}
-                                            </div>
-                                            <div className='activity-title'>
-                                                {activity.story ? activity.story.title : activity.group.title}
-                                            </div>
-                                        </div>
-                                        <div className="activity-type flex align-center">
-                                            <span className={icon} style={{ color: groupColor }}></span>
-                                            <div>{activity.type}</div>
-                                        </div>
+                            <div className='updates-list' >
+                                {story.comments.map(comment => {
+                                    return <ModalUpdatePreview key={comment.id} comment={comment}
+                                        onRemoveComment={onRemoveComment} getInitials={getInitials}
+                                        imgUrl={comment.byMember.imgUrl} />
+                                }
+                                )}
+                                {!story.comments.length && (
+                                    <div className="logo-container">
+                                        <img src={ActivitySvg} alt="" />
+                                        <span>No updates yet for this item</span>
                                     </div>
-                                )
-                            })}
-                            <button onClick={() => dispatch(loadActivities())}>Load More</button>
-                        </div>
+                                )}
+                            </div>
+                        </>
+                    )}
+                    {(!isPerStory || isActivityShown) && (
+                        <ActivityList
+                            selectedBoard={selectedBoard}
+                            activities={activities}
+                            selectedStoryIds={selectedStoryIds}
+                            getInitials={getInitials}
+                            isPerStory={isPerStory}
+                        />
                     )}
                 </div>
             </div >

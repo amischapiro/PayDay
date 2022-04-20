@@ -3,7 +3,6 @@
 	justify-content: space-between;
 	cursor: pointer;
 
-
 	.header-info-container {
 		display: flex;
 	}
@@ -104,13 +103,15 @@
 		background-color: #f5f6f8;
 		border-radius: 8px 8px 0 0;
 	}
-	
+
 	.group-name-container {
 		width: 26.8125rem;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
 		font-size: 18px;
+		position: sticky;
+		left: 0;
 
 		.MuiButton-containedPrimary.group-menu-btn {
 			display: block;
@@ -133,9 +134,7 @@
 				border-width: 0.5px;
 				border-style: solid;
 			}
-		
 		}
-
 
 		.drag-group {
 			color: #c4c4c4;
