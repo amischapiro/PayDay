@@ -11,10 +11,13 @@ $lat: calc(($size - $thickness) / 2);
 $offset: $lat - $thickness;
 
 .loader {
-    position: relative;
-    width: 30em;
-    height: 6em;
+    width: 50vw;
+    height: 20vh;
     transform: rotate(165deg);
+
+    position: absolute;
+    top: calc(50% - calc($size / 2));
+    left: calc(50% - calc($size / 2));
 
     &:before,
     &:after {
@@ -74,6 +77,12 @@ $offset: $lat - $thickness;
     }
 }
 
+@media (min-width: 1300px) {
+    .loader {
+        width: 25vw;
+    }
+}
+
 /**
  * Attempt to center the whole thing!
  */
@@ -82,9 +91,3 @@ $offset: $lat - $thickness;
 // body {
 //   height: 100%;
 // }
-
-.loader {
-    position: absolute;
-    top: calc(50% - calc($size / 2));
-    left: calc(50% - calc($size / 2));
-}

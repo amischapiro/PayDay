@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Switch, Route, useParams } from 'react-router'
-import { useEffectUpdate } from '../hooks/useUpdateEffect'
+import { useDispatch, useSelector } from 'react-redux'
 import { AnimatePresence } from 'framer-motion'
+import { useEffectUpdate } from '../hooks/useUpdateEffect'
 
+import { NoBoardsPage } from './NoBoardsPage'
 import { BoardNav } from '../cmps/BoardNav'
 import { BoardHeader } from '../cmps/BoardHeader'
 import { BoardActions } from '../cmps/BoardActions'
@@ -10,19 +12,18 @@ import { GroupList } from '../cmps/GroupList'
 import { Kanban } from '../cmps/kanban/Kanban'
 import { Dashboard } from '../cmps/Dashboard'
 import { MobileNav } from '../cmps/MobileNav'
-
 import { ActivityModal } from '../cmps/ActivityModal'
+import { BoardList } from '../cmps/BoardList.jsx'
+import { SideBar } from '../cmps/SideBar.jsx'
+import { Confirm } from '../cmps/layout/Confirm'
+
 
 import { socketService } from '../services/socket.service'
-import { SideBar } from '../cmps/SideBar.jsx'
-import { BoardList } from '../cmps/BoardList.jsx'
-import { useDispatch, useSelector } from 'react-redux'
+import { userService } from '../services/user.service'
 import { loadBoards, getById, updateBoard, setFilterBy, setAppLoaded } from '../store/board.action'
 import { loginDemoUser, login } from '../store/user.action'
-import { NoBoardsPage } from './NoBoardsPage'
 import { Loader } from '../cmps/layout/Loader'
-import { userService } from '../services/user.service'
-import { Confirm } from '../cmps/layout/Confirm'
+import { LoadingPage } from './LoadingPage'
 
 
 export function BoardApp() {
@@ -51,7 +52,7 @@ export function BoardApp() {
 				if (loggedinUser) {
 					const user = userService.getMiniLoggedInUser()
 					login(user)
-				} else await loginDemoUser()
+				} else await dispatch(loginDemoUser())
 				dispatch({ type: 'SET_LOADING_BOARDS', payload: true })
 				await dispatch(loadBoards())
 				await dispatch(setAppLoaded())
@@ -203,8 +204,6 @@ export function BoardApp() {
 		}
 	}
 
-
-
 	const stopUpdate = (res) => {
 		if (!res) return setComfirmOpen(false)
 		dispatch(setFilterBy(null))
@@ -227,7 +226,7 @@ export function BoardApp() {
 
 
 
-	if ((isLoadingBoard || isLoadingBoards)) return <Loader />
+	if ((isLoadingBoard || isLoadingBoards)) return <LoadingPage />
 
 	if (!boards.length || boardId === 'null') return <NoBoardsPage />
 

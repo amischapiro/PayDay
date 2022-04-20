@@ -230,7 +230,7 @@ export function ActivityModal({ updateBoard }) {
                                                 {activity.story ? activity.story.title : activity.group.title}
                                             </div>
                                         </div>
-                                        <div className="flex align-center">
+                                        <div className="activity-type flex align-center">
                                             <span className={icon} style={{ color: groupColor }}></span>
                                             <div>{activity.type}</div>
                                         </div>

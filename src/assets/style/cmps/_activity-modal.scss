@@ -1,13 +1,13 @@
 .activity-modal {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -120%;
     z-index: 20;
     background-color: white;
     height: 100vh;
-    width: 43rem;
+    width: min(43rem, 98%);
     transition: all 0.5s;
-    box-shadow: 0 0px 14px 2px #1d1d1d;
+    box-shadow: 0 3px 25px 0px #00000057;
     overflow-y: auto;
     color: #676879;
 
@@ -18,17 +18,17 @@
     }
 
     &::-webkit-scrollbar {
-        width: 12px;
+        width: 8px;
     }
 
     &::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px grey;
-        border-radius: 10px;
+        box-shadow: inset 0 0 25px #00000020;
+        border-radius: 0.25rem;
     }
 
     &::-webkit-scrollbar-thumb {
         background: #0073ea;
-        border-radius: 25px;
+        border-radius: 0.25rem;
     }
 
     &::-webkit-scrollbar-thumb:hover {
@@ -36,7 +36,10 @@
     }
 
     .top-section {
-        padding: 1rem 1.5rem 0 1.5rem;
+        padding: 1rem 0.5rem 0;
+        @media (min-width: 600px) {
+            padding: 1rem 1.5rem 0;
+        }
 
         .btn-close-modal {
             background-color: inherit;
@@ -117,7 +120,10 @@
     }
 
     .bottom-section {
-        padding: 1rem 1.5rem;
+        padding: 1rem 0.5rem;
+        @media (min-width: 600px) {
+            padding: 1rem 1.5rem;
+        }
     }
 
     .update-input {
@@ -250,13 +256,18 @@
 
 .activity-preview {
     font-family: Roboto Light, sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     line-height: 1.5em;
     border-bottom: 1px solid #d3d3d3;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
+
     padding: 0.5rem;
+
+    @media (min-width: 600px) {
+        font-size: 0.875rem;
+    }
 
     .fa,
     .fa-solid {
@@ -264,6 +275,7 @@
 
         &.clock {
             font-size: 0.8125rem;
+            font-size: 0.75rem;
         }
     }
 }
@@ -277,7 +289,7 @@
 }
 
 .member-img {
-    width: 100%;
+    // width: 100%;
     border-radius: 50%;
     background-color: hotpink;
     text-align: center;
@@ -287,30 +299,48 @@
     vertical-align: middle;
     letter-spacing: 1px;
 
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     display: grid;
     place-items: center;
     img {
-        width: 2rem;
-        height: 2rem;
+        width: 1.5rem;
+        height: 1.5rem;
         border-radius: 50%;
     }
 }
 
+@media (min-width: 600px) {
+    .member-img {
+        width: 2rem;
+        height: 2rem;
+
+        img {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+}
 .activity-time {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 0.875rem;
-    line-height: 1.5em;
     span {
-        max-width: 15ch;
+        max-width: 9ch;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        @media (min-width: 600px) {
+            max-width: 15ch;
+        }
     }
 }
+
+.activity-type {
+    text-align: center;
+}
+
 .MuiSvgIcon-fontSizeMedium.activity-clock {
     margin-top: 0.2rem;
 }
@@ -332,11 +362,5 @@
 
     100% {
         height: 7rem;
-    }
-}
-
-@media screen and (max-width: 762px) {
-    .activity-modal {
-        width: 25rem;
     }
 }

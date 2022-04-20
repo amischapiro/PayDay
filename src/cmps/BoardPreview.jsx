@@ -14,6 +14,7 @@ import { removeBoard, addBoard } from '../store/board.action'
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
+
 export function BoardPreview({ boards, board, currBoard }) {
 
 
@@ -55,10 +56,12 @@ export function BoardPreview({ boards, board, currBoard }) {
 
     const goToNextBoard = (currBoardId) => {
         const nextBoard = boards.find(diffBoard => diffBoard._id !== currBoardId)
+        dispatch({ type: 'SET_LOADING_BOARD', payload: true })
         history.push(`/board/${nextBoard?._id}/board`)
     }
 
     const onGoTo = () => {
+        dispatch({ type: 'SET_LOADING_BOARD', payload: true })
         history.push(`/board/${board._id}/board`)
     }
 
