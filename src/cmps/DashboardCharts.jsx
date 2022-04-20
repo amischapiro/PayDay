@@ -1,4 +1,4 @@
-import { Bar, Line, Pie, Scatter } from 'react-chartjs-2';
+import { Bar, Line, Pie } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -37,7 +37,7 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
         },
     };
 
-    const statusLabels = ['Done', 'Ready for review', 'Working on it','Stuck', 'To do' ];
+    const statusLabels = ['Done', 'Ready for review', 'Working on it', 'Stuck', 'To do'];
     const statusData = {
         labels: statusLabels,
         datasets: [
@@ -91,27 +91,27 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
             },
         ],
     }
-    const membersPerStoryOptions = {
-        scales: {
-            y: {
-                beginAtZero: true,
-            },
-        }
-    }
+    // const membersPerStoryOptions = {
+    //     scales: {
+    //         y: {
+    //             beginAtZero: true,
+    //         },
+    //     }
+    // }
 
-    const membersPerStoryData = {
-        datasets: [
-            {
-                label: 'Members per story',
-                //   data: Array.from({ length: 100 }, () => ({
-                //     x: faker.datatype.number({ min: -100, max: 100 }),
-                //     y: faker.datatype.number({ min: -100, max: 100 }),
-                //   })),
-                data: membersPerStory,
-                backgroundColor: 'rgba(255, 99, 132, 1)',
-            },
-        ],
-    }
+    // const membersPerStoryData = {
+    //     datasets: [
+    //         {
+    //             label: 'Members per story',
+    //             //   data: Array.from({ length: 100 }, () => ({
+    //             //     x: faker.datatype.number({ min: -100, max: 100 }),
+    //             //     y: faker.datatype.number({ min: -100, max: 100 }),
+    //             //   })),
+    //             data: membersPerStory,
+    //             backgroundColor: 'rgba(255, 99, 132, 1)',
+    //         },
+    //     ],
+    // }
 
 
 

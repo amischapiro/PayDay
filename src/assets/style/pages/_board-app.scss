@@ -2,12 +2,12 @@
     display: flex;
 }
 
-$colors: hsla(337, 84, 48, 0.75) hsla(160, 50, 48, 0.75) hsla(190, 61, 65, 0.75) hsla(41, 82, 52, 0.75);
+$colors: hsla(337, 84%, 48%, 0.75) hsla(160, 50%, 48%, 0.75) hsla(190, 61%, 65%, 0.75) hsla(41, 82%, 52%, 0.75);
 $size: 12em;
 $thickness: 1.5em;
 
 // Calculated variables.
-$lat: ($size - $thickness) / 2;
+$lat: calc(($size - $thickness) / 2);
 $offset: $lat - $thickness;
 
 .loader {
@@ -25,7 +25,7 @@ $offset: $lat - $thickness;
         display: block;
         width: $thickness;
         height: $thickness;
-        border-radius: $thickness / 2;
+        border-radius: calc($thickness / 2);
         transform: translate(-50%, -50%);
     }
 
@@ -85,6 +85,6 @@ $offset: $lat - $thickness;
 
 .loader {
     position: absolute;
-    top: calc(50% - #{$size / 2});
-    left: calc(50% - #{$size / 2});
+    top: calc(50% - calc($size / 2));
+    left: calc(50% - calc($size / 2));
 }

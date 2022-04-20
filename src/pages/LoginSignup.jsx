@@ -18,7 +18,8 @@ import { userService } from '../services/user.service.js';
 import Logo from '../assets/img/PayDayLogo3.png';
 import { loadBoards } from '../store/board.action.js';
 
-const theme = createTheme();
+const theme = createTheme()
+
 export function LoginSignup() {
 
 	const dispatch = useDispatch()
