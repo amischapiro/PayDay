@@ -1,12 +1,16 @@
 import { activityService } from "../services/activity.service"
 
-export function loadActivities(storyId) {
+export function loadActivities() {
     return async (dispatch, getState) => {
+        dispatch({ type: 'SET_IS_LOADING', payload: true })
         const boardId = getState().boardModule.selectedBoard._id
-        const skip = getState().activityModule.activities.length
+        const { activities, selectedStoryIds: { storyId } } = getState().activityModule
+        const skip = activities.length
         try {
-            const activities = await activityService.query(skip, boardId, storyId)
+            const { activities, collectionLength } = await activityService.query(skip, boardId, storyId)
             dispatch({ type: 'SET_ACTIVITIES', activities })
+            dispatch({ type: 'SET_HAS_MORE', collectionLength })
+            dispatch({ type: 'SET_IS_LOADING', payload: false })
             return activities
         } catch (error) {
             console.log('Cannot get Boards', error);
@@ -42,6 +46,7 @@ export function addActivity(activity) {
 export function toggleBoardActivityModal() {
     return (dispatch, getState) => {
         const { isOpen } = getState().activityModule
+        dispatch({ type: 'RESET_ACTIVITIES' })
         dispatch({ type: 'SET_SELECTED_STORY_IDS', payload: { groupId: null, storyId: null } })
         dispatch({ type: 'SET_IS_PER_STORY', payload: false })
         dispatch({ type: 'SET_IS_OPEN', payload: isOpen ? false : true })

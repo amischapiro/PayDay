@@ -1,5 +1,6 @@
 
 import { httpService } from './http.service'
+import { userService } from './user.service';
 
 export const activityService = {
     query,
@@ -11,8 +12,8 @@ export const activityService = {
 
 
 async function query(skip, boardId, storyId) {
-    const activities = await httpService.get(`board/${boardId}/activity`, { storyId, skip })
-    return activities
+    const { activities, collectionLength } = await httpService.get(`board/${boardId}/activity`, { storyId, skip })
+    return { activities, collectionLength }
 }
 
 async function add(boardId, activity) {
@@ -26,11 +27,11 @@ async function remove(boardId) {
 
 
 
-function makeNewActivity(type, user, board, group, story) {
+function makeNewActivity(type, _, board, group, story) {
     const newActivity = {
         type,
         createdAt: Date.now(),
-        byMember: user,
+        byMember: userService.getMiniLoggedInUser(),
         board: {
             _id: board._id,
             title: board.title

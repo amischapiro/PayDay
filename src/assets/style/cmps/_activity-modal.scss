@@ -179,7 +179,47 @@
             border: none;
         }
     }
+
+    .intersector {
+        width: 100%;
+        height: 80px;
+        position: relative;
+        display: grid;
+        place-items: center;
+
+        div {
+            width: 40px;
+            height: 40px;
+            border: 4px solid;
+            border-color: #585858b9 transparent #585858b9 transparent;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+        }
+    }
+
+    .spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 64px;
+        height: 64px;
+        border: 8px solid;
+        border-color: #e11462bf #3db88fbf #6fcadcbf #e9a920bf;
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 }
+
 .modal-update-btns {
     width: 100%;
     display: flex;

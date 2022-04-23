@@ -1,26 +1,20 @@
-import { useDispatch } from "react-redux"
+import { useEffect, useRef } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { ActivityPreview } from "./ActivityPreview"
-import { loadActivities, fetchLastActivity } from '../store/activity.action'
-import { useCallback, useEffect, useRef, useState } from "react"
-import { socketService } from "../services/socket.service"
 
-export const ActivityList = ({ activities, selectedBoard, selectedStoryIds, getInitials, isPerStory }) => {
+import { loadActivities, fetchLastActivity } from '../store/activity.action'
+import { socketService } from "../services/socket.service"
+import { width } from "@mui/system"
+
+export const ActivityList = ({ activities, selectedBoard, getInitials }) => {
 
     const dispatch = useDispatch()
 
-    const { storyId: selectedStoryId } = selectedStoryIds
-    const [isLoading, setIsLoading] = useState(false)
+    const { hasMore, isLoading } = useSelector(({ activityModule }) => activityModule)
+    const intersectorRef = useRef()
 
     useEffect(() => {
-        setIsLoading(true)
-        dispatch({ type: 'RESET_ACTIVITIES' })
-        if (isPerStory) dispatch(loadActivities(selectedStoryId))
-        else dispatch(loadActivities())
-        setIsLoading(false)
-    }, [dispatch, selectedBoard._id, isPerStory, selectedStoryId])
-
-
-    useEffect(() => {
+        dispatch(loadActivities())
         socketService.on('board has updated', () => {
             dispatch(fetchLastActivity())
         })
@@ -29,51 +23,33 @@ export const ActivityList = ({ activities, selectedBoard, selectedStoryIds, getI
         }
     }, [dispatch])
 
-    const loadMoreActivities = () => {
-        setIsLoading(true)
-        if (selectedStoryId) dispatch(loadActivities(selectedBoard))
-        else dispatch(loadActivities())
-        setIsLoading(false)
-
-    }
-
-    const observer = useRef()
-    const lastActivity = useCallback(node => {
-        if (isLoading) return
-        if (observer.current) observer.current.disconnect()
-        observer.current = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) {
-                loadMoreActivities()
-            }
+    useEffect(() => {
+        if (!intersectorRef.current) return
+        if (!hasMore) return
+        const observer = new IntersectionObserver(entries => {
+            const entry = entries[0]
+            if (entry.isIntersecting) dispatch(loadActivities())
+        }, {
+            threshold: 0.1
         })
-        if (node) observer.current.observe(node)
-    }, [isLoading])
+        observer.observe(intersectorRef.current)
+    }, [dispatch, hasMore])
 
     return (
         <>
-            {activities.map((activity, idx) => {
-                if (idx === activities.length - 1) return (
-                    <div ref={lastActivity} key={activity._id}>
-                        <ActivityPreview
-                            activity={activity}
-                            selectedBoard={selectedBoard}
-                            getInitials={getInitials}
-                        />
-                    </div>
-                )
-                else return (
-                    <div key={activity._id}>
-                        <ActivityPreview
-                            activity={activity}
-                            selectedBoard={selectedBoard}
-                            getInitials={getInitials}
-                        />
-                    </div>
-                )
-            })}
-            <button onClick={loadMoreActivities}>Load More</button>
-            {isLoading && (
-                <div>Loading...</div>
+            {activities.map(activity => (
+                <ActivityPreview
+                    key={activity._id}
+                    activity={activity}
+                    selectedBoard={selectedBoard}
+                    getInitials={getInitials}
+                />
+            ))}
+            {isLoading && <div className="spinner" ></div>}
+            {hasMore && (
+                <div className="intersector" ref={intersectorRef}>
+                    <div></div>
+                </div>
             )}
         </>
     )

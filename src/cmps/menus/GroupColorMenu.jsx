@@ -6,16 +6,19 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import { utilService } from '../../services/util.service';
-import { userService } from '../../services/user.service';
+import { activityService } from '../../services/activity.service';
+import { useDispatch } from 'react-redux';
+import { addActivity } from '../../store/activity.action';
+import { boardService } from '../../services/board.service';
 
 
 export function GroupColorMenu({ board, group, updateBoard, groupColor, closePrevMenu }) {
 
     const newBoard = { ...board };
-    const groupId = group.id;
-    const groupIdx = board.groups.findIndex((group) => group.id === groupId);
+    const { groupIdx } = boardService.getGroupAndIdx(board, group.id)
 
-    const currUser = userService.getMiniLoggedInUser()
+    const dispatch = useDispatch()
+
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -33,25 +36,17 @@ export function GroupColorMenu({ board, group, updateBoard, groupColor, closePre
     const onChangeGroupColor = async (selectedColor) => {
         const newGroup = { ...group, style: { backgroundColor: selectedColor } }
         newBoard.groups.splice(groupIdx, 1, newGroup)
-        addNewActivity('Changed color')
+        onAddActivity('Changed color', newGroup)
         await updateBoard(newBoard)
         handleClose()
         closePrevMenu()
     }
 
-    const addNewActivity = (type) => {
-        const newActivity = {
-            id: utilService.makeId(),
-            type,
-            createdAt: Date.now(),
-            byMember: currUser,
-            group: {
-                id: groupId,
-                title: group.title
-            }
-        }
-        newBoard.activities.unshift(newActivity)
+    const onAddActivity = (type, group) => {
+        const newActivity = activityService.makeNewActivity(type, null, board, group)
+        dispatch(addActivity(newActivity))
     }
+
 
     return (
         <React.Fragment>

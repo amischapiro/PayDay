@@ -1,14 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect, useState } from 'react'
-import moment from 'moment'
 import { utilService } from '../services/util.service'
 import { userService } from '../services/user.service'
 import { ModalUpdatePreview } from './ModalUpdatePreview'
 import { cloudinaryService } from '../services/cloudinary.service'
 
 import ActivitySvg from '../assets/img/activity-log.svg'
-import { loadActivities, fetchLastActivity, toggleBoardActivityModal } from '../store/activity.action'
-import { socketService } from '../services/socket.service'
+import { toggleBoardActivityModal } from '../store/activity.action'
 import { boardService } from '../services/board.service'
 import { ActivityList } from './ActivityList'
 
@@ -34,21 +32,6 @@ export function ActivityModal({ updateBoard }) {
 
     const { groupIdx } = boardService.getGroupAndIdx(selectedBoard, groupId)
     const { storyIdx, story } = boardService.getStoryAndIdx(selectedBoard, groupIdx, storyId)
-
-    // useEffect(() => {
-    //     dispatch({ type: 'RESET_ACTIVITIES' })
-    //     dispatch(loadActivities())
-    // }, [dispatch, selectedBoard._id, selectedStoryIds.storyId])
-
-
-    // useEffect(() => {
-    //     socketService.on('board has updated', () => {
-    //         dispatch(fetchLastActivity())
-    //     })
-    //     return () => {
-    //         socketService.off('board has updated')
-    //     }
-    // }, [dispatch])
 
     useEffect(() => {
         if (!isUpdateFocused) setComment('')
@@ -106,34 +89,7 @@ export function ActivityModal({ updateBoard }) {
         setComment(value)
     }
 
-
-    const getIconPerActions = (activityType) => {
-        const actionType = activityType.substring(activityType.indexOf(' ') + 1, activityType.length)
-        switch (actionType) {
-            case 'added':
-                return 'fa-solid plus'
-            case 'deleted':
-                return 'fa trash'
-            case 'removed':
-                return 'fa trash'
-            case 'duplicated':
-                return 'fa copy'
-            case 'color':
-                return 'fa-solid color'
-            case 'changed':
-                return 'fa-solid exchange-alt'
-            default:
-                break
-        }
-    }
-
-    const getGroupColor = (groupId) => {
-        const group = selectedBoard.groups.find(group => group.id === groupId)
-        const color = group?.style?.backgroundColor
-        if (!color) return '#676879'
-        else return color
-    }
-
+    if (!isOpen) return <></>
 
     return (
         <>
@@ -145,7 +101,7 @@ export function ActivityModal({ updateBoard }) {
             <div className={`activity-modal ${isOpen ? 'open' : ''}`}>
 
                 <div className="top-section">
-                    <button onClick={() => dispatch(toggleBoardActivityModal())} className="btn-close-modal fa-solid times" ></button>
+                    <button onClick={() => dispatch(toggleBoardActivityModal())} className="btn-close-modal fa-solid times"></button>
 
                     {isPerStory && <h3> {story.title}</h3>}
 
@@ -213,9 +169,7 @@ export function ActivityModal({ updateBoard }) {
                         <ActivityList
                             selectedBoard={selectedBoard}
                             activities={activities}
-                            selectedStoryIds={selectedStoryIds}
                             getInitials={getInitials}
-                            isPerStory={isPerStory}
                         />
                     )}
                 </div>
