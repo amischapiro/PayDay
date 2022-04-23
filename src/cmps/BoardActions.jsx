@@ -8,7 +8,6 @@ import { FilterMenu } from './menus/FilterMenu'
 import { BoardSearch } from './BoardSearch'
 import { PersonMenu } from './menus/PersonMenu'
 
-import { userService } from '../services/user.service'
 import { activityService } from '../services/activity.service'
 import { addActivity } from '../store/activity.action'
 
@@ -43,8 +42,7 @@ export function BoardActions({ updateBoard, updateWhileFilterSort, onSetSort }) 
 	}
 
 	const onAddActivity = (type, group, story) => {
-		const currUser = userService.getMiniLoggedInUser()
-		const newActivity = activityService.makeNewActivity(type, currUser, board, group, story)
+		const newActivity = activityService.makeNewActivity(type, board, group, story)
 		dispatch(addActivity(newActivity))
 	}
 

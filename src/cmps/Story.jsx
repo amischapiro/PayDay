@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined'
 
 import { boardService } from '../services/board.service'
-import { userService } from '../services/user.service'
 import { addActivity, toggleStoryActivityModal } from '../store/activity.action'
 import { activityService } from '../services/activity.service'
 
@@ -97,8 +96,7 @@ export function Story({ board, group, story, updateBoard, filterBy, updateWhileF
 	}
 
 	const onAddActivity = (type) => {
-		const currUser = userService.getMiniLoggedInUser()
-		const newActivity = activityService.makeNewActivity(type, currUser, board, group, story)
+		const newActivity = activityService.makeNewActivity(type, board, group, story)
 		dispatch(addActivity(newActivity))
 	}
 

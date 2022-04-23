@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import { utilService } from '../../services/util.service';
-import { userService } from '../../services/user.service';
 import { boardService } from '../../services/board.service'
 import { activityService } from '../../services/activity.service'
 
@@ -57,8 +56,7 @@ export function StoryMenu({ board, group, story, updateBoard }) {
 
 
     const onAddActivity = (type) => {
-        const currUser = userService.getMiniLoggedInUser()
-        const newActivity = activityService.makeNewActivity(type, currUser, board, group, story)
+        const newActivity = activityService.makeNewActivity(type, board, group, story)
         dispatch(addActivity(newActivity))
     }
 

@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { utilService } from '../services/util.service'
 import { useDispatch } from 'react-redux'
-import { userService } from '../services/user.service'
 import { activityService } from '../services/activity.service'
 import { addActivity } from '../store/activity.action'
 import { boardService } from '../services/board.service'
@@ -33,8 +32,7 @@ export function AddStory({ board, group, updateBoard }) {
 	}
 
 	const onAddActivity = (type, story) => {
-		const currUser = userService.getMiniLoggedInUser()
-		const newActivity = activityService.makeNewActivity(type, currUser, board, group, story)
+		const newActivity = activityService.makeNewActivity(type, board, group, story)
 		dispatch(addActivity(newActivity))
 	}
 

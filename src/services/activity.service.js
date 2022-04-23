@@ -27,7 +27,7 @@ async function remove(boardId) {
 
 
 
-function makeNewActivity(type, _, board, group, story) {
+function makeNewActivity(type, board, group, story) {
     const newActivity = {
         type,
         createdAt: Date.now(),

@@ -43,7 +43,7 @@ export function GroupColorMenu({ board, group, updateBoard, groupColor, closePre
     }
 
     const onAddActivity = (type, group) => {
-        const newActivity = activityService.makeNewActivity(type, null, board, group)
+        const newActivity = activityService.makeNewActivity(type, board, group)
         dispatch(addActivity(newActivity))
     }
 
