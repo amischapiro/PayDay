@@ -137,17 +137,14 @@ export function Story({ board, group, story, updateBoard, filterBy, updateWhileF
 								</button>
 							)}
 						</div>
-						<div className="story-update-icons">
+						<div className="story-update-icons" onClick={() => dispatch(toggleStoryActivityModal(groupId, storyId))}>
 							<MapsUgcOutlinedIcon
-								onClick={() => dispatch(toggleStoryActivityModal(groupId, storyId))}
 								className={`update-bubble ${story.comments?.length ? 'blue' : ''}`}
 							/>
-							{story.comments?.length ? (
+							{!!story.comments?.length && (
 								<div className="updates-count-bubble">
 									{story.comments.length}
 								</div>
-							) : (
-								''
 							)}
 						</div>
 					</div>
