@@ -33,6 +33,8 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
         plugins: {
             legend: {
                 position: 'top',
+                display: false
+
             },
         },
     };
@@ -51,18 +53,19 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
                     'rgba(255, 159, 64, 0.7)',
                     'rgba(255, 99, 132, 0.7)',
                     'rgba(128, 128, 128, 0.7)',]
-            },
+            }
         ],
     };
     const storyPerGroupOptions = {
         responsive: true,
         plugins: {
             legend: {
-                position: 'top',
+                display: false
             },
         },
     }
     const storyPerGroupLabels = groupNames
+
     const storyPerGroupData = {
         labels: storyPerGroupLabels,
         datasets: [
@@ -122,7 +125,7 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
                 <Bar options={statusOptions} data={statusData} />
             </div>
             <div className='line-chart'>
-                <h4>Stories per group</h4>
+                <h4>Stories per Group</h4>
                 <Line options={storyPerGroupOptions} data={storyPerGroupData} />
             </div>
         </div>

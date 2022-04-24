@@ -26,12 +26,11 @@ export function HomePage() {
         (async () => {
             if (!loggedinUser) {
                 setIsDemoUser(true)
-                await dispatch(loginDemoUser())
+                dispatch(loginDemoUser())
             }
-            await dispatch(loadBoards())
+            dispatch(loadBoards())
         })();
-        // eslint-disable-next-line
-    }, [loggedinUser])
+    }, [dispatch, loggedinUser])
 
     const onSignupLogin = () => {
         history.push('/login')
@@ -44,7 +43,7 @@ export function HomePage() {
     }
 
     const onLogout = async () => {
-        await dispatch(logout())
+        dispatch(logout())
         setIsDemoUser(true)
     }
 
@@ -77,16 +76,22 @@ export function HomePage() {
                         </div>
                     </div>
                 </div>
-                <div className='group-img-container'>
-                    <div className="group-img"><img src={groupImg} alt="" /></div>
-                    <div className="group-txt">Create customized groups and stories to manage your projects</div>
-                </div>
-                <div className="dashboard-img-container">
-                    <div className='dashboard-txt'>
-                        Check out statistics on the boards you created
+                <section className="bottom-section">
+                    <div className='group-img-container'>
+                        <div className="group-img">
+                            <img src={groupImg} alt="" />
+                        </div>
+                        <div className="group-txt">Create customized groups and stories to manage your projects</div>
                     </div>
-                    <div className='dashboard-img'><img src={dashboardImg} alt="" /> </div>
-                </div>
+                    <div className="dashboard-img-container">
+                        <div className='dashboard-txt'>
+                            Check out statistics on the boards you created
+                        </div>
+                        <div className='dashboard-img'>
+                            <img src={dashboardImg} alt="" />
+                        </div>
+                    </div>
+                </section>
 
 
 

@@ -22,7 +22,6 @@ import { socketService } from '../services/socket.service'
 import { userService } from '../services/user.service'
 import { loadBoards, getById, updateBoard, setFilterBy, setAppLoaded } from '../store/board.action'
 import { loginDemoUser, login } from '../store/user.action'
-import { Loader } from '../cmps/layout/Loader'
 import { LoadingPage } from './LoadingPage'
 
 
@@ -65,11 +64,11 @@ export function BoardApp() {
 
 	useEffect(() => {
 		(async () => {
-			await dispatch(getById(boardId))
+			dispatch(getById(boardId))
 		})();
 		socketService.emit('enter board', boardId);
 		socketService.on('board has updated', async (updatedBoardId) => {
-			await dispatch(getById(updatedBoardId))
+			dispatch(getById(updatedBoardId))
 		})
 		return () => {
 			socketService.off('board has updated')
@@ -258,9 +257,10 @@ export function BoardApp() {
 					/>
 				</section>
 				<div className="board-content">
-					<Switch className="board-switch-container">
+					<Switch>
 						<Route path="/board/:boardId/kanban">
-							<Kanban board={filteredBoard || selectedBoard}
+							<Kanban
+								board={filteredBoard || selectedBoard}
 								filterBy={filterBy}
 								updateBoard={onUpdateBoard}
 								updateWhileFilterSort={updateWhileFilterSort}

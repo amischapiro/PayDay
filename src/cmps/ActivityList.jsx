@@ -4,7 +4,6 @@ import { ActivityPreview } from "./ActivityPreview"
 
 import { loadActivities, fetchLastActivity } from '../store/activity.action'
 import { socketService } from "../services/socket.service"
-import { width } from "@mui/system"
 
 export const ActivityList = ({ activities, selectedBoard, getInitials }) => {
 
@@ -45,7 +44,7 @@ export const ActivityList = ({ activities, selectedBoard, getInitials }) => {
                     getInitials={getInitials}
                 />
             ))}
-            {isLoading && <div className="spinner" ></div>}
+            {isLoading && <div className="spinner"></div>}
             {hasMore && (
                 <div className="intersector" ref={intersectorRef}>
                     <div></div>

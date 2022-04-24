@@ -11,7 +11,7 @@ export function loadActivities() {
             dispatch({ type: 'SET_ACTIVITIES', activities })
             dispatch({ type: 'SET_HAS_MORE', collectionLength })
             dispatch({ type: 'SET_IS_LOADING', payload: false })
-            return activities
+            return collectionLength
         } catch (error) {
             console.log('Cannot get Boards', error);
         }

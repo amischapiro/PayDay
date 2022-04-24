@@ -5,16 +5,15 @@
     z-index: 20;
     background-color: white;
     height: 100vh;
-    width: min(43rem, 98%);
-    transition: all 0.5s;
+    width: calc(min(43rem, 98%));
     box-shadow: 0 3px 25px 0px #00000057;
     overflow-y: auto;
     color: #676879;
+    transition: 0.2s;
 
     &.open {
         right: 0;
         animation: open-modal 0.3s;
-        transition: 0.2s;
     }
 
     &::-webkit-scrollbar {
@@ -199,9 +198,8 @@
 
     .spinner {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: calc(50% + 32px);
+        left: calc(50% - 32px);
         width: 64px;
         height: 64px;
         border: 8px solid;
