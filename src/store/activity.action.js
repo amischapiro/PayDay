@@ -22,7 +22,7 @@ export function fetchLastActivity() {
     return async (dispatch, getState) => {
         const boardId = getState().boardModule.selectedBoard._id
         try {
-            const activities = await activityService.query(0, boardId)
+            const { activities } = await activityService.query(0, boardId)
             dispatch({ type: 'ADD_ACTIVITY', activity: activities[0] })
         } catch (error) {
             console.log('Cannot get Boards', error);
@@ -43,6 +43,18 @@ export function addActivity(activity) {
     }
 }
 
+export function removeActivities(boardId) {
+    return (dispatch) => {
+        try {
+            activityService.remove(boardId)
+            dispatch({ type: 'REMOVE_ACTIVITIES' })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+
 export function toggleBoardActivityModal() {
     return (dispatch, getState) => {
         const { isOpen } = getState().activityModule
@@ -62,13 +74,3 @@ export function toggleStoryActivityModal(groupId, storyId) {
     }
 }
 
-export function removeActivities(boardId) {
-    return (dispatch) => {
-        try {
-            activityService.remove(boardId)
-            dispatch({ type: 'REMOVE_ACTIVITIES' })
-        } catch (err) {
-            console.log(err);
-        }
-    }
-}
