@@ -195,5 +195,3 @@ export function DynamicGroupSum(props) {
             return;
     }
 }
-
-// export default DynamicGroupSum;
