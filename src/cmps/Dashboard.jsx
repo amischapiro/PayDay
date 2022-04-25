@@ -1,16 +1,31 @@
-import { connect } from 'react-redux'
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+
 import ListIcon from '@mui/icons-material/List';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-// import SplitscreenIcon from '@mui/icons-material/Splitscreen';
-// import ChatIcon from '@mui/icons-material/Chat';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+
 import { DashboardCharts } from './DashboardCharts';
+import { loadActivities, } from '../store/activity.action'
 
 
+export const Dashboard = () => {
 
-export function _Dashboard(props) {
-    const board = props.selectedBoard
+    const dispatch = useDispatch()
+    const { selectedBoard: board } = useSelector(({ boardModule }) => boardModule)
+    const [activitiesLength, setActivitiesLength] = useState("")
+
+    useEffect(() => {
+        (async () => {
+            const length = await dispatch(loadActivities())
+            setActivitiesLength(length)
+        })();
+
+        return () => {
+            dispatch({ type: 'RESET_ACTIVITIES' })
+        }
+    }, [dispatch])
 
     const getStoriesCount = () => {
         let count = 0
@@ -44,6 +59,7 @@ export function _Dashboard(props) {
         })
         return names
     }
+
     const getMembersPerStory = () => {
         let members = []
         board.groups.map(group => {
@@ -53,8 +69,6 @@ export function _Dashboard(props) {
         })
         return members
     }
-
-
 
     const getPriorityNames = () => {
         const names = board.priorities.map(priority => {
@@ -77,17 +91,8 @@ export function _Dashboard(props) {
 
 
 
-
-
-
-
-
-
-
-
     return (
         <section className='dashboard-container'>
-
             <div className='dashboard-stats-container' >
                 <div className='groups-stats'>
                     <div className='stats-icon' ><ListIcon /></div>
@@ -113,13 +118,19 @@ export function _Dashboard(props) {
                 <div className='activities-stats'>
                     <div className='stats-icon' ><MonitorHeartIcon /></div>
                     <div className='inner-stats'>
-                        <div>{board.activities.length}</div>
+                        <div>{activitiesLength}</div>
                         <div>Activities</div>
                     </div>
                 </div>
             </div>
-            <DashboardCharts statusCount={getStatusCount()} storiesPerGroup={getStoriesPerGroupCount()}
-                groupNames={getGroupNames()} priorityNames={getPriorityNames()} priorityCount={getPriorityCount()} membersPerStory={getMembersPerStory()} />
+            <DashboardCharts
+                statusCount={getStatusCount()}
+                storiesPerGroup={getStoriesPerGroupCount()}
+                groupNames={getGroupNames()}
+                priorityNames={getPriorityNames()}
+                priorityCount={getPriorityCount()}
+                membersPerStory={getMembersPerStory()}
+            />
 
 
         </section>
@@ -128,17 +139,4 @@ export function _Dashboard(props) {
 }
 
 
-
-function mapStateToProps({ boardModule }) {
-    return {
-        selectedBoard: boardModule.selectedBoard,
-    }
-}
-
-const mapDispatchToProps = {
-}
-
-
-
-export const Dashboard = connect(mapStateToProps, mapDispatchToProps)(_Dashboard)
 

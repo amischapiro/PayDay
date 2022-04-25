@@ -11,7 +11,9 @@ export const boardService = {
     getPriorityById,
     getMemberById,
     updateTimeline,
-    getTypeById
+    getTypeById,
+    getGroupAndIdx,
+    getStoryAndIdx
 }
 
 
@@ -23,8 +25,12 @@ async function query(userId) {
 
 
 async function getById(boardId) {
-    const board = await httpService.get(`board/${boardId}`)
-    return board
+    try {
+        const board = await httpService.get(`board/${boardId}`)
+        return board
+    } catch (error) {
+        throw error
+    }
 }
 
 async function remove(boardId) {
@@ -74,4 +80,15 @@ async function updateTimeline(timeline) {
     return timeStamp;
 }
 
+function getGroupAndIdx(board, groupId) {
+    const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    const group = board.groups[groupIdx]
+    return { groupIdx, group }
+}
 
+function getStoryAndIdx(board, groupIdx, storyId) {
+    if (groupIdx === -1) return {}
+    const storyIdx = board.groups[groupIdx].stories.findIndex(story => story.id === storyId)
+    const story = board.groups[groupIdx].stories[storyIdx]
+    return { story, storyIdx }
+}

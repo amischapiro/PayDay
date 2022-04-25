@@ -2,7 +2,7 @@
     display: flex;
 }
 
-$colors: hsla(337, 84, 48, 0.75) hsla(160, 50, 48, 0.75) hsla(190, 61, 65, 0.75) hsla(41, 82, 52, 0.75);
+$colors: #e11462bf #3db88fbf #6fcadcbf #e9a920bf;
 $size: 12em;
 $thickness: 1.5em;
 
@@ -10,11 +10,17 @@ $thickness: 1.5em;
 $lat: ($size - $thickness) / 2;
 $offset: $lat - $thickness;
 
+.loader-container {
+    width: 100%;
+    height: 100vh;
+    position: sticky;
+    left: 0;
+    display: grid;
+    place-items: center;
+}
+
 .loader {
-    position: relative;
-    width: 30em;
-    height: 6em;
-    transform: rotate(165deg);
+    transform: translateY(-40px) rotate(165deg);
 
     &:before,
     &:after {
@@ -72,19 +78,4 @@ $offset: $lat - $thickness;
     100% {
         box-shadow: $offset $lat nth($colors, 2), (-$offset) (-$lat) nth($colors, 4);
     }
-}
-
-/**
- * Attempt to center the whole thing!
- */
-
-// html,
-// body {
-//   height: 100%;
-// }
-
-.loader {
-    position: absolute;
-    top: calc(50% - #{$size / 2});
-    left: calc(50% - #{$size / 2});
 }

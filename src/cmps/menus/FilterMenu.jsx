@@ -4,11 +4,12 @@ import { useState } from 'react'
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { setFilterBy } from '../../store/board.action';
+import { useDispatch } from 'react-redux';
 
+export function FilterMenu({ board, }) {
 
-export function FilterMenu({ board, setFilterBy }) {
-
-
+    const dispatch = useDispatch()
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
@@ -23,8 +24,8 @@ export function FilterMenu({ board, setFilterBy }) {
     const id = open ? 'simple-popover' : undefined;
 
     const onSetFilter = (filterType, filterValueId) => {
-        if (filterType === 'reset') setFilterBy(null)
-        else setFilterBy({ [filterType]: filterValueId })
+        if (filterType === 'reset') dispatchEvent(setFilterBy(null))
+        else dispatch(setFilterBy({ [filterType]: filterValueId }))
     }
 
     const { statuses, priorities, types } = board

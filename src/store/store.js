@@ -3,10 +3,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 
 import { userReducer } from './user.reducer'
 import { boardReducer } from "./board.reducer";
+import { activityReducer } from "./activity.reducer";
 
 const rootReducer = combineReducers({
     boardModule: boardReducer,
-    userModule: userReducer
+    userModule: userReducer,
+    activityModule: activityReducer
 })
 
 

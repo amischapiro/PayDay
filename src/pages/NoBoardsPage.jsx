@@ -3,31 +3,28 @@ import { socketService } from "../services/socket.service"
 import { SideBar } from "../cmps/SideBar"
 import { BoardList } from "../cmps/BoardList"
 import { ReactComponent as NoBoardIcon } from '../assets/img/no-boards.svg'
-import { useHistory, Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import Logo from '../assets/img/PayDayLogo3.png';
+import { addBoard } from "../store/board.action"
+import { useDispatch } from "react-redux"
 
-export const NoBoardsPage = ({ boards, selectedBoard, removeBoard, addBoard, loadBoards }) => {
+export const NoBoardsPage = () => {
 
+    const dispatch = useDispatch()
     const history = useHistory()
 
     const onAddBoard = async () => {
         const newBoard = await utilService.createEmptyBoard()
-        await addBoard(newBoard)
+        const addedBoard = await dispatch(addBoard(newBoard))
+        history.push(`/board/${addedBoard._id}/board`)
+
         socketService.emit('update workspace')
     }
-
-    const onGoToHome = () => {
-        history.push('/')
-    }
-
 
     return (
         <div className="main-container">
             <SideBar />
-            <BoardList
-                boards={boards} selectedBoard={selectedBoard} removeBoard={removeBoard}
-                addBoard={addBoard} loadBoards={loadBoards}
-            />
+            <BoardList />
             <div className="no-boards-page">
                 <nav >
                     <Link className='back-home-link' to='/'>

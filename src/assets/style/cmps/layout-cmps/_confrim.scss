@@ -1,0 +1,68 @@
+.confirm {
+    position: fixed;
+    z-index: 1000;
+    .overlay {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        inset: 0;
+        z-index: 1000;
+        background-color: #00000050;
+    }
+
+    .content {
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1500;
+        background-color: white;
+        padding: 1rem 2.5rem;
+        border-radius: 4px;
+        box-shadow: 0 3px 25px #00000035;
+        font-family: Roboto Light;
+        font-weight: 600;
+
+        .icon {
+            display: block;
+            margin: 0.25rem auto 1rem;
+            font-size: 2rem;
+            text-align: center;
+            color: #0073ea;
+        }
+
+        p {
+            margin: 0;
+            text-align: center;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            button {
+                color: #474747;
+                border: 1px solid #474747;
+                border-radius: 4px;
+                padding: 0.3rem 0.7rem;
+                font-size: 1rem;
+                line-height: 1rem;
+                margin: 0.5rem;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #dadada;
+                }
+
+                &.btn-accept {
+                    border: 1px solid #0073ea;
+                    color: #0073ea;
+
+                    &:hover {
+                        background-color: #0073ea;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}

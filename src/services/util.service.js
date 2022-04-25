@@ -14,7 +14,7 @@ export const utilService = {
     createStory,
     createEmptyGroup,
     createEmptyBoard,
-    createFirstBoard
+    createFirstBoard,
 }
 
 

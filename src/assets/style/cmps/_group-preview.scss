@@ -6,9 +6,7 @@
     border: 1px solid transparent;
     border-radius: 4px;
     padding: 0 0.2rem;
-    position: sticky;
-    left: 0;
-    z-index: 10;
+    background-color: #ffffff;
     &:hover {
         border: 1px dashed lightgrey;
     }
@@ -30,8 +28,7 @@
     }
 }
 
-
-@media screen and (max-width:762px) {
+@media screen and (max-width: 762px) {
     .group-header .group-name-container {
         width: 16.0625rem;
     }

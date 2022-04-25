@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux';
-import { setStory } from '../store/board.action';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleBoardActivityModal } from '../store/activity.action'
 import { socketService } from '../services/socket.service';
 
-export function _BoardHeader({ board, updateBoard, setStory }) {
+export function BoardHeader({ updateBoard }) {
 
+    const { selectedBoard: board } = useSelector(({ boardModule }) => boardModule)
     const { title, desc, members } = board
 
     const [isTitleEditOn, toggleTitleEdit] = useState(false)
@@ -16,6 +16,7 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
     const titleRef = React.createRef()
     const descRef = React.createRef()
 
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (isTitleEditOn) titleRef.current.focus()
@@ -51,16 +52,6 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
         socketService.emit('update workspace')
     }
 
-    const onSetStory = async () => {
-        const story = {
-            boardId: board._id,
-            groupId: 'none',
-            storyId: 'none',
-        };
-        await setStory(story);
-    };
-
-
 
     return (
         <div className='board-header'>
@@ -86,7 +77,7 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Stoned_Fox.jpg/1200px-Stoned_Fox.jpg" alt="Foxy Fox" />
                     </div>
                     <div className='invite'> <span className='fa-solid user-plus'></span> Invite / {members.length} </div>
-                    <div className='activity' onClick={onSetStory}>  <span className='fa-solid chart-line'></span> Activity</div>
+                    <div className='activity' onClick={() => dispatch(toggleBoardActivityModal())}>  <span className='fa-solid chart-line'></span> Activity</div>
                     <div className='add-to-board'><span className='fa-solid plus'></span> Add to board</div>
                     <div className="options fa-solid ellipsis-h"></div>
                 </div>
@@ -110,13 +101,3 @@ export function _BoardHeader({ board, updateBoard, setStory }) {
 }
 
 
-function mapStateToProps({ boardModule }) {
-    return {
-    };
-}
-
-const mapDispatchToProps = {
-    setStory,
-};
-
-export const BoardHeader = connect(mapStateToProps, mapDispatchToProps)(_BoardHeader);

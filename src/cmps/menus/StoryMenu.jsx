@@ -6,19 +6,19 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import { utilService } from '../../services/util.service';
-import { userService } from '../../services/user.service';
+import { boardService } from '../../services/board.service'
+import { activityService } from '../../services/activity.service'
 
-export function StoryMenu(props) {
+import { useDispatch } from 'react-redux'
+import { addActivity } from '../../store/activity.action'
 
-    const { board, group, story, updateBoard } = props
+export function StoryMenu({ board, group, story, updateBoard }) {
+
+    const dispatch = useDispatch()
 
     const newBoard = { ...board };
-    const groupId = group.id;
-    const groupIdx = board.groups.findIndex((group) => group.id === groupId);
-    const storyId = story.id;
-    const storyIdx = group.stories.findIndex((story) => story.id === storyId);
-
-    const currUser = userService.getMiniLoggedInUser()
+    const { groupIdx } = boardService.getGroupAndIdx(board, group.id)
+    const { storyIdx } = boardService.getGroupAndIdx(board, group.id, story.id)
 
     const [isHover, toggleIsHover] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
@@ -41,7 +41,7 @@ export function StoryMenu(props) {
     const onRemoveStory = async () => {
         handleClose()
         newBoard.groups[groupIdx].stories.splice(storyIdx, 1)
-        addNewActivity('Story deleted')
+        onAddActivity('Story deleted')
         await updateBoard(newBoard)
     }
 
@@ -50,26 +50,14 @@ export function StoryMenu(props) {
         const newStory = JSON.parse(JSON.stringify(story))
         newStory.id = utilService.makeId();
         newBoard.groups[groupIdx].stories.unshift(newStory)
-        addNewActivity('Story duplicated')
+        onAddActivity('Story duplicated')
         await updateBoard(newBoard)
     }
 
-    const addNewActivity = (type) => {
-        const newActivity = {
-            id: utilService.makeId(),
-            type,
-            createdAt: Date.now(),
-            byMember: currUser,
-            story: {
-                id: story.id,
-                title: story.title
-            },
-            group: {
-                id: groupId,
-                title: group.title
-            }
-        }
-        newBoard.activities.unshift(newActivity)
+
+    const onAddActivity = (type) => {
+        const newActivity = activityService.makeNewActivity(type, board, group, story)
+        dispatch(addActivity(newActivity))
     }
 
     return (

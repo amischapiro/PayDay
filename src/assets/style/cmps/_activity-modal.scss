@@ -1,34 +1,33 @@
 .activity-modal {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -120%;
     z-index: 20;
     background-color: white;
     height: 100vh;
-    width: 43rem;
-    transition: all 0.5s;
-    box-shadow: 0 0px 14px 2px #1d1d1d;
+    width: calc(min(43rem, 98%));
+    box-shadow: 0 3px 25px 0px #00000057;
     overflow-y: auto;
     color: #676879;
+    transition: 0.2s;
 
     &.open {
         right: 0;
         animation: open-modal 0.3s;
-        transition: 0.2s;
     }
 
     &::-webkit-scrollbar {
-        width: 12px;
+        width: 8px;
     }
 
     &::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px grey;
-        border-radius: 10px;
+        box-shadow: inset 0 0 25px #00000020;
+        border-radius: 0.25rem;
     }
 
     &::-webkit-scrollbar-thumb {
         background: #0073ea;
-        border-radius: 25px;
+        border-radius: 0.25rem;
     }
 
     &::-webkit-scrollbar-thumb:hover {
@@ -36,7 +35,10 @@
     }
 
     .top-section {
-        padding: 1rem 1.5rem 0 1.5rem;
+        padding: 1rem 0.5rem 0;
+        @media (min-width: 600px) {
+            padding: 1rem 1.5rem 0;
+        }
 
         .btn-close-modal {
             background-color: inherit;
@@ -116,12 +118,11 @@
         background-color: #e6e9ef;
     }
 
-    // .modal-story-name {
-    //     margin-left: 1rem;
-    // }
-
     .bottom-section {
-        padding: 1rem 1.5rem;
+        padding: 1rem 0.5rem;
+        @media (min-width: 600px) {
+            padding: 1rem 1.5rem;
+        }
     }
 
     .update-input {
@@ -177,7 +178,46 @@
             border: none;
         }
     }
+
+    .intersector {
+        width: 100%;
+        height: 80px;
+        position: relative;
+        display: grid;
+        place-items: center;
+
+        div {
+            width: 40px;
+            height: 40px;
+            border: 4px solid;
+            border-color: #585858b9 transparent #585858b9 transparent;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+        }
+    }
+
+    .spinner {
+        position: absolute;
+        top: calc(50% + 32px);
+        left: calc(50% - 32px);
+        width: 64px;
+        height: 64px;
+        border: 8px solid;
+        border-color: #e11462bf #3db88fbf #6fcadcbf #e9a920bf;
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 }
+
 .modal-update-btns {
     width: 100%;
     display: flex;
@@ -254,13 +294,18 @@
 
 .activity-preview {
     font-family: Roboto Light, sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     line-height: 1.5em;
     border-bottom: 1px solid #d3d3d3;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
+
     padding: 0.5rem;
+
+    @media (min-width: 600px) {
+        font-size: 0.875rem;
+    }
 
     .fa,
     .fa-solid {
@@ -268,6 +313,7 @@
 
         &.clock {
             font-size: 0.8125rem;
+            font-size: 0.75rem;
         }
     }
 }
@@ -275,13 +321,13 @@
 .activity-member {
     display: flex;
     align-items: center;
-    .story-title {
+    .activity-title {
         margin-inline-start: 0.4rem;
     }
 }
 
 .member-img {
-    width: 100%;
+    // width: 100%;
     border-radius: 50%;
     background-color: hotpink;
     text-align: center;
@@ -291,31 +337,48 @@
     vertical-align: middle;
     letter-spacing: 1px;
 
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     display: grid;
     place-items: center;
     img {
-        width: 2rem;
-        height: 2rem;
+        width: 1.5rem;
+        height: 1.5rem;
         border-radius: 50%;
     }
 }
 
+@media (min-width: 600px) {
+    .member-img {
+        width: 2rem;
+        height: 2rem;
 
+        img {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+}
 .activity-time {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 0.875rem;
-    line-height: 1.5em;
     span {
-        max-width: 15ch;
+        max-width: 9ch;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        @media (min-width: 600px) {
+            max-width: 15ch;
+        }
     }
 }
+
+.activity-type {
+    text-align: center;
+}
+
 .MuiSvgIcon-fontSizeMedium.activity-clock {
     margin-top: 0.2rem;
 }
@@ -337,11 +400,5 @@
 
     100% {
         height: 7rem;
-    }
-}
-
-@media screen and (max-width: 762px) {
-    .activity-modal {
-        width: 25rem;
     }
 }

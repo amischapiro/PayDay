@@ -1,31 +1,31 @@
-import { connect } from 'react-redux'
-import React from 'react'
 import { useState, useEffect } from 'react'
 
 import { BoardPreview } from './BoardPreview'
 import { utilService } from '../services/util.service'
 import { socketService } from '../services/socket.service'
+import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadBoards, addBoard } from '../store/board.action'
 
-function _BoardList({
-	boards,
-	updateBoard,
-	removeBoard,
-	addBoard,
-	currBoard,
-	loadBoards,
-}) {
+export function BoardList() {
+
+	const { selectedBoard: currBoard, boards } = useSelector(({ boardModule }) => boardModule)
+	const dispatch = useDispatch()
+
 	const [anchorEl, setAnchorEl] = useState(null)
 	const [isBoardListOpen, toggleBoardList] = useState(true)
+
+	const history = useHistory()
 
 	useEffect(() => {
 		socketService.emit('enter workspace')
 		socketService.on('workspace has updated', async () => {
-			await loadBoards()
+			await dispatch(loadBoards())
 		})
 		return () => {
 			socketService.off('workspace has updated')
 		}
-	}, [])
+	}, [dispatch])
 
 	const onToggleBoardListShown = () => {
 		isBoardListOpen ? toggleBoardList(false) : toggleBoardList(true)
@@ -38,11 +38,20 @@ function _BoardList({
 	const open = Boolean(anchorEl)
 	const id = open ? 'simple-popper' : undefined
 
+
 	const onAddBoard = async () => {
 		const newBoard = await utilService.createEmptyBoard()
-		await addBoard(newBoard)
+		if (boards.length > 0) await dispatch(addBoard(newBoard))
+		else onAddFirstBoard(newBoard)
 		socketService.emit('update workspace')
 	}
+
+	const onAddFirstBoard = async (newBoard) => {
+		const addedBoard = await dispatch(addBoard(newBoard))
+		history.push(`/board/${addedBoard._id}/board`)
+
+	}
+
 
 	return (
 		<section
@@ -59,9 +68,7 @@ function _BoardList({
 				onClick={handleClick}>
 				<h2>
 					Main workspace{' '}
-					<span
-						className={`fa-solid ${open ? 'angleup' : 'angledown'
-							} `}></span>{' '}
+					<span className={`fa-solid ${open ? 'angleup' : 'angledown'} `}></span>
 				</h2>
 			</button>
 			<div onClick={onAddBoard} className="add-board">
@@ -83,9 +90,6 @@ function _BoardList({
 							board={board}
 							currBoard={currBoard}
 							boards={boards}
-							updateBoard={updateBoard}
-							removeBoard={removeBoard}
-							addBoard={addBoard}
 						/>
 					)
 				})}
@@ -94,17 +98,3 @@ function _BoardList({
 	)
 }
 
-function mapStateToProps({ boardModule }) {
-	return {
-		// boards: boardModule.boards
-	}
-}
-
-const mapDispatchToProps = {
-	// loadBoards
-}
-
-export const BoardList = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(_BoardList)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
@@ -39,7 +39,7 @@ export function ColumnMenu({ onSetCol }) {
                     vertical: 'bottom',
                     horizontal: 'left',
                 }}>
-                    {/* drop-down */}
+                {/* drop-down */}
                 <Typography className="column-drop-down">
                     <span onClick={() => onSetCol('status-picker')}>
                         <span className="fa-solid battery-three-quarters"></span>

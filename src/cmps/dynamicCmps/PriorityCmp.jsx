@@ -1,19 +1,23 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 export function PriorityCmp({ story, onUpdate, boardPriorities }) {
-	const [anchorEl, setAnchorEl] = React.useState(null);
-	const [priority, setPriority] = React.useState(story.storyData.priority);
+
+	const [anchorEl, setAnchorEl] = useState(null);
+	const [priority, setPriority] = useState(story.storyData.priority);
+
+	useEffect(() => {
+		setPriority(story.storyData.priority)
+	}, [story.storyData.priority])
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
-	const handleClose = (priority) => {
+	const handleClose = () => {
 		setAnchorEl(null);
-		setPriority(priority);
 	};
 
 	const open = Boolean(anchorEl);
@@ -41,7 +45,7 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 					vertical: 'bottom',
 					horizontal: 'left',
 				}}>
-				{boardPriorities.map((priority, idx) => {
+				{boardPriorities.map(priority => {
 					return (
 						<div className="picker-container" key={priority.id}>
 							<Typography
@@ -50,7 +54,8 @@ export function PriorityCmp({ story, onUpdate, boardPriorities }) {
 								className="element-picker"
 								onClick={() => {
 									onUpdate('CHANGE_PRIORITY', priority.id);
-									handleClose(priority);
+									handleClose()
+									setPriority(priority)
 								}
 								}>
 								{priority.title}

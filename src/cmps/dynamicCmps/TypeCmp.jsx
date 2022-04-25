@@ -1,25 +1,28 @@
-import * as React from 'react';
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { useState, useEffect } from 'react'
+import Popover from '@mui/material/Popover'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 
 export function TypesCmp({ story, onUpdate, boardTypes }) {
-	
-	const [anchorEl, setAnchorEl] = React.useState(null);
-	const [type, setType] = React.useState(story.storyData.type);
+
+	const [anchorEl, setAnchorEl] = useState(null)
+	const [type, setType] = useState(story.storyData.type)
+
+	useEffect(() => {
+		setType(story.storyData.type)
+	}, [story.storyData.type])
 
 	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
+		setAnchorEl(event.currentTarget)
+	}
 
-	const handleClose = (type) => {
-		setAnchorEl(null);
-		setType(type);
-	};
+	const handleClose = () => {
+		setAnchorEl(null)
+	}
 
-	const open = Boolean(anchorEl);
-	const id = open ? 'simple-popover' : undefined;
-	
+	const open = Boolean(anchorEl)
+	const id = open ? 'simple-popover' : undefined
+
 	return (
 
 		<div className="type-cmp">
@@ -51,16 +54,17 @@ export function TypesCmp({ story, onUpdate, boardTypes }) {
 								sx={{ p: 2, background: type.color }}
 								className="element-picker"
 								onClick={() => {
+									handleClose()
+									setType(type)
 									onUpdate('CHANGE_TYPE', type.id)
-									handleClose(type)
 								}
 								}>
 								{type.title}
 							</Typography>
 						</div>
-					);
+					)
 				})}
 			</Popover>
 		</div>
-	);
+	)
 }

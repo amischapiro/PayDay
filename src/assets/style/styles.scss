@@ -36,7 +36,6 @@
 @import "./cmps/activity-modal.scss";
 @import "./cmps/modal-update-preview.scss";
 @import "./cmps/group-preview.scss";
-@import "./cmps/home-page-header.scss";
 @import "./cmps/add-story.scss";
 @import "./cmps/main-content.scss";
 
@@ -56,3 +55,7 @@
 @import "./cmps/kanban/kanban-group.scss";
 @import "./cmps/kanban/kanban-members.scss";
 @import "./cmps/kanban/kanban-due-date.scss";
+
+// Layout Cmps
+
+@import "./cmps/layout-cmps/confrim";

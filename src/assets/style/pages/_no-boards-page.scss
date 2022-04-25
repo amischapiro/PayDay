@@ -82,10 +82,6 @@
             grid-template-rows: 1fr 1fr;
         }
 
-        nav {
-            display: none;
-        }
-
         .svg {
             width: 80%;
             height: 80%;
@@ -98,6 +94,11 @@
         }
         .btn-add-board {
             place-self: start;
+        }
+    }
+    @media (min-width: 762px) {
+        nav {
+            display: none;
         }
     }
 }

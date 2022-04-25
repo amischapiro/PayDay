@@ -1,5 +1,4 @@
 import { boardService } from "../services/board.service";
-import { swalService } from "../services/swal.service.js";
 
 export function loadBoards() {
     return async (dispatch, getState) => {
@@ -11,6 +10,7 @@ export function loadBoards() {
             return Promise.resolve(boards)
         } catch (error) {
             console.log('Cannot get Boards', error);
+            dispatch({ type: 'SET_LOADING_BOARDS', payload: false })
         }
     }
 }
@@ -23,6 +23,7 @@ export function getById(boardId) {
             return board
         } catch (error) {
             console.log('Cannot get Boards', error);
+            dispatch({ type: 'SET_LOADING_BOARD', payload: false })
         }
     }
 }
@@ -30,7 +31,6 @@ export function getById(boardId) {
 export function removeBoard(boardId) {
     return async (dispatch) => {
         try {
-            await swalService.onDeleteSwal()
             await boardService.remove(boardId)
             dispatch({ type: 'REMOVE_BOARD', boardId })
             return Promise.resolve()
@@ -40,7 +40,7 @@ export function removeBoard(boardId) {
     }
 }
 
-export function newUpdateBoard(boardToUpdate) {
+export function updateBoard(boardToUpdate) {
     return async (dispatch, getState) => {
         const state = getState()
         const { selectedBoard } = state.boardModule
@@ -52,18 +52,6 @@ export function newUpdateBoard(boardToUpdate) {
             console.log(error);
             dispatch({ type: 'UPDATE_BOARD', board: backupBoard })
             throw new Error('Cannot update, retrieving last update')
-        }
-    }
-}
-
-export function updateBoard(boardToUpdate) {
-    return async (dispatch, getState) => {
-        try {
-            const savedBoard = await boardService.save(boardToUpdate)
-            dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
-            return savedBoard
-        } catch (err) {
-            console.log('Cannot Update', boardToUpdate)
         }
     }
 }
@@ -80,14 +68,14 @@ export function addBoard(boardToSave) {
     }
 }
 
-export function setStory(story) {
-    return async (dispatch) => {
-        dispatch({ type: 'SET_STORY', story })
-    }
-}
-
 export function setFilterBy(filterBy) {
     return async (dispatch) => {
         dispatch({ type: 'SET_FILTER', filterBy })
+    }
+}
+
+export function setAppLoaded() {
+    return async (dispatch) => {
+        dispatch({ type: 'SET_APP_LOADED' })
     }
 }

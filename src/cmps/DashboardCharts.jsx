@@ -1,4 +1,4 @@
-import { Bar, Line, Pie, Scatter } from 'react-chartjs-2';
+import { Bar, Line, Pie } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -33,11 +33,13 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
         plugins: {
             legend: {
                 position: 'top',
+                display: false
+
             },
         },
     };
 
-    const statusLabels = ['Done', 'Ready for review', 'Working on it','Stuck', 'To do' ];
+    const statusLabels = ['Done', 'Ready for review', 'Working on it', 'Stuck', 'To do'];
     const statusData = {
         labels: statusLabels,
         datasets: [
@@ -51,18 +53,19 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
                     'rgba(255, 159, 64, 0.7)',
                     'rgba(255, 99, 132, 0.7)',
                     'rgba(128, 128, 128, 0.7)',]
-            },
+            }
         ],
     };
     const storyPerGroupOptions = {
         responsive: true,
         plugins: {
             legend: {
-                position: 'top',
+                display: false
             },
         },
     }
     const storyPerGroupLabels = groupNames
+
     const storyPerGroupData = {
         labels: storyPerGroupLabels,
         datasets: [
@@ -91,27 +94,27 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
             },
         ],
     }
-    const membersPerStoryOptions = {
-        scales: {
-            y: {
-                beginAtZero: true,
-            },
-        }
-    }
+    // const membersPerStoryOptions = {
+    //     scales: {
+    //         y: {
+    //             beginAtZero: true,
+    //         },
+    //     }
+    // }
 
-    const membersPerStoryData = {
-        datasets: [
-            {
-                label: 'Members per story',
-                //   data: Array.from({ length: 100 }, () => ({
-                //     x: faker.datatype.number({ min: -100, max: 100 }),
-                //     y: faker.datatype.number({ min: -100, max: 100 }),
-                //   })),
-                data: membersPerStory,
-                backgroundColor: 'rgba(255, 99, 132, 1)',
-            },
-        ],
-    }
+    // const membersPerStoryData = {
+    //     datasets: [
+    //         {
+    //             label: 'Members per story',
+    //             //   data: Array.from({ length: 100 }, () => ({
+    //             //     x: faker.datatype.number({ min: -100, max: 100 }),
+    //             //     y: faker.datatype.number({ min: -100, max: 100 }),
+    //             //   })),
+    //             data: membersPerStory,
+    //             backgroundColor: 'rgba(255, 99, 132, 1)',
+    //         },
+    //     ],
+    // }
 
 
 
@@ -122,7 +125,7 @@ export function DashboardCharts({ statusCount, storiesPerGroup, groupNames, prio
                 <Bar options={statusOptions} data={statusData} />
             </div>
             <div className='line-chart'>
-                <h4>Stories per group</h4>
+                <h4>Stories per Group</h4>
                 <Line options={storyPerGroupOptions} data={storyPerGroupData} />
             </div>
         </div>
