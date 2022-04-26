@@ -57,9 +57,6 @@ export const GroupList = ({ board, updateBoard, filterBy, updateWhileFilterSort,
 		const newBoard = { ...board }
 		updateBoard(newBoard)
 	}
-<<<<<<< HEAD
-}
-=======
 
 
 	return (
@@ -120,4 +117,3 @@ export const GroupList = ({ board, updateBoard, filterBy, updateWhileFilterSort,
 	)
 }
 
->>>>>>> b2f3986f38449bec13aa9ca7edfd307a58f1cc2a
