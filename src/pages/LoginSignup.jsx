@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
@@ -25,7 +24,7 @@ export function LoginSignup() {
 	const dispatch = useDispatch()
 	const history = useHistory()
 
-
+	const [message, setMessage] = useState('')
 	const [googleId, setGoogleId] = useState('')
 	const location = useLocation();
 	const isSignUp = location.pathname !== '/login';
@@ -43,12 +42,17 @@ export function LoginSignup() {
 
 
 	const onLoginSignup = async (type, user) => {
-		if (type === 'signup') await dispatch(signup(user))
-		else await dispatch(login(user))
+		try {
+			if (type === 'signup') await dispatch(signup(user))
+			else await dispatch(login(user))
 
-		const boards = await dispatch(loadBoards())
-		const boardId = boards[0]?._id ?? null
-		history.push(`/board/${boardId}/board`)
+			const boards = await dispatch(loadBoards())
+			const boardId = boards[0]?._id ?? null
+			history.push(`/board/${boardId}/board`)
+		} catch (err) {
+			throw err
+		}
+
 	}
 
 
@@ -69,8 +73,9 @@ export function LoginSignup() {
 			}
 			try {
 				await onLoginSignup('login', user)
-			} catch {
-				console.log('Invalid username or password');
+			} catch (err) {
+				setMessage('Invalid username or password')
+				console.log(err);
 			}
 		}
 	}
@@ -90,6 +95,12 @@ export function LoginSignup() {
 			await onLoginSignup('signup', googleUser)
 		}
 	}
+
+	const hideMessage = useCallback(() => {
+		setTimeout(() => {
+			setMessage('')
+		}, 3000)
+	}, [])
 
 
 	return (
@@ -175,6 +186,9 @@ export function LoginSignup() {
 								sx={{ mt: 3, mb: 2 }}>
 								{isSignUp ? 'Sign up' : 'login'}
 							</Button>
+							{message && (
+								<div className="msg-container" ref={hideMessage}>{message}</div>
+							)}
 							<Grid container justifyContent="flex-end">
 								<Grid item>
 									{isSignUp ? <div>
@@ -194,14 +208,16 @@ export function LoginSignup() {
 				<h5>Or</h5>
 				<span className="separator-line"></span>
 			</div>
-			{googleId && (
-				<GoogleLogin
-					className="google-signin-btn"
-					clientId={googleId.id}
-					onSuccess={responseGoogle}
-					cookiePolicy={'single_host_origin'}
-				/>
-			)}
-		</section>
+			{
+				googleId && (
+					<GoogleLogin
+						className="google-signin-btn"
+						clientId={googleId.id}
+						onSuccess={responseGoogle}
+						cookiePolicy={'single_host_origin'}
+					/>
+				)
+			}
+		</section >
 	);
 }
