@@ -14,7 +14,7 @@ export function login(credentials) {
 
 
 export function loginDemoUser() {
-    return async (dispatch) => {
+    return (dispatch) => {
         const demoUser = {
             _id: '1f23sd1f5w5',
             fullname: 'Demo User',
@@ -23,7 +23,6 @@ export function loginDemoUser() {
         }
         dispatch({ type: 'SET_USER', user: demoUser })
         sessionStorage.setItem('loggedinUser', JSON.stringify(demoUser))
-        return Promise.resolve()
     }
 }
 

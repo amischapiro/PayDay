@@ -16,6 +16,7 @@ export const NoBoardsPage = () => {
     const onAddBoard = async () => {
         const newBoard = await utilService.createEmptyBoard()
         const addedBoard = await dispatch(addBoard(newBoard))
+        dispatch({ type: 'SET_BOARD', board: addedBoard })
         history.push(`/board/${addedBoard._id}/board`)
 
         socketService.emit('update workspace')

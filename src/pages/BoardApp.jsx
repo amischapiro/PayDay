@@ -51,7 +51,7 @@ export function BoardApp() {
 				if (loggedinUser) {
 					const user = userService.getMiniLoggedInUser()
 					login(user)
-				} else await dispatch(loginDemoUser())
+				} else dispatch(loginDemoUser())
 				dispatch({ type: 'SET_LOADING_BOARDS', payload: true })
 				await dispatch(loadBoards())
 				await dispatch(setAppLoaded())
