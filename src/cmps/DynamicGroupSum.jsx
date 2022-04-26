@@ -193,8 +193,4 @@ export function DynamicGroupSum({ cmp, group, index }) {
         default:
             return
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b2f3986f38449bec13aa9ca7edfd307a58f1cc2a

@@ -40,6 +40,13 @@ export function LoginSignup() {
 		})();
 	}, [])
 
+	useEffect(() => {
+		if (!message) return
+		setTimeout(() => {
+			setMessage('')
+		}, [3000])
+	}, [message])
+
 
 	const onLoginSignup = async (type, user) => {
 		try {
@@ -80,6 +87,7 @@ export function LoginSignup() {
 		}
 	}
 
+
 	const responseGoogle = async (response) => {
 
 		const userObj = response.profileObj;
@@ -95,13 +103,6 @@ export function LoginSignup() {
 			await onLoginSignup('signup', googleUser)
 		}
 	}
-
-	const hideMessage = useCallback(() => {
-		setTimeout(() => {
-			setMessage('')
-		}, 3000)
-	}, [])
-
 
 	return (
 		<section className="login-signup flex column align-center">
@@ -187,7 +188,7 @@ export function LoginSignup() {
 								{isSignUp ? 'Sign up' : 'login'}
 							</Button>
 							{message && (
-								<div className="msg-container" ref={hideMessage}>{message}</div>
+								<div className="msg-container" >{message}</div>
 							)}
 							<Grid container justifyContent="flex-end">
 								<Grid item>
